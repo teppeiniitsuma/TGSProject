@@ -11,6 +11,16 @@ public class objMove : MonoBehaviour
     bool _act = false;
     bool _inArea = false;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var b = collision.gameObject.GetComponent<IGimmickEvent>();
+        if (b != null) { b.GimmickTrigger(true); }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        var b = collision.gameObject.GetComponent<IGimmickEvent>();
+        if (b != null) { b.GimmickTrigger(false); }
+    }
     private void Start()
     {
         _info = FindObjectOfType<PlayerInfoCounter>();
@@ -30,7 +40,6 @@ public class objMove : MonoBehaviour
     void Update()
     {
         Check(pos);
-        Debug.Log(_inArea);
         if (_info.GetParameter.actSwitch) { this.transform.position = new Vector2(pos.position.x + 1.2f * _info.GetParameter.direction, transform.position.y); }
         if (_info.GetParameter.actSwitch) { transform.localScale = new Vector3(_info.GetParameter.direction, 1, 1); }
         

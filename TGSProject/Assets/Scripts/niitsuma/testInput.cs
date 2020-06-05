@@ -16,8 +16,7 @@ public class testInput : MonoBehaviour, IInputEvent
         vector = Vector2.zero;
     }
 
-    // Update is called once per frame
-    void Update()
+    void InputProcess()
     {
         if (Input.GetKey(KeyCode.Space)) { circleButton = true; }
         else { circleButton = false; }
@@ -32,5 +31,9 @@ public class testInput : MonoBehaviour, IInputEvent
         }
         else if (Input.GetKey(KeyCode.LeftArrow)) { vector = Vector2.left; }
         else { vector = Vector2.zero; }
+    }
+    void Update()
+    {
+        InputProcess();
     }
 }

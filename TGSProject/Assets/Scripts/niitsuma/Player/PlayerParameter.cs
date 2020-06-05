@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public struct PlayerParameter
+﻿public struct PlayerParameter
 {
     public int hp;
     public int direction;
