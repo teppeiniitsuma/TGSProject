@@ -8,9 +8,17 @@ using UnityEngine;
 
 public class PlayerInfoCounter : MonoBehaviour
 {
-    PlayerParameter _parameter;
+    PlayerParameter _parameter = new PlayerParameter();
     public PlayerParameter GetParameter { get { return _parameter; } }
 
+    public void SetDirec(int d)
+    {
+        _parameter.direction = d;
+    }
+    public void SetAct(bool act)
+    {
+        _parameter.actSwitch = act;
+    }
     void Awake()
     {
         _parameter = new PlayerParameter();
@@ -19,7 +27,9 @@ public class PlayerInfoCounter : MonoBehaviour
 
     void Initialize()
     {
-        _parameter.moveSpeed = 2f;
+        _parameter.hp = 4;
+        _parameter.direction = 1;
+        _parameter.moveSpeed = 3f;
         _parameter.actSwitch = false;
     }
     // Update is called once per frame
