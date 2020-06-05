@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerMover : BasePlayer
 {
     Rigidbody2D _rigidbody;
-    objMove obj;
+    objMove _obj;
 
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        obj = FindObjectOfType<objMove>();
+        _obj = FindObjectOfType<objMove>();
     }
     void Mover()
     {
@@ -28,6 +28,6 @@ public class PlayerMover : BasePlayer
     {
         if(inputer.circleButton) { Debug.Log("決定"); }
         if(inputer.squareButton) { Debug.Log("キャンセル"); }
-        if (inputer.triangleButton) { if (obj.InArea) obj.SetPos(); }
+        if (inputer.triangleButton) { if (_obj.InArea) _obj.SetPos(); }
     }
 }
