@@ -8,6 +8,8 @@ public class testInput : MonoBehaviour, IInputEvent
     public bool squareButton   { get; set; }
     public bool triangleButton { get; set; }
     public Vector2 vector      { get; set; }
+
+
     void Awake()
     {
         circleButton   = false;
@@ -31,6 +33,7 @@ public class testInput : MonoBehaviour, IInputEvent
         }
         else if (Input.GetKey(KeyCode.LeftArrow)) { vector = Vector2.left; }
         else { vector = Vector2.zero; }
+
     }
     void Update()
     {

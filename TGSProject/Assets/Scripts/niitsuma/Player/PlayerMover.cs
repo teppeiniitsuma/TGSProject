@@ -15,8 +15,8 @@ public class PlayerMover : BasePlayer
     void Mover()
     {
         _rigidbody.velocity = new Vector2(infoCounter.GetParameter.moveSpeed * inputer.vector.x, inputer.vector.y);
-        if(inputer.vector.x >= 1) { infoCounter.SetDirec(1); }
-        else if(inputer.vector.x <= -1) { infoCounter.SetDirec(-1); }
+        if(inputer.vector.x > 0.1) { infoCounter.SetDirec(1); }
+        else if(inputer.vector.x < -0.1) { infoCounter.SetDirec(-1); }
         transform.localScale = new Vector3(infoCounter.GetParameter.direction, 1, 1);
     }
 
