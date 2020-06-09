@@ -1,0 +1,11 @@
+﻿namespace DualShockInput
+{
+    public enum DSButton
+    {
+        Square   = 350,
+        Cross    = 351, 
+        Circle   = 352,
+        Triangle = 353,
+    }
+}
+
