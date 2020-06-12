@@ -7,14 +7,14 @@ public class SpiderEnemy : BaseEnemy
 
     private Rigidbody2D ri2d;
     //  trueならば敵を追い続ける画面が変わったらfalseになる
-    private bool ScreenSwitchingTarget = true;
+    //private bool ScreenSwitchingTarget = true;
 
     // Start is called before the first frame update
     void Start()
     {
         ri2d = GetComponent<Rigidbody2D>();
         //  
-        player = GameObject.Find("PLAYER");
+        player = GameObject.Find("player");
     }
 
     // Update is called once per frame
@@ -26,8 +26,8 @@ public class SpiderEnemy : BaseEnemy
     //  移動関数
     private void Move()
     {
-        if(ScreenSwitchingTarget == true)
-        {
+        //if(ScreenSwitchingTarget == true)
+        //{
             Vector2 tagetPos = player.transform.position;
 
             float x = tagetPos.x;
@@ -35,7 +35,7 @@ public class SpiderEnemy : BaseEnemy
 
             Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
             ri2d.velocity = direction * 2;
-        }
+        //}
     }
 
 }
