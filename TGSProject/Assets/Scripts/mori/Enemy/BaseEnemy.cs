@@ -8,7 +8,7 @@ public class BaseEnemy : MonoBehaviour
     public int Hp;
 
     //  EnemyにPlayerを認識させる
-    public GameObject player;
+    public GameObject plaYer;
 
     private void DamageCollider(Collider2D collider)
     {
