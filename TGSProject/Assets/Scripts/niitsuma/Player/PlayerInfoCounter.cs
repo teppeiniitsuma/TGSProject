@@ -29,7 +29,7 @@ public class PlayerInfoCounter : MonoBehaviour
     {
         _parameter.hp = 4;
         _parameter.direction = 1;
-        _parameter.moveSpeed = 3f;
+        _parameter.moveSpeed = 5f;
         _parameter.actSwitch = false;
     }
     // Update is called once per frame

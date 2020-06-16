@@ -9,13 +9,13 @@ public class testInput : MonoBehaviour, IInputEvent
     public bool triangleButton { get; set; }
     public Vector2 vector      { get; set; }
 
-
     void Awake()
     {
         circleButton   = false;
         squareButton   = false;
         triangleButton = false;
         vector = Vector2.zero;
+        
     }
 
     void InputProcess()
@@ -29,7 +29,7 @@ public class testInput : MonoBehaviour, IInputEvent
         if (Input.GetKey(KeyCode.RightArrow))
         {
             vector = Vector2.right;
-            Debug.Log(vector);
+            //Debug.Log(vector);
         }
         else if (Input.GetKey(KeyCode.LeftArrow)) { vector = Vector2.left; }
         else { vector = Vector2.zero; }
@@ -37,6 +37,6 @@ public class testInput : MonoBehaviour, IInputEvent
     }
     void Update()
     {
-        InputProcess();
+         InputProcess();
     }
 }

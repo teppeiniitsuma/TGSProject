@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class objMove : MonoBehaviour
 {
-    PlayerInfoCounter _info;
+    [SerializeField] PlayerInfoCounter _info;
     [SerializeField] Transform pos;
     [SerializeField] float catchArea = 1.5f;
     public bool InArea { get { return _inArea; } }
@@ -21,10 +21,7 @@ public class objMove : MonoBehaviour
         var b = collision.gameObject.GetComponent<IGimmickEvent>();
         if (b != null) { b.GimmickTrigger(false); }
     }
-    private void Start()
-    {
-        _info = FindObjectOfType<PlayerInfoCounter>();
-    }
+    
     void Check(Transform p)
     {
         if(p.position.x >= transform.position.x - catchArea &&

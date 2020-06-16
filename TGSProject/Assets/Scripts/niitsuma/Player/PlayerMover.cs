@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerMover : BasePlayer
 {
+    [SerializeField] private objMove _obj;
     Rigidbody2D _rigidbody;
-    objMove _obj;
 
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _obj = FindObjectOfType<objMove>();
     }
     void Mover()
     {
@@ -22,7 +21,8 @@ public class PlayerMover : BasePlayer
 
     private void FixedUpdate()
     {
-        Mover();
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+            Mover();
     }
     void Update()
     {

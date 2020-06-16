@@ -1,41 +1,35 @@
-﻿/*
- ゲームの初期化などを担う
- */
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
-    public static GameManager Instance { get { return Instance; } }
+    static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
 
     public GameState gameState;
     public GameState GetGameState { get { return gameState; }}
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        _instance = this;
     }
-    // MainとResultだけでいいかも
+
     public enum GameState
     {
         Main,
+        EventStart,
+        EventEnd,
         GameOver,
         Result,
     }
-    
-
-    void Start()
+    /// <summary>
+    /// ゲームステートを書き換える
+    /// </summary>
+    /// <param name="g"></param>
+    public void SetGameState(GameState g)
     {
-
+        gameState = g;
     }
+    
 }
