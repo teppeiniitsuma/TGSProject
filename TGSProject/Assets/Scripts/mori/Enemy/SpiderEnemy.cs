@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class SpiderEnemy : BaseEnemy 
 {
-    //  オブジェクトのRigidbodyの変数
-    //private Rigidbody2D ri2d;
+    //オブジェクトのRigidbodyの変数
+    private Rigidbody2D ri2d;
     //  playerのtransformを格納する変数
     [SerializeField]
     private Transform player;
     //  オブジェクトの移動速度を格納する変数
-    [SerializeField]
-    private float moveSpeed;
+    //[SerializeField]
+    //private float moveSpeed;
     //  オブジェクトとplayerの適切な距離で停止する変数
     [SerializeField]
     private float stopMove;
@@ -21,7 +22,7 @@ public class SpiderEnemy : BaseEnemy
 
     void Start()
     {
-        //ri2d = GetComponent<Rigidbody2D>();
+        ri2d = GetComponent<Rigidbody2D>();
         //  
         //player = GameObject.Find("player");
     }
@@ -30,23 +31,25 @@ public class SpiderEnemy : BaseEnemy
     void Update()
     {
         Move();
+        Confirmation();
+    }
+
+    //  プレイヤーを検知する関数
+    private void Confirmation()
+    {
+        Vector3 playerPos = player.position;
+        float distance = Vector3.Distance(transform.position, player.position);
+        if(distance < startMove && distance > stopMove)
+        {
+            Debug.Log("プレイヤーを検知しました。");
+        }
+
     }
 
     //  移動関数
     private void Move()
     {
-        Vector2 tagetPos = player.position;
-
-        //tagetPos.y = transform.position.y;
-
-        transform.LookAt(tagetPos);
-
-        float move = Vector2.Distance(transform.position, player.position);
-
-        if(move < startMove && move > stopMove)
-        {
-            transform.position = transform.position * moveSpeed * Time.deltaTime;
-        }
+        
     }
 
     //  移動関数
