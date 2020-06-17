@@ -19,12 +19,11 @@ public class SpiderEnemy : BaseEnemy
     //  playerがオブジェクトに近づいたら開始する変数
     [SerializeField]
     private float startMove;
+    private bool playerConfirmation = false;
 
     void Start()
     {
         ri2d = GetComponent<Rigidbody2D>();
-        //  
-        //player = GameObject.Find("player");
     }
 
     // Update is called once per frame
@@ -41,7 +40,13 @@ public class SpiderEnemy : BaseEnemy
         float distance = Vector3.Distance(transform.position, player.position);
         if(distance < startMove && distance > stopMove)
         {
-            Debug.Log("プレイヤーを検知しました。");
+            playerConfirmation = true;
+            Debug.Log("プレイヤーを発見しました。");
+        }
+        else
+        {
+            playerConfirmation = false;
+            Debug.Log("プレイヤーが見つかりません。");
         }
 
     }
@@ -49,7 +54,14 @@ public class SpiderEnemy : BaseEnemy
     //  移動関数
     private void Move()
     {
-        
+        if(playerConfirmation == true)
+        {
+
+        }
+        else if(playerConfirmation == false)
+        {
+
+        }
     }
 
     //  移動関数
