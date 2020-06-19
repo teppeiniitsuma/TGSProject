@@ -9,6 +9,8 @@ public class BGController : MonoBehaviour
     [SerializeField, Tooltip("背景の子要素を入れる")] private Transform[] _bgMember  = new Transform[3];
     [SerializeField, Range(0, 1), Tooltip("背景の動くスピード")] private float _speed = 0.5f;
 
+    private InfoGetter _info;
+
     const int width = 28;
     int count = 0;
 
@@ -23,6 +25,7 @@ public class BGController : MonoBehaviour
     {
         offset = _player.position;
         startPos = this.transform.position;
+        _info = transform.parent.GetComponent<InfoGetter>();
     }
 
     public void SetNumber(int num)
@@ -65,8 +68,12 @@ public class BGController : MonoBehaviour
     }
     void BGMove()
     {
-        SetPosition();
-        MoveBack();
+        if (_info.MoveSwitch)
+        {
+            SetPosition();
+            MoveBack();
+        }
+        
     }
 
     void FixedUpdate()
