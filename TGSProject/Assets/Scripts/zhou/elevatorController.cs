@@ -17,6 +17,7 @@ public class elevatorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Rigidbody rb = floor.GetComponent<Rigidbody>();
         targetPos = targetUpPos;
     }
 
@@ -84,7 +85,7 @@ public class elevatorController : MonoBehaviour
             chain_right.GetComponent<SpriteRenderer>().materials[0].CopyPropertiesFromMaterial(chain_rightMaterial);
             chain_left.GetComponent<SpriteRenderer>().materials[0] = chain_leftMaterial;
             chain_left.GetComponent<SpriteRenderer>().materials[0].CopyPropertiesFromMaterial(chain_leftMaterial);
-        Debug.Log("ChainMaterialMove");
+
         
         }
 
@@ -101,7 +102,8 @@ public class elevatorController : MonoBehaviour
         float step = upSpeed * Time.deltaTime;
         floor.transform.position = Vector3.MoveTowards(floor.transform.position, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y+targetPos, this.gameObject.transform.position.z), step);
         if ( isUp&&floor.transform.position.y>gameObject.transform.position.y+targetPos-0.1f|| !isUp&& floor.transform.position.y <gameObject.transform.position.y + targetPos+0.1f){
-            isMove = false;
+            floor.transform.position =  new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + targetPos, this.gameObject.transform.position.z);
+ ;            isMove = false;
             ChainMaterialMove();
             time = stopTime;
          
