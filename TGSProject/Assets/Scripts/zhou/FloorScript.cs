@@ -5,19 +5,28 @@ using UnityEngine;
 public class FloorScript : MonoBehaviour
 {
     [SerializeField] GameObject floor;
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player") {
-            floor.GetComponent<BoxCollider2D>().isTrigger = true;
 
+
+            floor.GetComponent<BoxCollider2D>().isTrigger = true;
+            collider.gameObject.transform.parent = transform.parent;
+          //  Debug.Log("OnTriggerEnter2D");
         }
+      //  Debug.Log(collider.name);
     }
 
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
             floor.GetComponent<BoxCollider2D>().isTrigger = false;
+            collider.gameObject.transform.parent = null;
+
+
+         //   Debug.Log(floor.GetComponent<BoxCollider2D>().isTrigger);
      
         }
     }
