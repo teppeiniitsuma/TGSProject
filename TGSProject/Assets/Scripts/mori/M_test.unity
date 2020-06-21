@@ -153,14 +153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1050988705}
-  attMove: -3
-  stopMove: 0
+  time: 1
+  stopMove: 2
   startMove: 4
-  enemyRange_1: 5
-  enemyRange_2: 0
-  time: 2
-  position_max: 8
-  position_mix: 3
+  position_max: 7
+  position_mix: 4
 --- !u!50 &357804717
 Rigidbody2D:
   serializedVersion: 4

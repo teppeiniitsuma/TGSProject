@@ -10,31 +10,27 @@ public class SpiderEnemy : BaseEnemy
     private Rigidbody2D ri2d;
     //  playerのtransformを格納する変数
     [SerializeField]
+    [Header("↓↓プレイヤーを此処に入れてね")]
     private Transform player;
     //  オブジェクトの移動速度を格納する変数
-    [SerializeField]
-    private float attMove;
+    //[SerializeField]
+    //[Header("蜘蛛の移動速度↓※今はいじらないでね")]
+    private float time = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
-    [SerializeField]
-    private float stopMove;
+    //[SerializeField]
+    private float stopMove = 2.0f;
     //  playerがオブジェクトに近づいたら開始する変数
     [SerializeField]
+    [Header("↓↓蜘蛛の視野の良さ")]
     private float startMove;
-    [SerializeField]
-    private float enemyRange_1;
-    [SerializeField]
-    private float enemyRange_2;
-    [SerializeField]
-    private float time = 3f;
     private bool playerConfirmation = false;
     private bool enemyConfirmation = false;
     private Vector2 startPosition;
-    private Vector2 endPosition;
-    private Vector2 position;
-    private Vector2 vec;
     [SerializeField]
+    [Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
     private float position_max = 2f;
     [SerializeField]
+    [Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
     private float position_mix = 2f;
     //float conten;
 
@@ -54,15 +50,10 @@ public class SpiderEnemy : BaseEnemy
     //  プレイヤーを検知する関数
     private void Confirmation()
     {
-        //endPosition.x = startPosition.x + enemyRange_1;
-        //position.x = startPosition.x + enemyRange_2;
-
         //  プレイヤーのトランスフォームを取る
         Vector2 playerPos = player.position;
         //  自分positionとプレイヤーのpositionをdistanceに入れる
         float distance = Vector2.Distance(transform.position, playerPos);
-        //float pos = Vector2.Distance(transform.position, endPosition);
-        //float pos2 = Vector2.Distance(transform.position, position);
         //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
         if(distance < startMove && distance > stopMove)
         {
@@ -73,15 +64,6 @@ public class SpiderEnemy : BaseEnemy
         {
             playerConfirmation = false;
             Debug.Log("プレイヤーが見つかりません。");
-            //if() 
-            //{
-            //    Debug.Log("範囲にいます");
-
-            //}
-            //else
-            //{
-            //    Debug.Log("範囲に居ません");
-            //}
         }
 
     }
@@ -96,19 +78,9 @@ public class SpiderEnemy : BaseEnemy
         }
         else if(!playerConfirmation)//  プレイヤーが範囲内に居ないとき
         {
-            
-            if(enemyConfirmation)// エネミーが最初の範囲に居るとき
-            {
-                
-            }
-            else if(!enemyConfirmation)//   エネミーが最初の範囲に居ないとき
-            {
+                aho_move();
                 transform.position = new Vector2(Mathf.MoveTowards
                 (transform.position.x, startPosition.x, Time.deltaTime), transform.position.y);
-                aho_move();
-            }
-            // transform.position.z);
-           
         }
     }
 
@@ -124,6 +96,7 @@ public class SpiderEnemy : BaseEnemy
         ri2d.velocity = direction * 2;
     }
 
+    //  見つけていないときの動き
     private void aho_move()
     {
         startPosition.x += Time.deltaTime * time;
@@ -137,7 +110,6 @@ public class SpiderEnemy : BaseEnemy
             time *= -1;
             startPosition.x = position_mix;
         }
-        transform.position = new Vector2(startPosition.x, -1.5f);
     }
 
 }
