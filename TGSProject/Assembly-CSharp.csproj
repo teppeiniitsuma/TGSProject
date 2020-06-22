@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\niitsuma\Items\ItemId.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\PossessionItem.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\StoneItem.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Managers\CameraManager.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\BasePlayer.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\objMove.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="Assets\Scripts\niitsuma\Player\PlayerMover.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\PlayerParameter.cs" />
     <Compile Include="Assets\Scripts\niitsuma\swichtest.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\testScripts\testCameraController.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\testScripts\testCCameraMover.cs" />
     <Compile Include="Assets\Scripts\yamazaki\Timer.cs" />
     <Compile Include="Assets\Scripts\zhou\elevatorController.cs" />
     <Compile Include="Assets\Scripts\zhou\FloorScript.cs" />

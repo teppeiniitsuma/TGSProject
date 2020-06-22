@@ -22,7 +22,8 @@ public class objMove : MonoBehaviour
         if (b != null) { b.GimmickTrigger(false); }
     }
     
-    void Check(Transform p)
+    // プレイヤーがキャッチできる範囲にいるか判断
+    void AreaJudgment(Transform p)
     {
         if(p.position.x >= transform.position.x - catchArea &&
            p.position.x <= transform.position.x + catchArea)  { _inArea = true; }
@@ -36,7 +37,7 @@ public class objMove : MonoBehaviour
     }
     void Update()
     {
-        Check(pos);
+        AreaJudgment(pos);
         if (_info.GetParameter.actSwitch) { this.transform.position = new Vector2(pos.position.x + 1 * _info.GetParameter.direction, transform.position.y); }
         if (_info.GetParameter.actSwitch) { transform.localScale = new Vector3(_info.GetParameter.direction, 1, 1); }
         

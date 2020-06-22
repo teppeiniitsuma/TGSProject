@@ -5,7 +5,7 @@ using UnityEngine;
 public class BGController : MonoBehaviour
 {
     [SerializeField] private Transform _player;
-    [SerializeField] private Transform _nextCameraPos;
+    [SerializeField] private Transform _cameraPos;
     [SerializeField, Tooltip("背景の子要素を入れる")] private Transform[] _bgMember  = new Transform[3];
     [SerializeField, Range(0, 1), Tooltip("背景の動くスピード")] private float _speed = 0.5f;
 
@@ -17,8 +17,9 @@ public class BGController : MonoBehaviour
     Vector3 offset;
     Vector3 startPos;
 
-    public Transform Camera { get { return _nextCameraPos; } }
+    public Transform Camera { get { return _cameraPos; } }
     public bool MoveSwitch { get; set; }
+    public bool Direction { get { return _info.Direction; } }
     bool check = false;
 
     private void Start()
@@ -49,11 +50,23 @@ public class BGController : MonoBehaviour
     {
         if (MoveSwitch == true)
         {
-            switch (count)
+            if (Direction)
             {
-                case 0: bg[0].position = new Vector2(bg[2].position.x + width, bg[0].position.y); break;
-                case 1: bg[1].position = new Vector2(bg[0].position.x + width, bg[0].position.y); break;
-                case 2: bg[2].position = new Vector2(bg[1].position.x + width, bg[0].position.y); break;
+                switch (count)
+                {
+                    case 0: bg[0].position = new Vector2(bg[2].position.x + width, bg[0].position.y); break;
+                    case 1: bg[1].position = new Vector2(bg[0].position.x + width, bg[0].position.y); break;
+                    case 2: bg[2].position = new Vector2(bg[1].position.x + width, bg[0].position.y); break;
+                }
+            }
+            else
+            {
+                switch (count)
+                {
+                    case 0: bg[0].position = new Vector2(bg[1].position.x - width, bg[0].position.y); break;
+                    case 1: bg[1].position = new Vector2(bg[2].position.x - width, bg[0].position.y); break;
+                    case 2: bg[2].position = new Vector2(bg[0].position.x - width, bg[0].position.y); break;
+                }
             }
         }
     }

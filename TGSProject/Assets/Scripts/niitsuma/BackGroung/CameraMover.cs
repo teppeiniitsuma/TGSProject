@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
-
-    float myPos;
-    float nextPos;
-    float time = 0;
+    [SerializeField] private Positon _position;
     bool touch = false;
 
+    CameraManager _cameraManager;
+    private enum Positon
+    {
+        PREV = 0,
+        NEXT,
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,41 +21,20 @@ public class CameraMover : MonoBehaviour
 
     void Start()
     {
-        myPos = transform.position.x;
-        nextPos = this.transform.position.x + 7f;
+        _cameraManager = transform.parent.gameObject.GetComponent<CameraManager>();
     }
 
 
-    void MoveCamera()
+    void TouchJudgement()
     {
         if (touch)
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.EventStart);
-            _camera.position = new Vector3(Mathf.MoveTowards(_camera.position.x, nextPos, Time.deltaTime * 5), _camera.position.y, -10);
-
-
-            if (_camera.position.x >= nextPos && GameManager.Instance.GetGameState == GameManager.GameState.EventStart)
-            {
-                touch = false;
-                this.transform.position = new Vector2(myPos + 16f, transform.position.y);
-                nextPos = this.transform.position.x + 7f;
-                myPos = transform.position.x;
-                GameManager.Instance.SetGameState(GameManager.GameState.EventEnd);
-            }
+            _cameraManager.TauchTest((int)_position);
+            touch = false;
         }
     }
     void Update()
     {
-
-        MoveCamera();
-        if (GameManager.Instance.GetGameState == GameManager.GameState.EventEnd)
-        {
-            if (time > 0.1f)
-            {
-                time = 0;
-                GameManager.Instance.SetGameState(GameManager.GameState.Main);
-            }
-            time += Time.deltaTime;
-        }
+        TouchJudgement();
     }
 }
