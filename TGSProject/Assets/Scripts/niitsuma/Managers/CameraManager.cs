@@ -58,7 +58,6 @@ public class CameraManager : MonoBehaviour
             GameManager.Instance.SetGameState(GameManager.GameState.EventStart);
             _camera.position = new Vector3(Mathf.MoveTowards(_camera.position.x, prevPos, Time.deltaTime * 5), _camera.position.y, -10);
 
-            Debug.Log(prevPos);
             if (_camera.position.x == prevPos && GameManager.Instance.GetGameState == GameManager.GameState.EventStart)
             {
                 Go = 0;
