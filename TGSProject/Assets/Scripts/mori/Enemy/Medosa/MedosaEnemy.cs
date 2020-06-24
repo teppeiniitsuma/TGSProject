@@ -14,6 +14,14 @@ public class MedosaEnemy : BaseEnemy
         this.animetor = GetComponent<Animator>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            Debug.Log(collision.gameObject.name);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
