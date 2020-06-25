@@ -8,16 +8,29 @@ public class BGPositionCheck : MonoBehaviour
     private BGController bg;
     private int width = 28;
 
-    void Check()
+    void PosisionCheck()
     {
         if(GameManager.Instance.GetGameState == GameManager.GameState.EventStart)
         {
-            if (transform.position.x + width < bg.Camera.position.x)
+            if (bg.Direction)
             {
-                
-                bg.MoveSwitch = true;
-                bg.SetNumber(_number);
+                if (transform.position.x + width < bg.Camera.position.x + 10)
+                {
+
+                    bg.MoveSwitch = true;
+                    bg.SetNumber(_number);
+                }
             }
+            else
+            {
+                if (transform.position.x - width > bg.Camera.position.x - 10)
+                {
+
+                    bg.MoveSwitch = true;
+                    bg.SetNumber(_number);
+                }
+            }
+            
         }
         
     }
@@ -28,6 +41,6 @@ public class BGPositionCheck : MonoBehaviour
     }
     private void Update()
     {
-        Check();
+        PosisionCheck();
     }
 }
