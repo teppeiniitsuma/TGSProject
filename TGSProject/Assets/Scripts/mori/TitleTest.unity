@@ -5042,8 +5042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6108357ddc08fd4d813dcef266b0ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logo_time: 1
-  loge_speed: 0
+  logo_time: 0.15
+  loge_speed: 0.5
 --- !u!212 &115494072
 SpriteRenderer:
   m_ObjectHideFlags: 0
