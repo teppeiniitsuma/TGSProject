@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\mori\Enemy\temp.cs" />
     <Compile Include="Assets\Scripts\mori\Player\Player.cs" />
     <Compile Include="Assets\Scripts\mori\UI\Scripts\Fluffy.cs" />
+    <Compile Include="Assets\Scripts\mori\UI\Scripts\PeseeStart.cs" />
     <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGController.cs" />
     <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGMover.cs" />
     <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGPositionCheck.cs" />
