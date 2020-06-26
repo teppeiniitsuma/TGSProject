@@ -5908,7 +5908,15 @@ PrefabInstance:
     - target: {fileID: 8680221344131424158, guid: b6e4b3164fba66240b4328895bb6c1ef,
         type: 3}
       propertyPath: m_Text
-      value: 
+      value: "\u6211\u3089\u306F\u7FC5\u3092\u5F97\u305A\u3001 \u5730\u306B\u589C\u3061\u305F\u307E\u307E\u3002
+        \u524D\u9032\u3059\u308B\u8005\u3088\u5FC3\u305B\u3088\u3002 \u5909\u5316\u3092\u6050\u308B\u308B\u306A\u304B\u308C\u3002
+        \u7570\u306A\u308B\u3053\u3068\u3092\u6050\u308B\u308B\u306A\u304B\u308C\u3002
+        \u56F0\u96E3\u306A\u9053\u3092\u3086\u3051\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680221344131424159, guid: b6e4b3164fba66240b4328895bb6c1ef,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 8680221345045691040, guid: b6e4b3164fba66240b4328895bb6c1ef,
         type: 3}
