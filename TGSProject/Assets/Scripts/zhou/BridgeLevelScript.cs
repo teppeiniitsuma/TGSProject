@@ -1,28 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DualShockInput;
 
 public class BridgeLevelScript : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
+    bool isDown;
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
+        if (collider.tag == "Player"&& isDown)
         {
-            if (Input.GetButtonDown("Fire3") || Input.GetKey(KeyCode.Space)) {
-                Debug.Log("もし入力が欲しい場合");
-                gameObject.GetComponent<BridgeScript>().OpenLevel();
-            }
+            gameObject.GetComponent<BridgeScript>().OpenLevel();
         }
     }
-   /* private void Update()
+     void GetKey() {
+        if (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)) {
+            isDown = true; 
+        } else { isDown = false; }
+    }
+    private void Update()
     {
-        if (Input.GetButtonDown("Fire3")){
-            Debug.Log("3");
-        }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Space");
-        }
-    }*/
+        GetKey();
+    }
 }
