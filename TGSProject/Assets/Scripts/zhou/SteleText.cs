@@ -7,7 +7,9 @@ public class SteleText : MonoBehaviour
     [SerializeField] Vector2 offset;
     [SerializeField] RectTransform rectTransform; // オブジェクトを追うUI
     [SerializeField] Text myText;
-     bool isMyPos;
+    [SerializeField] Image myImage;
+
+    bool isMyPos;
      [SerializeField] string steleText;
     private void Start()
     {
@@ -25,8 +27,13 @@ public class SteleText : MonoBehaviour
     {
         if (isMyPos) {
             myText.color = new Vector4(1, 1, 1, myText.color.a + Time.deltaTime);
-       
-        } else if (!isMyPos && myText.color.a > 0) { myText.color = new Vector4(1, 1, 1, myText.color.a - Time.deltaTime); }
+            myImage.color = new Vector4(1, 1, 1, myImage.color.a + Time.deltaTime*1.2f);
+
+        }
+        else if (!isMyPos && myText.color.a > 0) { 
+            myText.color = new Vector4(1, 1, 1, myText.color.a - Time.deltaTime*0.8f);
+            myImage.color = new Vector4(1, 1, 1, myImage.color.a - Time.deltaTime);
+        }
     }
     //自分のPOSによってカメラに映す
     void TextPosMove()
