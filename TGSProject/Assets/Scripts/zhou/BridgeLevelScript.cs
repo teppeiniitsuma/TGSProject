@@ -5,13 +5,24 @@ using UnityEngine;
 public class BridgeLevelScript : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            Debug.Log("もし入力が欲しい場合");
-            gameObject.GetComponent<BridgeScript>().OpenLevel();
-            
+            if (Input.GetButtonDown("Fire3") || Input.GetKey(KeyCode.Space)) {
+                Debug.Log("もし入力が欲しい場合");
+                gameObject.GetComponent<BridgeScript>().OpenLevel();
+            }
         }
     }
+   /* private void Update()
+    {
+        if (Input.GetButtonDown("Fire3")){
+            Debug.Log("3");
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Space");
+        }
+    }*/
 }
