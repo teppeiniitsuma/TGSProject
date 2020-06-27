@@ -609,6 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732911384}
   - component: {fileID: 1732911385}
+  - component: {fileID: 1732911386}
   m_Layer: 0
   m_Name: Title_Start
   m_TagString: Untagged
@@ -672,13 +673,28 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 5, y: 0.63}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
+  m_AdaptiveModeThreshold: 0
+  m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1732911386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732911383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e97b302db29e145aa5209307bfd973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max: 1
+  Mix: 0.5
+  speed: 0.5
 --- !u!1 &1829737362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1026,7 @@ PrefabInstance:
     - target: {fileID: 6872827281725434660, guid: d4328feb1929ea14d87c5939d4489c83,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: 6872827281725434660, guid: d4328feb1929ea14d87c5939d4489c83,
         type: 3}
