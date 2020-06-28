@@ -36,8 +36,16 @@ public class ClockController : MonoBehaviour
             tr.rotation = tr.rotation * angleAxis;
         }
         elapse.IncreaseGage();
+        if (Value < 0) { transform.position = startPos; flag = false; }
+        else Value -= Time.deltaTime * _period;
     }
 
+    public void Inisialize()
+    {
+        transform.position = startPos;
+        Value = 100;
+        elapse.ClearMover();
+    }
     void Start()
     {
         startPos = transform.position;
@@ -45,12 +53,12 @@ public class ClockController : MonoBehaviour
 
     void Update()
     {
-        if (Value < 0) { transform.position = startPos; flag = false; }
-        else Value -= Time.deltaTime * _period;
+
 
         if (flag)
         {
-            QuaternionSetter();
+            if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+                QuaternionSetter();
             return;
         }   
     }
