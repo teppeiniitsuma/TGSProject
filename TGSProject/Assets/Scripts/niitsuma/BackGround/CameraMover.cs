@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     [SerializeField] private Positon _position;
+
     bool touch = false;
 
     CameraManager _cameraManager;
