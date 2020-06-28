@@ -43,7 +43,7 @@ public class BGController : MonoBehaviour
     }
 
     /// <summary>
-    /// 一定範囲外に出たら bg の位置を前に持ってくる
+    /// 一定範囲外に出たら bg の位置を前後に持ってくる
     /// </summary>
     /// <param name="bg"></param>
     void PositionCheck(Transform[] bg)

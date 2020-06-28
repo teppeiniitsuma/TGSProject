@@ -12,7 +12,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
-    public PossessionItem GetItems { get { return _items; } }
+    public PossessionItem GetItemValue { get { return _items; } }
 
     public void SetDirec(int d)
     {
@@ -49,7 +49,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter
         _parameter.hp = 4;
         _parameter.direction = 1;
         _parameter.moveSpeed = 4f;
-        _parameter.actSwitch = false;
+        _parameter.actSwitch = true;
 
         _items.stoneValue = 0;
         _items.catepillarValue = 0;

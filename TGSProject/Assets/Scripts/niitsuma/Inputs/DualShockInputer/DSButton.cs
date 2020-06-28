@@ -6,6 +6,7 @@
         Cross    = 351, 
         Circle   = 352,
         Triangle = 353,
+        R1       = 355,
     }
 }
 
