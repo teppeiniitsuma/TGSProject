@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DualShockInput;
 
 public class testInput : MonoBehaviour, IInputEvent
 {
@@ -9,6 +10,7 @@ public class testInput : MonoBehaviour, IInputEvent
     public bool triangleButton { get; set; }
     public Vector2 vector      { get; set; }
 
+    bool controllerChenge = false;
     void Awake()
     {
         circleButton   = false;
@@ -20,19 +22,24 @@ public class testInput : MonoBehaviour, IInputEvent
 
     void InputProcess()
     {
-        if (Input.GetKey(KeyCode.Space)) { circleButton = true; }
+        if (Input.GetKey(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)) { circleButton = true; }
         else { circleButton = false; }
-        if (Input.GetKey(KeyCode.X)) { squareButton = true; }
+        if (Input.GetKey(KeyCode.X) || DSInput.PushDown(DSButton.Cross)) { squareButton = true; controllerChenge = true; }
         else { squareButton = false; }
-        if (Input.GetKeyDown(KeyCode.D)) { triangleButton = true; }
+        if (Input.GetKeyDown(KeyCode.D) || DSInput.PushDown(DSButton.R1)) { triangleButton = true; }
         else { triangleButton = false; }
-        if (Input.GetKey(KeyCode.RightArrow))
+
+        if (!controllerChenge)
         {
-            vector = Vector2.right;
-            //Debug.Log(vector);
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                vector = Vector2.right;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow)) { vector = Vector2.left; }
+            else { vector = Vector2.zero; }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow)) { vector = Vector2.left; }
-        else { vector = Vector2.zero; }
+        else if(controllerChenge)
+            vector = new Vector2(Input.GetAxis("DS_Horizontal"), 0);
 
     }
     void Update()

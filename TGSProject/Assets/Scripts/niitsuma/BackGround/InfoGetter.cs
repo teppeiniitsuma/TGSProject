@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ これはモック版後に消すかも（infoはGameManagerから参照できるようにしたため）
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

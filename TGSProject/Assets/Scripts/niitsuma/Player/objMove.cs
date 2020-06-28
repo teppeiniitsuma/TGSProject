@@ -7,6 +7,7 @@ public class objMove : MonoBehaviour
     [SerializeField] PlayerInfoCounter _info;
     [SerializeField] Transform pos;
     [SerializeField] float catchArea = 1.5f;
+
     public bool InArea { get { return _inArea; } }
     bool _act = false;
     bool _inArea = false;

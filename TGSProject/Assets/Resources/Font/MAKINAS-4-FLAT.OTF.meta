@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 478246d55d821414b8aa658be4175c17
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Makinas
+  fontNames:
+  - Makinas
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 257dfe9119775c94197757276cc94106, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

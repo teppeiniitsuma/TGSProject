@@ -17,7 +17,7 @@ public abstract class BaseItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var set = collision.gameObject.GetComponent<IItemGetter>();
-        if(null != set) { set.ItemGet(item); }
+        if(null != set) { set.ItemGet(item); this.gameObject.SetActive(false); }
     }
 
     //protected enum ItemType
