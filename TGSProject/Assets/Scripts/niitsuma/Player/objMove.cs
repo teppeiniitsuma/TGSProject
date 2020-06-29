@@ -14,13 +14,15 @@ public class objMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var b = collision.gameObject.GetComponent<IGimmickEvent>();
-        if (b != null) { b.GimmickTrigger(true); }
+        // クソ処理（後修正）
+        if(collision.gameObject.tag == "Enemy") { _info.DecreaseHP(); }
+        //var b = collision.gameObject.GetComponent<IGimmickEvent>();
+        //if (b != null) { b.GimmickTrigger(true); }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        var b = collision.gameObject.GetComponent<IGimmickEvent>();
-        if (b != null) { b.GimmickTrigger(false); }
+        //var b = collision.gameObject.GetComponent<IGimmickEvent>();
+        //if (b != null) { b.GimmickTrigger(false); }
     }
     
     // プレイヤーがキャッチできる範囲にいるか判断

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StoneItem : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D _rigidbody;
     Vector2 vector = new Vector2(500, 0);
     float time = 0;
 
@@ -15,8 +15,8 @@ public class StoneItem : MonoBehaviour
     }
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.AddForce(vector);
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.AddForce(vector);
     }
     private void Update()
     {
