@@ -1,43 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.VersionControl;
+﻿//using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpiderEnemy : BaseEnemy 
 {
     //オブジェクトのRigidbodyの変数
     private Rigidbody2D ri2d;
     //  playerのtransformを格納する変数
-    [SerializeField]
-    [Header("↓↓プレイヤーを此処に入れてね")]
+    [SerializeField][Header("↓↓プレイヤーを此処に入れてね")]
     private Transform player;
-    //  オブジェクトの移動速度を格納する変数
-    //[SerializeField]
-    //[Header("蜘蛛の移動速度↓※今はいじらないでね")]
-    private float time = 1.0f;
+    //private List<Transform> playerTransform = new List<Transform>() { };
+    // 蜘蛛の見つけてない時の移動速度
+    private float moveTime = 1.0f;
+    //[SerializeField][Header("蜘蛛の移動速度↓※今はいじらないでね")]
+    private float moveSpeed = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
     //[SerializeField]
-    private float stopMove = 2.0f;
+    private float stopMove = 1.5f;
     //  playerがオブジェクトに近づいたら開始する変数
-    [SerializeField]
-    [Header("↓↓蜘蛛の視野の良さ")]
+    [SerializeField][Header("↓↓蜘蛛の視野の良さ")]
     private float startMove;
     private bool playerConfirmation = false;
     private bool enemyConfirmation = false;
     private Vector2 startPosition;
-    [SerializeField]
-    [Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
+    [SerializeField][Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
     private float position_max = 2f;
-    [SerializeField]
-    [Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
+    [SerializeField][Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
     private float position_mix = 2f;
-    //float conten;
+    [SerializeField][Header("↓↓プレイヤーを追いかける速度")]
+    private float attackMove = 2;
+    private Animator animator;
+    [SerializeField][Header("↓↓アニメーションの速度")]
+    private float playSpeed = 1.0f;
+    //  画像の向き
+    private int direction = 0;
 
     void Start()
     {
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
+        this.animator = GetComponent<Animator>();
         //conten = transform.position.x;
     }
 
@@ -75,12 +76,15 @@ public class SpiderEnemy : BaseEnemy
         if(playerConfirmation)//    プレイヤーが範囲内に居るとき
         {
             Move2();
+            transform.localScale = new Vector2(direction, 1);
+            this.animator.SetTrigger("LockTrigger");
         }
         else if(!playerConfirmation)//  プレイヤーが範囲内に居ないとき
         {
                 aho_move();
                 transform.position = new Vector2(Mathf.MoveTowards
                 (transform.position.x, startPosition.x, Time.deltaTime), transform.position.y);
+            this.animator.SetTrigger("WalkTrigger");
         }
     }
 
@@ -92,24 +96,30 @@ public class SpiderEnemy : BaseEnemy
         float x = tagetPos.x;
         float y = 0;
 
-        Vector2 direction = new Vector2(x - transform.position.x, y).normalized;
-        ri2d.velocity = direction * 2;
+        Vector2 playerDirection = new Vector2(x - transform.position.x, y).normalized;
+        ri2d.velocity = playerDirection * attackMove;
+
+        direction = 1;
     }
 
     //  見つけていないときの動き
     private void aho_move()
     {
-        startPosition.x += Time.deltaTime * time;
+        this.animator.speed = playSpeed;
+        startPosition.x += Time.deltaTime * moveTime;
         if(startPosition.x >= position_max)
         {
-            time *= -1;
+            moveTime *= -moveSpeed;
             startPosition.x = position_max;
+            direction = 1;
         }
         else if(startPosition.x <= position_mix)
         {
-            time *= -1;
+            moveTime *= -moveSpeed;
             startPosition.x = position_mix;
+            direction = -1;
         }
+        if(direction != 0) { transform.localScale = new Vector2(direction, 1); }
     }
 
 }

@@ -70,11 +70,11 @@
     <Compile Include="Assets\Scripts\mori\Player\Player.cs" />
     <Compile Include="Assets\Scripts\mori\UI\Scripts\Fluffy.cs" />
     <Compile Include="Assets\Scripts\mori\UI\Scripts\PeseeStart.cs" />
-    <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGController.cs" />
-    <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGMover.cs" />
-    <Compile Include="Assets\Scripts\niitsuma\BackGroung\BGPositionCheck.cs" />
-    <Compile Include="Assets\Scripts\niitsuma\BackGroung\CameraMover.cs" />
-    <Compile Include="Assets\Scripts\niitsuma\BackGroung\InfoGetter.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\BackGround\BGController.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\BackGround\BGMover.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\BackGround\BGPositionCheck.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\BackGround\CameraMover.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\BackGround\InfoGetter.cs" />
     <Compile Include="Assets\Scripts\niitsuma\IDamager.cs" />
     <Compile Include="Assets\Scripts\niitsuma\IDieable.cs" />
     <Compile Include="Assets\Scripts\niitsuma\IGimmickEvent.cs" />
@@ -86,10 +86,16 @@
     <Compile Include="Assets\Scripts\niitsuma\Items\BaseItem.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\IItemGetter.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\ItemId.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Items\ItemUse.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\PossessionItem.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Items\StoneItem.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Managers\CameraManager.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Managers\ResultManager.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Messages\CommonParam.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Messages\Models\MessageModel.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Messages\Presenters\MessagePresenter.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\Messages\Views\MessageView.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\BasePlayer.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\objMove.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\PlayerAnimator.cs" />
@@ -97,8 +103,20 @@
     <Compile Include="Assets\Scripts\niitsuma\Player\PlayerMover.cs" />
     <Compile Include="Assets\Scripts\niitsuma\Player\PlayerParameter.cs" />
     <Compile Include="Assets\Scripts\niitsuma\swichtest.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\testScripts\mockEnemyDamege.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\testScripts\mockNextScene.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\testScripts\mockTimerSet.cs" />
     <Compile Include="Assets\Scripts\niitsuma\testScripts\testCameraController.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\UI\FadeController.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\UI\LifeController.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\UI\testValueView.cs" />
+    <Compile Include="Assets\Scripts\niitsuma\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\yamazaki\ClockController.cs" />
+    <Compile Include="Assets\Scripts\yamazaki\ElapseTime.cs" />
     <Compile Include="Assets\Scripts\yamazaki\Timer.cs" />
+    <Compile Include="Assets\Scripts\zhou\BridgeLevelScript.cs" />
+    <Compile Include="Assets\Scripts\zhou\BridgeScript.cs" />
+    <Compile Include="Assets\Scripts\zhou\BridgeSwitchScript.cs" />
     <Compile Include="Assets\Scripts\zhou\elevatorController.cs" />
     <Compile Include="Assets\Scripts\zhou\FloorScript.cs" />
     <Compile Include="Assets\Scripts\zhou\InjurePlayerCollider.cs" />
@@ -109,7 +127,7 @@
     <Compile Include="Assets\Scripts\zhou\SteleText.cs" />
     <Compile Include="Assets\Scripts\zhou\Test.cs" />
     <None Include="Assets\Scripts\zhou\Materials\ChainLiftMaterial.shader" />
-    <None Include="Assets\Scripts\zhou\Test\test1.shader" />
+    <None Include="Assets\TYOUS\Shader\Sprites-Additive.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Ｄ_ドキュメント/盲目少女とサイトルジスト/TGSProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
