@@ -41,11 +41,20 @@ public class FadeController : MonoBehaviour
     /// 暗くする
     /// </summary>
     /// <returns></returns>
-    //IEnumerator FadeOUT()
-    //{
+    IEnumerator FadeOUT()
+    {
+        // 念のため初期化
+        _fadeUI.color = Color.clear;
+        alpha = _fadeUI.color.a;
+        while (_fadeUI.color.a < 255)
+        {
+            _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, alpha);
+            alpha += Time.deltaTime / fadeSpeed;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1);
+    }
 
-    //}
-    // Update is called once per frame
     void Update()
     {
         

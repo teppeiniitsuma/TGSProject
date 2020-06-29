@@ -14,7 +14,7 @@ public class PlayerMover : BasePlayer
     }
     void Mover()
     {
-        _rigidbody.velocity = new Vector2(infoCounter.GetParameter.moveSpeed * inputer.vector.x, inputer.vector.y);
+        _rigidbody.velocity = new Vector2(infoCounter.GetParameter.moveSpeed * inputer.vector.x, _rigidbody.velocity.y);
         if(inputer.vector.x > 0.1) { infoCounter.SetDirec(1); }
         else if(inputer.vector.x < -0.1) { infoCounter.SetDirec(-1); }
         transform.localScale = new Vector3(infoCounter.GetParameter.direction, 1, 1);
@@ -22,8 +22,10 @@ public class PlayerMover : BasePlayer
 
     private void FixedUpdate()
     {
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
             Mover();
+        else
+            _rigidbody.velocity = Vector2.zero;
     }
     void Update()
     {

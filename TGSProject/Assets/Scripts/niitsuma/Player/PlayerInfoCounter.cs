@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfoCounter : MonoBehaviour, IItemGetter
+public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
     PlayerParameter _parameter = new PlayerParameter();
     public PlayerParameter GetParameter { get { return _parameter; } }
@@ -14,19 +14,27 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter
     PossessionItem _items = new PossessionItem();
     public PossessionItem GetItemValue { get { return _items; } }
 
-    public void SetDirec(int d)
-    {
-        _parameter.direction = d;
-    }
-    public void SetAct(bool act)
-    {
-        _parameter.actSwitch = act;
-    }
     void Awake()
     {
         _parameter = new PlayerParameter();
         _items = new PossessionItem();
         Initialize();
+    }
+    /// <summary>
+    /// 方向切り替え
+    /// </summary>
+    /// <param name="d"></param>
+    public void SetDirec(int d)
+    {
+        _parameter.direction = d;
+    }
+    /// <summary>
+    /// 行動切り替え
+    /// </summary>
+    /// <param name="act"></param>
+    public void SetAct(bool act)
+    {
+        _parameter.actSwitch = act;
     }
     /// <summary>
     /// アイテム取得処理
@@ -43,8 +51,10 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter
             default: break;
         }
     }
-    // 初期化
-    void Initialize()
+    /// <summary>
+    /// プレイヤーパラメーターの初期化
+    /// </summary>
+    public void Initialize()
     {
         _parameter.hp = 4;
         _parameter.direction = 1;
@@ -56,6 +66,23 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter
         _items.herbValue = 0;
         _items.butteflyWingValue = 0;
 
+    }
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    public void ApplyDamage()
+    {
+        DecreaseHP();
+        Debug.Log("on");
+    }
+    /// <summary>
+    /// HP減少処理
+    /// 呼ばれたらHPを-1する
+    /// </summary>
+    public void DecreaseHP()
+    {
+        if (_parameter.hp <= 1) { Debug.Log("YOU ARE DIE"); return; }
+        _parameter.hp--;
     }
     // Update is called once per frame
     void Update()

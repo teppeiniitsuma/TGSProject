@@ -7,7 +7,7 @@ public abstract class BasePlayer : MonoBehaviour
     IInputEvent _inputEvent;
     protected IInputEvent inputer { get { return _inputEvent; } }
     protected PlayerInfoCounter infoCounter;
-
+    
     void Start()
     {
         _inputEvent = GetComponent<IInputEvent>();
