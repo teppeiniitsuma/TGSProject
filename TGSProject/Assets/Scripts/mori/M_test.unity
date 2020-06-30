@@ -488,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider
       objectReference: {fileID: 0}
+    - target: {fileID: 6032852496724710980, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6032852496724710983, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
         type: 3}
       propertyPath: playerTransform.Array.size
@@ -521,12 +526,12 @@ PrefabInstance:
     - target: {fileID: 6032852496724711003, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.63
+      value: 6.54
       objectReference: {fileID: 0}
     - target: {fileID: 6032852496724711003, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.54
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 6032852496724711003, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
         type: 3}
