@@ -37,6 +37,5 @@ public class LifeController : MonoBehaviour
     void Update()
     {
         LifeView();
-        if (Input.GetKeyDown(KeyCode.H)) { GameManager.Instance.Information.DecreaseHP(); Debug.Log(GameManager.Instance.Information.GetParameter.hp); }
     }
 }

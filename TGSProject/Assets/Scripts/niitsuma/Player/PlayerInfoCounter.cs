@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
@@ -13,6 +14,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     PossessionItem _items = new PossessionItem();
     public PossessionItem GetItemValue { get { return _items; } }
+
+    bool damage = false;
 
     void Awake()
     {
@@ -72,6 +75,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// </summary>
     public void ApplyDamage()
     {
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
         DecreaseHP();
         Debug.Log("on");
     }
@@ -81,11 +85,15 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// </summary>
     public void DecreaseHP()
     {
-        if (_parameter.hp <= 1) { Debug.Log("YOU ARE DIE"); return; }
-        _parameter.hp--;
+        if (_parameter.hp <= 1) { Debug.Log("YOU ARE DIE"); SceneManager.LoadScene("GameOver"); return; }
+        if(!damage)
+            _parameter.hp--;
+        damage = true;
+        GameManager.Instance.SetGameState(GameManager.GameState.Road);
     }
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main) damage = false;
     }
 }

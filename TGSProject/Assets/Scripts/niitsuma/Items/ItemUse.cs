@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DualShockInput;
 
 public class ItemUse : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class ItemUse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || DualShockInput.DSInput.PushDown(DualShockInput.DSButton.Triangle))
+        if(Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
             UseItem();
     }
 }

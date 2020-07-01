@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         SetUp = 0,
         Main,
+        Road,
         EventStart,
         EventEnd,
         GameOver,
