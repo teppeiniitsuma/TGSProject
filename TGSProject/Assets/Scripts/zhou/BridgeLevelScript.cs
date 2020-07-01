@@ -6,11 +6,16 @@ using DualShockInput;
 public class BridgeLevelScript : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
-    void OnTriggerStay2D(Collider2D collider)
+    [SerializeField] BridgeScript bri;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collider.tag == "Player"&&(Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) { 
-                Debug.Log("OpenLevel");
-                gameObject.GetComponent<BridgeScript>().OpenLevel();
-            }
+        if (collision.gameObject.tag == "Player"/* && (Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))*/)
+        {
+            Debug.Log("OpenLevel");
+            bri.isLever = true;
+            gameObject.GetComponent<BridgeScript>().OpenLevel();
         }
+    }
+
 }

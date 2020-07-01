@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class FloorScript : MonoBehaviour
 {
-    [SerializeField] GameObject floor;
+    [SerializeField] BoxCollider2D floor;
+    // 上に乗ったらプラスする（これでトリガー判定を制御）
+    int _count = 0;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player") {
 
-
-            floor.GetComponent<BoxCollider2D>().isTrigger = true;
+            floor.isTrigger = true;
+            _count++;
             collider.gameObject.transform.parent = transform.parent;
-          //  Debug.Log("OnTriggerEnter2D");
         }
-      //  Debug.Log(collider.name);
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            floor.GetComponent<BoxCollider2D>().isTrigger = false;
-            collider.gameObject.transform.parent = null;
+            _count--;
+            if(_count == 0)
+            {
+                floor.isTrigger = false;
+                // parentの子要素にしてたの気が付かなかった
+                collider.gameObject.transform.parent = null;
+            }
+            else if(_count == 1)
+            {
+                collider.gameObject.transform.parent = null;
+            }
 
-
-         //   Debug.Log(floor.GetComponent<BoxCollider2D>().isTrigger);
-     
         }
-    }
-
-
-
-
+    }    
 }
 //-3.1
 //-1.7+-2.8 -4.5 -1.4

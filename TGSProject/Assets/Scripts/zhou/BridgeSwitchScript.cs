@@ -5,18 +5,29 @@ using UnityEngine;
 public class BridgeSwitchScript : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
+    // 通れん壁
+    [SerializeField] GameObject coll;
+
+    [SerializeField] BridgeScript bri;
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            gameObject.GetComponent<BridgeScript>().isSwitchUp = true;
+            bri.isSwitchUp = true;
+            coll.gameObject.SetActive(false);
         }
     }
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            gameObject.GetComponent<BridgeScript>().isSwitchUp = false;
+            if (!bri.isLever)
+            {
+                bri.isSwitchUp = false;
+                coll.gameObject.SetActive(true);
+            }
+
         }
     }
 }

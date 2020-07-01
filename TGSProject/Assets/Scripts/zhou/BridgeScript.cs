@@ -6,6 +6,7 @@ public class BridgeScript : MonoBehaviour
 {
     [SerializeField] GameObject switch_Head,level;
     public bool isSwitchUp,isLevel;
+    public bool isLever = false;
     [SerializeField] int rotsSpeed = 180 ;
     public float startRotsZ;
 
@@ -36,7 +37,7 @@ public class BridgeScript : MonoBehaviour
     }
     public void OpenLevel() {
 
-        switch_Head.GetComponent<BridgeSwitchScript>().enabled = false;
+        //switch_Head.GetComponent<BridgeSwitchScript>().enabled = false;
         level.GetComponent<BridgeLevelScript>().enabled = false;
         isSwitchUp = true;
         isLevel = true;
