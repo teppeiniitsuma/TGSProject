@@ -47,6 +47,7 @@ public class objMove : MonoBehaviour
     }
     void Update()
     {
+        if (_info.GetParameter.actSwitch && this.transform.position.y - 0.5f > pos.position.y) { _info.SetAct(false); }
         AreaJudgment(pos);
         if (_info.GetParameter.actSwitch) { this.transform.position = new Vector2(pos.position.x + 1 * _info.GetParameter.direction, transform.position.y); }
         if (_info.GetParameter.actSwitch) { transform.localScale = new Vector3(_info.GetParameter.direction, 1, 1); }

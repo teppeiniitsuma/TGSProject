@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    [SerializeField] private Positon _position;
-
-    bool touch = false;
-
-    CameraManager _cameraManager;
-    private enum Positon
-    {
-        PREV = 0,
-        NEXT,
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player") { touch = true; }
-    }
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform obj;
+    Vector3 startCameraPos;
+    // プレイヤーとカメラの差
+    float diffCamera = 0;
+    // プレイヤーと車いすの差
+    float diffPlayer = 1;
 
     void Start()
     {
-        _cameraManager = transform.parent.gameObject.GetComponent<CameraManager>();
+        startCameraPos = transform.position;
+        diffCamera = Mathf.Abs(transform.position.x - player.position.x);
+        Debug.Log(diffCamera);
     }
 
-
-    void TouchJudgement()
+    void PositionMove()
     {
-        if (touch)
+        bool act = GameManager.Instance.Information.GetParameter.actSwitch;
+        if (act)
         {
-            _cameraManager.TauchTest((int)_position);
-            touch = false;
+            transform.position = new Vector3(startCameraPos.x + player.position.x, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            if (player.position.x < obj.position.x + diffPlayer && obj.position.x < player.position.x + diffCamera * 2 + diffPlayer)
+            {
+                transform.position = new Vector3(startCameraPos.x + player.position.x, transform.position.y, transform.position.z);
+            }
         }
     }
     void Update()
     {
-        TouchJudgement();
+        PositionMove();
     }
 }

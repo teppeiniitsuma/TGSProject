@@ -18,6 +18,7 @@ public class ItemUse : MonoBehaviour
         Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 1);
         if (_info.GetItemValue.stoneValue > 0) Instantiate(stone, sponePos, transform.rotation);
     }
+    
     // Update is called once per frame
     void Update()
     {
