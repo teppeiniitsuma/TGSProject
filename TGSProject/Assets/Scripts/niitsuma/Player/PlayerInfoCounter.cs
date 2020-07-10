@@ -73,11 +73,16 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// <summary>
     /// ダメージ処理
     /// </summary>
-    public void ApplyDamage()
+    public void ApplyDamage(int id = 0)
     {
         if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
-        DecreaseHP();
-        Debug.Log("on");
+            DecreaseHP();
+        switch (id)
+        {
+            case 1: break;
+            case 2: break;
+            case 3: break;
+        }
     }
     /// <summary>
     /// HP減少処理
