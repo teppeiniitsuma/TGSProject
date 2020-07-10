@@ -2,6 +2,7 @@
 
 public class MedosaEnemy : BaseEnemy
 {
+    
     private Animator animetor;
     [SerializeField]
     [Header("↓↓アニメーションの再生速度")]
@@ -9,20 +10,29 @@ public class MedosaEnemy : BaseEnemy
 
     void Start()
     {
+        ri2d = GetComponent<Rigidbody2D>();
         this.animetor = GetComponent<Animator>();
+        startPosition = transform.position;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void EnemyDamager()
     {
-        if(collision.CompareTag("Player"))
-        {
-            Debug.Log(collision.gameObject.name);
-        }
+        this.gameObject.SetActive(false);
+    }    
+
+    private void ImageDirection()
+    {
+        //  プレイヤーのトランスフォームを取る
+        Vector2 playerPos = player.position;
+        if (playerPos.x < startPosition.x) { direction = 1; }
+        else if(playerPos.x > startPosition.x) { direction = -1; }
+        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
     }
 
     // Update is called once per frame
     void Update()
     {
         this.animetor.speed = playSpeed;
+        ImageDirection();
     }
 }
