@@ -7,14 +7,19 @@ public class BridgeLevelScript : MonoBehaviour
 {
     [SerializeField] GameObject gameObject;
     [SerializeField] BridgeScript bri;
+    // ギミックが作動したらtrue
+    public bool Actuation { get; set; } = false;
+    // 一度作動したらtrueにする
+    bool _endActuation = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.gameObject.tag == "Player"/* && (Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))*/)
+        if (Actuation && !_endActuation)
         {
             Debug.Log("OpenLevel");
             bri.isLever = true;
             gameObject.GetComponent<BridgeScript>().OpenLevel();
+            _endActuation = true;
         }
     }
 

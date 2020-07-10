@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class elevatorController : MonoBehaviour
 {
+    // 死亡判定用のゲームオブジェクト追加
+    [SerializeField] GameObject _desZone;
     [SerializeField] Material up, down, stop;
     [SerializeField] Material []material ;
     Material chain_rightMaterial, chain_leftMaterial;
@@ -71,11 +73,13 @@ public class elevatorController : MonoBehaviour
         {
             chain_rightMaterial = up;
             chain_leftMaterial = down;
+            _desZone.SetActive(false);
         }
         else if (!isUp && isMove)
         {
             chain_rightMaterial = down;
             chain_leftMaterial = up;
+            _desZone.SetActive(true);
         }
         else if(!isMove) {
             chain_rightMaterial = stop;

@@ -337,7 +337,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fdaa330f6bd2e5b4e89dd377b5fe6de4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bdabeff2ce91904cb42162582e41faf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -626,7 +626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 525735252016496210}
-  lift: {fileID: 0}
 --- !u!61 &525735252985035457
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -706,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2cfe3714f9934aa6f937e62362f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _desZone: {fileID: 7840890015653000995}
   up: {fileID: 2100000, guid: 68d7053711450e844a38ef95cad76637, type: 2}
   down: {fileID: 2100000, guid: 5458a877f2e44bc4da1377d5198f2c0d, type: 2}
   stop: {fileID: 2100000, guid: 288508382034c624eaad56af31ed4794, type: 2}
@@ -1009,7 +1009,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fdaa330f6bd2e5b4e89dd377b5fe6de4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bdabeff2ce91904cb42162582e41faf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
