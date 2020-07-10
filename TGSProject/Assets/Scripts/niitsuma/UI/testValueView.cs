@@ -13,7 +13,7 @@ public class testValueView : MonoBehaviour
 
     public void SetItemValue(int value)
     {
-        _valueText.text = "x" + value.ToString();
+        _valueText.text = "× " + value.ToString();
     }
     // Update is called once per frame
     void Update()

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FadeController : MonoBehaviour
 {
+    GameManager _gm;
+
     [SerializeField] private float fadeInSpeed = 3;
     [SerializeField] private float fadeOutSpeed = 1;
     private Image _fadeUI;
@@ -15,6 +17,7 @@ public class FadeController : MonoBehaviour
     void Awake()
     {
         _fadeUI = GetComponent<Image>();
+        _gm = GameManager.Instance;
     }
 
     void Start()
@@ -38,7 +41,7 @@ public class FadeController : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1);
-        GameManager.Instance.SetGameState(GameManager.GameState.Main);
+        _gm.SetGameState(GameManager.GameState.Main);
     }
     /// <summary>
     /// 暗くする
@@ -55,14 +58,14 @@ public class FadeController : MonoBehaviour
             alpha += Time.deltaTime / fadeOutSpeed;
             yield return null;
         }
-        GameManager.Instance.SetGameState(GameManager.GameState.SetUp);
+        _gm.SetGameState(GameManager.GameState.SetUp);
         yield return new WaitForSeconds(1);
         test = true;
     }
 
     void Update()
     {
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Road) outCheck = true;
+        if (_gm.GetGameState == GameManager.GameState.Road) outCheck = true;
         if (outCheck && !test) { outCheck = false; StartCoroutine(FadeOUT()); }
         if (test) { test = false; StartCoroutine(FadeIN()); }
     }
