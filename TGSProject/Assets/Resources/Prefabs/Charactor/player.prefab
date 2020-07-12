@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7990345251370828750}
   - component: {fileID: 1997276475799681698}
   - component: {fileID: 1997276475799681710}
+  - component: {fileID: 110175578293722422}
   - component: {fileID: 1997276475799681709}
   - component: {fileID: 1997276475799681697}
   - component: {fileID: 1997276475799681711}
@@ -113,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f15ac718d870d04e92eb5d1dc66464a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parameter:
+    moveSpeed: 0
 --- !u!114 &1997276475799681710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +128,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5d8dcd32264b74c993135eee7f37b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &110175578293722422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997276475799681705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70047c379ebd29347888ea426b6da511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obj: {fileID: 0}
 --- !u!114 &1997276475799681709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2678c602d7d8d6a4eb4fc818ea17f106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obj: {fileID: 0}
 --- !u!114 &1997276475799681697
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,4 +12,5 @@ public struct PossessionItem
     public int catepillarValue;
     public int herbValue;
     public int butteflyWingValue;
+    public int life;
 }

@@ -13,16 +13,22 @@ public class ItemUse : MonoBehaviour
         _info = GetComponent<PlayerInfoCounter>();
     }
 
-    void UseItem()
+    /// <summary>
+    /// 石投げ
+    /// </summary>
+    void ThrowStone()
     {
         Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 1);
-        if (_info.GetItemValue.stoneValue > 0) Instantiate(stone, sponePos, transform.rotation);
+        if (_info.GetItemValue.stoneValue > 0)
+        {
+            Instantiate(stone, sponePos, transform.rotation);
+            _info.UseItem(ItemType.stone);
+        }
     }
     
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
-            UseItem();
+            ThrowStone();
     }
 }

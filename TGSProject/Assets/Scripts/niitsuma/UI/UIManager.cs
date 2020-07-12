@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private testValueView[] views = new testValueView[1];
+    [SerializeField, Tooltip("0, 石 / 1, ハーブ")] private testValueView[] views = new testValueView[2];
     private PlayerInfoCounter _info;
 
     void Start()
     {
         _info = GameManager.Instance.Information;
         views[0].SetItemValue(_info.GetItemValue.stoneValue);
+        views[1].SetItemValue(_info.GetItemValue.herbValue);
     }
 
     void SetInfo()
     {
         views[0].SetItemValue(_info.GetItemValue.stoneValue);
+        views[1].SetItemValue(_info.GetItemValue.herbValue);
     }
     // Update is called once per frame
     void Update()

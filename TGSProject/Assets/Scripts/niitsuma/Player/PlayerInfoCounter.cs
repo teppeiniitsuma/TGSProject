@@ -9,7 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
-    PlayerParameter _parameter = new PlayerParameter();
+    GameManager _gm;
+
+    [SerializeField, Tooltip("プレイヤーのパラメーター")] PlayerParameter _parameter;
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
@@ -19,8 +21,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     void Awake()
     {
-        _parameter = new PlayerParameter();
         _items = new PossessionItem();
+        _gm = GameManager.Instance;
         Initialize();
     }
     /// <summary>
@@ -51,6 +53,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
             case ItemType.catepillar: _items.catepillarValue++; break;
             case ItemType.herb: _items.herbValue++; break;
             case ItemType.butteflyWing: _items.butteflyWingValue++; break;
+            case ItemType.life: if (_parameter.hp < 4) _parameter.hp++; break;
             default: break;
         }
     }
@@ -61,7 +64,6 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     {
         _parameter.hp = 4;
         _parameter.direction = 1;
-        _parameter.moveSpeed = 4f;
         _parameter.actSwitch = true;
 
         _items.stoneValue = 0;
@@ -70,19 +72,23 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         _items.butteflyWingValue = 0;
 
     }
+
     /// <summary>
     /// ダメージ処理
     /// </summary>
+    /// <param name="id">エネミーのID用、エネミー以外は値を入れない</param>
     public void ApplyDamage(int id = 0)
     {
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
-            DecreaseHP();
-        switch (id)
+        if(_gm.GetGameState == GameManager.GameState.Main)
         {
-            case 1: break;
-            case 2: break;
-            case 3: break;
+            switch (id)
+            {
+                case 1: DecreaseHP(); break;
+                case 2: break;
+                case 3: break;
+            }
         }
+
     }
     /// <summary>
     /// HP減少処理
@@ -90,15 +96,25 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// </summary>
     public void DecreaseHP()
     {
-        if (_parameter.hp <= 1) { Debug.Log("YOU ARE DIE"); SceneManager.LoadScene("GameOver"); return; }
+        if (_parameter.hp <= 1) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
         if(!damage)
             _parameter.hp--;
         damage = true;
-        GameManager.Instance.SetGameState(GameManager.GameState.Road);
+        _gm.SetGameState(GameManager.GameState.Road);
     }
-    // Update is called once per frame
+    /// <summary>
+    /// 石や毛虫が投げられたら呼ぶ
+    /// </summary>
+    /// <param name="item"></param>
+    public void UseItem(ItemType item)
+    {
+        switch (item)
+        {
+            case ItemType.stone: _items.stoneValue--; break;
+        }
+    }
     void Update()
     {
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Main) damage = false;
+        if (_gm.GetGameState == GameManager.GameState.Main && damage) damage = false;
     }
 }

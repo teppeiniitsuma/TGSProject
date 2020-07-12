@@ -10,6 +10,7 @@ public enum ItemType
     catepillar, // 毛虫
     herb, // ハーブ
     butteflyWing, // 蝶の羽
+    life, // lifeキノコ
 }
 
 public abstract class BaseItem : MonoBehaviour
