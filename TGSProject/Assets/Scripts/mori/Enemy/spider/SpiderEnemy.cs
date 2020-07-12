@@ -28,6 +28,7 @@ public class SpiderEnemy : BaseEnemy
 
     void Start()
     {
+        base.enemyID = EnemyType.Spider;
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
         this.animator = GetComponent<Animator>();
@@ -41,6 +42,7 @@ public class SpiderEnemy : BaseEnemy
         Confirmation();
     }
 
+    
     public override void EnemyDamager()
     {
         this.gameObject.SetActive(false);

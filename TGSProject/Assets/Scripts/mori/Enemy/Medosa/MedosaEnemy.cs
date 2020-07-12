@@ -13,12 +13,8 @@ public class MedosaEnemy : BaseEnemy
         ri2d = GetComponent<Rigidbody2D>();
         this.animetor = GetComponent<Animator>();
         startPosition = transform.position;
+        base.enemyID = EnemyType.Medosa;
     }
-
-    public override void EnemyDamager()
-    {
-        this.gameObject.SetActive(false);
-    }    
 
     private void ImageDirection()
     {
@@ -34,5 +30,6 @@ public class MedosaEnemy : BaseEnemy
     {
         this.animetor.speed = playSpeed;
         ImageDirection();
+        Debug.Log(info.GetParameter.actSwitch);
     }
 }

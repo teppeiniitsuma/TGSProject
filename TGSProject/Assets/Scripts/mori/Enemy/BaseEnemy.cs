@@ -16,8 +16,6 @@ public abstract class BaseEnemy : MonoBehaviour
     [Header("↓↓プレイヤーを此処に入れてね")]
     public Transform player;
 
-    public abstract void EnemyDamager();
-
     //  画像の向き
     protected int direction = 0;
 
@@ -28,11 +26,11 @@ public abstract class BaseEnemy : MonoBehaviour
 
     
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var p = collision.gameObject.GetComponent<IDamager>();
-        if (null != p) p.ApplyDamage();
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    var p = collision.gameObject.GetComponent<IDamager>();
+    //    if (null != p) p.ApplyDamage();
+    //}
     //  Enemyの体力
     //public int Hp;
 
