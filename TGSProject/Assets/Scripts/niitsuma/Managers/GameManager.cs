@@ -1,22 +1,31 @@
-﻿using System.Collections;
+﻿/*****************************
+ 
+正確にはMainGameManager 
+
+ *****************************/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
-    static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
-    public GameState gameState;
-    public GameState GetGameState { get { return gameState; }}
+    public GameState GetGameState { get { return _gameState; }}
     public PlayerInfoCounter Information { get { return _info; } }
+    public UIManager UIInfo { get { return _uiManager; } }
 
+
+    [SerializeField] private GameState _gameState;
+    static GameManager _instance;
     private PlayerInfoCounter _info;
+    private UIManager _uiManager;
 
     private void Awake()
     {
         _instance = this;
         _info = FindObjectOfType<PlayerInfoCounter>();
+        _uiManager = FindObjectOfType<UIManager>();
         _info.Initialize();
     }
 
@@ -36,7 +45,7 @@ public class GameManager : MonoBehaviour
     /// <param name="g"></param>
     public void SetGameState(GameState g)
     {
-        gameState = g;
+        _gameState = g;
     }
     
 }
