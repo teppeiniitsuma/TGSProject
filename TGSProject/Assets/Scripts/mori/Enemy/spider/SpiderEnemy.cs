@@ -42,12 +42,6 @@ public class SpiderEnemy : BaseEnemy
         Confirmation();
     }
 
-    
-    public override void EnemyDamager()
-    {
-        this.gameObject.SetActive(false);
-    }
-
     //  プレイヤーを検知する関数
     private void Confirmation()
     {

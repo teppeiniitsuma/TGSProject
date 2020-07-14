@@ -11,8 +11,6 @@ public class temp : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            var da = collision.gameObject.GetComponent<BaseEnemy>();
-            if (null != da) da.EnemyDamager();
         
     }
     // Update is called once per frame

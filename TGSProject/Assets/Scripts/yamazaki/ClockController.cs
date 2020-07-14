@@ -10,6 +10,7 @@ public class ClockController : MonoBehaviour
     [SerializeField] private ElapseTime elapse;
 
     private bool _updateRotation = true; // 向きを更新するかどうか
+    public bool yamazaki { get { return _updateRotation;} }
     public bool flag = true;
     public float Value = 100;
     Vector2 startPos;
