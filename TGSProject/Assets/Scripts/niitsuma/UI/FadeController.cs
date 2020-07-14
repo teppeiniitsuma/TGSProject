@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FadeController : MonoBehaviour
 {
@@ -9,14 +7,14 @@ public class FadeController : MonoBehaviour
 
     [SerializeField] private float fadeInSpeed = 3;
     [SerializeField] private float fadeOutSpeed = 1;
-    private Image _fadeUI;
+    private SpriteRenderer _fadeUI;
     private float alpha = 0;
     bool outCheck = false;
     bool test = false;
     // Start is called before the first frame update
     void Awake()
     {
-        _fadeUI = GetComponent<Image>();
+        _fadeUI = GetComponent<SpriteRenderer>();
         _gm = GameManager.Instance;
     }
 
