@@ -5,13 +5,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
     GameManager _gm;
 
     [SerializeField, Tooltip("プレイヤーのパラメーター")] PlayerParameter _parameter;
+    [SerializeField, Tooltip("手に入れなけらばならないハーブの数")] private int _stageHerbs;
+
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
@@ -49,10 +51,10 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     {
         switch (id)
         {
-            case ItemType.stone: _items.stoneValue++; break;
+            case ItemType.stone: if (_items.stoneValue < 5) _items.stoneValue++; break;
+            case ItemType.herb: _items.herbValue--; break;
+            case ItemType.butteflyWing: if(_items.butteflyWingValue < 5)_items.butteflyWingValue++; break;
             case ItemType.catepillar: _items.catepillarValue++; break;
-            case ItemType.herb: _items.herbValue++; break;
-            case ItemType.butteflyWing: _items.butteflyWingValue++; break;
             case ItemType.life: if (_parameter.hp < 4) _parameter.hp++; break;
             default: break;
         }
@@ -68,7 +70,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
         _items.stoneValue = 0;
         _items.catepillarValue = 0;
-        _items.herbValue = 0;
+        _items.herbValue = _stageHerbs;
         _items.butteflyWingValue = 0;
 
     }
@@ -97,8 +99,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public void DecreaseHP()
     {
         if (_parameter.hp <= 1) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
-        if(!damage)
-            _parameter.hp--;
+        if(!damage)　_parameter.hp--;
         damage = true;
         _gm.SetGameState(GameManager.GameState.Road);
     }
@@ -110,7 +111,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     {
         switch (item)
         {
-            case ItemType.stone: _items.stoneValue--; break;
+            case ItemType.stone: _items.stoneValue--; _gm.UIInfo.SetItemInfo(); break;
         }
     }
     void Update()

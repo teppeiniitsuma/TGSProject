@@ -11,9 +11,4 @@ public class ItemId : BaseItem
         base.item = itemName;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
