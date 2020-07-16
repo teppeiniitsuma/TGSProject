@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 1050988703}
   - component: {fileID: 1050988702}
   - component: {fileID: 1050988706}
+  - component: {fileID: 1050988707}
   m_Layer: 0
   m_Name: Lilika
   m_TagString: Player
@@ -466,6 +467,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walk: 0
   max: 4
+--- !u!114 &1050988707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050988701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69af0fcfb1d404bb0611e7dee3370a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6032852497046535403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -487,6 +500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032852496724710976, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6032852496724710980, guid: 14a666ea67d59dd4e8d0c8a3dd919ebf,
         type: 3}
@@ -642,6 +660,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8281541641269586155, guid: 52f6a2e9ef47ff549a2787b0b171c299,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1050988705}
     - target: {fileID: 8281541641269586157, guid: 52f6a2e9ef47ff549a2787b0b171c299,
         type: 3}
       propertyPath: m_SortingOrder

@@ -9,7 +9,10 @@ public class temp : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

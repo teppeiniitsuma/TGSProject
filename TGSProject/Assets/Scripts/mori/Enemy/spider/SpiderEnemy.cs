@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class SpiderEnemy : BaseEnemy 
 {
-    //オブジェクトのRigidbodyの変数
-    private Rigidbody2D ri2d;
-    //  playerのtransformを格納する変数
-    [SerializeField][Header("↓↓プレイヤーを此処に入れてね")]
-    private Transform player;
     //private List<Transform> playerTransform = new List<Transform>() { };
     // 蜘蛛の見つけてない時の移動速度
     private float moveTime = 1.0f;
@@ -21,7 +16,6 @@ public class SpiderEnemy : BaseEnemy
     private float startMove;
     private bool playerConfirmation = false;
     private bool enemyConfirmation = false;
-    private Vector2 startPosition;
     [SerializeField][Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
     private float position_max = 2f;
     [SerializeField][Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
@@ -31,11 +25,10 @@ public class SpiderEnemy : BaseEnemy
     private Animator animator;
     [SerializeField][Header("↓↓アニメーションの速度")]
     private float playSpeed = 1.0f;
-    //  画像の向き
-    private int direction = 0;
 
     void Start()
     {
+        base.enemyID = EnemyType.Spider;
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
         this.animator = GetComponent<Animator>();
@@ -44,6 +37,7 @@ public class SpiderEnemy : BaseEnemy
 
     void Update()
     {
+        Debug.Log(info.GetParameter.actSwitch);
         Move();
         Confirmation();
     }
