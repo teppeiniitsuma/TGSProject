@@ -12,6 +12,7 @@ public class ClockController : MonoBehaviour
     private bool _updateRotation = true; // 向きを更新するかどうか
     public bool flag = true;
     public float Value = 100;
+    float _maxValue = 100;
     Vector2 startPos;
 
     void QuaternionSetter()
@@ -19,7 +20,7 @@ public class ClockController : MonoBehaviour
         var tr = transform;
 
         // 回転のクォータニオン作成
-        var angleAxis = Quaternion.AngleAxis(360 / -(_period) * Time.deltaTime, _axis);
+        var angleAxis = Quaternion.AngleAxis(360 / Time.deltaTime / -(_period) , _axis);
         
         // 円運動の位置計算
         var pos = tr.position;
@@ -37,13 +38,14 @@ public class ClockController : MonoBehaviour
         }
         elapse.IncreaseGage();
         if (Value < 0) { transform.position = startPos; flag = false; }
-        else Value -= Time.deltaTime * _period;
+        else Value -= Time.deltaTime / _period * _maxValue;
     }
 
     public void Inisialize()
     {
         transform.position = startPos;
         Value = 100;
+        flag = true;
         elapse.ClearMover();
     }
     void Start()
@@ -53,13 +55,17 @@ public class ClockController : MonoBehaviour
 
     void Update()
     {
-
-
         if (flag)
         {
             if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
                 QuaternionSetter();
             return;
-        }   
+        }
+        else
+        {
+            // 死亡後の処理（適当なので後修正）
+            GameManager.Instance.Information.DecreaseHP();
+            Inisialize();
+        }
     }
 }
