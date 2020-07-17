@@ -5,8 +5,10 @@ public class MedosaEnemy : BaseEnemy
     
     private Animator animetor;
     [SerializeField]
-    [Header("↓↓アニメーションの再生速度")]
+    private float direction_x;
+    [SerializeField][Header("↓↓アニメーションの再生速度")]
     private float playSpeed = 1.0f;
+    private bool iti;
 
     void Start()
     {
@@ -14,14 +16,33 @@ public class MedosaEnemy : BaseEnemy
         this.animetor = GetComponent<Animator>();
         startPosition = transform.position;
         base.enemyID = EnemyType.Medosa;
+        iti = true;
+    }
+
+    private void FooPlayer()
+    {
+        if(iti)
+        {
+            transform.localPosition = new Vector2(startPosition.x, startPosition.y);
+            iti = !iti;
+        }
+    }
+
+    private void AfPlayer()
+    {
+        if (!iti)
+        {
+            transform.localPosition = new Vector2(startPosition.x + direction_x, startPosition.y);
+            iti = !iti;
+        }
     }
 
     private void ImageDirection()
     {
         //  プレイヤーのトランスフォームを取る
         Vector2 playerPos = player.position;
-        if (playerPos.x < startPosition.x) { direction = 1; }
-        else if(playerPos.x > startPosition.x) { direction = -1; }
+        if (playerPos.x < startPosition.x) { direction = 1; FooPlayer(); }
+        else if(playerPos.x > startPosition.x) { direction = -1; AfPlayer(); }
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
     }
 
@@ -31,5 +52,6 @@ public class MedosaEnemy : BaseEnemy
         this.animetor.speed = playSpeed;
         ImageDirection();
         //Debug.Log(info.GetParameter.actSwitch);
+        //Transform madosaTransform = this.transform;
     }
 }
