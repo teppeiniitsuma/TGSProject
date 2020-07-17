@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public abstract class BaseEnemy : MonoBehaviour
+[System.Serializable]
+public enum EnemyType
 {
-
-    protected enum EnemyType
-    {
-        Spider = 1,
-        Medosa,
-        Plant,
-    }
+    Spider = 1,
+    Medosa,
+    Plant,
+}
+public abstract class BaseEnemy : MonoBehaviour
+{    
     protected EnemyType enemyID;
 
     protected PlayerInfoCounter info;
@@ -44,7 +44,7 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     private void Awake()
     {
-        info = GameManager.Instance.Information;
+        //info = GameManager.Instance.Information;
     }
     public void DamageCollider(Collider2D collider)
     {
