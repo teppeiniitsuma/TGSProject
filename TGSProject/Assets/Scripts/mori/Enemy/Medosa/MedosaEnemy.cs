@@ -30,6 +30,6 @@ public class MedosaEnemy : BaseEnemy
     {
         this.animetor.speed = playSpeed;
         ImageDirection();
-        Debug.Log(info.GetParameter.actSwitch);
+        //Debug.Log(info.GetParameter.actSwitch);
     }
 }
