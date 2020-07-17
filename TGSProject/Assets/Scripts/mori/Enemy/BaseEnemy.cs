@@ -24,7 +24,11 @@ public abstract class BaseEnemy : MonoBehaviour
     //オブジェクトのRigidbodyの変数
     protected Rigidbody2D ri2d;
 
-    
+    [SerializeField]
+    [Header("↓↓アニメーションの速度")]
+    protected float playSpeed = 1.0f;
+
+
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -38,6 +42,12 @@ public abstract class BaseEnemy : MonoBehaviour
     // public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var p = collision.gameObject.GetComponent<IDamager>();
+        if (null != p) p.ApplyDamage((int)enemyID);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         var p = collision.gameObject.GetComponent<IDamager>();
         if (null != p) p.ApplyDamage((int)enemyID);

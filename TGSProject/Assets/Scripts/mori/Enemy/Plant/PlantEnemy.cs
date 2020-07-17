@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlantEnemy : BaseEnemy
 {
-    ClockController killTime = new ClockController();
 
     // Start is called before the first frame update
     void Start()
@@ -14,20 +13,20 @@ public class PlantEnemy : BaseEnemy
 
     private void LuisuKill()
     {
-        if(!killTime.yamazaki)
+        Vector2 LuisPos = player.position;
+        if (GameManager.Instance.GetGameState == GameManager.GameState.EventStart)
         {
-            KillCameraMove();
+            
         }
-    }
-
-    private void KillCameraMove()
-    {
-
+        else
+        {  
+            transform.position = new Vector2(LuisPos.x, -22f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        LuisuKill();
     }
 }

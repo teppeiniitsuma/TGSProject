@@ -23,8 +23,6 @@ public class SpiderEnemy : BaseEnemy
     [SerializeField][Header("↓↓プレイヤーを追いかける速度")]
     private float attackMove = 2;
     private Animator animator;
-    [SerializeField][Header("↓↓アニメーションの速度")]
-    private float playSpeed = 1.0f;
 
     void Start()
     {

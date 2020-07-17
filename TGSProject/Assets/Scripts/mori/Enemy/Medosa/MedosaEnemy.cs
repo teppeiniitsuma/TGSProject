@@ -6,8 +6,6 @@ public class MedosaEnemy : BaseEnemy
     private Animator animetor;
     [SerializeField]
     private float direction_x;
-    [SerializeField][Header("↓↓アニメーションの再生速度")]
-    private float playSpeed = 1.0f;
     private bool iti;
 
     void Start()
