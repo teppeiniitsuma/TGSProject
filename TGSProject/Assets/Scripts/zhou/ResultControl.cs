@@ -21,10 +21,8 @@ public class ResultControl : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {//GetComponent().color = new Color(changeRed, changeGreen, cahngeBlue,
-        //stageImege1[1].GetComponent<SpriteRenderer>().color = new Vector4(0, 0, 0, 0);
-        stageImege2[1].GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0);
-
+    {
+        stageImege2[(i+1)%2].GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0);
         //Rigth  start Pos
         rigth.GetComponent<Transform>().position = new Vector3(
             stageImege1[0].GetComponent<Transform>().position.x + 1.2f,
@@ -48,14 +46,19 @@ public class ResultControl : MonoBehaviour
         ImegeMove();
         stageBGMove();
 
-    }
+    }/// <summary>
+    /// 入力式
+    /// </summary>
     private void PlayerOperational()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) && isPlayerOperational)
+        float KeyVertical = Input.GetAxis("Horizontal");
+       // Debug.Log(KeyVertical);
+
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)|| KeyVertical!=0) && isPlayerOperational)
         {
             i++;
             i = i % 2;
-            Debug.Log("stage" + i + 1);
+        //    Debug.Log("stage" + i + 1);
             isPlayerOperational = false;
         }
         //✖
@@ -72,6 +75,9 @@ public class ResultControl : MonoBehaviour
             SceneMove = true; 
         }
     }
+    /// <summary>
+    /// 選択する時の処理
+    /// </summary>
     private void ImegeMove()
     {
         if (!isPlayerOperational)
@@ -94,25 +100,35 @@ public class ResultControl : MonoBehaviour
             {
                 isPlayerOperational = true;
             }
-            Debug.Log("ステージまでセットしてません。");
+            //
             //
         }
     }
+    /// <summary>
+    ///暗転
+    /// </summary>
     private void stageBGMove()
-    {if(SceneMove)
-        stageBG.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, stageBG.GetComponent<SpriteRenderer>().color.a + Time.deltaTime);
-        if (stageBG.GetComponent<SpriteRenderer>().color.a >= 1.0f)
-        {
-            if (isTitle) {
-                StageConsole.MyLoadScene(StageConsole.MyScene.Title);
+    {
+        if (SceneMove) {
+            Debug.Log("ステージまだセットしてません。");
+            stageBG.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, stageBG.GetComponent<SpriteRenderer>().color.a + Time.deltaTime);
+            if (stageBG.GetComponent<SpriteRenderer>().color.a >= 1.0f)
+            {
+                if (isTitle)
+                {
+                    StageConsole.MyLoadScene(StageConsole.MyScene.Title);
+                }
+                if (i == 0)
+                {
+                    StageConsole.MyLoadScene(StageConsole.MyScene.Stage1);
+                }
+                if (i == 1)
+                {
+                    StageConsole.MyLoadScene(StageConsole.MyScene.Stage2);
+                }
+
             }
-            if (i == 0) {
-                StageConsole.MyLoadScene(StageConsole.MyScene.Stage1);
-            }
-            if (i == 1) {
-                StageConsole.MyLoadScene(StageConsole.MyScene.Stage2);
-            }
-           
         }
+        
     }
 }
