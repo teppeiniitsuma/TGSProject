@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ResultControl : MonoBehaviour
 {
 
-    [SerializeField] private GameObject rigth, stageBG;
+    [SerializeField] private GameObject rigth, stageBG,system;
     [SerializeField] private GameObject[] stageImege1;
     [SerializeField] private GameObject[] stageImege2;
     [SerializeField] private GameObject[] stageName;
@@ -31,7 +31,14 @@ public class ResultControl : MonoBehaviour
              stageImege1[0].GetComponent<Transform>().position.y + 2.0f,
              rigth.GetComponent<Transform>().position.z
             );
+
+        system.GetComponent<Transform>().position = new Vector3(
+          stageImege1[0].GetComponent<Transform>().position.x  ,
+           stageImege1[0].GetComponent<Transform>().position.y ,
+           system.GetComponent<Transform>().position.z
+          );
         isPlayerOperational = true;
+
     }
 
     // Update is called once per frame
@@ -77,6 +84,12 @@ public class ResultControl : MonoBehaviour
              stageImege1[i].GetComponent<Transform>().position.y + 2.0f,
              rigth.GetComponent<Transform>().position.z
             );
+
+            system.GetComponent<Transform>().position = new Vector3(
+         stageImege1[i].GetComponent<Transform>().position.x,
+          stageImege1[i].GetComponent<Transform>().position.y,
+          system.GetComponent<Transform>().position.z
+         );
             if (stageImege2[i].GetComponent<SpriteRenderer>().color.a >= 1.0f)
             {
                 isPlayerOperational = true;
