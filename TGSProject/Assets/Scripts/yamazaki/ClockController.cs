@@ -64,8 +64,7 @@ public class ClockController : MonoBehaviour
         }
         else
         {
-            // 死亡後の処理（適当なので後修正）
-            GameManager.Instance.Information.DecreaseHP();
+            GameManager.Instance.SetGameState(GameManager.GameState.EventStart);
             Inisialize();
         }
     }
