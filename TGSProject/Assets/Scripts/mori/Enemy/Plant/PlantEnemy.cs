@@ -28,9 +28,10 @@ public class PlantEnemy : BaseEnemy
                 Mathf.MoveTowards(transform.position.y, LuisPos.y + _aho, hoge));
             GetComponent<Animator>().enabled = true;
             _taim -= Time.deltaTime;
-            if(_taim == 0)
+            if(_taim < 0)
             {
                 GameManager.Instance.Information.DecreaseHP();
+                _taim = 0;
             }
         }
         else
