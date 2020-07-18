@@ -525,6 +525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1358868559}
+  playSpeed: 1
+  hoge: 0.2
+  aho: -17.5
 --- !u!95 &435020621
 Animator:
   serializedVersion: 3

@@ -75,7 +75,7 @@ public class SpiderEnemy : BaseEnemy
         {
                 aho_move();
                 transform.position = new Vector2(Mathf.MoveTowards
-                (transform.position.x, startPosition.x, Time.deltaTime), transform.position.y);
+                (transform.position.x, startPosition.x, Time.deltaTime), startPosition.y);
             this.animator.SetTrigger("WalkTrigger");
         }
     }
