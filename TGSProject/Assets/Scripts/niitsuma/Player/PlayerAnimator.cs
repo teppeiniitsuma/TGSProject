@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject playerAnim;
+    public bool ActAnimaStart { get; set; } = false;
+    public bool ActAnimaEnd { get; set; } = false;
+
     void Start()
     {
-        
+        playerAnim.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ActAnimatorPlay()
     {
-        
+        playerAnim.SetActive(true);
+    }
+    public void ActAnimatorEnd()
+    {
+        playerAnim.SetActive(false);
     }
 }

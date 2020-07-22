@@ -1,9 +1,4 @@
-﻿/*****************************
- 
-正確にはMainGameManager 
-
- *****************************/
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +9,8 @@ public class GameManager : MonoBehaviour
     public GameState GetGameState { get { return _gameState; }}
     public PlayerInfoCounter Information { get { return _info; } }
     public UIManager UIInfo { get { return _uiManager; } }
-
+    // プレイヤーが光の範囲内にいるか
+    public bool InLightRange { get; private set; } = true;
 
     [SerializeField] private GameState _gameState;
     static GameManager _instance;
@@ -47,5 +43,12 @@ public class GameManager : MonoBehaviour
     {
         _gameState = g;
     }
-    
+    /// <summary>
+    /// ライトの範囲内でなければfalseにする
+    /// </summary>
+    /// <param name="light"></param>
+    public void SetLightPos(bool light)
+    {
+        InLightRange = light;
+    }
 }

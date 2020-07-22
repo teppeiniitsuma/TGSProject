@@ -1,22 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BridgeScript : MonoBehaviour
 {
-    [SerializeField] GameObject switch_Head,level;
     public bool isSwitchUp,isLevel;
     public bool isLever = false;
     [SerializeField] int rotsSpeed = 180 ;
     public float startRotsZ;
 
-    // Start is called before the first frame update
     void Start()
     {
-       // startRotsZ = this.transform.rotation.z*120;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (this.transform.rotation.z < 0 && isSwitchUp) {
@@ -35,13 +29,9 @@ public class BridgeScript : MonoBehaviour
             }
         }
     }
-    public void OpenLevel() {
-
-        //switch_Head.GetComponent<BridgeSwitchScript>().enabled = false;
-        level.GetComponent<BridgeLevelScript>().enabled = false;
+    public void OpenLevel()
+    {
         isSwitchUp = true;
         isLevel = true;
-
-
     }
 }

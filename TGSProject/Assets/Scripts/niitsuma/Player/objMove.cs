@@ -7,7 +7,14 @@ public class objMove : MonoBehaviour
     [SerializeField] PlayerInfoCounter _info;
     [SerializeField] Transform pos;
     [SerializeField] float catchArea = 1.5f;
+    SpriteRenderer _renderer;
 
+    public SpriteRenderer SetSprite { get { return _renderer; } set { _renderer = value; } }
+
+    private void Start()
+    {
+        _renderer = GetComponent<SpriteRenderer>();
+    }
     public bool InArea { get { return _inArea; } }
     bool _act = false;
     bool _inArea = false;
@@ -24,13 +31,9 @@ public class objMove : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // クソ処理（後修正）
         if(collision.gameObject.tag == "Enemy") { _info.DecreaseHP(); }
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        
-    }
+
     
     // プレイヤーがキャッチできる範囲にいるか判断
     void AreaJudgment(Transform p)
@@ -38,6 +41,12 @@ public class objMove : MonoBehaviour
         if(p.position.x >= transform.position.x - catchArea &&
            p.position.x <= transform.position.x + catchArea)  { _inArea = true; }
         else { _inArea = false; }
+
+        if (p.position.x >= transform.position.x + catchArea + 1)
+        {
+            GameManager.Instance.SetLightPos(false);
+        }
+        else { GameManager.Instance.SetLightPos(true); }
     }
     public void SetPos()
     {

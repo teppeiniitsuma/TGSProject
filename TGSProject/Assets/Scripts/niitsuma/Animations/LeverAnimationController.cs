@@ -5,8 +5,7 @@ using DualShockInput;
 
 public class LeverAnimationController : MonoBehaviour
 {
-    // 強引な処理
-    BridgeLevelScript bri;
+    LevelControl lev;
     Animator anime;
     bool touch = false;
 
@@ -14,7 +13,7 @@ public class LeverAnimationController : MonoBehaviour
     {
         anime = GetComponent<Animator>();
         anime.speed = 0;
-        bri = GetComponent<BridgeLevelScript>();
+        lev = GetComponent<LevelControl>();
     }
     // ここは後にBridgeLevelSciriptをGetしてやるのもOK
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,7 +37,7 @@ public class LeverAnimationController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
             {
                 anime.speed = 1;
-                bri.Actuation = true;
+                lev.Actuation = true;
             }
         }
     }

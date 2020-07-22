@@ -13,7 +13,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     [SerializeField, Tooltip("プレイヤーのパラメーター")] PlayerParameter _parameter;
     [SerializeField, Tooltip("手に入れなけらばならないハーブの数")] private int _stageHerbs;
-
+    [SerializeField] Sprite[] playerSprite = new Sprite[2];
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
@@ -102,6 +102,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         if(!damage)　_parameter.hp--;
         damage = true;
         _gm.SetGameState(GameManager.GameState.Road);
+        Debug.Log("com");
     }
     /// <summary>
     /// 石や毛虫が投げられたら呼ぶ
@@ -113,6 +114,16 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         {
             case ItemType.stone: _items.stoneValue--; _gm.UIInfo.SetItemInfo(); break;
         }
+    }
+    /// <summary>
+    /// 行動切り替え時にプレイヤーの画像を変える
+    /// </summary>
+    /// <param name="act"></param>
+    /// <param name="ren"></param>
+    public void SpriteChange(bool act, SpriteRenderer ren)
+    {
+        if (act) ren.sprite = playerSprite[0];
+        else ren.sprite = playerSprite[1];
     }
     void Update()
     {

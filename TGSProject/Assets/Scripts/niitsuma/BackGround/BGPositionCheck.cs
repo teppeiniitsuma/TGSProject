@@ -14,7 +14,6 @@ public class BGPositionCheck : MonoBehaviour
         {
             if (transform.position.x + width < bg.Camera.position.x)
             {
-                Debug.Log(transform.position.x);
                 bg.SetNumber(_number);
             }
         }

@@ -10,8 +10,8 @@ public class FadeController : MonoBehaviour
     private SpriteRenderer _fadeUI;
     private float alpha = 0;
     bool outCheck = false;
-    bool test = false;
-    // Start is called before the first frame update
+    bool _fadeInFlag = false;
+
     void Awake()
     {
         _fadeUI = GetComponent<SpriteRenderer>();
@@ -58,13 +58,13 @@ public class FadeController : MonoBehaviour
         }
         _gm.SetGameState(GameManager.GameState.SetUp);
         yield return new WaitForSeconds(1);
-        test = true;
+        _fadeInFlag = true;
     }
 
     void Update()
     {
         if (_gm.GetGameState == GameManager.GameState.Road) outCheck = true;
-        if (outCheck && !test) { outCheck = false; StartCoroutine(FadeOUT()); }
-        if (test) { test = false; StartCoroutine(FadeIN()); }
+        if (outCheck && !_fadeInFlag) { outCheck = false; StartCoroutine(FadeOUT()); }
+        if (_fadeInFlag) { _fadeInFlag = false; StartCoroutine(FadeIN()); }
     }
 }
