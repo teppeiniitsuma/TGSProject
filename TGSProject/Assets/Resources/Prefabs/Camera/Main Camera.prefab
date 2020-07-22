@@ -182,6 +182,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 412783426068585407}
     m_Modifications:
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapeLightParametricSides
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[3].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapePath.Array.data[3].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450884200503748489, guid: f8afec338cd2a114c9ecc95605701fd7,
+        type: 3}
+      propertyPath: m_ShapeLightParametricRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3450884200503748494, guid: f8afec338cd2a114c9ecc95605701fd7,
         type: 3}
       propertyPath: m_LocalPosition.x

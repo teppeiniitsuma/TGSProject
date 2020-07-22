@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1050376754185327532}
   - component: {fileID: 1050376754185327507}
-  - component: {fileID: 1050376754185327506}
+  - component: {fileID: 6113246462560987269}
   - component: {fileID: 1050376754185327533}
-  - component: {fileID: 3822865743326990356}
   m_Layer: 0
   m_Name: TowToOne_01
   m_TagString: Untagged
@@ -83,22 +82,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &1050376754185327506
-Animation:
+--- !u!114 &6113246462560987269
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050376754185327505}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3c1dffc9070e9c0489af1bfe55054595, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3c1dffc9070e9c0489af1bfe55054595, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3f6820a19fdd24bb30c275a034b213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1050376754185327533
 Animator:
   serializedVersion: 3
@@ -118,16 +113,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3822865743326990356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050376754185327505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd70ebc741245534d881f5621bb19fa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playSpeed: 1
