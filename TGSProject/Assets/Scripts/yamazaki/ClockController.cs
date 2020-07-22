@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClockController : MonoBehaviour
 {
+    GameManager _gm;
     [SerializeField] private Vector3 _center = Vector3.zero; // 中心点
     [SerializeField] private Vector3 _axis = Vector3.up; // 回転軸
     [SerializeField] private float _period = 10; // 円運動周期
@@ -52,14 +53,19 @@ public class ClockController : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
+        _gm = GameManager.Instance;
     }
 
     void Update()
     {
         if (flag)
         {
-            if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
-                QuaternionSetter();
+            if(_gm.GetGameState == GameManager.GameState.Main)
+            {
+                if (!_gm.InLightRange)
+                    QuaternionSetter();
+                else Inisialize();
+            }
             return;
         }
         else
