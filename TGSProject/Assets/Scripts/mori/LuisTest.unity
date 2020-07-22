@@ -139,6 +139,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6778029592884646307, guid: 8924e5f371a67af41ba371b8db95641c,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778029593205252525, guid: 8924e5f371a67af41ba371b8db95641c,
+        type: 3}
+      propertyPath: _period
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6778029593583024722, guid: 8924e5f371a67af41ba371b8db95641c,
         type: 3}
       propertyPath: m_Name
@@ -527,7 +537,6 @@ MonoBehaviour:
   player: {fileID: 1358868559}
   playSpeed: 1
   hoge: 0.2
-  aho: -17.5
 --- !u!95 &435020621
 Animator:
   serializedVersion: 3

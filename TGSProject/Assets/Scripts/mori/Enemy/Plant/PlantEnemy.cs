@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlantEnemy : BaseEnemy
 {
     [SerializeField]
-    private float hoge;
+    private float _hoge;
     //[SerializeField]
     private float _aho = -17f;
     private Animator _anim;
@@ -15,7 +15,7 @@ public class PlantEnemy : BaseEnemy
     void Start()
     {
         base.enemyID = EnemyType.Plant;
-        hoge += Time.deltaTime;
+        _hoge += Time.deltaTime;
         _anim = GetComponent<Animator>();
     }
 
@@ -25,7 +25,7 @@ public class PlantEnemy : BaseEnemy
         if (GameManager.Instance.GetGameState == GameManager.GameState.EventStart)
         {
             transform.position = new Vector2(LuisPos.x,
-                Mathf.MoveTowards(transform.position.y, LuisPos.y + _aho, hoge));
+                Mathf.MoveTowards(transform.position.y, LuisPos.y + _aho, _hoge));
             GetComponent<Animator>().enabled = true;
             _taim -= Time.deltaTime;
             if(_taim < 0)
@@ -37,6 +37,9 @@ public class PlantEnemy : BaseEnemy
         else
         {  
             transform.position = new Vector2(LuisPos.x, -22f);
+            _taim = 3;
+            GetComponent<Animator>().enabled = false;
+            _anim.Play("Base Layer.Plant_body 03", 0, 0);
         }
     }
 
