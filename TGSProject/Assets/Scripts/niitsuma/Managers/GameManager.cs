@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         _gameState = g;
     }
     /// <summary>
-    /// ライトの範囲内でなければfalseにする
+    /// 単独行動時ライトの範囲内でなければfalseにする
     /// </summary>
     /// <param name="light"></param>
     public void SetLightPos(bool light)

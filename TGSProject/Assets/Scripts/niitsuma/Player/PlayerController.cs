@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : BasePlayer
 {
-    [SerializeField] private objMove _obj;
+    [SerializeField] private LouisObjMover louis;
     PlayerMover pMove;
     PlayerAnimator pAnim;
     SpriteRenderer renderer;
@@ -26,8 +26,8 @@ public class PlayerController : BasePlayer
         }
         if (pAnim.ActAnimaStart)
         {
-            renderer.enabled = false;
-            _obj.SetSprite.enabled = false;
+
+            
         }
         if(pAnim.ActAnimaEnd)
         {
@@ -35,9 +35,9 @@ public class PlayerController : BasePlayer
             int param = infoCounter.GetParameter.direction;
             this.transform.position = new Vector2(transform.position.x + 2.7f * param, transform.position.y);
             renderer.enabled = true;
-            _obj.SetSprite.enabled = true;
             pAnim.ActAnimatorEnd();
             pAnim.ActAnimaEnd = false;
+            louis.LouisSprite.enabled = true;
         }
     }
 
@@ -49,11 +49,21 @@ public class PlayerController : BasePlayer
             if (inputer.squareButton) { Debug.Log("キャンセル"); }
             if (inputer.triangleButton)
             {
-                if (_obj.InArea)
+                if (infoCounter.GetParameter.actSwitch)
                 {
-                    _obj.SetPos();
-                    if (!infoCounter.GetParameter.actSwitch) pAnim.ActAnimatorPlay();
+                    renderer.enabled = false;
+                    louis.ChangeAct();
+                    louis.gameObject.SetActive(true);
+                    louis.LouisSprite.enabled = false;
+                    louis.SetLouisPos(transform);
+                    pAnim.ActAnimatorPlay();
                 }
+                else if(!infoCounter.GetParameter.actSwitch && louis.AreaJudgment(transform))
+                {
+                    louis.ChangeAct();
+                    louis.gameObject.SetActive(false);
+                }
+                
                 infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
             }
         }

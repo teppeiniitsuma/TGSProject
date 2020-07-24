@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1997276475799681709}
   - component: {fileID: 7425654474464345361}
   - component: {fileID: 1997276475799681711}
-  - component: {fileID: 1997276475799681704}
+  - component: {fileID: 7594921872632248949}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: a954be4ccb543924d9231214fcb0335c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0eeca538a9759d746b6536c8ef5d7488, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70047c379ebd29347888ea426b6da511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obj: {fileID: 0}
+  louis: {fileID: 0}
 --- !u!114 &1997276475799681709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +192,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &1997276475799681704
-CapsuleCollider2D:
+--- !u!61 &7594921872632248949
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -205,9 +205,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09, y: 0}
-  m_Size: {x: 1.03, y: 2.3}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3, y: 2.36}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8, y: 2.36}
+  m_EdgeRadius: 0
 --- !u!1 &3489620091202686310
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 1050376754185327532, guid: 5c0f938aec4260649bb981a6c5cebd56,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 1050376754185327532, guid: 5c0f938aec4260649bb981a6c5cebd56,
         type: 3}

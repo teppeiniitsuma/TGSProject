@@ -79,15 +79,16 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// ダメージ処理
     /// </summary>
     /// <param name="id">エネミーのID用、エネミー以外は値を入れない</param>
-    public void ApplyDamage(int id = 0)
+    public void ApplyDamage(EnemyType id = EnemyType.None)
     {
         if(_gm.GetGameState == GameManager.GameState.Main)
         {
             switch (id)
             {
-                case 1: DecreaseHP(); break;
-                case 2: break;
-                case 3: break;
+                case EnemyType.None: DecreaseHP(); break;
+                case EnemyType.Spider: DecreaseHP(); break;
+                case EnemyType.Medosa: break;
+                case EnemyType.Plant: break;
             }
         }
 
