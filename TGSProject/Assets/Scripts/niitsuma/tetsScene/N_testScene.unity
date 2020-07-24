@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c15876da2c8db74ebae386da9c15c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameState: 1
+  _gameState: 0
 --- !u!4 &1824679926
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,6 +1260,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6778029592722627506, guid: 8924e5f371a67af41ba371b8db95641c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6778029593583024722, guid: 8924e5f371a67af41ba371b8db95641c,
         type: 3}
       propertyPath: m_Name

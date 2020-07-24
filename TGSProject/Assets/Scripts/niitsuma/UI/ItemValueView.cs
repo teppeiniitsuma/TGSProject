@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
 public class ItemValueView : MonoBehaviour
 {
     private Text _valueText;
+    StringBuilder sb = new StringBuilder(10);
     void Awake()
     {
         _valueText = GetComponent<Text>();
@@ -15,11 +15,15 @@ public class ItemValueView : MonoBehaviour
     {
         if(item == ItemType.herb)
         {
-            _valueText.text = value.ToString();
+            sb.Length = 0;
+            _valueText.text = sb.Append(value).ToString();
+            //value.ToString();
         }
         else
         {
-            _valueText.text = value.ToString() + " / 5";
+            sb.Length = 0;
+            _valueText.text = sb.Append(value).Append("/5").ToString();
+            //_valueText.text = value.ToString() + " / 5";
         }
     }
 }

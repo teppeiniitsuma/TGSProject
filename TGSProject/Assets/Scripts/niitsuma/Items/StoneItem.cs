@@ -11,7 +11,7 @@ public class StoneItem : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var damege = collision.gameObject.GetComponent<IDamager>();
-        if (damege != null) damege.ApplyDamage();
+        if (damege != null) damege.ApplyDamage(EnemyType.None);
     }
     void Start()
     {

@@ -28,7 +28,7 @@ public class CameraMover : MonoBehaviour
         }
         else
         {
-            if (player.position.x < obj.position.x + diffPlayer && obj.position.x < player.position.x + diffCamera * 2 + diffPlayer)
+            if (player.position.x < obj.position.x + (diffPlayer * 2) && obj.position.x < player.position.x + diffCamera * 2 + diffPlayer)
             {
                 transform.position = new Vector3(startCameraPos.x + player.position.x, transform.position.y, transform.position.z);
             }
