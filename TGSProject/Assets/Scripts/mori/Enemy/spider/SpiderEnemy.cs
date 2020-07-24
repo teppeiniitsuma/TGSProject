@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SpiderEnemy : BaseEnemy 
 {
-    //private List<Transform> playerTransform = new List<Transform>() { };
+    //[SerializeField] Animator[] ataackAnimator = new Animator[2];
+    [SerializeField] GameObject[] gameObjects = new GameObject[2];
     // 蜘蛛の見つけてない時の移動速度
     private float moveTime = 1.0f;
     //[SerializeField][Header("蜘蛛の移動速度↓※今はいじらないでね")]
@@ -12,33 +13,39 @@ public class SpiderEnemy : BaseEnemy
     //[SerializeField]
     private float stopMove = 1.5f;
     //  playerがオブジェクトに近づいたら開始する変数
-    [SerializeField][Header("↓↓蜘蛛の視野の良さ")]
+    [SerializeField]
+    [Header("↓↓蜘蛛の視野の良さ")]
     private float startMove;
     private bool playerConfirmation = false;
     private bool enemyConfirmation = false;
-    [SerializeField][Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
+    [SerializeField]
+    [Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
     private float position_max = 2f;
-    [SerializeField][Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
+    [SerializeField]
+    [Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
     private float position_mix = 2f;
-    [SerializeField][Header("↓↓プレイヤーを追いかける速度")]
-    private float attackMove = 2;
-    private Animator animator;
-
+    [SerializeField]
+    [Header("↓↓プレイヤーを追いかける速度")]
+    private float attackMove = 2f;
     void Start()
     {
         base.enemyID = EnemyType.Spider;
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
-        this.animator = GetComponent<Animator>();
-        //conten = transform.position.x;
     }
+
+
 
     void Update()
     {
-        Debug.Log(info.GetParameter.actSwitch);
-        Move();
-        Confirmation();
+        //Debug.Log(info.GetParameter.actSwitch);
+        //Move();
+        //Confirmation();
     }
+}
+
+/*
+    
 
     //  プレイヤーを検知する関数
     private void Confirmation()
@@ -113,10 +120,5 @@ public class SpiderEnemy : BaseEnemy
         }
         if(direction != 0) { transform.localScale = new Vector2(direction, 1); }
     }
-
-}
-
-/*
- 
  
  */
