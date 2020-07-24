@@ -3,7 +3,8 @@
 [System.Serializable]
 public enum EnemyType
 {
-    Spider = 1,
+    None = 0,
+    Spider,
     Medosa,
     Plant,
 }
@@ -44,13 +45,13 @@ public abstract class BaseEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var p = collision.gameObject.GetComponent<IDamager>();
-        if (null != p) p.ApplyDamage((int)enemyID);
+        if (null != p) p.ApplyDamage(enemyID);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var p = collision.gameObject.GetComponent<IDamager>();
-        if (null != p) p.ApplyDamage((int)enemyID);
+        if (null != p) p.ApplyDamage(enemyID);
     }
     private void Awake()
     {
