@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpiderEnemy : BaseEnemy 
 {
     //[SerializeField] Animator[] ataackAnimator = new Animator[2];
-    [SerializeField] GameObject[] gameObjects = new GameObject[2];
+    //[SerializeField] GameObject[] gameObjects = new GameObject[2];
     // 蜘蛛の見つけてない時の移動速度
     private float moveTime = 1.0f;
     //[SerializeField][Header("蜘蛛の移動速度↓※今はいじらないでね")]
@@ -39,13 +39,9 @@ public class SpiderEnemy : BaseEnemy
     void Update()
     {
         //Debug.Log(info.GetParameter.actSwitch);
-        //Move();
-        //Confirmation();
+        Move();
+        Confirmation();
     }
-}
-
-/*
-    
 
     //  プレイヤーを検知する関数
     private void Confirmation()
@@ -55,7 +51,7 @@ public class SpiderEnemy : BaseEnemy
         //  自分positionとプレイヤーのpositionをdistanceに入れる
         float distance = Vector2.Distance(transform.position, playerPos);
         //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
-        if(distance < startMove && distance > stopMove)
+        if (distance < startMove && distance > stopMove)
         {
             playerConfirmation = true;
             Debug.Log("プレイヤーを発見しました。");
@@ -71,19 +67,19 @@ public class SpiderEnemy : BaseEnemy
     //  移動関数
     private void Move()
     {
-        
-        if(playerConfirmation)//    プレイヤーが範囲内に居るとき
+
+        if (playerConfirmation)//    プレイヤーが範囲内に居るとき
         {
             Move2();
             transform.localScale = new Vector2(direction, 1);
-            this.animator.SetTrigger("LockTrigger");
+            //this.animator.SetTrigger("LockTrigger");
         }
-        else if(!playerConfirmation)//  プレイヤーが範囲内に居ないとき
+        else if (!playerConfirmation)//  プレイヤーが範囲内に居ないとき
         {
-                aho_move();
-                transform.position = new Vector2(Mathf.MoveTowards
-                (transform.position.x, startPosition.x, Time.deltaTime), startPosition.y);
-            this.animator.SetTrigger("WalkTrigger");
+            aho_move();
+            transform.position = new Vector2(Mathf.MoveTowards
+            (transform.position.x, startPosition.x, Time.deltaTime), startPosition.y);
+            //this.animator.SetTrigger("WalkTrigger");
         }
     }
 
@@ -104,21 +100,26 @@ public class SpiderEnemy : BaseEnemy
     //  見つけていないときの動き
     private void aho_move()
     {
-        this.animator.speed = playSpeed;
+        //this.animator.speed = playSpeed;
         startPosition.x += Time.deltaTime * moveTime;
-        if(startPosition.x >= position_max)
+        if (startPosition.x >= position_max)
         {
             moveTime *= -moveSpeed;
             startPosition.x = position_max;
             direction = 1;
         }
-        else if(startPosition.x <= position_mix)
+        else if (startPosition.x <= position_mix)
         {
             moveTime *= -moveSpeed;
             startPosition.x = position_mix;
             direction = -1;
         }
-        if(direction != 0) { transform.localScale = new Vector2(direction, 1); }
+        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
     }
- 
+}
+
+/*
+    
+
+    
  */

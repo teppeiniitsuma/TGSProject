@@ -29,18 +29,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [Header("↓↓アニメーションの速度")]
     protected float playSpeed = 1.0f;
 
-
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    var p = collision.gameObject.GetComponent<IDamager>();
-    //    if (null != p) p.ApplyDamage();
-    //}
-    //  Enemyの体力
-    //public int Hp;
-
-    //  EnemyにPlayerを認識させる
-    // public GameObject player;
+    public static bool _yesAttack { set; get; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
