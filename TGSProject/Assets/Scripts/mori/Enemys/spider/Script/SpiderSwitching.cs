@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine; 
 
 public class SpiderSwitching : BaseEnemy
 {
-    private bool _abc = true;
+    //private bool _abc;
 
     //public bool ON;
 
@@ -36,16 +37,6 @@ public class SpiderSwitching : BaseEnemy
         base.enemyID = EnemyType.Spider;
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
-    }
-
-    private void OnBecameVisible()
-    {
-        _abc = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        _abc = false;
     }
 
     private void IsAttackOrNot()
@@ -141,15 +132,15 @@ public class SpiderSwitching : BaseEnemy
 
 void Update()
     {
-        if (_abc)
+        if (EnemyAnimasion._isCamera)
         {
             IsAttackOrNot();
             Move();
             Confirmation();
         }
-        else if(!_abc)
+        else if(!EnemyAnimasion._isCamera)
         {
-            return;
+            
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimasion : MonoBehaviour
 { 
-    private bool _isCamera;
+    public static bool _isCamera;
     private Animator _anim;
 
     private void Start()
