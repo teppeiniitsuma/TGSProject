@@ -29,8 +29,6 @@ public abstract class BaseEnemy : MonoBehaviour
     [Header("↓↓アニメーションの速度")]
     protected float playSpeed = 1.0f;
 
-    public static bool _yesAttack { set; get; }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var p = collision.gameObject.GetComponent<IDamager>();

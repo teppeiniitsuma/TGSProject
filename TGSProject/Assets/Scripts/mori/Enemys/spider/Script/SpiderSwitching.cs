@@ -132,15 +132,15 @@ public class SpiderSwitching : BaseEnemy
 
 void Update()
     {
-        if (EnemyAnimasion._isCamera)
+        if (!SpiderCamera._yesCamera)
         {
             IsAttackOrNot();
             Move();
             Confirmation();
         }
-        else if(!EnemyAnimasion._isCamera)
+        else if (SpiderCamera._yesCamera) 
         {
-            
+
         }
     }
 }

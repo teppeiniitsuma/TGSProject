@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimasion : MonoBehaviour
+public class SpiderCamera : MonoBehaviour
 {
-    private bool _isCamera;
-    private Animator _anim;
-
-    private void Start()
-    {
-        _anim = GetComponent<Animator>();
-    }
+    public static bool _yesCamera{ set; get; }
 
     private void OnBecameVisible()
     {
-         _isCamera = true;
+        _yesCamera = false;
         GetComponent<Animator>().enabled = true;
     }
 
     private void OnBecameInvisible()
     {
-        _isCamera = false;
+        _yesCamera = true;
         GetComponent<Animator>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log(_isCamera);
+        Debug.Log(_yesCamera);
     }
 }
