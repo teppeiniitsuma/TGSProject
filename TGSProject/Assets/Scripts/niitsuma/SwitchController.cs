@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SwitchController : MonoBehaviour
 {
+    [SerializeField] BridgeScript bri;
     int count = 0;
     bool anim = false;
     Vector2 startPos;
@@ -33,10 +34,12 @@ public class SwitchController : MonoBehaviour
     void OnSwitchPush()
     {
         StartCoroutine(SwitchON());
+        if(!bri.isLevel) bri.isSwitchUp = true;
     }
     void OnSwitchExit()
     {
         StartCoroutine(SwitchOFF());
+        if (!bri.isLevel) bri.isSwitchUp = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

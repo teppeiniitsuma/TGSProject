@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LouisObjMover : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class LouisObjMover : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        _act = GameManager.Instance.Information.GetParameter.actSwitch;
         gameObject.SetActive(false);
     }
 
@@ -53,10 +52,10 @@ public class LouisObjMover : MonoBehaviour
     /// 行動切り替え時に出現するposition
     /// </summary>
     /// <param name="t"></param>
-    public void SetLouisPos(Transform t)
+    public void SetLouisPos(Transform t, int direc)
     {
         this.transform.localScale = t.localScale;
-        this.transform.position = t.position + fixedPos;
+        this.transform.position = t.position + (fixedPos * direc);
     }
     public void ChangeAct()
     {

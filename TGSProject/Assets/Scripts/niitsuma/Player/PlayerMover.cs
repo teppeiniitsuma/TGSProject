@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerMover : BasePlayer
 {
     Rigidbody2D _rigidbody;
-
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
