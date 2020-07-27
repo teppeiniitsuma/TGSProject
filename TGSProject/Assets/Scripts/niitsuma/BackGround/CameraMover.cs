@@ -6,23 +6,28 @@ public class CameraMover : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform obj;
+    PlayerInfoCounter _info;
     Vector3 startCameraPos;
+
     // プレイヤーとカメラの差
     float diffCamera = 0;
     // プレイヤーと車いすの差
     float diffPlayer = 1;
+    bool _act = false;
 
     void Start()
     {
         startCameraPos = transform.position;
         diffCamera = Mathf.Abs(transform.position.x - player.position.x);
+        _info = GameManager.Instance.Information;
+        _act = _info.GetParameter.actSwitch;
         Debug.Log(diffCamera);
     }
 
     void PositionMove()
     {
-        bool act = GameManager.Instance.Information.GetParameter.actSwitch;
-        if (act)
+        _act = _info.GetParameter.actSwitch;
+        if (_act)
         {
             transform.position = new Vector3(startCameraPos.x + player.position.x, transform.position.y, transform.position.z);
         }

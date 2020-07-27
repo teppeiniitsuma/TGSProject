@@ -10,10 +10,12 @@ using UnityEngine;
 public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
     GameManager _gm;
+    CapsuleCollider2D coll;
 
     [SerializeField, Tooltip("プレイヤーのパラメーター")] PlayerParameter _parameter;
     [SerializeField, Tooltip("手に入れなけらばならないハーブの数")] private int _stageHerbs;
-    [SerializeField] Sprite[] playerSprite = new Sprite[2];
+    [SerializeField, Tooltip("0, 二人行動画像/ 1, 単独行動画像/ 2, 石化画像")] Sprite[] playerSprite = new Sprite[3];
+
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
@@ -26,6 +28,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         _items = new PossessionItem();
         _gm = GameManager.Instance;
         Initialize();
+        coll = GetComponent<CapsuleCollider2D>();
     }
     /// <summary>
     /// 方向切り替え
@@ -87,24 +90,13 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
             {
                 case EnemyType.None: DecreaseHP(); break;
                 case EnemyType.Spider: DecreaseHP(); break;
-                case EnemyType.Medosa: break;
+                case EnemyType.Medosa: PetrificationDamage(); break;
                 case EnemyType.Plant: break;
             }
         }
 
     }
-    /// <summary>
-    /// HP減少処理
-    /// 呼ばれたらHPを-1する
-    /// </summary>
-    public void DecreaseHP()
-    {
-        if (_parameter.hp <= 1) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
-        if(!damage)　_parameter.hp--;
-        damage = true;
-        _gm.SetGameState(GameManager.GameState.Road);
-        Debug.Log("com");
-    }
+    
     /// <summary>
     /// 石や毛虫が投げられたら呼ぶ
     /// </summary>
@@ -123,8 +115,26 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// <param name="ren"></param>
     public void SpriteChange(bool act, SpriteRenderer ren)
     {
-        if (act) ren.sprite = playerSprite[0];
-        else ren.sprite = playerSprite[1];
+        if (act) { ren.sprite = playerSprite[0]; coll.size = new Vector2(2.3f, 2.3f); }
+        else { ren.sprite = playerSprite[1]; coll.size = new Vector2(1, 2.3f); }
+    }
+
+    /// <summary>
+    /// HP減少処理
+    /// 呼ばれたらHPを-1する
+    /// </summary>
+    public void DecreaseHP()
+    {
+        if (_parameter.hp <= 1) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
+        if (!damage) _parameter.hp--;
+        _gm.SetGameState(GameManager.GameState.Road);
+        damage = true;
+    }
+    // 石化ダメージ
+    void PetrificationDamage()
+    {
+        var s = GetComponent<SpriteRenderer>();
+        s.sprite = playerSprite[2];
     }
     void Update()
     {

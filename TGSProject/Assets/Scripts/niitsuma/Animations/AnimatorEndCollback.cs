@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
-using System;
 
 public class AnimatorEndCollback : MonoBehaviour
 {
-    PlayerAnimator pAnim;
-    void Start()
-    {
-        pAnim = transform.parent.GetComponent<PlayerAnimator>();
-    }
+    [SerializeField] private PlayerAnimator pAnim;
     public void OnStartAnim()
     {
         pAnim.ActAnimaStart = true;

@@ -12,7 +12,15 @@ public class PlayerAnimator : MonoBehaviour
     {
         playerAnim.SetActive(false);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="t">プレイヤーのトランスフォーム</param>
+    /// <param name="direc">プレイヤーの方向</param>
+    public void SetAnimPos(Vector2 t, int direc)
+    {
+        this.transform.position = new Vector2(t.x + 0.89f * direc, t.y);
+    }
     public void ActAnimatorPlay()
     {
         playerAnim.SetActive(true);
