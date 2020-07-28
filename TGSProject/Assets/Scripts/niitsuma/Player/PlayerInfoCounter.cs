@@ -139,5 +139,6 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     void Update()
     {
         if (_gm.GetGameState == GameManager.GameState.Main && damage) damage = false;
+        if (Input.GetKeyDown(KeyCode.L)) { _items.stoneValue++; }
     }
 }
