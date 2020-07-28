@@ -347,7 +347,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208833407}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 216f7d800c5d1ed43879842241b1fe88, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 9559039a0bc974643a5ceb0a48a5f126, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -654,7 +654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1065355666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -148}
+  m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 552, y: 754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1065355667
