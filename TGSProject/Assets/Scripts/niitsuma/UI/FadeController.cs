@@ -4,6 +4,7 @@ using UnityEngine;
 public class FadeController : MonoBehaviour
 {
     GameManager _gm;
+    PlayerReload _load;
 
     [SerializeField] private float fadeInSpeed = 3;
     [SerializeField] private float fadeOutSpeed = 1;
@@ -20,6 +21,7 @@ public class FadeController : MonoBehaviour
 
     void Start()
     {
+        _load = FindObjectOfType<PlayerReload>();
         StartCoroutine(FadeIN());
     }
     /// <summary>
@@ -32,6 +34,7 @@ public class FadeController : MonoBehaviour
         // 念のため初期化
         _fadeUI.color = Color.black;
         alpha = _fadeUI.color.a;
+        _load.Reload();
         while (0 < _fadeUI.color.a)
         {
             _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, alpha);
