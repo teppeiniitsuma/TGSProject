@@ -89,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8483722321470714851}
-  - component: {fileID: 9175011530629008793}
+  - component: {fileID: 4507729267169868260}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9175011530629008793
+--- !u!114 &4507729267169868260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1655959172454735166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f2cfe3714f9934aa6f937e62362f7f, type: 3}
+  m_Script: {fileID: 11500000, guid: a1ffd01603ef55b47b1ae1eb4bbdf10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isManual: 0
@@ -137,24 +137,21 @@ MonoBehaviour:
   up: {fileID: 2100000, guid: 68d7053711450e844a38ef95cad76637, type: 2}
   down: {fileID: 2100000, guid: 5458a877f2e44bc4da1377d5198f2c0d, type: 2}
   stop: {fileID: 2100000, guid: 288508382034c624eaad56af31ed4794, type: 2}
-  material:
-  - {fileID: 2100000, guid: 288508382034c624eaad56af31ed4794, type: 2}
-  - {fileID: 2100000, guid: 68d7053711450e844a38ef95cad76637, type: 2}
-  - {fileID: 2100000, guid: 5458a877f2e44bc4da1377d5198f2c0d, type: 2}
+  material: []
   chain_right: {fileID: 743485041560391874}
   chain_left: {fileID: 5758269655720977046}
   floor: {fileID: 8495006829332343594}
   gear_Up: {fileID: 6036281656933176429}
   gear_down: {fileID: 2037530064694758268}
-  isMove: 1
-  isUp: 1
+  isMove: 0
+  isUp: 0
   stopTime: 3
-  upSpeed: 5
+  upSpeed: 1
   rotsSpeed: 180
   targetPos: 0
   targetUpPos: 1.2
   targetDownPos: -2.8
-  time: 3
+  time: 0
 --- !u!1 &2037530064694758268
 GameObject:
   m_ObjectHideFlags: 0
