@@ -8,7 +8,7 @@ public enum EnemyType
     Medosa,
     Plant,
 }
-public abstract class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour , IDamager
 {    
     protected EnemyType enemyID;
 
@@ -66,5 +66,8 @@ public abstract class BaseEnemy : MonoBehaviour
 
     }
 
-
+    public void ApplyDamage(EnemyType id)
+    {
+        Destroy(gameObject);
+    }
 }
