@@ -14,6 +14,9 @@ public class SteleText : MonoBehaviour
     private void Start()
     {
         myText.text = steleText;
+        myImage.color = new Vector4(1, 1, 1,0);
+        myText.color = new Vector4(1, 1, 1, 0);
+
     }
     void Update()
     {
