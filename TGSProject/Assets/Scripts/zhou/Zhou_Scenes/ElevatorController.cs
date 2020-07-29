@@ -42,7 +42,7 @@ public class ElevatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
         ElevatorMove();
 
     }

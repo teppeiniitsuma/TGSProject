@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorController : MonoBehaviour
+public class elevatorController : MonoBehaviour
 {
     //これは入力たびに動くエレベーター　かどうか
     public bool isManual = false,isManualMove=false;
