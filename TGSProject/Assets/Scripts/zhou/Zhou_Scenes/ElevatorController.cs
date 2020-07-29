@@ -31,10 +31,10 @@ public class ElevatorController : MonoBehaviour
         }
         else
         {
-            time = Random.Range(0.0f, 3.0f);
+           // time = Random.Range(0.0f, 3.0f);
         }
 
-        upSpeed = upSpeed + Random.Range(-2.0f, 2.0f);
+      //  upSpeed = upSpeed + Random.Range(-2.0f, 2.0f);
 
 
     }
