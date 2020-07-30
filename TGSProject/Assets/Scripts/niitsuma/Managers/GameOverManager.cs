@@ -6,6 +6,8 @@ public class GameOverManager : MonoBehaviour
 {
     [SerializeField] private Image _scoreImage;
     float time = 0;
+    public bool TimeStop { get { return _stop; } }
+    bool _stop = false;
 
     void Start()
     {
@@ -14,8 +16,9 @@ public class GameOverManager : MonoBehaviour
 
     void SetScoreView()
     {
-        time += Time.deltaTime;
-        if(time > 4.2f) { _scoreImage.gameObject.SetActive(true); }
+        if (!_stop) time += Time.deltaTime;
+        else return;
+        if(time > 4.2f) { _scoreImage.gameObject.SetActive(true); _stop = true; }
     }
     // Update is called once per frame
     void Update()
