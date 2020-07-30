@@ -5,6 +5,8 @@ using UnityEngine;
 public class FloorScript : MonoBehaviour
 {
     [SerializeField] BoxCollider2D floor;
+    [SerializeField] GameObject playerParent;
+
     // 上に乗ったらプラスする（これでトリガー判定を制御）
     int _count = 0;
 
@@ -27,11 +29,11 @@ public class FloorScript : MonoBehaviour
             {
                 floor.isTrigger = false;
                 // parentの子要素にしてたの気が付かなかった
-                collider.gameObject.transform.parent = null;
+                collider.gameObject.transform.parent = playerParent.transform;
             }
             else if(_count == 1)
             {
-                collider.gameObject.transform.parent = null;
+                collider.gameObject.transform.parent = playerParent.transform;
             }
 
         }
