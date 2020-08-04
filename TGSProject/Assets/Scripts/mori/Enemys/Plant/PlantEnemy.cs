@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlantEnemy : BaseEnemy
 {
-    [SerializeField]
-    private float _hoge;
+    private float _hoge = 5;
     //[SerializeField]
     private float _aho = -17f;
     private Animator _anim;
