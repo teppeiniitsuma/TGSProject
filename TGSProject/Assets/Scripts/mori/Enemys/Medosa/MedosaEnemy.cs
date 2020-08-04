@@ -4,8 +4,7 @@ public class MedosaEnemy : BaseEnemy
 {
     
     private Animator animetor;
-    [SerializeField]
-    private float direction_x;
+    private float direction_x = 1.5f;
     private bool iti;
 
     void Start()
