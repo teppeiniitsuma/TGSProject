@@ -23,18 +23,24 @@ public class InputmonitorScript : MonoBehaviour
  public int myNumeral = 0;
     [Header("入力できるか")]
     [SerializeField] bool inputON;
+    [SerializeField]
+    bool isMyPos;
+
 
     [Header("アルファ設定済みｹﾞｰﾑオブジェクト")]
     [SerializeField] GameObject inputmonitorScriptSprite;
     void Start()
     {//ランタン
-       myNumeral = Random.Range(0, 9);
+       //myNumeral = Random.Range(0, 9);
         numeralObjects[0].GetComponent<SpriteRenderer>().sprite = Sprites[myNumeral];
     }
     void Update()
     {
+        if (isMyPos && inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
+            InputStart();
+        }
         Move();
-      //  InputTest();
+     //  InputTest();
     }
     void InputStart()
     {
@@ -89,20 +95,40 @@ public class InputmonitorScript : MonoBehaviour
     /// <summary>
     ///   プレイヤーﾄ接続
     /// </summary>
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collision)
     {
-    
-        if (collider.tag == "Player" && inputON&& (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
+
+          if (collision.tag == "Player") {
+            Debug.Log("!");
+            }
+
+     if (collision.tag == "Player" && inputON&& (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
         {
             InputStart();
         }
     }
     //テスト用
-    void InputTest() {
-        if (inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
-            InputStart();
-        } else if (!inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
-            Debug.Log("!inputON");
+    /* void InputTest() {
+         if (inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
+             InputStart();
+         } else if (!inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
+             Debug.Log("!inputON");
+         }
+     }*/
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Player")
+        {
+            isMyPos = true;
+        }
+
+    }
+    void OnTriggerExit2D(Collider2D collision) {
+        if (collision.tag == "Player")
+        {
+            isMyPos = false;
         }
     }
+
+
 }
