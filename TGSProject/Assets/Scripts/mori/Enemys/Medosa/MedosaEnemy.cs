@@ -44,11 +44,9 @@ public class MedosaEnemy : BaseEnemy
     }
 
     // Update is called once per frame
-    void Update()
+     void Update()
     {
         this.animetor.speed = playSpeed;
         ImageDirection();
-        //Debug.Log(info.GetParameter.actSwitch);
-        //Transform madosaTransform = this.transform;
     }
 }

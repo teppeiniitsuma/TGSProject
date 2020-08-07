@@ -8,8 +8,8 @@ public class SpiderSwitching : BaseEnemy
     //private bool _abc;
 
     //public bool ON;
-
     [SerializeField] GameObject[] spiderObject = new GameObject[2];
+    public bool yesCamera { get; set; } = false;
 
     // 蜘蛛の見つけてない時の移動速度
     private float moveTime = 1.0f;
@@ -132,13 +132,13 @@ public class SpiderSwitching : BaseEnemy
 
 void Update()
     {
-        if (!SpiderCamera._yesCamera)
+        if (!yesCamera)
         {
             IsAttackOrNot();
             Move();
             Confirmation();
         }
-        else if (SpiderCamera._yesCamera) 
+        else if (yesCamera) 
         {
 
         }

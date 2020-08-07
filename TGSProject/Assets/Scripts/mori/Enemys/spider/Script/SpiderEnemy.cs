@@ -1,14 +1,15 @@
 ﻿//using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderEnemy : BaseEnemy 
+public class SpiderEnemy : BaseEnemy
 {
-    //[SerializeField] Animator[] ataackAnimator = new Animator[2];
-    //[SerializeField] GameObject[] gameObjects = new GameObject[2];
+    [SerializeField] GameObject[] spiderObject = new GameObject[2];
+    [SerializeField] GameObject[] moveSpider = new GameObject[2];
+    public bool isCamera { get; set; } = false;
+    public bool isLeftOrRight { get; set; } = false;
+
     // 蜘蛛の見つけてない時の移動速度
-    private float moveTime = 1.0f;
-    //[SerializeField][Header("蜘蛛の移動速度↓※今はいじらないでね")]
-    private float moveSpeed = 1.0f;
+    [SerializeField][Header("↓↓蜘蛛の見つけてない時の移動速度")][Range(0.0f,100.0f)]private float moveTime = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
     //[SerializeField]
     private float stopMove = 1.5f;
@@ -17,13 +18,6 @@ public class SpiderEnemy : BaseEnemy
     [Header("↓↓蜘蛛の視野の良さ")]
     private float startMove;
     private bool playerConfirmation = false;
-    private bool enemyConfirmation = false;
-    [SerializeField]
-    [Header("↓↓プレイヤーを見つけてない時の右方向の移動範囲")]
-    private float position_max = 2f;
-    [SerializeField]
-    [Header("↓↓プレイヤーを見つけてない時の左方向の移動範囲")]
-    private float position_mix = 2f;
     [SerializeField]
     [Header("↓↓プレイヤーを追いかける速度")]
     private float attackMove = 2f;
@@ -34,15 +28,30 @@ public class SpiderEnemy : BaseEnemy
         startPosition = transform.position;
     }
 
-
-
-    void Update()
+    private void IsAttackOrNot()
     {
-        //Debug.Log(info.GetParameter.actSwitch);
-        Move();
-        Confirmation();
+        if (playerConfirmation)
+        {
+            spiderObject[1].SetActive(false);
+            spiderObject[0].SetActive(true);
+        }
+        else if (!playerConfirmation)
+        {
+            spiderObject[0].SetActive(false);
+            spiderObject[1].SetActive(true);
+        }
+    }
+    public void Left()
+    {
+        isLeftOrRight = true;
+        moveSpider[1].SetActive(true);
     }
 
+    public void Right()
+    {
+        isLeftOrRight = false;
+        moveSpider[0].SetActive(true);
+    }
     //  プレイヤーを検知する関数
     private void Confirmation()
     {
@@ -72,15 +81,8 @@ public class SpiderEnemy : BaseEnemy
         {
             Move2();
             transform.localScale = new Vector2(direction, 1);
-            //this.animator.SetTrigger("LockTrigger");
         }
-        else if (!playerConfirmation)//  プレイヤーが範囲内に居ないとき
-        {
-            aho_move();
-            transform.position = new Vector2(Mathf.MoveTowards
-            (transform.position.x, startPosition.x, Time.deltaTime), startPosition.y);
-            //this.animator.SetTrigger("WalkTrigger");
-        }
+        else if (!playerConfirmation) { aho_move(); }//  プレイヤーが範囲内に居ないとき
     }
 
     //  移動関数
@@ -94,29 +96,52 @@ public class SpiderEnemy : BaseEnemy
         Vector2 playerDirection = new Vector2(x - transform.position.x, y).normalized;
         ri2d.velocity = playerDirection * attackMove;
 
-        direction = 1;
+        if(startPosition.x <= tagetPos.x) { direction = -1; }
+        else if(startPosition.x >= tagetPos.x) { direction = 1; }
     }
 
     //  見つけていないときの動き
     private void aho_move()
     {
-        //this.animator.speed = playSpeed;
-        startPosition.x += Time.deltaTime * moveTime;
-        if (startPosition.x >= position_max)
-        {
-            moveTime *= -moveSpeed;
-            startPosition.x = position_max;
-            direction = 1;
-        }
-        else if (startPosition.x <= position_mix)
-        {
-            moveTime *= -moveSpeed;
-            startPosition.x = position_mix;
-            direction = -1;
-        }
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
+        Vector2 MOSpider_L = moveSpider[0].transform.position;
+        Vector2 MOSpider_R = moveSpider[1].transform.position;
+        if (!isLeftOrRight)
+        {
+            transform.position = new Vector2(Mathf.MoveTowards
+            (transform.position.x, MOSpider_L.x, Time.deltaTime * moveTime), startPosition.y);
+            if(transform.position.x >= MOSpider_L.x) { direction = 1; }
+            else if(transform.position.x <= MOSpider_L.x) { direction = -1; }
+        }
+        else if(isLeftOrRight)
+        {
+            transform.position = new Vector2(Mathf.MoveTowards
+            (transform.position.x, MOSpider_R.x, Time.deltaTime * moveTime), startPosition.y);
+            if (transform.position.x >= MOSpider_R.x) { direction = 1; }
+            else if (transform.position.x <= MOSpider_R.x) { direction = -1; }
+        }
     }
-}
+
+
+        void Update()
+        {
+        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        {
+            transform.position = startPosition;
+            return;
+        }
+            if (!isCamera)
+            {
+                IsAttackOrNot();
+                Move();
+                Confirmation();
+            }
+            else if (isCamera)
+            {
+
+            }
+        }
+    }
 
 /*
     
