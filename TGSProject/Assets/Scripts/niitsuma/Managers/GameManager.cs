@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private PlayerInfoCounter _info;
     private UIManager _uiManager;
 
+    public ResultData GetResultData { get { return r_data; } set { r_data = value; } }
+    private ResultData r_data = new ResultData();
+
     private void Awake()
     {
         _instance = this;
