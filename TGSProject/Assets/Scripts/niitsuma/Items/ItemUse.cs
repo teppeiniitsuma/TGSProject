@@ -16,9 +16,9 @@ public class ItemUse : MonoBehaviour
     /// <summary>
     /// 石投げ
     /// </summary>
-    void ThrowStone()
+    public void ThrowStone()
     {
-        Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 1);
+        Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 0.6f);
         if (_info.GetItemValue.stoneValue > 0)
         {
             Instantiate(stone, sponePos, transform.rotation);
