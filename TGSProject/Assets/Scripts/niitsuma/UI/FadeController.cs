@@ -30,11 +30,10 @@ public class FadeController : MonoBehaviour
     /// <returns></returns>
     IEnumerator FadeIN()
     {
-        Debug.Log("ええやん");
         // 念のため初期化
         _fadeUI.color = Color.black;
         alpha = _fadeUI.color.a;
-        _load.Reload();
+        if(null != _load) _load.Reload();
         while (0 < _fadeUI.color.a)
         {
             _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, alpha);
