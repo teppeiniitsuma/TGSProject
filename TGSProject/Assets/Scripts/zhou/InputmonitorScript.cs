@@ -26,17 +26,28 @@ public class InputmonitorScript : MonoBehaviour
     [SerializeField]
     bool isMyPos;
 
+    [Header("animeGameObject")]
+    [SerializeField]
+    private GameObject animeGameObject;//
+
+    private Animator animator;
+    public const string key_isSpot = "isSpot";
+
 
     [Header("アルファ設定済みｹﾞｰﾑオブジェクト")]
     [SerializeField] GameObject inputmonitorScriptSprite;
     void Start()
-    {//ランタン
-       //myNumeral = Random.Range(0, 9);
+    {
+        animator = animeGameObject.GetComponent<Animator>();
+
+        animator.SetBool(key_isSpot, false);
+        //ランタン
+        //myNumeral = Random.Range(0, 9);
         numeralObjects[0].GetComponent<SpriteRenderer>().sprite = Sprites[myNumeral];
     }
     void Update()
     {
-        if (isMyPos && inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
+        if (isMyPos &&inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
             InputStart();
         }
         Move();
@@ -75,6 +86,7 @@ public class InputmonitorScript : MonoBehaviour
         if (numeralObjects[1] != null)
         {
             numeralObjects[1].transform.position = Vector3.MoveTowards(numeralObjects[1].transform.position, displayVersion.transform.position, (distance1 / 1f) * Time.deltaTime);
+            animator.SetBool(key_isSpot, true);
             if (numeralObjects[1].transform.position == displayVersion.transform.position)
             {
                 GameObject.Destroy(numeralObjects[0]);
@@ -90,6 +102,7 @@ public class InputmonitorScript : MonoBehaviour
     private void End()
     {
         inputON = true;
+        animator.SetBool(key_isSpot, false);
         ontology.GetComponent<InputmonitorControlScript>().Certification();
     }
     /// <summary>
@@ -102,10 +115,10 @@ public class InputmonitorScript : MonoBehaviour
             Debug.Log("!");
             }
 
-     if (collision.tag == "Player" && inputON&& (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
+    /* if (collision.name == "Player"  && inputON&& (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
         {
             InputStart();
-        }
+        }*/
     }
     //テスト用
     /* void InputTest() {
@@ -117,14 +130,14 @@ public class InputmonitorScript : MonoBehaviour
      }*/
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player"&& collision.transform.position.x < displayVersion.transform.position.x + 0.5f && collision.transform.position.x > displayVersion.transform.position.x - 0.5f )
         {
             isMyPos = true;
         }
 
     }
     void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && collision.transform.position.x < displayVersion.transform.position.x + 0.5f && collision.transform.position.x > displayVersion.transform.position.x - 0.5f)
         {
             isMyPos = false;
         }

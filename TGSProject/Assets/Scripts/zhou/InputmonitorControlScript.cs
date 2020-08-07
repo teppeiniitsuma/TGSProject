@@ -13,11 +13,30 @@ public class InputmonitorControlScript : MonoBehaviour
     [Header("入力中ﾉ暗証番号")]
     [SerializeField]
     string password;
-    [Header("障害物")]
-    [SerializeField] GameObject gameObject;
+   // [Header("障害物")]
+    //[SerializeField] GameObject gameObject;
+
+    [Header("animeGameObject")]
+    [SerializeField]
+    private GameObject animeGameObject;//
+
+    private Animator animator;
+    public const string key_isEnd = "isEnd";
+    [Header("NumberLock_Gate")]
+    [SerializeField]
+    private GameObject numberLock_Gate;//
+
+    private Animator numberLock_GateAnimator;
+    public const string key_isON = "isON";
+
+
     void Start()
     {
-      //   atext = a.ToString();
+        animator = animeGameObject.GetComponent<Animator>();
+        numberLock_GateAnimator = numberLock_Gate.GetComponent<Animator>();
+
+
+        //   atext = a.ToString();
     }
 
    /// <summary>
@@ -32,12 +51,14 @@ public class InputmonitorControlScript : MonoBehaviour
             password = password + text;
         }
         if (password == truePasssword && inputmonitor[0].GetComponent<InputmonitorScript>().numeralObjects[1] == null && inputmonitor[1].GetComponent<InputmonitorScript>().numeralObjects[1] == null && inputmonitor[2].GetComponent<InputmonitorScript>().numeralObjects[1] == null ) {
-
+          
             for (int i = 0; i < inputmonitor.Length; i++)
             {
                 inputmonitor[i].GetComponent<InputmonitorScript>().enabled = false;
             }
-            GameObject.Destroy(gameObject);
+            animator.SetBool(key_isEnd, true);
+            numberLock_GateAnimator.SetBool(key_isON, true);
+            // GameObject.Destroy(gameObject);
         }
     }
 }
