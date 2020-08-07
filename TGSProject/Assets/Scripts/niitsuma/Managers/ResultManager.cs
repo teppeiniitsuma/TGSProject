@@ -22,10 +22,6 @@ public class ResultManager : MonoBehaviour
     void Start()
     {
         _message = model.messageList;
-        //for(int i = 0; i < _resultText.Length; i++)
-        //{
-        //    _resultText[i].gameObject.SetActive(false);
-        //}
         _scoreImage.gameObject.SetActive(false);
     }
 
@@ -51,11 +47,12 @@ public class ResultManager : MonoBehaviour
 
     IEnumerator ResultSet()
     {
+        var time = new WaitForSeconds(1.13f);
         while (!end)
         {
             isRunning = true;
             _messagePresenterList[count].SetMessage(_message[count]);
-            yield return new WaitForSeconds(1.13f);
+            yield return time;
             count++;
             if (count > 4) { end = true; }
         }
@@ -63,11 +60,12 @@ public class ResultManager : MonoBehaviour
         _scoreImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("StageSelect");
     }
-    
+
     void Update()
     {
-        ResultTextSetter();
+        if(null != _message)
+            ResultTextSetter();
     }
 }

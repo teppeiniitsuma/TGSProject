@@ -18,8 +18,12 @@ public abstract class BaseItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var set = collision.gameObject.GetComponent<IItemGetter>();
-        if(null != set) { set.ItemGet(item); GameManager.Instance.UIInfo.SetItemInfo(); this.gameObject.SetActive(false); }
-    }
+        if(null != set) 
+        { 
+            set.ItemGet(item);
+            GameManager.Instance.UIInfo.SetItemInfo();
+            this.gameObject.SetActive(false); }
+        }
 
     protected ItemType item;
 

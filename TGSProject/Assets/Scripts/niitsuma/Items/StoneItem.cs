@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StoneItem : MonoBehaviour
 {
@@ -16,7 +14,8 @@ public class StoneItem : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        if(GameManager.Instance.Information.GetParameter.direction == 1)
+        var gm = GameManager.Instance.Information.GetParameter.direction;
+        if(gm == 1)
             _rigidbody.AddForce(vector);
         else
             _rigidbody.AddForce(-vector);

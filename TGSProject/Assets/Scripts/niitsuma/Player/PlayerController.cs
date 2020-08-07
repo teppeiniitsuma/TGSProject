@@ -25,8 +25,8 @@ public class PlayerController : BasePlayer
 
     void ControllerGetter()
     {
-        if (inputer.circleButton) { Debug.Log("決定"); }
-        if (inputer.squareButton) { Debug.Log("キャンセル"); }
+        if (inputer.circleButton) { return; }
+        if (inputer.squareButton) { return; }
         if (inputer.triangleButton)
         {
             if (infoCounter.GetParameter.actSwitch)
