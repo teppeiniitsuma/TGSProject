@@ -2,8 +2,7 @@
  プレイヤー情報の窓口
  ここでプレイヤー情報を外部、内部に公開する
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -22,6 +21,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public PossessionItem GetItemValue { get { return _items; } }
 
     bool damage = false;
+    bool medBoolen = false;
+    float medTime = 0;// 消す
 
     void Awake()
     {
@@ -90,7 +91,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
             {
                 case EnemyType.None: DecreaseHP(); break;
                 case EnemyType.Spider: DecreaseHP(); break;
-                case EnemyType.Medosa: PetrificationDamage(); break;
+                case EnemyType.Medosa: if(_parameter.actSwitch) PetrificationDamage(); break;
                 case EnemyType.Plant: break;
             }
         }
@@ -135,10 +136,23 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     {
         var s = GetComponent<SpriteRenderer>();
         s.sprite = playerSprite[2];
+        medBoolen = true;
     }
     void Update()
     {
         if (_gm.GetGameState == GameManager.GameState.Main && damage) damage = false;
+        if(_gm.GetGameState == GameManager.GameState.Road)
+        {
+            var i = GetComponent<SpriteRenderer>();
+            i.sprite = playerSprite[0];
+        }
         if (Input.GetKeyDown(KeyCode.L)) { _items.stoneValue++; }
+        // クソ処理（時間内から書いただけ）
+        if (medBoolen) { medTime += Time.deltaTime; }
+        if(medTime  > 2) 
+        {
+            medTime = 0; medBoolen = false;
+            DecreaseHP();
+        }
     }
 }
