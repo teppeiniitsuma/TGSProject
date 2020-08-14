@@ -15,7 +15,7 @@ public class CaterpillarItem : MonoBehaviour
     IEnumerator CatepillarFade()
     {
         alpha = _sprite.color.a;
-        yield return new WaitForSeconds(4f); // 後で変える
+        yield return new WaitForSeconds(2f); // 後で変える
         while(0 <= _sprite.color.a)
         {
             _sprite.color = new Color(_sprite.color.r, _sprite.color.g, _sprite.color.b, alpha);
@@ -23,6 +23,7 @@ public class CaterpillarItem : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+        GameManager.Instance.SetGameState(GameManager.GameState.Main);
     }
 
 }

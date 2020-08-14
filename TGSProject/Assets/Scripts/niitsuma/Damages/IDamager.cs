@@ -1,4 +1,4 @@
 ﻿public interface IDamager
 {
-    void ApplyDamage(EnemyType id);
+    void ApplyDamage(EnemyType id = EnemyType.None);
 }

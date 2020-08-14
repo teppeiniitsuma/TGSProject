@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DisplaySpiderCounter : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class DisplaySpiderCounter : MonoBehaviour
     [SerializeField] private Transform[] spiders = new Transform[dispSpiders];
     [SerializeField] private GameObject caterpillar;
 
-    Vector3 te = new Vector3(0, 4.5f, 0);
+    Vector3 te = new Vector3(0, 4.7f, 0);
     bool t = false;
 
     public void spiderAddCount(Transform t)
@@ -35,6 +33,11 @@ public class DisplaySpiderCounter : MonoBehaviour
         }
     }
 
+    public void CaterpillarUse()
+    {
+
+    }
+
     // 画面内の蜘蛛を全て非アクティブ化する
     void ClearSpiders()
     {
@@ -56,16 +59,19 @@ public class DisplaySpiderCounter : MonoBehaviour
         //        spiders[i] = null;
         //    }
         //}
-        GameManager.Instance.SetGameState(GameManager.GameState.Main);
         count = 0;
     }
     private void Update()
     {
         Debug.Log(count);
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && spiders[0] != null)
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.Event);
-            t = true;
+            if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+            {
+                GameManager.Instance.SetGameState(GameManager.GameState.Event);
+                t = true;
+            }
+            
         }
 
         if(t)
