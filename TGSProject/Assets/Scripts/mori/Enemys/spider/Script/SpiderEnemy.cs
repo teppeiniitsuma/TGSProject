@@ -125,11 +125,13 @@ public class SpiderEnemy : BaseEnemy
 
         void Update()
         {
-        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Road)
         {
             transform.position = startPosition;
             return;
         }
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        {
             if (!isCamera)
             {
                 IsAttackOrNot();
@@ -140,6 +142,7 @@ public class SpiderEnemy : BaseEnemy
             {
 
             }
+        }
         }
     }
 
