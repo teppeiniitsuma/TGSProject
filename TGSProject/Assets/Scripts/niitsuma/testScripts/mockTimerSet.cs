@@ -16,8 +16,13 @@ public class mockTimerSet : MonoBehaviour
 
     void TimerMove()
     {
-        if (!_info.GetParameter.actSwitch) { _timeUI.SetActive(true); }
+        if (!_info.GetParameter.actSwitch && !GameManager.Instance.InLightRange) { _timeUI.SetActive(true); }
         else { clock.Inisialize(); _timeUI.SetActive(false); }
+
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Event)
+        {
+            _timeUI.SetActive(false);
+        }
     }
     // Update is called once per frame
     void Update()

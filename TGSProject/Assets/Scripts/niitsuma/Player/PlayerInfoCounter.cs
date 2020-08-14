@@ -83,7 +83,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// ダメージ処理
     /// </summary>
     /// <param name="id">エネミーのID用、エネミー以外は値を入れない</param>
-    public void ApplyDamage(EnemyType id = EnemyType.None)
+    public void ApplyDamage(EnemyType id)
     {
         if(_gm.GetGameState == GameManager.GameState.Main)
         {

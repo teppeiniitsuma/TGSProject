@@ -21,7 +21,6 @@ public class CameraMover : MonoBehaviour
         diffCamera = Mathf.Abs(transform.position.x - player.position.x);
         _info = GameManager.Instance.Information;
         _act = _info.GetParameter.actSwitch;
-        Debug.Log(diffCamera);
     }
 
     void PositionMove()

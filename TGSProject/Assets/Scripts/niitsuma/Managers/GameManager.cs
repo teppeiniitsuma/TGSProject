@@ -31,10 +31,11 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         SetUp = 0,
-        Main,
-        Road,
-        EventStart,
-        EventEnd,
+        Main,   
+        Road,   // ロード
+        Event,  // イベント用
+        Damage, // エネミーdamage用
+        Pause,  // ポーズ画面用
         GameOver,
         Result,
     }

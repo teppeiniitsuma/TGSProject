@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 3975869352971363607}
   - component: {fileID: 3975869352971363604}
   - component: {fileID: 3975869352971363606}
+  - component: {fileID: 2978961230639207202}
   m_Layer: 0
   m_Name: SpiderWalk
   m_TagString: Untagged
@@ -1001,6 +1002,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c07249aa9bb0f41bdaef47287e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &2978961230639207202
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869352971363610}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &3975869353019229558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3975869353041813471}
   m_Layer: 0
-  m_Name: Spider
+  m_Name: spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,6 +2302,7 @@ GameObject:
   - component: {fileID: 3975869353506801680}
   - component: {fileID: 3975869353506801681}
   - component: {fileID: 3975869353506801683}
+  - component: {fileID: 147898828243737404}
   m_Layer: 0
   m_Name: SpiderAttack
   m_TagString: Untagged
@@ -2418,6 +2431,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c07249aa9bb0f41bdaef47287e0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &147898828243737404
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869353506801687}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &3975869353528055122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6161,6 +6185,8 @@ GameObject:
   - component: {fileID: 3975869354487102971}
   - component: {fileID: 3975869354487102968}
   - component: {fileID: 3975869354487102970}
+  - component: {fileID: 6932930954823697608}
+  - component: {fileID: 1953109838405967492}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -6254,6 +6280,67 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &6932930954823697608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869354487102974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94db9019ba835904aa59c8b9aa9dc4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &1953109838405967492
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869354487102974}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &3975869354488186590
 GameObject:
   m_ObjectHideFlags: 0

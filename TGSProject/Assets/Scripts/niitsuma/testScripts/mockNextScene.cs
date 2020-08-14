@@ -8,7 +8,7 @@ public class mockNextScene : MonoBehaviour
 {
     void NextScene()
     {
-        if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space)){ SceneManager.LoadScene("Stage1"); }
+        if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space)){ SceneManager.LoadScene("StageSelect"); }
     }
 
     // Update is called once per frame
