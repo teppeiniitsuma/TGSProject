@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class mockEnemyDamege : MonoBehaviour , IDamager
 {
-    public void ApplyDamage(int id = 0)
+    public void ApplyDamage(EnemyType id = EnemyType.None)
     {
         this.gameObject.SetActive(false);
     }
