@@ -70,7 +70,7 @@ public class ClockController : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.EventStart);
+            GameManager.Instance.SetGameState(GameManager.GameState.Event);
             Inisialize();
         }
     }
