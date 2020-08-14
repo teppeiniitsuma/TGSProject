@@ -7,6 +7,7 @@ public enum EnemyType
     Spider,
     Medosa,
     Plant,
+    LastBoss,
 }
 public abstract class BaseEnemy : MonoBehaviour , IDamager
 {    

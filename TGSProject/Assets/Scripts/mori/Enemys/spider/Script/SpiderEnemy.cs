@@ -77,11 +77,7 @@ public class SpiderEnemy : BaseEnemy
     private void Move()
     {
 
-        if (playerConfirmation)//    プレイヤーが範囲内に居るとき
-        {
-            Move2();
-            transform.localScale = new Vector2(direction, 1);
-        }
+        if (playerConfirmation) { Move2(); }//    プレイヤーが範囲内に居るとき
         else if (!playerConfirmation) { aho_move(); }//  プレイヤーが範囲内に居ないとき
     }
 
@@ -96,8 +92,9 @@ public class SpiderEnemy : BaseEnemy
         Vector2 playerDirection = new Vector2(x - transform.position.x, y).normalized;
         ri2d.velocity = playerDirection * attackMove;
 
-        if(startPosition.x <= tagetPos.x) { direction = -1; }
-        else if(startPosition.x >= tagetPos.x) { direction = 1; }
+        transform.localScale = new Vector2(direction, 1);
+        if (transform.position.x <= tagetPos.x) { direction = -1; }
+        else if(transform.position.x >= tagetPos.x) { direction = 1; }
     }
 
     //  見つけていないときの動き

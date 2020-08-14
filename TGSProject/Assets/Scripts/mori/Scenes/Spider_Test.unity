@@ -633,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 3975869353041813468, guid: 533341a21028d6946926712f7c725302,
         type: 3}
       propertyPath: m_Name
-      value: SpiderVer2.0
+      value: Spider
       objectReference: {fileID: 0}
     - target: {fileID: 3975869353041813471, guid: 533341a21028d6946926712f7c725302,
         type: 3}
