@@ -2,7 +2,8 @@
 [Tt]emp/
 [Oo]bj/
 .vs/
+
+*.csproj
 *.sln
 *.sln.meta
 *.suo
-*.csproj
