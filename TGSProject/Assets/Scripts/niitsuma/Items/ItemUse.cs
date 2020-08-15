@@ -7,6 +7,8 @@ public class ItemUse : MonoBehaviour
 {
     PlayerInfoCounter _info;
     [SerializeField] private GameObject stone;
+    [SerializeField] private GameObject caterpillar;
+    [SerializeField] private DisplaySpiderCounter _counter;
 
     void Start()
     {
@@ -16,7 +18,7 @@ public class ItemUse : MonoBehaviour
     /// <summary>
     /// 石投げ
     /// </summary>
-    public void ThrowStone()
+    void ThrowStone()
     {
         Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 0.6f);
         if (_info.GetItemValue.stoneValue > 0)
@@ -25,10 +27,21 @@ public class ItemUse : MonoBehaviour
             _info.UseItem(ItemType.stone);
         }
     }
-    
+    /// <summary>
+    /// 毛虫の恩返し
+    /// </summary>
+    void HelpCaterpiller()
+    {
+        if (_counter.SpiderInScreen())
+        {
+            _counter.CaterpillarAttack();
+        }
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
             ThrowStone();
+        if (Input.GetKeyDown(KeyCode.H) || DSInput.PushDown(DSButton.Square))
+            HelpCaterpiller();
     }
 }

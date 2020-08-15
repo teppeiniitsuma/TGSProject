@@ -73,7 +73,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         _parameter.actSwitch = true;
 
         _items.stoneValue = 0;
-        _items.catepillarValue = 0;
+        _items.catepillarValue = 3;
         _items.herbValue = _stageHerbs;
         _items.butteflyWingValue = 0;
 
@@ -107,6 +107,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         switch (item)
         {
             case ItemType.stone: _items.stoneValue--; _gm.UIInfo.SetItemInfo(); break;
+            case ItemType.catepillar: _items.catepillarValue--; break;
         }
     }
     /// <summary>

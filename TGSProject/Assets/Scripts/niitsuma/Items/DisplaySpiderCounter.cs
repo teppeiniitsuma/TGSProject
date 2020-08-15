@@ -2,13 +2,14 @@
 
 public class DisplaySpiderCounter : MonoBehaviour
 {
-    private int count = 0;
     private const int dispSpiders = 4; // 画面内に存在できる蜘蛛の数
+    
     [SerializeField] private Transform[] spiders = new Transform[dispSpiders];
     [SerializeField] private GameObject caterpillar;
 
-    Vector3 te = new Vector3(0, 4.7f, 0);
-    bool t = false;
+    private int count = 0;
+    private bool isAttackTrigger = false;
+    private Vector3 te = new Vector3(0, 4.9f, 0);
 
     public void spiderAddCount(Transform t)
     {
@@ -32,10 +33,25 @@ public class DisplaySpiderCounter : MonoBehaviour
             }
         }
     }
-
-    public void CaterpillarUse()
+    /// <summary>
+    /// 画面内に蜘蛛がいるかを判断
+    /// </summary>
+    public bool SpiderInScreen()
     {
+        if (null != spiders[0]) return true;
+        return false;
+    }
 
+    /// <summary>
+    /// 画面内の蜘蛛の上に毛虫を作り攻撃する
+    /// </summary>
+    public void CaterpillarAttack()
+    {
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.Event);
+            isAttackTrigger = true;
+        }
     }
 
     // 画面内の蜘蛛を全て非アクティブ化する
@@ -63,27 +79,11 @@ public class DisplaySpiderCounter : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(count);
-        if (Input.GetKeyDown(KeyCode.H) && spiders[0] != null)
-        {
-            if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
-            {
-                GameManager.Instance.SetGameState(GameManager.GameState.Event);
-                t = true;
-            }
-            
-        }
 
-        if(t)
+        if(isAttackTrigger)
         {
-            if(null != spiders[0])
-                Instantiate(caterpillar, spiders[0].transform.position + te, transform.rotation);
-            //for(int i = 0; i < spiders.Length; i++)
-            //{
-            //    if(null != spiders[i])
-            //        Instantiate(caterpillar, spiders[i].transform.position + te, transform.rotation);
-            //}
-            t = false;
+            if(null != spiders[0]) Instantiate(caterpillar, spiders[0].transform.position + te, transform.rotation);
+            isAttackTrigger = false;
             Invoke("ClearSpiders", 2f);
         }
     }
