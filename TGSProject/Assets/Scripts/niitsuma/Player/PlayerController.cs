@@ -27,6 +27,7 @@ public class PlayerController : BasePlayer
     {
         if (inputer.circleButton) { return; }
         if (inputer.squareButton) { return; }
+
         if (inputer.triangleButton)
         {
             if (infoCounter.GetParameter.actSwitch)
@@ -43,6 +44,8 @@ public class PlayerController : BasePlayer
             {
                 louis.ChangeAct();
                 louis.gameObject.SetActive(false);
+                renderer.enabled = false;
+                pAnim.ActOneAnimatorPlay();
             }
             infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
         }
@@ -55,7 +58,7 @@ public class PlayerController : BasePlayer
         }
         else { anim = true; }
 
-        if (pAnim.ActAnimaEnd)
+        if (pAnim.ActAnimaEnd && !infoCounter.GetParameter.actSwitch)
         {
             int direc = infoCounter.GetParameter.direction;
             infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
@@ -64,6 +67,17 @@ public class PlayerController : BasePlayer
             pAnim.ActAnimatorEnd();
             pAnim.ActAnimaEnd = false;
             louis.LouisSprite.enabled = true;
+            anim = false;
+        }
+        else if(pAnim.ActAnimaEnd && infoCounter.GetParameter.actSwitch)
+        {
+            int direc = infoCounter.GetParameter.direction;
+            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
+            this.transform.position = new Vector2(transform.position.x + (2.7f * direc), transform.position.y);
+            infoCounter.SetDirec(-direc);
+            renderer.enabled = true;
+            pAnim.ActOneAnimatorEnd();
+            pAnim.ActAnimaEnd = false;
             anim = false;
         }
     }
