@@ -21,7 +21,7 @@ public class PlantEnemy : BaseEnemy
     private void LuisuKill()
     {
         Vector2 LuisPos = player.position;
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Event)
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Damage)
         {
             transform.position = new Vector2(LuisPos.x,
                 Mathf.MoveTowards(transform.position.y, LuisPos.y + _aho, _hoge));
