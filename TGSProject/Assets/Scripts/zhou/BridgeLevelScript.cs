@@ -16,7 +16,7 @@ public class BridgeLevelScript : MonoBehaviour
     {
         if (Actuation && !_endActuation)
         {
-            Debug.Log("OpenLevel");
+            //Debug.Log("OpenLevel");
             bri.isLever = true;
             gameObject.GetComponent<BridgeScript>().OpenLevel();
             _endActuation = true;

@@ -24,6 +24,10 @@ static public class StageMove
         
     }
 
+    static public void ResultLoad()
+    {
+        StageConsole.MyLoadScene(StageConsole.MyScene.Result);
+    }
     //ある程度の順番にロードする
     static public  void LoadNextSchene()
     {

@@ -4,6 +4,8 @@ using System.Collections;
 public class SwitchController : MonoBehaviour
 {
     [SerializeField] BridgeScript bri;
+
+    [SerializeField] GameObject colli;
     int count = 0;
     bool anim = false;
     Vector2 startPos;
@@ -33,11 +35,15 @@ public class SwitchController : MonoBehaviour
     }
     void OnSwitchPush()
     {
+        if (bri.isLevel) { colli.SetActive(false); return; }
+        colli.SetActive(false);
         StartCoroutine(SwitchON());
         if(!bri.isLevel) bri.isSwitchUp = true;
     }
     void OnSwitchExit()
     {
+        if (bri.isLevel) { colli.SetActive(false); return; }
+        colli.SetActive(true);
         StartCoroutine(SwitchOFF());
         if (!bri.isLevel) bri.isSwitchUp = false;
     }

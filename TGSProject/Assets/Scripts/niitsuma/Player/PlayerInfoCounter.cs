@@ -19,6 +19,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     PossessionItem _items = new PossessionItem();
     public PossessionItem GetItemValue { get { return _items; } }
+    public bool IsMovable { get; private set; } = false; // プレイヤーが動ける状態か判断
 
     bool damage = false;
     bool medBoolen = false;
@@ -138,14 +139,26 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         var s = GetComponent<SpriteRenderer>();
         s.sprite = playerSprite[2];
         medBoolen = true;
+        IsMovable = true;
     }
     void Update()
     {
         if (_gm.GetGameState == GameManager.GameState.Main && damage) damage = false;
         if(_gm.GetGameState == GameManager.GameState.Road)
         {
-            var i = GetComponent<SpriteRenderer>();
-            i.sprite = playerSprite[0];
+            if (GetParameter.actSwitch)
+            {
+                var i = GetComponent<SpriteRenderer>();
+                i.sprite = playerSprite[0];
+                IsMovable = false;
+            }
+            else
+            {
+                var i = GetComponent<SpriteRenderer>();
+                i.sprite = playerSprite[1];
+                IsMovable = false;
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.L)) { _items.stoneValue++; }
         // クソ処理（時間内から書いただけ）

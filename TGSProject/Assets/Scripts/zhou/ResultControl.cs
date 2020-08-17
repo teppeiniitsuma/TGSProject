@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using DualShockInput;
 
 
 public class ResultControl : MonoBehaviour
@@ -62,13 +59,14 @@ public class ResultControl : MonoBehaviour
             isPlayerOperational = false;
         }
         //✖
-        if (Input.GetButtonDown("Fire2"))
+        if (DSInput.PushDown(DSButton.Cross) || Input.GetKeyDown(KeyCode.X))
         {
             isPlayerOperational = false;
+            isTitle = true;
             SceneMove = true;
         }
         //〇
-        if (Input.GetButtonDown("Fire3") && isPlayerOperational)
+        if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space) && isPlayerOperational)
         {
             isPlayerOperational = false;
             isTitle = false;
@@ -110,7 +108,7 @@ public class ResultControl : MonoBehaviour
     private void stageBGMove()
     {
         if (SceneMove) {
-            Debug.Log("ステージまだセットしてません。");
+            //Debug.Log("ステージまだセットしてません。");
             stageBG.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, stageBG.GetComponent<SpriteRenderer>().color.a + Time.deltaTime);
             if (stageBG.GetComponent<SpriteRenderer>().color.a >= 1.0f)
             {
@@ -118,11 +116,11 @@ public class ResultControl : MonoBehaviour
                 {
                     StageConsole.MyLoadScene(StageConsole.MyScene.Title);
                 }
-                if (i == 0)
+                else if (i == 0)
                 {
                     StageConsole.MyLoadScene(StageConsole.MyScene.Stage1);
                 }
-                if (i == 1)
+                else if (i == 1)
                 {
                     StageConsole.MyLoadScene(StageConsole.MyScene.Stage2);
                 }
