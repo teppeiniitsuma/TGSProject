@@ -77,6 +77,24 @@ public class DisplaySpiderCounter : MonoBehaviour
         //}
         count = 0;
     }
+
+    /// <summary>
+    /// 時間ないから一時的に書いた処理
+    /// </summary>
+    public void SpiderChecks()
+    {
+        for(int i = 0; i < spiders.Length; i++)
+        {
+            int x = 0;
+            if (null != spiders[i])
+            {
+                x = i < spiders.Length - 1 ? 1 : 0;
+                spiders[i] = spiders[i + x];
+            }
+        }
+        count = 0;
+    }
+
     private void Update()
     {
 

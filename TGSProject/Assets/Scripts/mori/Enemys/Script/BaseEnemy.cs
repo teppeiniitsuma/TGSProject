@@ -69,6 +69,6 @@ public abstract class BaseEnemy : MonoBehaviour , IDamager
 
     public void ApplyDamage(EnemyType id)
     {
-        Destroy(gameObject);
+        transform.parent.gameObject.SetActive(false);
     }
 }

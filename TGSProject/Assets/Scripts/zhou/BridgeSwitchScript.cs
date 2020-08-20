@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BridgeSwitchScript : MonoBehaviour
 {
-    [SerializeField] GameObject gameObject;
+    //[SerializeField] GameObject gameObject;
     // 通れん壁
     [SerializeField] GameObject coll;
 

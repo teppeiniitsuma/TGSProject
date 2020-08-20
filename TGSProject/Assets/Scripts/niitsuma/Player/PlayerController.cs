@@ -3,23 +3,25 @@
 public class PlayerController : BasePlayer
 {
     [SerializeField] private LouisObjMover louis;
-    PlayerAnimator pAnim;
-    PlayerMover pMove;
-    SpriteRenderer renderer;
+    private GameManager _gm;
+    private PlayerAnimator _pAnim;
+    private PlayerMover _pMove;
+    private SpriteRenderer _renderer;
 
     bool anim = false;
     void Start()
     {
-        pMove = GetComponent<PlayerMover>();
-        pAnim = GetComponent<PlayerAnimator>();
-        renderer = GetComponent<SpriteRenderer>();
+        _pMove = GetComponent<PlayerMover>();
+        _pAnim = GetComponent<PlayerAnimator>();
+        _gm = GameManager.Instance;
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Main && !anim)
+        if (_gm.GetGameState == GameManager.GameState.Main && !infoCounter.IsMovable && !anim)
         {
-            pMove.Mover(infoCounter.GetParameter.moveSpeed);
+            _pMove.Mover(infoCounter.GetParameter.moveSpeed);
         }
     }
 
@@ -27,43 +29,57 @@ public class PlayerController : BasePlayer
     {
         if (inputer.circleButton) { return; }
         if (inputer.squareButton) { return; }
+
         if (inputer.triangleButton)
         {
             if (infoCounter.GetParameter.actSwitch)
             {
                 louis.ChangeAct();
                 int direc = infoCounter.GetParameter.direction;
-                renderer.enabled = false;
+                _renderer.enabled = false;
                 louis.gameObject.SetActive(true);
                 louis.SetLouisPos(transform, direc);
                 louis.LouisSprite.enabled = false;
-                pAnim.ActAnimatorPlay();
+                _pAnim.ActAnimatorPlay();
             }
             else if (!infoCounter.GetParameter.actSwitch && louis.AreaJudgment(transform))
             {
                 louis.ChangeAct();
                 louis.gameObject.SetActive(false);
+                _renderer.enabled = false;
+                _pAnim.ActOneAnimatorPlay();
             }
-            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
+            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, _renderer);
         }
     }
     void Update()
     {
-        if (!pAnim.ActAnimaStart)
+        if (!_pAnim.ActAnimaStart)
         {
             ControllerGetter();
         }
         else { anim = true; }
 
-        if (pAnim.ActAnimaEnd)
+        if (_pAnim.ActAnimaEnd && !infoCounter.GetParameter.actSwitch)
         {
             int direc = infoCounter.GetParameter.direction;
-            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, renderer);
+            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, _renderer);
             this.transform.position = new Vector2(transform.position.x + (2.7f * direc), transform.position.y);
-            renderer.enabled = true;
-            pAnim.ActAnimatorEnd();
-            pAnim.ActAnimaEnd = false;
+            _renderer.enabled = true;
+            _pAnim.ActAnimatorEnd();
+            _pAnim.ActAnimaEnd = false;
             louis.LouisSprite.enabled = true;
+            anim = false;
+        }
+        else if(_pAnim.ActAnimaEnd && infoCounter.GetParameter.actSwitch)
+        {
+            int direc = infoCounter.GetParameter.direction;
+            infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, _renderer);
+            this.transform.position = new Vector2(louis.transform.position.x - (0.3f * direc), transform.position.y);
+            infoCounter.SetDirec(-direc);
+            _renderer.enabled = true;
+            _pAnim.ActOneAnimatorEnd();
+            _pAnim.ActAnimaEnd = false;
             anim = false;
         }
     }

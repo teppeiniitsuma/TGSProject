@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    [SerializeField] GameObject playerAnim;
+    [SerializeField] private GameObject TwoToOnePlayerAnim;
+    [SerializeField] private GameObject OneToTwoPlayerAnim;
     public bool ActAnimaStart { get; set; } = false;
     public bool ActAnimaEnd { get; set; } = false;
 
     void Start()
     {
-        playerAnim.SetActive(false);
+        TwoToOnePlayerAnim.SetActive(false);
+        OneToTwoPlayerAnim.SetActive(false);
     }
     /// <summary>
     /// 
@@ -21,12 +23,30 @@ public class PlayerAnimator : MonoBehaviour
     {
         this.transform.position = new Vector2(t.x + 0.89f * direc, t.y);
     }
+    /// <summary>
+    /// 二人行動から単独行動にするアニメーション
+    /// </summary>
     public void ActAnimatorPlay()
     {
-        playerAnim.SetActive(true);
+        TwoToOnePlayerAnim.SetActive(true);
     }
+    /// <summary>
+    /// アニメーションが終了したら呼ぶ
+    /// </summary>
     public void ActAnimatorEnd()
     {
-        playerAnim.SetActive(false);
+        TwoToOnePlayerAnim.SetActive(false);
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ActOneAnimatorPlay()
+    {
+        OneToTwoPlayerAnim.SetActive(true);
+    }
+    public void ActOneAnimatorEnd()
+    {
+        OneToTwoPlayerAnim.SetActive(false);
+    }
+
 }

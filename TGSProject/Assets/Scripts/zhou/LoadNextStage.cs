@@ -7,7 +7,8 @@ public class LoadNextStage : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D coll) {
         if (coll.tag == "Player") {
-            StageMove.LoadNextSchene();
+            //StageMove.LoadNextSchene();
+            StageMove.ResultLoad();
         }
     }
 }
