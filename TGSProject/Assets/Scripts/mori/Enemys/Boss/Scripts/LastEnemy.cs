@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LastEnemy : BaseEnemy
 {
     [SerializeField]
     private GameObject[] moveObject = new GameObject[4];
+    //[SerializeField]
+    //private GameObject spiderObject;
     [SerializeField]
-    private GameObject spiderObject;
-    private float _moveSpeed;
+    private float _moveSpeed = 1f;
     private float _callingTime;
     private bool IsArrived;
     Vector2 tagPos;
@@ -16,22 +15,30 @@ public class LastEnemy : BaseEnemy
     {
         base.enemyID = EnemyType.LastBoss;
         startPosition = transform.position;
+        IsArrived = false;
+        TagPosCalculation();
     }
 
     private void TargetArrived()
     {
-        Vector2 TopRight = moveObject[0].transform.position;
-        Vector2 TopLeft = moveObject[1].transform.position;
-        Vector2 BottomRight = moveObject[2].transform.position;
-        Vector2 BottomLeft = moveObject[3].transform.position;
         if (!IsArrived) return;
-        //tagPos = new Vector2(TopRight.x, TopLeft.x, BottomRight.x, BottomLeft.x), 0);
+        TagPosCalculation();
+        IsArrived = false;
+    }
+
+    private void TagPosCalculation()
+    {
+        Vector2 Top = moveObject[0].transform.position;
+        Vector2 Bottom = moveObject[1].transform.position;
+        Vector2 Right = moveObject[2].transform.position;
+        Vector2 Left = moveObject[3].transform.position;
+        tagPos = new Vector2(Random.Range(Left.x, Right.x), Random.Range(Top.y, Bottom.y));
     }
 
     private void MoveBoss()
     {
         Vector2 Z_Boss = transform.position;
-        Z_Boss = Vector2.MoveTowards(transform.position, tagPos, _moveSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, tagPos, _moveSpeed / 1000);
         if (Z_Boss == tagPos) IsArrived = true;
     }
 
@@ -42,6 +49,7 @@ public class LastEnemy : BaseEnemy
 
     void Update()
     {
-        
+        MoveBoss();
+        TargetArrived();
     }
 }
