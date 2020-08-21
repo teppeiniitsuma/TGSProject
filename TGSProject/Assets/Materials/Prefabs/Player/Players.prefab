@@ -300,11 +300,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6262264667347050301, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
+        type: 3}
+      propertyPath: m_Name
+      value: TowToOne
+      objectReference: {fileID: 0}
     - target: {fileID: 7425654474464345361, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
         type: 3}
       propertyPath: playerAnim
       value: 
       objectReference: {fileID: 8933478974240768364}
+    - target: {fileID: 7425654474464345361, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
+        type: 3}
+      propertyPath: TwoToOnePlayerAnim
+      value: 
+      objectReference: {fileID: 8933478974240768364}
+    - target: {fileID: 7425654474464345361, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
+        type: 3}
+      propertyPath: OneToTwoPlayerAnim
+      value: 
+      objectReference: {fileID: 6241614539105529724}
     - target: {fileID: 7990345251370828750, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
         type: 3}
       propertyPath: caterpillar
@@ -339,6 +354,12 @@ MonoBehaviour:
 --- !u!1 &8933478974240768364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6262264667347050301, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3247692652278816337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6241614539105529724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8902688578760732973, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5,
     type: 3}
   m_PrefabInstance: {fileID: 3247692652278816337}
   m_PrefabAsset: {fileID: 0}

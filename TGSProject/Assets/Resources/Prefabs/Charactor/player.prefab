@@ -36,8 +36,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6262264667347050240}
   - {fileID: 5897199760457835841}
+  - {fileID: 6262264667347050240}
   - {fileID: 8902688578760732968}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -241,7 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1997276475799681699}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9127620192799775967
 MonoBehaviour:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_LightType: 0
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -298,6 +298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OneToTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680699426002961940, guid: 717e38d38df684e48ba5a3777448d8ac,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7680699426002961943, guid: 717e38d38df684e48ba5a3777448d8ac,
         type: 3}
@@ -379,6 +384,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowToOne
       objectReference: {fileID: 0}
+    - target: {fileID: 1050376754185327507, guid: 5c0f938aec4260649bb981a6c5cebd56,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1050376754185327532, guid: 5c0f938aec4260649bb981a6c5cebd56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -417,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 1050376754185327532, guid: 5c0f938aec4260649bb981a6c5cebd56,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1050376754185327532, guid: 5c0f938aec4260649bb981a6c5cebd56,
         type: 3}

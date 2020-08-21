@@ -35,7 +35,7 @@ public class PlantEnemy : BaseEnemy
         }
         else
         {  
-            transform.position = new Vector2(LuisPos.x, -22f);
+            transform.position = new Vector2(LuisPos.x, -30f);
             _taim = 3;
             GetComponent<Animator>().enabled = false;
             _anim.Play("Base Layer.Plant_body 03", 0, 0);
