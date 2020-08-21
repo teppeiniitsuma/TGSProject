@@ -11,6 +11,9 @@ public class LouisObjMover : MonoBehaviour
 
     Vector3 fixedPos = new Vector3(0.3f, 0, 0);
     bool _act = false;
+    // 後で修正
+    bool test1 = false;
+    bool test2 = false;
 
     private void Start()
     {
@@ -67,17 +70,40 @@ public class LouisObjMover : MonoBehaviour
     // 自分がライトの範囲にいるか判断
     void RangeOfLight(Transform p)
     {
-        if (p.position.x >= transform.position.x + catchArea + 1 ||
-            p.position.x <= transform.position.x - catchArea - 1)
+
+        if (transform.position.x + catchArea + 1 <= p.position.x || p.position.x <= transform.position.x - catchArea - 1)
+        {
+            test1 = true;
+            //Debug.Log("test1 = true");
+        }
+        else
+        {
+            test1 = false;
+            //Debug.Log("test1 = false");
+        }
+
+        if(transform.position.y + catchArea <= p.position.y || p.position.y <= transform.position.y - catchArea)
+        {
+            test2 = true;
+            //Debug.Log("test2 = true");
+        }
+        else
+        {
+            test2 = false;
+            //Debug.Log("test2 = false");
+        }
+
+        if(test1 || test2)
         {
             GameManager.Instance.SetLightPos(false);
         }
-        else { GameManager.Instance.SetLightPos(true); }
+        else
+        {
+            GameManager.Instance.SetLightPos(true);
+        }
     }
     void Update()
     {
-        //if (_info.GetParameter.actSwitch && this.transform.position.y - 0.5f > _player.position.y) { _info.SetAct(false); }
         RangeOfLight(_player);
-
     }
 }
