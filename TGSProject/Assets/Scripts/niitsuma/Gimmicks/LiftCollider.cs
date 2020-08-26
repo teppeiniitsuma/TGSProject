@@ -9,7 +9,7 @@ public class LiftCollider : MonoBehaviour
     Transform _player;
     GameManager gM = GameManager.Instance;
 
-    float _moveValue = 0.8f;
+    float _moveValue = 0.2f;
 
     public bool moveCheck { get; set; }
 
