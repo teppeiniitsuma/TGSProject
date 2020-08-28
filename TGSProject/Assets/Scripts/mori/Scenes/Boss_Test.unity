@@ -1484,7 +1484,10 @@ MonoBehaviour:
   - {fileID: 2127377394}
   - {fileID: 1168366916}
   - {fileID: 1721869705}
-  _moveSpeed: 15
+  _moveSpeed1: 15
+  _moveSpeed2: 30
+  _moveSpeed3: 50
+  _moveSpeed4: 80
 --- !u!212 &1430765360
 SpriteRenderer:
   m_ObjectHideFlags: 0
