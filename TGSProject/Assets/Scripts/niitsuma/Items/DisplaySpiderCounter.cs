@@ -50,6 +50,7 @@ public class DisplaySpiderCounter : MonoBehaviour
         if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
             GameManager.Instance.SetGameState(GameManager.GameState.Event);
+            GameManager.Instance.SetEventState(GameManager.EventState.AttackEvent);
             isAttackTrigger = true;
         }
     }

@@ -28,6 +28,7 @@ public class CaterpillarItem : MonoBehaviour
         _uiControl.CaterpillarUse();
         Destroy(gameObject);
         GameManager.Instance.SetGameState(GameManager.GameState.Main);
+        GameManager.Instance.SetEventState(GameManager.EventState.Default);
     }
 
 }

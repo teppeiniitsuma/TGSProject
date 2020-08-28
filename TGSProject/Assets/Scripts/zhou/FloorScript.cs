@@ -39,5 +39,3 @@ public class FloorScript : MonoBehaviour
         }
     }    
 }
-//-3.1
-//-1.7+-2.8 -4.5 -1.4

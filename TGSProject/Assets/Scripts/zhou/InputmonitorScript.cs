@@ -115,10 +115,10 @@ public class InputmonitorScript : MonoBehaviour
             Debug.Log("!");
             }
 
-    /* if (collision.name == "Player"  && inputON&& (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
+        if (collision.name == "Player" && inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
         {
             InputStart();
-        }*/
+        }
     }
     //テスト用
     /* void InputTest() {
