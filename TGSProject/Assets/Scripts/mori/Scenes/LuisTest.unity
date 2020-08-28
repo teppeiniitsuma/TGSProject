@@ -1224,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 3975869353041813468, guid: 533341a21028d6946926712f7c725302,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3975869353041813471, guid: 533341a21028d6946926712f7c725302,
         type: 3}
@@ -1281,11 +1281,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3975869354487102968, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975869354487102968, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975869354487102969, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975869354487102969, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975869354487102970, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3975869354487102971, guid: 533341a21028d6946926712f7c725302,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1866901629}
+    - target: {fileID: 3975869354487102971, guid: 533341a21028d6946926712f7c725302,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533341a21028d6946926712f7c725302, type: 3}
 --- !u!1001 &1920853284

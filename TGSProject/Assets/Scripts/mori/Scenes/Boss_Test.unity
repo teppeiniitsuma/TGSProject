@@ -1087,6 +1087,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1309056222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &956439000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6241614539105529724, guid: 0c88c01630c81c94bb87ab765b96b560,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309056222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1033648348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,6 +1334,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0eeca538a9759d746b6536c8ef5d7488,
         type: 3}
+    - target: {fileID: 5341029620378837824, guid: 0c88c01630c81c94bb87ab765b96b560,
+        type: 3}
+      propertyPath: TwoToOnePlayerAnim
+      value: 
+      objectReference: {fileID: 1480253051}
+    - target: {fileID: 5341029620378837824, guid: 0c88c01630c81c94bb87ab765b96b560,
+        type: 3}
+      propertyPath: OneToTwoPlayerAnim
+      value: 
+      objectReference: {fileID: 956439000}
     - target: {fileID: 6238081315381078044, guid: 0c88c01630c81c94bb87ab765b96b560,
         type: 3}
       propertyPath: m_Name
@@ -1468,7 +1484,10 @@ MonoBehaviour:
   - {fileID: 2127377394}
   - {fileID: 1168366916}
   - {fileID: 1721869705}
-  _moveSpeed: 1
+  _moveSpeed1: 15
+  _moveSpeed2: 30
+  _moveSpeed3: 50
+  _moveSpeed4: 80
 --- !u!212 &1430765360
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1518,6 +1537,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1480253051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8933478974240768364, guid: 0c88c01630c81c94bb87ab765b96b560,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309056222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1501237441
 GameObject:
   m_ObjectHideFlags: 0

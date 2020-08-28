@@ -63,26 +63,26 @@ public class SpiderEnemy : BaseEnemy
         if (distance < startMove && distance > stopMove)
         {
             playerConfirmation = true;
-            Debug.Log("プレイヤーを発見しました。");
+            //Debug.Log("プレイヤーを発見しました。");
         }
         else
         {
             playerConfirmation = false;
-            Debug.Log("プレイヤーが見つかりません。");
+            //Debug.Log("プレイヤーが見つかりません。");
         }
 
     }
 
-    //  移動関数
-    private void Move()
+    //  プレイヤーがいるかどうかの関数
+    private void MovingJudgement()
     {
 
-        if (playerConfirmation) { Move2(); }//    プレイヤーが範囲内に居るとき
-        else if (!playerConfirmation) { aho_move(); }//  プレイヤーが範囲内に居ないとき
+        if (playerConfirmation) { AttackMove(); }//    プレイヤーが範囲内に居るとき
+        else if (!playerConfirmation) { NormalMove(); }//  プレイヤーが範囲内に居ないとき
     }
 
-    //  移動関数
-    private void Move2()
+    //  攻撃移動の関数
+    private void AttackMove()
     {
         Vector2 tagetPos = player.transform.position;
 
@@ -98,7 +98,7 @@ public class SpiderEnemy : BaseEnemy
     }
 
     //  見つけていないときの動き
-    private void aho_move()
+    private void NormalMove()
     {
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
         Vector2 MOSpider_L = moveSpider[0].transform.position;
@@ -106,14 +106,14 @@ public class SpiderEnemy : BaseEnemy
         if (!isLeftOrRight)
         {
             transform.position = new Vector2(Mathf.MoveTowards
-            (transform.position.x, MOSpider_L.x, Time.deltaTime * moveTime), startPosition.y);
+            (transform.position.x, MOSpider_L.x, Time.deltaTime * moveTime), transform.position.y);
             if(transform.position.x >= MOSpider_L.x) { direction = 1; }
             else if(transform.position.x <= MOSpider_L.x) { direction = -1; }
         }
         else if(isLeftOrRight)
         {
             transform.position = new Vector2(Mathf.MoveTowards
-            (transform.position.x, MOSpider_R.x, Time.deltaTime * moveTime), startPosition.y);
+            (transform.position.x, MOSpider_R.x, Time.deltaTime * moveTime), transform.position.y);
             if (transform.position.x >= MOSpider_R.x) { direction = 1; }
             else if (transform.position.x <= MOSpider_R.x) { direction = -1; }
         }
@@ -132,7 +132,7 @@ public class SpiderEnemy : BaseEnemy
             if (!isCamera)
             {
                 IsAttackOrNot();
-                Move();
+                MovingJudgement();
                 Confirmation();
             }
             else if (isCamera)
