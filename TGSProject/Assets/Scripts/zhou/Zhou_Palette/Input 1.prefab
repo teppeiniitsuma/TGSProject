@@ -170,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2312450196861275365}
-  - component: {fileID: 2312450196861275363}
   - component: {fileID: 2312450196861275362}
   m_Layer: 0
   m_Name: Input 1
@@ -194,32 +193,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2312450196861275363
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2312450196861275364}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.27, y: -0.49}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.61, y: 6}
-    newSize: {x: 2.61, y: 6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 2.5}
-  m_EdgeRadius: 0
 --- !u!114 &2312450196861275362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +228,7 @@ MonoBehaviour:
   Posy: 1
   myNumeral: 0
   inputON: 1
-  isMyPos: 0
+  animeGameObject: {fileID: 0}
   inputmonitorScriptSprite: {fileID: 2219843721268345626, guid: 5cf9fbf0bbb5286408e32945d070c2c8,
     type: 3}
 --- !u!1001 &4528652179029111133

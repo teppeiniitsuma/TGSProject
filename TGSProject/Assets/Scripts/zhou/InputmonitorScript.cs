@@ -16,15 +16,13 @@ public class InputmonitorScript : MonoBehaviour
     [Header("リセットタイム")]
     [SerializeField] float timeMax = 1;
     [SerializeField] float time;
-    public float distance1, distance2;//两个物体的距离
+    public float distance1, distance2;//两个物体の距离
     [Header("表示画像配置のStartPosY")]
     [SerializeField] float Posy = 1;
     [Header("今の番号")]
  public int myNumeral = 0;
     [Header("入力できるか")]
-    [SerializeField] bool inputON;
-    [SerializeField]
-    bool isMyPos;
+    public bool inputON;
 
     [Header("animeGameObject")]
     [SerializeField]
@@ -47,13 +45,10 @@ public class InputmonitorScript : MonoBehaviour
     }
     void Update()
     {
-        if (isMyPos &&inputON && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))) {
-            InputStart();
-        }
         Move();
      //  InputTest();
     }
-    void InputStart()
+   public void InputStart()
     {
         inputON = false;
         numeralObjects[1] = (GameObject)Instantiate(inputmonitorScriptSprite);
@@ -68,6 +63,7 @@ public class InputmonitorScript : MonoBehaviour
             displayVersion.transform.position.z);
         numeralObjects[1].transform.parent = displayVersion.transform;
         numeralObjects[0].transform.parent = numeralObjects[1].transform;
+
         InputON();
     }
     /// <summary>
@@ -128,7 +124,7 @@ public class InputmonitorScript : MonoBehaviour
              Debug.Log("!inputON");
          }
      }*/
-
+    /*
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player"&& collision.transform.position.x < displayVersion.transform.position.x + 0.5f && collision.transform.position.x > displayVersion.transform.position.x - 0.5f )
         {
@@ -142,6 +138,6 @@ public class InputmonitorScript : MonoBehaviour
             isMyPos = false;
         }
     }
-
+    */
 
 }
