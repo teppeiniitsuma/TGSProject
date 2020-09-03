@@ -137,10 +137,3 @@ public class InputmonitorControlScript : MonoBehaviour
     
 }
 
-
-// 数字机关
-//桥梁
-//场景2
-//石碑的消失
-//电梯的物体 
-//游戏结束关联？？
