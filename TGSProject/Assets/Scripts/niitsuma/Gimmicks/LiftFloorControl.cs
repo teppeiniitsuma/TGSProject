@@ -8,9 +8,12 @@ public class LiftFloorControl : MonoBehaviour
     [SerializeField] GameObject _actionUI;
     [SerializeField] GameObject _playerParent; // プレイヤーの親オブジェ
 
+
     // 上に乗ったらプラスする（これでトリガー判定を制御）
     int _count = 0;
     bool _isDisp;
+
+    // ロードに入った時に位置を初期化するか
 
     void OnTriggerEnter2D(Collider2D collider)
     {

@@ -2,27 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // 後削除
+using UnityEngine.SceneManagement;
 
-public class ResultManager : MonoBehaviour
+public class ResultScoreSetter : MonoBehaviour
 {
     [SerializeField] private List<MessagePresenter> _messagePresenterList = new List<MessagePresenter>();
-    [SerializeField] private Image _scoreImage;
-    MessagePresenter _messagePresenter;
+    [SerializeField] private Image[] _scoreImage = new Image[4];
 
     private List<string> _message;
-    private MessageModel model = new MessageModel();
+    private ResultMessageModel model = new ResultMessageModel();
+    private RankSetter rankSetter = new RankSetter();
     float time = 0;
     int count = 0;
     bool start = false;
     bool end = false;
     bool isRunning = false;
 
-    // Start is called before the first frame update
+    int rank = 0;
+
     void Start()
     {
+        Debug.Log(ResultManager.Instance.GetResultData.playTime);
+        model.ResultDataSetter(_message, ResultManager.Instance.GetResultData);
         _message = model.messageList;
-        _scoreImage.gameObject.SetActive(false);
+        rank = rankSetter.RankCalculation(ResultManager.Instance.GetResultData);
+        for(int i = 0; i < _scoreImage.Length; i++)
+        {
+            _scoreImage[i].gameObject.SetActive(false);
+        }
     }
 
     void ResultTextSetter()
@@ -38,10 +45,10 @@ public class ResultManager : MonoBehaviour
                 time += Time.deltaTime;
             }
         }
-        
+
         else
         {
-            if(!isRunning) StartCoroutine(ResultSet());
+            if (!isRunning) StartCoroutine(ResultSet());
         }
     }
 
@@ -57,7 +64,7 @@ public class ResultManager : MonoBehaviour
             if (count > 4) { end = true; }
         }
         yield return new WaitForSeconds(0.15f);
-        _scoreImage.gameObject.SetActive(true);
+        _scoreImage[rank].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene("StageSelect");
@@ -65,7 +72,7 @@ public class ResultManager : MonoBehaviour
 
     void Update()
     {
-        if(null != _message)
+        if (null != _message)
             ResultTextSetter();
     }
 }

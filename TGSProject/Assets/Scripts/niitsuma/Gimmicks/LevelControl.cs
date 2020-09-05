@@ -8,7 +8,7 @@ public class LevelControl : MonoBehaviour
     [SerializeField, Tooltip("Bridgeを入れる")] BridgeScript bri;
 
     // ギミックが作動したらtrue
-    public bool Actuation { get; set; } = false;
+    public bool IsActuation { get; set; } = false;
     // 一度作動したらtrueにする
     bool _endActuation = false;
 
@@ -32,7 +32,7 @@ public class LevelControl : MonoBehaviour
     {
         if (_endActuation) return;
 
-        if (Actuation && !_endActuation)
+        if (IsActuation && !_endActuation)
         {
             bri.isLever = true;
             bri.OpenLevel();

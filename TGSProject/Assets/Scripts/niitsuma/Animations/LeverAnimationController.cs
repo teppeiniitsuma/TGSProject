@@ -37,7 +37,7 @@ public class LeverAnimationController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
             {
                 anime.speed = 1;
-                lev.Actuation = true;
+                lev.IsActuation = true;
             }
         }
     }
