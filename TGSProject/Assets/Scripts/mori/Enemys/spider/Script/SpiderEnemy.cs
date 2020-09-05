@@ -20,12 +20,14 @@ public class SpiderEnemy : BaseEnemy
     private bool playerConfirmation = false;
     [SerializeField]
     [Header("↓↓プレイヤーを追いかける速度")]
-    private float attackMove = 2f;
+    private float attackMove;
     void Start()
     {
         base.enemyID = EnemyType.Spider;
-        ri2d = GetComponent<Rigidbody2D>();
+        //ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
+        player = null;
+        player = GameObject.Find("player");
     }
 
     private void IsAttackOrNot()
@@ -56,7 +58,7 @@ public class SpiderEnemy : BaseEnemy
     private void Confirmation()
     {
         //  プレイヤーのトランスフォームを取る
-        Vector2 playerPos = player.position;
+        Vector2 playerPos = player.transform.position;
         //  自分positionとプレイヤーのpositionをdistanceに入れる
         float distance = Vector2.Distance(transform.position, playerPos);
         //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
@@ -86,11 +88,8 @@ public class SpiderEnemy : BaseEnemy
     {
         Vector2 tagetPos = player.transform.position;
 
-        float x = tagetPos.x;
-        float y = 0;
-
-        Vector2 playerDirection = new Vector2(x - transform.position.x, y).normalized;
-        ri2d.velocity = playerDirection * attackMove;
+        transform.position = new Vector2(Mathf.MoveTowards
+        (transform.position.x, tagetPos.x, Time.deltaTime * attackMove), transform.position.y);
 
         transform.localScale = new Vector2(direction, 1);
         if (transform.position.x <= tagetPos.x) { direction = -1; }

@@ -37,7 +37,7 @@ public class MedosaEnemy : BaseEnemy
     private void ImageDirection()
     {
         //  プレイヤーのトランスフォームを取る
-        Vector2 playerPos = player.position;
+        Vector2 playerPos = player.transform.position;
         if (playerPos.x < startPosition.x) { direction = 1; FooPlayer(); }
         else if(playerPos.x > startPosition.x) { direction = -1; AfPlayer(); }
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }

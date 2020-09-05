@@ -20,7 +20,7 @@ public class PlantEnemy : BaseEnemy
 
     private void LuisuKill()
     {
-        Vector2 LuisPos = player.position;
+        Vector2 LuisPos = player.transform.position;
         if (GameManager.Instance.GetGameState == GameManager.GameState.Damage)
         {
             transform.position = new Vector2(LuisPos.x,
@@ -35,7 +35,7 @@ public class PlantEnemy : BaseEnemy
         }
         else
         {  
-            transform.position = new Vector2(LuisPos.x, -30f);
+            transform.position = new Vector2(LuisPos.x, transform.position.y);
             _taim = 3;
             GetComponent<Animator>().enabled = false;
             _anim.Play("Base Layer.Plant_body 03", 0, 0);

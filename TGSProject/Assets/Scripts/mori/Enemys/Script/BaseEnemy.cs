@@ -16,7 +16,7 @@ public abstract class BaseEnemy : MonoBehaviour , IDamager
     protected PlayerInfoCounter info;
     //  playerのtransformを格納する変数
     [Header("↓↓プレイヤーを此処に入れてね")]
-    public Transform player;
+    public GameObject player;
 
     //  画像の向き
     protected int direction = 0;

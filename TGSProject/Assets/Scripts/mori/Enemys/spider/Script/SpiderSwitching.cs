@@ -56,7 +56,7 @@ public class SpiderSwitching : BaseEnemy
     private void Confirmation()
     {
         //  プレイヤーのトランスフォームを取る
-        Vector2 playerPos = player.position;
+        Vector2 playerPos = player.transform.position;
         //  自分positionとプレイヤーのpositionをdistanceに入れる
         float distance = Vector2.Distance(transform.position, playerPos);
         //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
