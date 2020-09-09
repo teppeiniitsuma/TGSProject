@@ -10,6 +10,7 @@ public class NewLiftControl : MonoBehaviour
     [SerializeField] float _moveSpeed = 1, _rotsSpeed = 180, _floorUpPos = 1, _floorDownPos = 0, time = 0;
     [SerializeField] bool _isUp = false;
 
+    public bool GetIsUp { get { return _isUp; } }
     public bool IsMove { get { return _isMove; } set { _isMove = value; } }
     bool _isMove = false;
 
