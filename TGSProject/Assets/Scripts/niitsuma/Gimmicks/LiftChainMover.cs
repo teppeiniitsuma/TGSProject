@@ -12,6 +12,17 @@ public class LiftChainMover : MonoBehaviour
     bool isUp = false;
 
 
+    void Start()
+    {
+        isUp = _lift.GetIsUp;
+        if (isUp) 
+        {
+            _chainLeft.position = new Vector3(_chainLeft.position.x, moverDistance, _chainLeft.position.z);
+            // yを0になぜかできない（後で原因探るため今はマジックナンバー）
+            _chainRight.position = new Vector3(_chainRight.position.x, 0.98f, _chainRight.position.z);
+        }
+    }
+
     void ChainMove()
     {
         isUp = _lift.GetIsUp;
