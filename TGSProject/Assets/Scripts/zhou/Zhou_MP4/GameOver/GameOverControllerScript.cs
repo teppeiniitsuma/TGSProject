@@ -19,7 +19,7 @@ public class GameOverControllerScript : MonoBehaviour
     [Header("TEXT")]
     [SerializeField]
     private Text text;
-    [SerializeField] private bool isF, isSD,isText,isScene, isMakufu;
+    [SerializeField] private bool isF=false, isSD = false, isText = false, isScene = false, isMakufu = false;
 
     [Header("幕")]
     [SerializeField]
@@ -32,7 +32,7 @@ public class GameOverControllerScript : MonoBehaviour
         Cursor.visible = false;
         videoPlayer.loopPointReached += FinishPlayingVideo;
 
-
+        //GetComponent重いな。。。
         f.GetComponent<Image>().color = new Vector4(f.GetComponent<Image>().color.r, f.GetComponent<Image>().color.g, f.GetComponent<Image>().color.b, 0);
         SD.GetComponent<Image>().color = new Vector4(SD.GetComponent<Image>().color.r, SD.GetComponent<Image>().color.g, SD.GetComponent<Image>().color.b, 0);
         text.GetComponent<Text>().color= new Vector4(text.GetComponent<Text>().color.r, text.GetComponent<Text>().color.g, text.GetComponent<Text>().color.b, 0);
@@ -58,32 +58,33 @@ public class GameOverControllerScript : MonoBehaviour
         }
 
         //-------------color.a
-        if (isF == true&& f.GetComponent<Image>().color.a<1.0f) {
+        if (isF&& f.GetComponent<Image>().color.a<1.0f) {
             f.GetComponent<Image>().color = new Vector4(f.GetComponent<Image>().color.r, f.GetComponent<Image>().color.g, f.GetComponent<Image>().color.b, f.GetComponent<Image>().color.a+speed[0]*Time.deltaTime);
           
-        }else if (isSD == true && SD.GetComponent<Image>().color.a < 1.0f)
+        }else if (isSD&& SD.GetComponent<Image>().color.a < 1.0f)
         {
             SD.GetComponent<Image>().color = new Vector4(SD.GetComponent<Image>().color.r, SD.GetComponent<Image>().color.g, SD.GetComponent<Image>().color.b, SD.GetComponent<Image>().color.a + speed[1] * Time.deltaTime);
            
         }
-        else if (isText == true && text.GetComponent<Text>().color.a < 1.0f)
+        else if (isText  && text.GetComponent<Text>().color.a < 1.0f)
         {
             text.GetComponent<Text>().color = new Vector4(text.GetComponent<Text>().color.r, text.GetComponent<Text>().color.g, text.GetComponent<Text>().color.b, text.GetComponent<Text>().color.a + speed[2] * Time.deltaTime);
            
         }
-        else if (isMakufu == true && makufu.GetComponent<Image>().color.a < 1.0f)
+        else if (isMakufu&& makufu.GetComponent<Image>().color.a < 1.0f)
         {
             makufu.GetComponent<Image>().color = new Vector4(makufu.GetComponent<Image>().color.r, makufu.GetComponent<Image>().color.g, makufu.GetComponent<Image>().color.b, makufu.GetComponent<Image>().color.a + speed[3] * Time.deltaTime);
            
         }
-        if (f.GetComponent<Image>().color.a >= 1.0f) { isSD = true; }
-        if (SD.GetComponent<Image>().color.a >= 1.0f) { isText = true; }
-        
-        if (text.GetComponent<Text>().color.a >= 1.0f&&!isScene) { isScene = true; }
-        if (makufu.GetComponent<Image>().color.a >= 1.0f)
+        if (f.GetComponent<Image>().color.a >= 1.0f& !isSD) { isSD = true; } 
+        else if (SD.GetComponent<Image>().color.a >= 1.0f&&!isText) { isText = true;
+            Debug.Log("!");
+        }
+        else if (text.GetComponent<Text>().color.a >= 1.0f&&!isScene) { isScene = true; }
+        else if (makufu.GetComponent<Image>().color.a >= 1.0f)
         {
             Debug.Log("シーン転移+セーフデータを削除の処理まだ入れてません");
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("Title");
         }
     }
     
@@ -93,7 +94,7 @@ public class GameOverControllerScript : MonoBehaviour
 
 
     /// <summary>
-    /// 終了後の処理
+    /// 終了後の処理 もしあれば
     /// </summary>
     /// <param name="vp"></param>
     public void FinishPlayingVideo(VideoPlayer vp)
