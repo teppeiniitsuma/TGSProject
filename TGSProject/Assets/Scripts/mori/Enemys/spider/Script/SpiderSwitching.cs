@@ -33,7 +33,7 @@ public class SpiderSwitching : BaseEnemy
     private float attackMove = 2f;
     void Start()
     {
-        base.enemyID = EnemyType.Spider;
+        base.enemyID = EnemyType.SpiderNormal;
         ri2d = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
     }
