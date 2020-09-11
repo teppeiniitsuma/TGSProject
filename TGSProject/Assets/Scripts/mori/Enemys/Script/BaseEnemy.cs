@@ -4,7 +4,8 @@
 public enum EnemyType
 {
     None = 0,
-    Spider,
+    SpiderNormal,
+    SpiderBoss,
     Medosa,
     Plant,
     LastBoss,

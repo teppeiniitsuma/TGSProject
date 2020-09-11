@@ -1,6 +1,12 @@
 ﻿//using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpiderType
+{
+    Normal,
+    Boss,
+}
+
 public class SpiderEnemy : BaseEnemy
 {
     [SerializeField] GameObject[] spiderObject = new GameObject[2];
@@ -21,13 +27,26 @@ public class SpiderEnemy : BaseEnemy
     [SerializeField]
     [Header("↓↓プレイヤーを追いかける速度")]
     private float attackMove;
+    public SpiderType spiderType;
     void Start()
     {
-        base.enemyID = EnemyType.Spider;
-        //ri2d = GetComponent<Rigidbody2D>();
+        IsFieldBoss();
         startPosition = transform.position;
         player = null;
         player = GameObject.Find("player");
+    }
+
+    private void IsFieldBoss()
+    {
+        switch(this.spiderType)
+        {
+            case SpiderType.Normal:
+                base.enemyID = EnemyType.SpiderNormal;
+                break;
+            case SpiderType.Boss:
+                base.enemyID = EnemyType.SpiderBoss;
+                break;
+        }
     }
 
     private void IsAttackOrNot()
