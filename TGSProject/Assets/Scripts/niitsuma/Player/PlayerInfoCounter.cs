@@ -91,7 +91,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
             switch (id)
             {
                 case EnemyType.None: DecreaseHP(); break;
-                case EnemyType.Spider: DecreaseHP(); break;
+                case EnemyType.SpiderNormal: DecreaseHP(); break;
+                case EnemyType.SpiderBoss: DecreaseHP(); break;
                 case EnemyType.Medosa: if(_parameter.actSwitch) PetrificationDamage(); break;
                 case EnemyType.Plant: break;
             }
