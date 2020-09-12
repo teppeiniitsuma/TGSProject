@@ -7,20 +7,18 @@ using UnityEngine;
 public class SoundManager
 {
 
-    //(1)サウンドルートノードのオブジェクト（サウンドルート（- ルートノード（英：root node）とは 枝分かれ構造な何かにおける「そこから枝分かれが始まってますよ」な要素のこと。 言い方を変えると 枝分かれ構造における根っこの部分にあたる要素のこと です。））
+    //(1)サウンドルートノードのオブジェクト（サウンドルート（ルートノード（英：root node）とは 枝分かれ構造な何かにおける「そこから枝分かれが始まってますよ」な要素のこと。 言い方を変えると 枝分かれ構造における根っこの部分にあたる要素のこと です。））
     //(2)シーン転移の時に、削除されないように
     //すべでのサウンドノードが　このサウンドルートノードに帰属（きぞく）
     static GameObject sound_play_object;//これはサウンドルートノード
     /// <summary>
     /// ゲーム全体のBGMはミュートするかの変量
     /// </summary>
-    static bool is_Music_mute = true;
+    static bool is_Music_mute = false;
     /// <summary>
     /// 今流してる効果音はミュートするかの変量
     /// </summary>
-    static bool is_sffect_mute = true;
-
-
+    static bool is_sffect_mute = false;
     // url --> AudioSource 写像, 区別BGM，SE；（写像とは、二つの集合が与えられたときに、一方の集合の各元に対し、他方の集合のただひとつの元を指定して結びつける対応のことである。関数、変換、作用素、射などが写像の同義語として用いられることもある。 ブルバキに見られるように、写像は集合とともに現代数学の基礎となる道具の一つである。）
     /// <summary>
     /// BGM表
@@ -36,13 +34,11 @@ public class SoundManager
     /// </summary>
     public static void init()
     {
-
         sound_play_object = new GameObject("sound_play_object");//セットサウンドルートノード
 
-        //？ sound_play_object.AddComponent<sound_scan>();
+        sound_play_object.AddComponent<SoundScan>();//インスタンススキャンスクリプト
 
         GameObject.DontDestroyOnLoad(sound_play_object);//シーン転移しても削除されないように
-
 
         //リセットBGM表とSE表
         musics = new Dictionary<string, AudioSource>();
@@ -56,7 +52,6 @@ public class SoundManager
     /// <param name="is_loop"></param>
     public static void PlayMusic(string url, bool is_loop = true)
     {
-
         AudioSource audio_source = null;
         //流したいBGMがBGM表内あるかどうか
         if (musics.ContainsKey(url))//あれば　この値を与える
@@ -69,7 +64,9 @@ public class SoundManager
             s.transform.parent = sound_play_object.transform;//シーンに入れる
 
             audio_source = s.AddComponent<AudioSource>();//ノードにAudioSourceコンポーネントセット
-            AudioClip clip = Resources.Load<AudioClip>(url);//セットBGM
+            AudioClip clip = Resources.Load<AudioClip>(url);//BGM
+
+            audio_source.clip = clip;//セットSE
             audio_source.loop = is_loop;//ループ
             audio_source.playOnAwake = true;//True に設定した場合、 AudioSource は自動的に Play On Awake を開始します。
             audio_source.spatialBlend = 0.0f;//2D音声
@@ -99,7 +96,6 @@ public class SoundManager
         {
             s.Stop();
         }
-
     }
 
     /// <summary>
@@ -128,29 +124,31 @@ public class SoundManager
     public static void PlayEffect(string url, bool is_loop = false)
     {
         AudioSource audio_source = null;
-        if (!effects.ContainsKey(url))//SE表内あるか
+        if (effects.ContainsKey(url))//SE表内あるか
         {
             audio_source = effects[url];//あればurl　値を与える
         }
         else
         {
-
             GameObject s = new GameObject(url);//新たななノードを作り
             s.transform.parent = sound_play_object.transform;//シーンに入れる
 
             audio_source = s.AddComponent<AudioSource>();//ノードにAudioSourceコンポーネントセット
-            AudioClip clip = Resources.Load<AudioClip>(url);//セットBGM
+            AudioClip clip = Resources.Load<AudioClip>(url);//SE
+
+            audio_source.clip = clip;//セットSE
+
             audio_source.loop = is_loop;//ループ
             audio_source.playOnAwake = true;//True に設定した場合、 AudioSource は自動的に Play On Awake を開始します。
             audio_source.spatialBlend = 0.0f;//2D音声
 
             effects.Add(url, audio_source);//effects辞典に入れる
-
-
         }
         audio_source.mute = is_Music_mute;//
         audio_source.enabled = true;
+
         audio_source.Play();//再生開始
+
     }
     /// <summary>
     /// SEを停止するインターフェース
@@ -176,14 +174,11 @@ public class SoundManager
             s.Stop();
         }
     }
-
-
     /// <summary>
     /// 指定SEを削除するインターフェース
     /// </summary>
     public static void ClearEffect(string url)
     {
-
         AudioSource audio_source = null;
         if (!effects.ContainsKey(url))//BGM表内あるか
         {
@@ -201,11 +196,10 @@ public class SoundManager
     {//foreach　BGM表
         foreach (AudioSource s in musics.Values)
         {
-            if(!s.isPlaying)//再生中か
+            if (!s.isPlaying)//再生中か
             {
                 s.enabled = false;//してなければ　隠す
             }
-            
         }
         //foreach SE表
         foreach (AudioSource s in effects.Values)
@@ -215,16 +209,5 @@ public class SoundManager
                 s.enabled = false;   ////してなければ　隠す
             }
         }
-
-
     }
-
 }
-
-
-
-
-
-
-
-
