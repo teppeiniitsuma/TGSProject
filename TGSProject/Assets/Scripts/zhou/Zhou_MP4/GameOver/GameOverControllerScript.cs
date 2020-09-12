@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
 
 public class GameOverControllerScript : MonoBehaviour
 {
@@ -27,17 +28,23 @@ public class GameOverControllerScript : MonoBehaviour
     [Header("スビート")]
     [SerializeField]
     private float[] speed;
+    private Image fImege, SDImege,makufuImege;
+    private Text textText;
+
     private void Start()
     {
         Cursor.visible = false;
         videoPlayer.loopPointReached += FinishPlayingVideo;
 
-        //GetComponent重いな。。。
-        f.GetComponent<Image>().color = new Vector4(f.GetComponent<Image>().color.r, f.GetComponent<Image>().color.g, f.GetComponent<Image>().color.b, 0);
-        SD.GetComponent<Image>().color = new Vector4(SD.GetComponent<Image>().color.r, SD.GetComponent<Image>().color.g, SD.GetComponent<Image>().color.b, 0);
-        text.GetComponent<Text>().color= new Vector4(text.GetComponent<Text>().color.r, text.GetComponent<Text>().color.g, text.GetComponent<Text>().color.b, 0);
-        makufu.GetComponent<Image>().color = new Vector4(makufu.GetComponent<Image>().color.r, makufu.GetComponent<Image>().color.g, makufu.GetComponent<Image>().color.b, 0);
+         fImege = f.GetComponent<Image>();
+        SDImege = SD.GetComponent<Image>();
+        makufuImege = makufu.GetComponent<Image>();
+        textText = text.GetComponent<Text>();
 
+        fImege.color = new Vector4(fImege.color.r, fImege.color.g, fImege.color.b, 0);
+        SDImege.color = new Vector4(SDImege.color.r, SDImege.color.g, SDImege.color.b, 0);
+        textText.color = new Vector4(textText.color.r, textText.color.g, textText.color.b, 0);
+        makufuImege.color = new Vector4(makufuImege.color.r, makufuImege.color.g, makufuImege.color.b, 0);
     }
     // Update is called once per frame
     private void Update()
@@ -58,29 +65,29 @@ public class GameOverControllerScript : MonoBehaviour
         }
 
         //-------------color.a
-        if (isF&& f.GetComponent<Image>().color.a<1.0f) {
-            f.GetComponent<Image>().color = new Vector4(f.GetComponent<Image>().color.r, f.GetComponent<Image>().color.g, f.GetComponent<Image>().color.b, f.GetComponent<Image>().color.a+speed[0]*Time.deltaTime);
+        if (isF&& fImege.color.a<1.0f) {
+            fImege.color = new Vector4(fImege.color.r, fImege.color.g, fImege.color.b, fImege.color.a+speed[0]*Time.deltaTime);
           
-        }else if (isSD&& SD.GetComponent<Image>().color.a < 1.0f)
+        }else if (isSD&& SDImege.color.a < 1.0f)
         {
-            SD.GetComponent<Image>().color = new Vector4(SD.GetComponent<Image>().color.r, SD.GetComponent<Image>().color.g, SD.GetComponent<Image>().color.b, SD.GetComponent<Image>().color.a + speed[1] * Time.deltaTime);
+            SDImege.color = new Vector4(SDImege.color.r, SDImege.color.g, SDImege.color.b, SDImege.color.a + speed[1] * Time.deltaTime);
            
         }
-        else if (isText  && text.GetComponent<Text>().color.a < 1.0f)
+        else if (isText  && textText.color.a < 1.0f)
         {
-            text.GetComponent<Text>().color = new Vector4(text.GetComponent<Text>().color.r, text.GetComponent<Text>().color.g, text.GetComponent<Text>().color.b, text.GetComponent<Text>().color.a + speed[2] * Time.deltaTime);
-           
+            textText.color = new Vector4(textText.color.r, textText.color.g, textText.color.b, textText.color.a + speed[2] * Time.deltaTime);
+
         }
-        else if (isMakufu&& makufu.GetComponent<Image>().color.a < 1.0f)
+        else if (isMakufu&& makufuImege.color.a < 1.0f)
         {
-            makufu.GetComponent<Image>().color = new Vector4(makufu.GetComponent<Image>().color.r, makufu.GetComponent<Image>().color.g, makufu.GetComponent<Image>().color.b, makufu.GetComponent<Image>().color.a + speed[3] * Time.deltaTime);
-           
+            makufuImege.color = new Vector4(makufuImege.color.r, makufuImege.color.g, makufuImege.color.b, makufuImege.color.a + speed[3] * Time.deltaTime);
+
         }
-        if (f.GetComponent<Image>().color.a >= 1.0f& !isSD) { isSD = true; } 
-        else if (SD.GetComponent<Image>().color.a >= 1.0f&&!isText) { isText = true;
+        if (fImege.color.a >= 1.0f& !isSD) { isSD = true; } 
+        else if (SDImege.color.a >= 1.0f&&!isText) { isText = true;
             Debug.Log("!");
         }
-        else if (text.GetComponent<Text>().color.a >= 1.0f&&!isScene) { isScene = true; }
+        else if (textText.color.a >= 1.0f&&!isScene) { isScene = true; }
         else if (makufu.GetComponent<Image>().color.a >= 1.0f)
         {
             Debug.Log("シーン転移+セーフデータを削除の処理まだ入れてません");
@@ -105,10 +112,11 @@ public class GameOverControllerScript : MonoBehaviour
 
     private void videoPlayerOver() {
         videoPlayer.time = 5.8;
-        f.GetComponent<Image>().color = new Vector4(f.GetComponent<Image>().color.r, f.GetComponent<Image>().color.g, f.GetComponent<Image>().color.b, 1);
-        SD.GetComponent<Image>().color = new Vector4(SD.GetComponent<Image>().color.r, SD.GetComponent<Image>().color.g, SD.GetComponent<Image>().color.b, 1);
-        text.GetComponent<Text>().color = new Vector4(text.GetComponent<Text>().color.r, text.GetComponent<Text>().color.g, text.GetComponent<Text>().color.b, 1);
+        fImege.color = new Vector4(fImege.color.r, fImege.color.g, fImege.color.b, 1);
+        SDImege.color = new Vector4(SDImege.color.r, SDImege.color.g, SDImege.color.b, 1);
+        textText.color = new Vector4(textText.color.r, textText.color.g, textText.color.b, 1);
+
     }
-    
+
 }
 
