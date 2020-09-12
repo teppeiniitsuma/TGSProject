@@ -87,7 +87,7 @@ public class GameOverControllerScript : MonoBehaviour
         else if (SDImege.color.a >= 1.0f&&!isText) { isText = true;
             Debug.Log("!");
         }
-        else if (text.GetComponent<Text>().color.a >= 1.0f&&!isScene) { isScene = true; }
+        else if (textText.color.a >= 1.0f&&!isScene) { isScene = true; }
         else if (makufu.GetComponent<Image>().color.a >= 1.0f)
         {
             Debug.Log("シーン転移+セーフデータを削除の処理まだ入れてません");
