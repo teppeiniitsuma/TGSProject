@@ -16,6 +16,7 @@ public class PlantEnemy : BaseEnemy
         base.enemyID = EnemyType.Plant;
         _hoge += Time.deltaTime;
         _anim = GetComponent<Animator>();
+        startPosition = transform.position;
     }
 
     private void LuisuKill()
@@ -27,7 +28,7 @@ public class PlantEnemy : BaseEnemy
                 Mathf.MoveTowards(transform.position.y, LuisPos.y + _aho, _hoge));
             GetComponent<Animator>().enabled = true;
             _taim -= Time.deltaTime;
-            if(_taim < 0)
+            if(_taim <=  0)
             {
                 GameManager.Instance.Information.DecreaseHP();
                 _taim = 0;
@@ -39,6 +40,7 @@ public class PlantEnemy : BaseEnemy
             _taim = 3;
             GetComponent<Animator>().enabled = false;
             _anim.Play("Base Layer.Plant_body 03", 0, 0);
+            if(GameManager.Instance.GetGameState == GameManager.GameState.Road) { transform.position = startPosition; }
         }
     }
 
