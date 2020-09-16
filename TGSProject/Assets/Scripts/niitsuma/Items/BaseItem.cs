@@ -22,6 +22,8 @@ public abstract class BaseItem : MonoBehaviour
         { 
             set.ItemGet(item);
             GameManager.Instance.UIInfo.SetItemInfo();
+            if(item == ItemType.herb) { ResultManager.Instance.SetHerbValue(); }
+            else if(item == ItemType.butteflyWing) { ResultManager.Instance.SetStoneMonumentCount(); }
             this.gameObject.SetActive(false); }
         }
 

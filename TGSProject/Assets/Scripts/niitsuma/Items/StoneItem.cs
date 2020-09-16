@@ -5,12 +5,12 @@ public class StoneItem : MonoBehaviour
     Rigidbody2D _rigidbody;
     Vector2 vector = new Vector2(500, 0);
     float time = 0;
-    DisplaySpiderCounter disp; // 後で変える
+    DisplaySpiderCounter disp;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var damege = collision.gameObject.GetComponent<IDamager>();
-        if (damege != null) { damege.ApplyDamage(EnemyType.None); disp.SpiderChecks() /* 後で消す*/ ; }
+        if (damege != null) { damege.ApplyDamage(EnemyType.None); disp.SpiderChecks(); ResultManager.Instance.SetEnemyKillCount(); }
     }
     private void Awake()
     {

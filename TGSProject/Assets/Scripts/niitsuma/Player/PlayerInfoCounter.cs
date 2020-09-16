@@ -133,14 +133,16 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         if (!damage) _parameter.hp--;
         _gm.SetGameState(GameManager.GameState.Road);
         damage = true;
+        ResultManager.Instance.SetDeadCount();
     }
     // 石化ダメージ
     void PetrificationDamage()
     {
         var s = GetComponent<SpriteRenderer>();
-        s.sprite = playerSprite[2];
         medBoolen = true;
         IsMovable = true;
+        s.sprite = playerSprite[2];
+        ResultManager.Instance.SetDeadCount();
     }
     void Update()
     {
@@ -149,20 +151,20 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         {
             if (GetParameter.actSwitch)
             {
-                var i = GetComponent<SpriteRenderer>();
-                i.sprite = playerSprite[0];
+                //var i = GetComponent<SpriteRenderer>();
+                //i.sprite = playerSprite[0];
                 IsMovable = false;
             }
             else
             {
-                var i = GetComponent<SpriteRenderer>();
-                i.sprite = playerSprite[1];
+                //var i = GetComponent<SpriteRenderer>();
+                //i.sprite = playerSprite[1];
                 IsMovable = false;
             }
             
         }
         if (Input.GetKeyDown(KeyCode.L)) { _items.stoneValue++; }
-        // クソ処理（時間内から書いただけ）
+        // クソ処理
         if (medBoolen) { medTime += Time.deltaTime; }
         if(medTime  > 2) 
         {

@@ -12,17 +12,17 @@ public class ResultScoreSetter : MonoBehaviour
     private List<string> _message;
     private ResultMessageModel model = new ResultMessageModel();
     private RankSetter rankSetter = new RankSetter();
-    float time = 0;
-    int count = 0;
-    bool start = false;
-    bool end = false;
-    bool isRunning = false;
+    private float time = 0;
+    private int count = 0;
+    private bool start = false;
+    private bool end = false;
+    private bool isRunning = false;
 
-    int rank = 0;
+    private int rank = 0;
 
     void Start()
     {
-        Debug.Log(ResultManager.Instance.GetResultData.playTime);
+        //Debug.Log(ResultManager.Instance.GetResultData.playTime);
         model.ResultDataSetter(_message, ResultManager.Instance.GetResultData);
         _message = model.messageList;
         rank = rankSetter.RankCalculation(ResultManager.Instance.GetResultData);

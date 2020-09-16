@@ -35,6 +35,7 @@ public class ItemUse : MonoBehaviour
         if (_counter.SpiderInScreen())
         {
             _counter.CaterpillarAttack();
+            //ResultManager.Instance.SetEnemyKillCount();
         }
     }
     void Update()

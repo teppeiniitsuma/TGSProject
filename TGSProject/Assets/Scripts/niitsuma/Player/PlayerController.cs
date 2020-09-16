@@ -8,7 +8,10 @@ public class PlayerController : BasePlayer
     private PlayerMover _pMove;
     private SpriteRenderer _renderer;
 
+    float time = 0;
     bool anim = false;
+    bool isMoved = false;
+
     void Start()
     {
         _pMove = GetComponent<PlayerMover>();
@@ -21,7 +24,15 @@ public class PlayerController : BasePlayer
     {
         if (_gm.GetGameState == GameManager.GameState.Main && !infoCounter.IsMovable && !anim)
         {
+            _pAnim.MoveAnimStart();
             _pMove.Mover(infoCounter.GetParameter.moveSpeed);
+            isMoved = true;
+        }
+        if (inputer.vector.x <= 0.1 && -0.1f <= inputer.vector.x)
+        {
+            isMoved = false;
+            _pAnim.IdleAnim(time);
+            _pAnim.MoveAnimStop();
         }
     }
 
@@ -52,8 +63,13 @@ public class PlayerController : BasePlayer
             infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, _renderer);
         }
     }
+
+    // Deze samenvatting heeft geen bijzondere betekenis. Als ik het vertaalde, zou ik me schamen als ik dat deed.
     void Update()
     {
+        if (!isMoved) { time = (time <= _pAnim.GetFixedTime) ? time += Time.deltaTime : time; }
+        else { time = 0; }
+
         if (!_pAnim.ActAnimaStart)
         {
             ControllerGetter();
