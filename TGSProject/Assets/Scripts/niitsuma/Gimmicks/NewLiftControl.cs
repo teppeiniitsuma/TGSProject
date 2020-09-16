@@ -9,12 +9,21 @@ public class NewLiftControl : MonoBehaviour
     [SerializeField] Transform _floor;
     [SerializeField] float _moveSpeed = 1, _rotsSpeed = 180, _floorUpPos = 1, _floorDownPos = 0, time = 0;
     [SerializeField] bool _isUp = false;
+    [SerializeField] bool _isInitialize = false;
 
     public bool GetIsUp { get { return _isUp; } }
     public bool IsMove { get { return _isMove; } set { _isMove = value; } }
     bool _isMove = false;
 
 
+    Vector3 startPos = Vector3.zero;
+    bool startIsUp = false;
+
+    void Awake()
+    {
+        startPos = _floor.position;
+        startIsUp = _isUp;
+    }
     void Update()
     {
         if(GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
@@ -22,7 +31,17 @@ public class NewLiftControl : MonoBehaviour
             LiftMove();
             GearRotate();
         }
-        Debug.Log(_isMove);
+
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Road && _isInitialize)
+        {
+            FloorInitialize();
+        }
+    }
+
+    void FloorInitialize()
+    {
+        _floor.position = startPos;
+        _isUp = startIsUp;
     }
 
     void LiftMove()
