@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880eee6c436315a4c9d6658b43ce0bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gearUp: {fileID: 3029728292395166533}
+  _gearUp: {fileID: 6036281656933176429}
   _gearDown: {fileID: 2037530064694758268}
   _floor: {fileID: 8406085355807108534}
   _moveSpeed: 2
@@ -778,7 +778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4181758181033320400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.4000006, z: 0}
+  m_LocalPosition: {x: 0, y: -6.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2511555630489365239}
