@@ -7,6 +7,7 @@ public class NewLiftControl : MonoBehaviour
     
     [SerializeField] GameObject _gearUp, _gearDown;
     [SerializeField] Transform _floor;
+    [SerializeField] LiftChainMover _chain;
     [SerializeField] float _moveSpeed = 1, _rotsSpeed = 180, _floorUpPos = 1, _floorDownPos = 0, time = 0;
     [SerializeField] bool _isUp = false;
     [SerializeField] bool _isInitialize = false;
@@ -35,6 +36,7 @@ public class NewLiftControl : MonoBehaviour
         if(GameManager.Instance.GetGameState == GameManager.GameState.Road && _isInitialize)
         {
             FloorInitialize();
+            _chain.ChainInitialize();
         }
     }
 

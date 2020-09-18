@@ -18,7 +18,18 @@ public class ResultManager : MonoBehaviour
     {
         _instance = this;
     }
-
+    /// <summary>
+    /// メインステージが始まるときに呼ぶ
+    /// リザルト用のデータの初期化
+    /// </summary>
+    public void DataInitialize()
+    {
+        _data.playTime = 0;
+        _data.ownHerb = 0;
+        _data.killEnemyCount = 0;
+        _data.stoneMonumentCount = 0;
+        _data.deadCount = 0;
+    }
     /// <summary>
     /// プレイ時間をデータとしてセットする
     /// </summary>
