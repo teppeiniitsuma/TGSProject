@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         _info = FindObjectOfType<PlayerInfoCounter>();
         _uiManager = FindObjectOfType<UIManager>();
         _info.Initialize();
+        ResultManager.Instance.DataInitialize();
     }
 
     /// <summary>

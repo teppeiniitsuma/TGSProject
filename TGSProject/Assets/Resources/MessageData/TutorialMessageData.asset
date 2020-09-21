@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d44064cd1e8dec45b88c3fbb5daca84, type: 3}
+  m_Name: TutorialMessageData
+  m_EditorClassIdentifier: 
+  Message:
+  - id: 1
+    name: a
+    message: "\u3042\u3070\u3070\u3070\u3070\u3070\u30C6\u30B9\u30C8\u30C6\u30B9\u30C8\u30C6\u30B9\u30C8\u30C6\u30B9\u30C8\u30C6\u30B9\u30C8\u6700\u9AD8\u6700\u9AD8\u6700\u9AD8\u6700\u9AD8\u6700\u9AD8\u6700\u9AD8\u6700\u9AD8\u3042"
+    balloonPos: Left
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 1
+  - id: 2
+    name: a
+    message: Hello, World!
+    balloonPos: Left
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 3
+    name: a
+    message: a
+    balloonPos: Left
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 1
+  - id: 4
+    name: a
+    message: a
+    balloonPos: Right
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 5
+    name: a
+    message: a
+    balloonPos: Right
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 6
+    name: a
+    message: a
+    balloonPos: Right
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 7
+    name: a
+    message: a
+    balloonPos: Left
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 8
+    name: a
+    message: a
+    balloonPos: Right
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 9
+    name: a
+    message: a
+    balloonPos: Right
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
+  - id: 10
+    name: a
+    message: a
+    balloonPos: Left
+    balloonSize: S
+    balloonType: 1
+    balloonColor: 0
