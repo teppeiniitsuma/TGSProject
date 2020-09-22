@@ -14,6 +14,9 @@ public class SpiderEnemy : BaseEnemy
     public bool isCamera { get; set; } = false;
     public bool isLeftOrRight { get; set; } = false;
 
+    GameObject LastBoos;
+    LastEnemy LsBoss;
+
     // 蜘蛛の見つけてない時の移動速度
     [SerializeField][Header("↓↓蜘蛛の見つけてない時の移動速度")][Range(0.0f,100.0f)]private float moveTime = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
@@ -34,6 +37,13 @@ public class SpiderEnemy : BaseEnemy
         startPosition = transform.position;
         player = null;
         player = GameObject.Find("player");
+        switch(this.spiderType)
+        {
+            case SpiderType.Boss:
+                LastBoos = GameObject.Find("spiderBoss");
+                LsBoss = LastBoos.GetComponent<LastEnemy>();
+                break;
+        }
     }
 
     private void IsFieldBoss()
@@ -137,9 +147,19 @@ public class SpiderEnemy : BaseEnemy
         }
     }
 
-
-        void Update()
+    private void OnDisable()
+    {
+        switch(this.spiderType)
         {
+            case SpiderType.Boss:
+                LsBoss._ofSpider--;
+                //Destroy(this);
+                break;
+        }
+    }
+
+    void Update()
+    {
         if(GameManager.Instance.GetGameState == GameManager.GameState.Road)
         {
             transform.position = startPosition;
@@ -158,8 +178,8 @@ public class SpiderEnemy : BaseEnemy
 
             }
         }
-        }
     }
+}
 
 /*
     

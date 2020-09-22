@@ -27,6 +27,8 @@ public abstract class BaseEnemy : MonoBehaviour , IDamager
     //オブジェクトのRigidbodyの変数
     protected Rigidbody2D ri2d;
 
+    protected Animator _anim;
+
     [SerializeField]
     [Header("↓↓アニメーションの速度")]
     protected float playSpeed = 1.0f;

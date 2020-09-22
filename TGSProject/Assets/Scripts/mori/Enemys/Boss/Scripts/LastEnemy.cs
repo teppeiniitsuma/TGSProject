@@ -2,10 +2,15 @@
 
 public class LastEnemy : BaseEnemy
 {
-    private GameObject SummoningWait;
     [SerializeField]
     private GameObject[] moveObject = new GameObject[4];
+    [SerializeField]
     private GameObject[] SummoningSpider = new GameObject[2];
+    [SerializeField]
+    private GameObject SummoningWait;
+    [SerializeField]
+    GameObject Obj;
+    GameObject Spr;
     [SerializeField][Header("↓↓召喚する蜘蛛を入れる")]
     private GameObject spiderObject;
     [SerializeField][Header("↓↓移動するスピード")]
@@ -21,7 +26,7 @@ public class LastEnemy : BaseEnemy
     private int _countMin = 1;
     private int _countMax = 5;
     private float _callingTime = 10;
-    private float _summonTime = 5;
+    private float _summonTime = 3.5f;
     public int _ofSpider { get; set; }
     private int _maxSpider = 2;
     private bool IsArrived;
@@ -36,11 +41,9 @@ public class LastEnemy : BaseEnemy
         startPosition = transform.position;
         IsArrived = false;
         IsUporDown = false;
+        _anim = GetComponent<Animator>();
         _ofSpider = 0;
         TagPosCalculation();
-        SummoningWait = GameObject.Find("SummoningWait");
-        SummoningSpider[0] = GameObject.Find("Summoning1");
-        SummoningSpider[1] = GameObject.Find("Summoning2");
     }
 
     private void TargetArrived()
@@ -80,17 +83,22 @@ public class LastEnemy : BaseEnemy
         Vector2 BossPos = transform.position;
         if (BossPos == SummonWait) IsSummonPos = true;
         if (!IsSummonPos) { return; }
+        //_anim.SetTrigger("Stop");
         _summonTime -= Time.deltaTime;
+        _anim.SetTrigger("Summon");
         if(_summonTime >= 0) { return; }
         if (_ofSpider >= _maxSpider) { return; }
         if(!IsUporDown)
         {
-            Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
+            //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
+            Spr = /*(GameObject)*/Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
+            Spr.transform.parent = Obj.transform;
             IsUporDown = true;
         }
         else if(IsUporDown)
         {
-            Instantiate(spiderObject, SummoningSpider[1].transform.position, Quaternion.identity);
+            Spr = Instantiate(spiderObject, SummoningSpider[1].transform.position, Quaternion.identity);
+            Spr.transform.parent = Obj.transform;
             IsUporDown = false;
         }
         _ofSpider++;
@@ -103,25 +111,50 @@ public class LastEnemy : BaseEnemy
         if ((int)_callingTime <= 0) { IsSummon = true; }
     }
 
+    //private void SpiderKill()
+    //{
+    //    if(IsKillSpider)
+    //    {
+    //        _ofSpider--;
+    //        IsKillSpider = false;
+    //    }
+    //}
+
     void Update()
     {
-        CountTime();
-        if(!IsSummon)
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Road)
         {
-            MoveBoss();
-            TargetArrived();
-            IsTimeIsOK = false;
-            _summonTime = 5;
+            transform.position = startPosition;
+            return;
         }
-        else if(IsSummon)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Event)
         {
-            SummoningSpiderCount();
-            if (!IsTimeIsOK) { return; }
-            _callingTime = 10;
-            IsSummon = false;
+            transform.position = startPosition;
+            _anim.SetTrigger("Stop");
+            return;
         }
-        _ofSpider = System.Math.Min(_ofSpider, 0);
-        Debug.Log((int)_callingTime);
-        Debug.Log(IsSummon);
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        {
+            CountTime();
+            if(!IsSummon)
+            {
+                MoveBoss();
+                TargetArrived();
+                IsTimeIsOK = false;
+                _summonTime = 3.5f;
+                _anim.SetTrigger("Wook");
+            }
+            else if(IsSummon)
+            {
+                SummoningSpiderCount();
+                if (!IsTimeIsOK) { return; }
+                _callingTime = 10;
+                IsSummon = false;
+            }
+            _ofSpider = System.Math.Min(_ofSpider, 2);
+            _ofSpider = System.Math.Max(_ofSpider, 0);
+            Debug.Log(_ofSpider);
+            //Debug.Log(IsSummon);
+        }
     }
 }

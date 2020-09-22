@@ -7,7 +7,6 @@ public class PlantEnemy : BaseEnemy
     private float _hoge = 5;
     //[SerializeField]
     private float _aho = -17f;
-    private Animator _anim;
     private float _taim = 3f;
 
     // Start is called before the first frame update
