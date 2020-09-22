@@ -12,7 +12,7 @@ public class LastEnemy : BaseEnemy
     GameObject Obj;
     GameObject Spr;
     [SerializeField][Header("↓↓召喚する蜘蛛を入れる")]
-    private GameObject spiderObject;
+    private GameObject[] spiderObject = new GameObject[2];
     [SerializeField][Header("↓↓移動するスピード")]
     private float _moveSpeed1 = 15f;
     [SerializeField]
@@ -91,13 +91,13 @@ public class LastEnemy : BaseEnemy
         if(!IsUporDown)
         {
             //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
-            Spr = /*(GameObject)*/Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
+            Spr = /*(GameObject)*/Instantiate(spiderObject[0], SummoningSpider[0].transform.position, Quaternion.identity);
             Spr.transform.parent = Obj.transform;
             IsUporDown = true;
         }
         else if(IsUporDown)
         {
-            Spr = Instantiate(spiderObject, SummoningSpider[1].transform.position, Quaternion.identity);
+            Spr = Instantiate(spiderObject[1], SummoningSpider[1].transform.position, Quaternion.identity);
             Spr.transform.parent = Obj.transform;
             IsUporDown = false;
         }

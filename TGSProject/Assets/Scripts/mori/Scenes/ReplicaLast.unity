@@ -280,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92390846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.92, y: 6.81, z: 0}
+  m_LocalPosition: {x: -8, y: 6.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2088154240}
@@ -636,7 +636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685537029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.01, y: -1.36, z: 0}
+  m_LocalPosition: {x: 8.27, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2088154240}
@@ -3148,8 +3148,9 @@ MonoBehaviour:
   - {fileID: 92390846}
   SummoningWait: {fileID: 1825523650}
   Obj: {fileID: 1667313778}
-  spiderObject: {fileID: 3975869353041813468, guid: 533341a21028d6946926712f7c725302,
-    type: 3}
+  spiderObject:
+  - {fileID: 8290550548553175276, guid: d16bab17f4c77f44c9a01ccb6beaccac, type: 3}
+  - {fileID: 5544043449787059523, guid: 4301d6ede251eb648bbca7e4f89f1fe8, type: 3}
   _moveSpeed1: 15
   _moveSpeed2: 30
   _moveSpeed3: 50
