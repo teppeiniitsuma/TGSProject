@@ -122,12 +122,12 @@ public class LastEnemy : BaseEnemy
 
     void Update()
     {
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Road)
-        {
-            transform.position = startPosition;
-            return;
-        }
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Event)
+        //if (GameManager.Instance.GetGameState == GameManager.GameState.Road)
+        //{
+        //    transform.position = startPosition;
+        //    return;
+        //}
+        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
         {
             transform.position = startPosition;
             _anim.SetTrigger("Stop");

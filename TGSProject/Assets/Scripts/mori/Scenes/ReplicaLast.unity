@@ -4787,8 +4787,9 @@ GameObject:
   - component: {fileID: 2135316699}
   - component: {fileID: 2135316701}
   - component: {fileID: 2135316700}
+  - component: {fileID: 2135316702}
   m_Layer: 0
-  m_Name: line_00
+  m_Name: SpiderYarn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4816,7 +4817,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135316698}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ff510fc6a291084d87d32831821d13a, type: 2}
   m_CullingMode: 0
@@ -4876,3 +4877,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2135316702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135316698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92281840bf7f4ee43bf52901b22a0fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
