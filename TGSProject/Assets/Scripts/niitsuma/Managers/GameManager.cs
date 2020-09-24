@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     /// <param name="e"></param>
     public void SetEventState(EventState e)
     {
+        _gameState = GameState.Event;
         _eventState = e;
     }
     /// <summary>
@@ -80,4 +81,13 @@ public class GameManager : MonoBehaviour
     {
         InLightRange = light;
     }
+    /// <summary>
+    /// イベント終了時に呼ぶ
+    /// </summary>
+    public void EventEnd()
+    {
+        _gameState = GameState.Main;
+        _eventState = EventState.Default;
+    }
+
 }
