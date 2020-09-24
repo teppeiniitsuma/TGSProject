@@ -21,7 +21,7 @@ public class LastEnemy : BaseEnemy
     private float _moveSpeed3 = 50f;
     [SerializeField]
     private float _moveSpeed4 = 80f;
-    private float _moveOver;
+    private float _moveOver;//  _moveSpeedの1～4までのどれを入れるかを
     private float _moveSpeed;
     private int _countMin = 1;
     private int _countMax = 5;
@@ -157,9 +157,9 @@ public class LastEnemy : BaseEnemy
             }
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
-            Debug.Log(_ofSpider);
-            Debug.Log((int)_callingTime);
-            Debug.Log(IsTimeIsOK);
+            //Debug.Log(_ofSpider);
+            //Debug.Log((int)_callingTime);
+            //Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);
         }
     }
