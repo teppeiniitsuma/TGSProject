@@ -68,7 +68,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 47b6b40bdadbcc146aec8435d0da4fd6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Medosa
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730348232877789156, guid: b96d8e79a5e8ba04cba5dcb365a16ba0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96d8e79a5e8ba04cba5dcb365a16ba0, type: 3}
