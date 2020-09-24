@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1997276475799681708}
   - component: {fileID: 7990345251370828750}
   - component: {fileID: 1997276475799681698}
-  - component: {fileID: 1997276475799681710}
+  - component: {fileID: 7821053107172955494}
   - component: {fileID: 110175578293722422}
   - component: {fileID: 1997276475799681709}
   - component: {fileID: 7425654474464345361}
@@ -125,7 +125,7 @@ MonoBehaviour:
   playerSprite:
   - {fileID: 21300000, guid: a954be4ccb543924d9231214fcb0335c, type: 3}
   - {fileID: 21300000, guid: efcb3d5c948f60f4cb00a9ede80425a6, type: 3}
---- !u!114 &1997276475799681710
+--- !u!114 &7821053107172955494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TwoToOnePlayerAnim: {fileID: 6262264667347050301}
   OneToTwoPlayerAnim: {fileID: 8902688578760732973}
+  _fixedTime: 50
 --- !u!50 &1997276475799681711
 Rigidbody2D:
   serializedVersion: 4

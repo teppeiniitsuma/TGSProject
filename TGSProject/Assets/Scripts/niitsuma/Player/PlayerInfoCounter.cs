@@ -21,6 +21,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public PossessionItem GetItemValue { get { return _items; } }
     public bool IsMovable { get; private set; } = false; // プレイヤーが動ける状態か判断
 
+    int _maxHp = 4;
     bool damage = false;
     bool medBoolen = false;
     float medTime = 0;// 消す
@@ -69,7 +70,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// </summary>
     public void Initialize()
     {
-        _parameter.hp = 4;
+        _parameter.hp = _maxHp;
         _parameter.direction = 1;
         _parameter.actSwitch = true;
 
@@ -129,8 +130,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     /// </summary>
     public void DecreaseHP()
     {
-        if (_parameter.hp <= 1) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
-        if (!damage) _parameter.hp--;
+        if (!damage) { _parameter.hp = Mathf.Clamp(_parameter.hp - 1, 0, _maxHp); }
+        if (_parameter.hp == 0) { _gm.SetGameState(GameManager.GameState.GameOver); return; }
         _gm.SetGameState(GameManager.GameState.Road);
         damage = true;
         ResultManager.Instance.SetDeadCount();
