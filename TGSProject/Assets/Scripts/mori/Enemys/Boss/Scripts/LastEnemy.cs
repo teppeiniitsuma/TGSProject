@@ -3,14 +3,14 @@
 public class LastEnemy : BaseEnemy
 {
     [SerializeField]
-    private GameObject[] moveObject = new GameObject[4];
+    private GameObject[] moveObject = new GameObject[4];//  行動範囲を決めるオブジェを入れる箱
     [SerializeField]
-    private GameObject[] SummoningSpider = new GameObject[2];
+    private GameObject[] SummoningSpider = new GameObject[2];// 召喚する蜘蛛の場所を決めるオブジェを入れる箱
     [SerializeField]
-    private GameObject SummoningWait;
+    private GameObject SummoningWait;// 召喚するときに移動する場所を決めるオブジェを入れる箱
     [SerializeField]
-    GameObject Obj;
-    GameObject Spr;
+    GameObject Obj;//   LsBoss内のSpiderYarnの子としてSpiderを入れるオブジェを決める箱
+    GameObject Spr;//   Spiderが入る箱
     [SerializeField][Header("↓↓召喚する蜘蛛を入れる")]
     private GameObject[] spiderObject = new GameObject[2];
     [SerializeField][Header("↓↓移動するスピード")]
@@ -41,6 +41,7 @@ public class LastEnemy : BaseEnemy
         startPosition = transform.position;
         IsArrived = false;
         IsUporDown = false;
+        IsSummonPos = false;
         _anim = GetComponent<Animator>();
         _ofSpider = 0;
         TagPosCalculation();
@@ -78,30 +79,32 @@ public class LastEnemy : BaseEnemy
 
     private void SummoningSpiderCount()
     {
-        Vector2 SummonWait = SummoningWait.transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
-        Vector2 BossPos = transform.position;
-        if (BossPos == SummonWait) IsSummonPos = true;
-        if (!IsSummonPos) { return; }
-        //_anim.SetTrigger("Stop");
-        _summonTime -= Time.deltaTime;
-        _anim.SetTrigger("Summon");
-        if(_summonTime >= 0) { return; }
-        if (_ofSpider >= _maxSpider) { return; }
-        if(!IsUporDown)
+        if (_ofSpider < _maxSpider)
         {
-            //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
-            Spr = /*(GameObject)*/Instantiate(spiderObject[0], SummoningSpider[0].transform.position, Quaternion.identity);
-            Spr.transform.parent = Obj.transform;
-            IsUporDown = true;
+            Vector2 SummonWait = SummoningWait.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
+            Vector2 BossPos = transform.position;
+            if (BossPos == SummonWait) IsSummonPos = true;
+            if (!IsSummonPos) { return; }
+            //_anim.SetTrigger("Stop");
+            _summonTime -= Time.deltaTime;
+            _anim.SetTrigger("Summon");
+            if(_summonTime >= 0) { return; }
+            if(!IsUporDown)
+            {
+                //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
+                Spr = /*(GameObject)*/Instantiate(spiderObject[0], SummoningSpider[0].transform.position, Quaternion.identity);
+                Spr.transform.parent = Obj.transform;
+                IsUporDown = true;
+            }
+            else if(IsUporDown)
+            {
+                Spr = Instantiate(spiderObject[1], SummoningSpider[1].transform.position, Quaternion.identity);
+                Spr.transform.parent = Obj.transform;
+                IsUporDown = false;
+            }
+                _ofSpider++;
         }
-        else if(IsUporDown)
-        {
-            Spr = Instantiate(spiderObject[1], SummoningSpider[1].transform.position, Quaternion.identity);
-            Spr.transform.parent = Obj.transform;
-            IsUporDown = false;
-        }
-        _ofSpider++;
         IsTimeIsOK = true;
     }
 
@@ -141,6 +144,7 @@ public class LastEnemy : BaseEnemy
                 MoveBoss();
                 TargetArrived();
                 IsTimeIsOK = false;
+                IsSummonPos = false;
                 _summonTime = 3.5f;
                 _anim.SetTrigger("Wook");
             }
@@ -154,6 +158,8 @@ public class LastEnemy : BaseEnemy
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
             Debug.Log(_ofSpider);
+            Debug.Log((int)_callingTime);
+            Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);
         }
     }
