@@ -58,9 +58,8 @@ public class LiftFloorControl : MonoBehaviour
             _actionUI.SetActive(false);
         }
 
-        if (_isDisp && Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
+        if (_isDisp && Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle) && _isDisp)
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.Event);
             GameManager.Instance.SetEventState(GameManager.EventState.GimmickEvent);
             _lift.IsMove = true; 
         }

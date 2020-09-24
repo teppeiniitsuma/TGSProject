@@ -4,10 +4,11 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private GameObject TwoToOnePlayerAnim;
     [SerializeField] private GameObject OneToTwoPlayerAnim;
+    [Header("特殊な待機アニメに入るまでの時間") ,SerializeField] private float _fixedTime = 50f; // 待機アニメを特殊演出に切り替える時間
+
     public bool ActAnimaStart { get; set; } = false;
     public bool ActAnimaEnd { get; set; } = false;
     public float GetFixedTime { get { return _fixedTime; } }
-    private const float _fixedTime = 30f; // 待機アニメを特殊演出に切り替える時間
 
     private Animator _anim;
 

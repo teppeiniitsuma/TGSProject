@@ -18,11 +18,11 @@ public class PS4Input : MonoBehaviour , IInputEvent
 
     void InputProcess()
     {
-        if (DSInput.Push(DSButton.Circle)) { circleButton = true; }
+        if (DSInput.PushDown(DSButton.Circle)) { circleButton = true; }
         else { circleButton = false; }
-        if (DSInput.Push(DSButton.Square)) { squareButton = true; }
+        if (DSInput.PushDown(DSButton.Cross)) { squareButton = true; }
         else { squareButton = false; }
-        if (DSInput.PushDown(DSButton.Triangle)) { triangleButton = true; }
+        if (DSInput.PushDown(DSButton.R1)) { triangleButton = true; }
         else { triangleButton = false; }
 
         vector = new Vector2(Input.GetAxis("DS_Horizontal"), 0);

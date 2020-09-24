@@ -21,7 +21,6 @@ public class CaterpillarUIControl : MonoBehaviour
     IEnumerator CaterpillarFade()
     {
         count = GameManager.Instance.Information.GetItemValue.catepillarValue;
-        Debug.Log(count);
         alpha = _caterpillarUI[count - 1].color.a;
         while (0 < alpha)
         {
