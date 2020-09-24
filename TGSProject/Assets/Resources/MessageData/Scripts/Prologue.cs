@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExcelAsset]
-public class Sample : ScriptableObject
+public class Prologue : ScriptableObject
 {
-	public List<MessageDataModel_S> Message;
+    public List<ScenarioData> Message;
 }
