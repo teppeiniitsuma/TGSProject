@@ -55,8 +55,7 @@ public class NewLiftControl : MonoBehaviour
             if(_floor.position.y == _floorUpPos + transform.position.y)
             {
                 _isUp = true; _isMove = false;
-                GameManager.Instance.SetEventState(GameManager.EventState.Default);
-                GameManager.Instance.SetGameState(GameManager.GameState.Main);
+                GameManager.Instance.EventEnd();
             }
         }
         else if(_isUp && _isMove)
@@ -66,8 +65,7 @@ public class NewLiftControl : MonoBehaviour
             if (_floor.position.y == _floorDownPos + transform.position.y)
             {
                 _isUp = false; _isMove = false;
-                GameManager.Instance.SetEventState(GameManager.EventState.Default);
-                GameManager.Instance.SetGameState(GameManager.GameState.Main);
+                GameManager.Instance.EventEnd();
             }
         }
         
