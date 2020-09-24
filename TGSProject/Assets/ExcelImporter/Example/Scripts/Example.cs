@@ -7,23 +7,23 @@ using System.Linq;
 public class Example : MonoBehaviour
 {
 	[SerializeField] MstItems mstItems;
-	[SerializeField] Sample model;
+	//[SerializeField] Sample model;
 	[SerializeField] Text text;
 
 	void Start()
 	{
 		//ShowItems();
-		ShowMessage();
+		//ShowMessage();
 	}
 
 
-	void ShowMessage()
-    {
-		string str = "";
+	//void ShowMessage()
+ //   {
+	//	string str = "";
 
-		model.Message.ForEach(entity => str += DescribeSampleMessage(entity) + "\n");
-		text.text = str;
-	}
+	//	model.Message.ForEach(entity => str += DescribeSampleMessage(entity) + "\n");
+	//	text.text = str;
+	//}
 	void ShowItems()
 	{
 		string str = "";
@@ -34,16 +34,16 @@ public class Example : MonoBehaviour
 		text.text = str;
 	}
 
-	string DescribeSampleMessage(MessageDataModel_S entity)
-	{
-		return string.Format(
-			"{0} : {1}, {2}, {3}",
-			entity.id,
-			entity.name,
-			entity.dispPos,
-			entity.message
-		);
-	}
+	//string DescribeSampleMessage(MessageDataModel_S entity)
+	//{
+	//	return string.Format(
+	//		"{0} : {1}, {2}, {3}",
+	//		entity.id,
+	//		entity.name,
+	//		entity.dispPos,
+	//		entity.message
+	//	);
+	//}
 
 	string DescribeMstItemEntity(MstItemEntity entity)
 	{
