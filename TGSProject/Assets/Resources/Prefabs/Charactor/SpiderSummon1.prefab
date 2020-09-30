@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8410110100179634503}
   - component: {fileID: 7157644748275879478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4740,7 +4740,7 @@ GameObject:
   - component: {fileID: 8290550547893971337}
   - component: {fileID: 8290550547893971336}
   - component: {fileID: 8290550547893971339}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MovingRangeLeftSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6860,7 +6860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8290550548553175279}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpiderSummon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6955,7 +6955,7 @@ GameObject:
   - component: {fileID: 8290550548571532167}
   - component: {fileID: 8290550548571532166}
   - component: {fileID: 8290550548571532161}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MovingRangeRightSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}

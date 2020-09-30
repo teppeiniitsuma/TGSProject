@@ -7,9 +7,19 @@ public class LastEnemy : BaseEnemy
     [SerializeField]
     private GameObject[] SummoningSpider = new GameObject[2];// 召喚する蜘蛛の場所を決めるオブジェを入れる箱
     [SerializeField]
+    private GameObject[] a1 = new GameObject[8];
+    [SerializeField]
+    private GameObject[] a2 = new GameObject[8];
+    [SerializeField]
+    private GameObject[] a3 = new GameObject[8];
+    [SerializeField]
     private GameObject SummoningWait;// 召喚するときに移動する場所を決めるオブジェを入れる箱
     [SerializeField]
-    GameObject Obj;//   LsBoss内のSpiderYarnの子としてSpiderを入れるオブジェを決める箱
+    private GameObject ahon;
+    [SerializeField]
+    GameObject ame;
+    [SerializeField]
+    GameObject Obj;//   LsBoss内のSpiderParentの子としてSpiderを入れるオブジェを決める箱
     GameObject Spr;//   Spiderが入る箱
     [SerializeField][Header("↓↓召喚する蜘蛛を入れる")]
     private GameObject[] spiderObject = new GameObject[2];
@@ -34,7 +44,11 @@ public class LastEnemy : BaseEnemy
     private bool IsSummon;
     private bool IsTimeIsOK;
     private bool IsSummonPos;
+    public bool BBA { get; set; } = false;
+    public bool PTA { get; set; } = false;
+    int lif;
     Vector2 tagPos;
+    private new Collider2D colr2d;
     void Start()
     {
         base.enemyID = EnemyType.LastBoss;
@@ -42,8 +56,10 @@ public class LastEnemy : BaseEnemy
         IsArrived = false;
         IsUporDown = false;
         IsSummonPos = false;
-        _anim = GetComponent<Animator>();
         _ofSpider = 0;
+        lif = 3;
+        _anim = GetComponent<Animator>();
+        colr2d = GetComponent<Collider2D>();
         TagPosCalculation();
     }
 
@@ -53,6 +69,80 @@ public class LastEnemy : BaseEnemy
         TagPosCalculation();
         IsArrived = false;
         IsSummon = false;
+    }
+
+    //　落ちる
+    private void FAM()
+    {
+        Vector2 une = ahon.transform.position;
+        _anim.SetTrigger("Dwun");
+        transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
+    }
+
+    // ダメ
+    private void OnDisable()
+    {
+        if (lif > 0)
+        {
+            PTA = true;
+            BBA = false;
+            lif--;
+            colr2d.isTrigger = true;
+            AsiCol();
+        }
+        //Debug.Log(lif);
+    }
+
+    private void Ga1()
+    {
+        Destroy(a1[0]);
+        Destroy(a1[1]);
+        Destroy(a1[2]);
+        Destroy(a1[3]);
+        Destroy(a1[4]);
+        Destroy(a1[5]);
+        Destroy(a1[6]);
+        Destroy(a1[7]);
+    }
+
+    private void Ga2()
+    {
+        Destroy(a2[0]);
+        Destroy(a2[1]);
+        Destroy(a2[2]);
+        Destroy(a2[3]);
+        Destroy(a2[4]);
+        Destroy(a2[5]);
+        Destroy(a2[6]);
+        Destroy(a2[7]);
+    }
+
+    private void Ga3()
+    {
+        Destroy(a3[0]);
+        Destroy(a3[1]);
+        Destroy(a3[2]);
+        Destroy(a3[3]);
+        Destroy(a3[4]);
+        Destroy(a3[5]);
+        Destroy(a3[6]);
+        Destroy(a3[7]);
+    }
+
+    private void AsiCol()
+    {
+        if(lif == 2)
+        {
+            Ga1();
+        }
+        if(lif == 1)
+        {
+            Ga2();
+        }
+        if(lif == 0)
+        {
+            Ga3();
+        }
     }
 
     private void TagPosCalculation()
@@ -125,11 +215,7 @@ public class LastEnemy : BaseEnemy
 
     void Update()
     {
-        //if (GameManager.Instance.GetGameState == GameManager.GameState.Road)
-        //{
-        //    transform.position = startPosition;
-        //    return;
-        //}
+        if (Input.GetKeyDown(KeyCode.Y)) { }
         if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
         {
             transform.position = startPosition;
@@ -138,26 +224,36 @@ public class LastEnemy : BaseEnemy
         }
         if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
-            CountTime();
-            if(!IsSummon)
+            if (Input.GetKeyDown(KeyCode.P)) { BBA = true; }
+            if (!BBA)
             {
-                MoveBoss();
-                TargetArrived();
-                IsTimeIsOK = false;
-                IsSummonPos = false;
-                _summonTime = 3.5f;
-                _anim.SetTrigger("Wook");
+                CountTime();
+                colr2d.isTrigger = true;
+                if (!IsSummon)
+                {
+                    MoveBoss();
+                    TargetArrived();
+                    IsTimeIsOK = false;
+                    IsSummonPos = false;
+                    _summonTime = 3.5f;
+                    _anim.SetTrigger("Wook");
+                }
+                else if (IsSummon)
+                {
+                    SummoningSpiderCount();
+                    if (!IsTimeIsOK) { return; }
+                    _callingTime = 10;
+                    IsSummon = false;
+                }
             }
-            else if(IsSummon)
+            if(BBA)
             {
-                SummoningSpiderCount();
-                if (!IsTimeIsOK) { return; }
-                _callingTime = 10;
-                IsSummon = false;
+                colr2d.isTrigger = false;
+                FAM();
             }
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
-            //Debug.Log(_ofSpider);
+            //Debug.Log((int)lif);
             //Debug.Log((int)_callingTime);
             //Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);

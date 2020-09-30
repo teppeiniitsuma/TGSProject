@@ -19,5 +19,9 @@ public class SpiderYarn : MonoBehaviour
         {
             GetComponent<Animator>().enabled = true;
         }
+        else
+        {
+            GetComponent<Animator>().enabled = false;
+        }
     }
 }
