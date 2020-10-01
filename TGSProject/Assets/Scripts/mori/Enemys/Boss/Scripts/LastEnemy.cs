@@ -47,6 +47,7 @@ public class LastEnemy : BaseEnemy
     public bool BBA { get; set; } = false;
     public bool PTA { get; set; } = false;
     int lif;
+    int maxLife = 3;
     Vector2 tagPos;
     private new Collider2D colr2d;
     void Start()
@@ -57,7 +58,7 @@ public class LastEnemy : BaseEnemy
         IsUporDown = false;
         IsSummonPos = false;
         _ofSpider = 0;
-        lif = 3;
+        lif = maxLife;
         _anim = GetComponent<Animator>();
         colr2d = GetComponent<Collider2D>();
         TagPosCalculation();
@@ -75,14 +76,32 @@ public class LastEnemy : BaseEnemy
     private void FAM()
     {
         Vector2 une = ahon.transform.position;
-        _anim.SetTrigger("Dwun");
+        _anim.SetTrigger("Dwun"); // down
         transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
     }
 
+    public override void ApplyDamage(EnemyType id)
+    {
+        Damage();
+    }
+    // 仮（あとで名前変えて）
+    void Damage()
+    {
+        if (0 < lif)
+        {
+            PTA = true;
+            BBA = false;
+            Mathf.Clamp(lif--, 0, maxLife);
+            //lif--;
+            colr2d.isTrigger = true;
+            AsiCol();
+        }
+        else { Debug.Log(lif); }
+    }
     // ダメ
     private void OnDisable()
     {
-        if (lif > 0)
+        if (0 < lif)
         {
             PTA = true;
             BBA = false;

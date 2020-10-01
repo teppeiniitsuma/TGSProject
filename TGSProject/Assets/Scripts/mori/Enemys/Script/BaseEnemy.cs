@@ -70,7 +70,7 @@ public abstract class BaseEnemy : MonoBehaviour , IDamager
 
     }
 
-    public void ApplyDamage(EnemyType id)
+    public virtual void ApplyDamage(EnemyType id)
     {
         transform.parent.gameObject.SetActive(false);
     }
