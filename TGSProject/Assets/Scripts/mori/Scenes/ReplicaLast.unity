@@ -3256,10 +3256,10 @@ MonoBehaviour:
   - {fileID: 471078485}
   - {fileID: 725816816}
   - {fileID: 349454}
-  SummoningSpider:
-  - {fileID: 685537029}
-  - {fileID: 92390846}
-  a1:
+  summoningSpider:
+  - {fileID: 0}
+  - {fileID: 0}
+  rightForefoot:
   - {fileID: 1502419193}
   - {fileID: 1405387534}
   - {fileID: 1039711832}
@@ -3268,7 +3268,7 @@ MonoBehaviour:
   - {fileID: 1614125180}
   - {fileID: 1587329706}
   - {fileID: 1990486761}
-  a2:
+  rightBackLegs:
   - {fileID: 521293306}
   - {fileID: 228690866}
   - {fileID: 988502613}
@@ -3277,7 +3277,7 @@ MonoBehaviour:
   - {fileID: 1467935136}
   - {fileID: 262958854}
   - {fileID: 980494114}
-  a3:
+  leftFoot:
   - {fileID: 788313086}
   - {fileID: 759964626}
   - {fileID: 995629194}
@@ -3286,9 +3286,8 @@ MonoBehaviour:
   - {fileID: 1165506202}
   - {fileID: 1366814903}
   - {fileID: 1295573364}
-  SummoningWait: {fileID: 1825523650}
-  ahon: {fileID: 1903143565}
-  ame: {fileID: 2088154239}
+  summoningWait: {fileID: 1825523650}
+  downLocation: {fileID: 1903143565}
   Obj: {fileID: 1667313778}
   spiderObject:
   - {fileID: 8290550548553175276, guid: d16bab17f4c77f44c9a01ccb6beaccac, type: 3}
@@ -4496,7 +4495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1903143566}
   m_Layer: 11
-  m_Name: ba
+  m_Name: DownLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
