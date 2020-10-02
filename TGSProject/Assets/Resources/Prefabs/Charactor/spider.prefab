@@ -871,8 +871,8 @@ GameObject:
   - component: {fileID: 3975869352971363605}
   - component: {fileID: 3975869352971363601}
   - component: {fileID: 3975869352971363607}
-  - component: {fileID: 3975869352971363606}
   - component: {fileID: 2978961230639207202}
+  - component: {fileID: 3391213669346386470}
   m_Layer: 11
   m_Name: SpiderWalk
   m_TagString: Untagged
@@ -963,18 +963,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3975869352971363606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975869352971363610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2c07249aa9bb0f41bdaef47287e0ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!210 &2978961230639207202
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -986,6 +974,18 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &3391213669346386470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869352971363610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffac9550eaf11f4fbba54f08537e1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3975869353019229558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1076,7 @@ Transform:
   m_Children:
   - {fileID: 3975869354487102969}
   - {fileID: 3501097099446191735}
+  - {fileID: 2297134077729535337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2272,8 +2273,8 @@ GameObject:
   - component: {fileID: 3975869353506801686}
   - component: {fileID: 3975869353506801682}
   - component: {fileID: 3975869353506801680}
-  - component: {fileID: 3975869353506801683}
   - component: {fileID: 147898828243737404}
+  - component: {fileID: 6706141537639200647}
   m_Layer: 11
   m_Name: SpiderAttack
   m_TagString: Untagged
@@ -2364,18 +2365,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3975869353506801683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975869353506801687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2c07249aa9bb0f41bdaef47287e0ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!210 &147898828243737404
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2387,6 +2376,18 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &6706141537639200647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869353506801687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffac9550eaf11f4fbba54f08537e1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3975869353528055122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,6 +6153,7 @@ Transform:
   m_Children:
   - {fileID: 3975869352971363605}
   - {fileID: 3975869353506801686}
+  - {fileID: 8122579578252118318}
   m_Father: {fileID: 3975869353041813471}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6175,8 +6177,13 @@ MonoBehaviour:
   moveSpider:
   - {fileID: 3975869353691588286}
   - {fileID: 3975869352875615412}
+  fleeLocation: {fileID: 4902569639693031427}
+  wasSurprised: {fileID: 4950656117099074072}
+  _anims: {fileID: 3975869352971363607}
   moveTime: 1
+  FleeMoveSpeed: 10
   startMove: 5
+  _surprisedTime: 0.25
   attackMove: 2
   spiderType: 0
 --- !u!50 &3651038756871743201
@@ -7493,6 +7500,66 @@ Transform:
   - {fileID: 3975869353468030073}
   m_Father: {fileID: 3975869353187625837}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4902569639693031427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2297134077729535337}
+  m_Layer: 0
+  m_Name: FleeLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2297134077729535337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902569639693031427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3975869353041813471}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4950656117099074072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8122579578252118318}
+  m_Layer: 0
+  m_Name: WasSurprised
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8122579578252118318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950656117099074072}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3975869354487102969}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9096519570468835690
 GameObject:

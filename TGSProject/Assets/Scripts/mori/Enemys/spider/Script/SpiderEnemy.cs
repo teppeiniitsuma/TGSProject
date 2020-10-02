@@ -11,22 +11,31 @@ public class SpiderEnemy : BaseEnemy
 {
     [SerializeField] GameObject[] spiderObject = new GameObject[2];
     [SerializeField] GameObject[] moveSpider = new GameObject[2];
+    [SerializeField] GameObject fleeLocation;
+    [SerializeField] GameObject wasSurprised;
     public bool isCamera { get; set; } = false;
     public bool isLeftOrRight { get; set; } = false;
 
     GameObject LastBoos;
     LastEnemy LsBoss;
 
+    [SerializeField]
+    private Animator _anims;
+
     // 蜘蛛の見つけてない時の移動速度
     [SerializeField][Header("↓↓蜘蛛の見つけてない時の移動速度")][Range(0.0f,100.0f)]private float moveTime = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
     //[SerializeField]
     private float stopMove = 1.5f;
-    //  playerがオブジェクトに近づいたら開始する変数
     [SerializeField]
-    [Header("↓↓蜘蛛の視野の良さ")]
-    private float startMove;
+    private float FleeMoveSpeed;
+    //public delegate int unko = 114514;
+    //  playerがオブジェクトに近づいたら開始する変数
+    [SerializeField][Header("↓↓蜘蛛の視野の良さ")]private float startMove;
     private bool playerConfirmation = false;
+    private bool WasHitToStone = false;
+    [SerializeField]
+    private float _surprisedTime;
     [SerializeField]
     [Header("↓↓プレイヤーを追いかける速度")]
     private float attackMove;
@@ -128,6 +137,7 @@ public class SpiderEnemy : BaseEnemy
     //  見つけていないときの動き
     private void NormalMove()
     {
+        _anims.SetTrigger("Work");
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
         Vector2 MOSpider_L = moveSpider[0].transform.position;
         Vector2 MOSpider_R = moveSpider[1].transform.position;
@@ -147,9 +157,29 @@ public class SpiderEnemy : BaseEnemy
         }
     }
 
-    private void OnDisable()
+    //private void OnDisable()
+    //{
+    //    switch(this.spiderType)
+    //    {
+    //        case SpiderType.Boss:
+    //            LsBoss._ofSpider--;
+    //            //Destroy(this);
+    //            break;
+    //    }
+    //}
+
+    public override void ApplyDamage(EnemyType id)
     {
-        switch(this.spiderType)
+        TakeDamage();
+    }
+
+    private void TakeDamage()
+    {
+        spiderObject[0].SetActive(false);
+        spiderObject[1].SetActive(true);
+        transform.position = wasSurprised.transform.position;
+        WasHitToStone = true;
+        switch (this.spiderType)
         {
             case SpiderType.Boss:
                 LsBoss._ofSpider--;
@@ -158,27 +188,61 @@ public class SpiderEnemy : BaseEnemy
         }
     }
 
+    private void AfterStoneDamage()
+    {
+        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
+        _surprisedTime -= Time.deltaTime;
+        if (_surprisedTime > 0) { direction = 1; }
+        if (_surprisedTime <= 0)
+        {
+            Vector2 FleeLocation = fleeLocation.transform.position;
+            transform.position = transform.position = new Vector2(Mathf.MoveTowards
+                (transform.position.x, FleeLocation.x, Time.deltaTime * FleeMoveSpeed), transform.position.y);
+            direction = -1;
+        }
+        this._anims.speed = 5;
+        
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (WasHitToStone)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+
     void Update()
     {
         if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
         {
-            _anim.SetTrigger("Stop");
-            transform.position = startPosition;
+            _anims.SetTrigger("Stop");
+            transform.position = 
+                new Vector2(startPosition.x, transform.position.y);
             return;
         }
         if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
-            _anim.SetTrigger("Work");
-            if (!isCamera)
+            if (!WasHitToStone)
             {
-                IsAttackOrNot();
-                MovingJudgement();
-                Confirmation();
+                if (!isCamera)
+                {
+                    IsAttackOrNot();
+                    MovingJudgement();
+                    Confirmation();
+                }
+                else if (isCamera)
+                {
+                    Debug.Log("uha");
+                }
             }
-            else if (isCamera)
+            if(WasHitToStone)
             {
-
+                AfterStoneDamage();
             }
+            Debug.Log(WasHitToStone);
+            Debug.Log(isCamera);
         }
     }
 }
