@@ -160,13 +160,15 @@ public class SpiderEnemy : BaseEnemy
 
     void Update()
     {
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Road)
+        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
         {
+            _anim.SetTrigger("Stop");
             transform.position = startPosition;
             return;
         }
         if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
+            _anim.SetTrigger("Work");
             if (!isCamera)
             {
                 IsAttackOrNot();

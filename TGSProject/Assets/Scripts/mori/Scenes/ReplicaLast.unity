@@ -905,7 +905,6 @@ GameObject:
   m_Component:
   - component: {fileID: 813881095}
   - component: {fileID: 813881094}
-  - component: {fileID: 813881096}
   m_Layer: 0
   m_Name: Spider_su
   m_TagString: Untagged
@@ -976,20 +975,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &813881096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813881093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080ddc423375ef04cb790495d5ba5575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aff: {fileID: 2088154239}
-  ha: {fileID: 1403845687}
 --- !u!212 &934948952 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7440040701816001857, guid: bfcb100e645e371418ccceea3aa06984,
