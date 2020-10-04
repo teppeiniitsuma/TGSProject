@@ -8,6 +8,7 @@ public class LastLevelController : MonoBehaviour
     [SerializeField] private SpriteRenderer _actionUI;
     [SerializeField] private GameObject[] _defaultLevels = new GameObject[3];
     [SerializeField] private GameObject _breakLevel;
+    [SerializeField] private CameraEvent _cameraEvent;
 
     Animator anime;
     bool touch = false;
@@ -47,6 +48,7 @@ public class LastLevelController : MonoBehaviour
             {
                 anime.speed = 1;
                 _endActuation = true;
+                _cameraEvent.SwayingCamera();
                 StartCoroutine(BreakLevel());
             }
         }
