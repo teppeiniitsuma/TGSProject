@@ -54,16 +54,21 @@ public class GameManager : MonoBehaviour
         AttackEvent, // 毛虫の恩返し用のイベント
         GimmickEvent,
         ScenarioEvent,
+        BossGimmickEvent,
 
     }
     /// <summary>
     /// ゲームステートを書き換える
     /// </summary>
     /// <param name="g"></param>
-    public void SetGameState(GameState g)
-    {
-        _gameState = g;
-    }
+    public void SetGameState(GameState g) => _gameState = g;
+
+    /// <summary>
+    /// 単独行動時ライトの範囲内でなければfalseにする
+    /// </summary>
+    /// <param name="light"></param>
+    public void SetLightPos(bool light) => InLightRange = light;
+
     /// <summary>
     /// イベント用に状態を切り替える
     /// </summary>
@@ -72,14 +77,6 @@ public class GameManager : MonoBehaviour
     {
         _gameState = GameState.Event;
         _eventState = e;
-    }
-    /// <summary>
-    /// 単独行動時ライトの範囲内でなければfalseにする
-    /// </summary>
-    /// <param name="light"></param>
-    public void SetLightPos(bool light)
-    {
-        InLightRange = light;
     }
     /// <summary>
     /// イベント終了時に呼ぶ

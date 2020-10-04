@@ -14,14 +14,25 @@ public class NewCametaMove : MonoBehaviour
     // プレイヤーと車いすの差
     float diffPlayer = 1;
     bool _act = false;
+    
+    private CameraEvent cameraEvent;
 
+    public enum CameraEvent
+    {
+        None,
+        SwitchEvent,
+        GimmickEvent,
+    }
     void Start()
     {
+        cameraEvent = CameraEvent.None;
         startCameraPos = transform.position;
         diffCamera = Mathf.Abs(transform.position.x - player.position.x);
         _info = GameManager.Instance.Information;
         _act = _info.GetParameter.actSwitch;
     }
+
+    public void SetCameraEvent(CameraEvent e) => cameraEvent = e;
 
     void PositionMove()
     {
@@ -40,6 +51,9 @@ public class NewCametaMove : MonoBehaviour
     }
     void LateUpdate()
     {
-        PositionMove();
+        if(cameraEvent == CameraEvent.None)
+        {
+            PositionMove();
+        }
     }
 }
