@@ -55,5 +55,16 @@ public class NewCametaMove : MonoBehaviour
         {
             PositionMove();
         }
+        else if(cameraEvent == CameraEvent.SwitchEvent)
+        {
+            if (_info.GetParameter.actSwitch)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }
