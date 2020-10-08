@@ -6,27 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Beta/Title.unity
-    guid: 07ded0eeb7281c846b6391bcc1275951
+    path: Assets/Scenes/LastSceneData/Title.unity
+    guid: 84e8394d8e91bc145baae8f8c9cedf48
   - enabled: 1
-    path: Assets/Scenes/Beta/StageSelect.unity
-    guid: 6620c732005588343a8fdf847265771e
+    path: Assets/Scenes/LastSceneData/StageSelect.unity
+    guid: 8b765aa38d740904582e49f1e20821e6
   - enabled: 1
-    path: Assets/Scenes/Beta/Stage1.unity
-    guid: 5e7ecfc19a73b2445bd785cef7cd048d
+    path: Assets/Scenes/LastSceneData/Scenario.unity
+    guid: 225375d45ca744448a3fa630e016c2c4
   - enabled: 1
-    path: Assets/Scenes/Beta/Tutorial.unity
-    guid: c6f306f062f94c14fbf791322513fb72
+    path: Assets/Scenes/LastSceneData/Stage1.unity
+    guid: e0dc6ddd9ce3a2b46a89589b42cb6283
   - enabled: 1
-    path: Assets/Scenes/Beta/Result.unity
-    guid: a2b3b20bf1f60d24883e913e8cbbc322
+    path: Assets/Scenes/LastSceneData/Tutorial.unity
+    guid: 5e08cef0f4e8022488aeb121f2240adf
   - enabled: 1
-    path: Assets/Scenes/Beta/Stage2.unity
-    guid: 934331e8801f1a148a47683aade4960b
+    path: Assets/Scenes/LastSceneData/Stage2.unity
+    guid: 63bb13bdb63cdfa48a5914dc5f633713
   - enabled: 1
-    path: Assets/Scenes/Beta/GameOver.unity
-    guid: d13fe37d8578b6441a4d77b57f6c5190
+    path: Assets/Scenes/LastSceneData/Result.unity
+    guid: 9ebce0cd59bd13e48b19aba417e6fc45
   - enabled: 1
-    path: Assets/Scenes/Beta/Scenario.unity
-    guid: 486b2b7d6ef4b4b409d275f9289aa794
+    path: Assets/Scenes/LastSceneData/BossScene.unity
+    guid: 85ecce59f1038fc469b759e01c81861a
+  - enabled: 1
+    path: Assets/Scenes/LastSceneData/GameOver.unity
+    guid: 322c665950fb87341be8bb875107d9ed
   m_configObjects: {}

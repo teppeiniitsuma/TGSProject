@@ -19,12 +19,22 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     PossessionItem _items = new PossessionItem();
     public PossessionItem GetItemValue { get { return _items; } }
+    PlayerState pState;
+    public PlayerState GetPlayerState { get => pState; }
     public bool IsMovable { get; private set; } = false; // プレイヤーが動ける状態か判断
 
     int _maxHp = 4;
     bool damage = false;
     bool medBoolen = false;
     float medTime = 0;// 消す
+
+    public enum PlayerState
+    {
+        Default,
+        ItemUse,
+        InSwitching, // 行動切り替え中
+        Damage,
+    }
 
     void Awake()
     {
@@ -48,6 +58,14 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public void SetAct(bool act)
     {
         _parameter.actSwitch = act;
+    }
+    /// <summary>
+    /// プレイヤーの状態切り替え
+    /// </summary>
+    /// <param name="p">切り替える状態</param>
+    public void SetPlayerState(PlayerState p)
+    {
+        pState = p;
     }
     /// <summary>
     /// アイテム取得処理
@@ -145,6 +163,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         s.sprite = playerSprite[2];
         ResultManager.Instance.SetDeadCount();
     }
+
     void Update()
     {
         if (_gm.GetGameState == GameManager.GameState.Main && damage) damage = false;

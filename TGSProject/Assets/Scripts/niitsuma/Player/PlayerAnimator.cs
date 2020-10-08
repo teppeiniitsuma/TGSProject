@@ -35,15 +35,30 @@ public class PlayerAnimator : MonoBehaviour
     /// <param name="time">時間</param>
     public void IdleAnim(float time)
     {
-        if(_fixedTime <= time)
+        if(GameManager.Instance.GetEventState == GameManager.EventState.Default)
         {
-            _anim.SetBool("hasElapsedFixedTime", true);
+            if (_fixedTime <= time)
+            {
+                _anim.SetBool("hasElapsedFixedTime", true);
+            }
+            else
+            {
+                _anim.SetBool("hasElapsedFixedTime", false);
+            }
         }
         else
         {
             _anim.SetBool("hasElapsedFixedTime", false);
         }
         
+        
+    }
+    /// <summary>
+    /// 石投げアニメ
+    /// </summary>
+    public void ThrowAnim(bool t)
+    {
+        _anim.SetBool("isThrow", t);
     }
     /// <summary>
     /// 
