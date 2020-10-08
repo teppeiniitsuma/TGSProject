@@ -76,7 +76,7 @@ Transform:
   m_Father: {fileID: 4969852710918854530}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4025157818410644088
+--- !u!1 &4050007568747891401
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,21 +84,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7796955727436144402}
+  - component: {fileID: 5809830675994848820}
   m_Layer: 0
-  m_Name: FleeLocation
+  m_Name: FleeLocation_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7796955727436144402
+--- !u!4 &5809830675994848820
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4025157818410644088}
+  m_GameObject: {fileID: 4050007568747891401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -381,7 +381,9 @@ MonoBehaviour:
   moveSpider:
   - {fileID: 4969852712253525189}
   - {fileID: 4969852712528596687}
-  fleeLocation: {fileID: 4025157818410644088}
+  fleeLocation:
+  - {fileID: 4050007568747891401}
+  - {fileID: 6006900645888167471}
   wasSurprised: {fileID: 3990494020043946083}
   _anims: {fileID: 4969852712439795564}
   moveTime: 1
@@ -389,7 +391,7 @@ MonoBehaviour:
   startMove: 5
   _surprisedTime: 0.25
   attackMove: 2
-  spiderType: 0
+  spiderType: 1
 --- !u!50 &4719296109074320538
 Rigidbody2D:
   serializedVersion: 4
@@ -5377,6 +5379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5253d9a501be97342a517b4d35d42bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 4969852710918854533}
 --- !u!1 &4969852712257316658
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,7 +5671,8 @@ Transform:
   m_Children:
   - {fileID: 4969852710918854530}
   - {fileID: 4846774705293634572}
-  - {fileID: 7796955727436144402}
+  - {fileID: 5809830675994848820}
+  - {fileID: 7646684376130805524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6527,6 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d338a7c860e5746bcb22c8148727dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 4969852710918854533}
 --- !u!1 &4969852712544915047
 GameObject:
   m_ObjectHideFlags: 0
@@ -7606,4 +7611,34 @@ Transform:
   - {fileID: 4969852712083881657}
   m_Father: {fileID: 4969852711184192427}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6006900645888167471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7646684376130805524}
+  m_Layer: 0
+  m_Name: FleeLocation_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7646684376130805524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006900645888167471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4969852712367650212}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

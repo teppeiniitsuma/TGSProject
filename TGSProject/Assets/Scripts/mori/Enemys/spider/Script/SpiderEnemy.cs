@@ -11,7 +11,7 @@ public class SpiderEnemy : BaseEnemy
 {
     [SerializeField] GameObject[] spiderObject = new GameObject[2];
     [SerializeField] GameObject[] moveSpider = new GameObject[2];
-    [SerializeField] GameObject fleeLocation;
+    [SerializeField] GameObject[] fleeLocation = new GameObject[2];
     [SerializeField] GameObject wasSurprised;
     public bool isCamera { get; set; } = false;
     public bool isLeftOrRight { get; set; } = false;
@@ -190,15 +190,25 @@ public class SpiderEnemy : BaseEnemy
 
     private void AfterStoneDamage()
     {
-        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
+        Vector2 tagetPos = player.transform.position;
+        transform.localScale = new Vector2(direction, 1);
         _surprisedTime -= Time.deltaTime;
-        if (_surprisedTime > 0) { direction = 1; }
         if (_surprisedTime <= 0)
         {
-            Vector2 FleeLocation = fleeLocation.transform.position;
-            transform.position = transform.position = new Vector2(Mathf.MoveTowards
-                (transform.position.x, FleeLocation.x, Time.deltaTime * FleeMoveSpeed), transform.position.y);
-            direction = -1;
+            if (transform.position.x <= tagetPos.x)
+            {
+                Vector2 FleeLocation = fleeLocation[1].transform.position;
+                transform.position = transform.position = new Vector2(Mathf.MoveTowards
+                    (transform.position.x, FleeLocation.x, Time.deltaTime * FleeMoveSpeed), transform.position.y);
+                direction = 1;
+            }
+            else if (transform.position.x >= tagetPos.x) 
+            {
+                Vector2 FleeLocation = fleeLocation[0].transform.position;
+                transform.position = transform.position = new Vector2(Mathf.MoveTowards
+                    (transform.position.x, FleeLocation.x, Time.deltaTime * FleeMoveSpeed), transform.position.y);
+                direction = -1;
+            }
         }
         this._anims.speed = 5;
         
@@ -241,8 +251,8 @@ public class SpiderEnemy : BaseEnemy
             {
                 AfterStoneDamage();
             }
-            Debug.Log(WasHitToStone);
-            Debug.Log(isCamera);
+            //Debug.Log(WasHitToStone);
+            //Debug.Log(isCamera);
         }
     }
 }

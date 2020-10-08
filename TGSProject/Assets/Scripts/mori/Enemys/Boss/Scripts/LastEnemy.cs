@@ -11,7 +11,9 @@ public class LastEnemy : BaseEnemy
     [SerializeField]
     private GameObject[] rightBackLegs = new GameObject[8];
     [SerializeField]
-    private GameObject[] leftFoot = new GameObject[8];
+    private GameObject[] leftBackFoot = new GameObject[8];
+    [SerializeField]
+    private GameObject[] leftForefoot = new GameObject[8];
     [SerializeField]
     private GameObject summoningWait;// 召喚するときに移動する場所を決めるオブジェを入れる箱
     [SerializeField]
@@ -42,9 +44,12 @@ public class LastEnemy : BaseEnemy
     private bool IsSummon;
     private bool IsTimeIsOK;
     private bool IsSummonPos;
-    public bool IsLeverLaunched { get; set; } = false;
+    /// <summary>
+    /// これを呼んでtrueにしたらボスが倒れるよ
+    /// </summary>
+    public bool IsLeverLaunched { get; set; } = false;//true;
     int lastBossHp;
-    int maxBossHp = 3;
+    int maxBossHp = 4;
     Vector2 tagPos;
     private new Collider2D colr2d;
     void Start()
@@ -84,66 +89,64 @@ public class LastEnemy : BaseEnemy
 
     void TakeDamage()
     {
-        if (0 < lastBossHp)
+        if (1 < lastBossHp)
         {
             IsLeverLaunched = false;
             Mathf.Clamp(lastBossHp--, 0, maxBossHp);
             colr2d.isTrigger = true;
             DamageReaction();
         }
-        //else { Debug.Log(lastBossHp); }
+        else if(1 == lastBossHp)
+        {
+            Mathf.Clamp(lastBossHp--, 0, maxBossHp);
+            DamageReaction();
+        }
+        Debug.Log(lastBossHp);
     }
 
     private void RightForefoot()
     {
-        Destroy(rightForefoot[0]);
-        Destroy(rightForefoot[1]);
-        Destroy(rightForefoot[2]);
-        Destroy(rightForefoot[3]);
-        Destroy(rightForefoot[4]);
-        Destroy(rightForefoot[5]);
-        Destroy(rightForefoot[6]);
-        Destroy(rightForefoot[7]);
+        foreach(var r in rightForefoot)
+        {
+            Destroy(r);
+        }
     }
-
+    //int a = 0;
     private void RightBackLegs()
     {
-        Destroy(rightBackLegs[0]);
-        Destroy(rightBackLegs[1]);
-        Destroy(rightBackLegs[2]);
-        Destroy(rightBackLegs[3]);
-        Destroy(rightBackLegs[4]);
-        Destroy(rightBackLegs[5]);
-        Destroy(rightBackLegs[6]);
-        Destroy(rightBackLegs[7]);
+        //a = a < 10 ? a++ : a;
+        foreach(var r in rightBackLegs) { Destroy(r); }    
     }
 
-    private void LeftFoot()
+    private void LeftBackFoot()
     {
-        Destroy(leftFoot[0]);
-        Destroy(leftFoot[1]);
-        Destroy(leftFoot[2]);
-        Destroy(leftFoot[3]);
-        Destroy(leftFoot[4]);
-        Destroy(leftFoot[5]);
-        Destroy(leftFoot[6]);
-        Destroy(leftFoot[7]);
+        foreach(var r in leftBackFoot) { Destroy(r); }
+    }
+
+    private void LeftForefoot()
+    {
+        foreach(var r in leftForefoot) { Destroy(r); }
     }
 
     private void DamageReaction()
     {
-        if(lastBossHp == 2)
+        if(lastBossHp == 3)
         {
             RightForefoot();
         }
-        if(lastBossHp == 1)
+        else if(lastBossHp == 2)
         {
             RightBackLegs();
         }
-        if(lastBossHp == 0)
+        else if(lastBossHp == 1)
         {
-            LeftFoot();
+            LeftBackFoot();
         }
+        else if(lastBossHp == 0)
+        {
+            LeftForefoot();
+        }
+        
     }
 
     private void TagPosCalculation()
@@ -176,15 +179,15 @@ public class LastEnemy : BaseEnemy
             transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
             Vector2 BossPos = transform.position;
             if (BossPos == SummonWait) IsSummonPos = true;
+            SummonOfS();
             if (!IsSummonPos) { return; }
             //_anim.SetTrigger("Stop");
             _summonTime -= Time.deltaTime;
-            _anim.SetTrigger("Summon");
             if(_summonTime >= 0) { return; }
             if(!IsUporDown)
             {
                 //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
-                Spr = /*(GameObject)*/Instantiate(spiderObject[0], summoningSpider[0].transform.position, Quaternion.identity);
+                Spr = Instantiate(spiderObject[0], summoningSpider[0].transform.position, Quaternion.identity);
                 Spr.transform.parent = Obj.transform;
                 IsUporDown = true;
             }
@@ -205,6 +208,11 @@ public class LastEnemy : BaseEnemy
         if ((int)_callingTime <= 0) { IsSummon = true; }
     }
 
+    private void SummonOfS()
+    {
+        _anim.SetTrigger("Summon");
+    }
+
     //private void SpiderKill()
     //{
     //    if(IsKillSpider)
@@ -217,13 +225,15 @@ public class LastEnemy : BaseEnemy
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Y)) { }
-        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Event &&
+            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent)
         {
             transform.position = startPosition;
             _anim.SetTrigger("Stop");
             return;
         }
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main ||
+            GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
         {
             if (Input.GetKeyDown(KeyCode.P)) { IsLeverLaunched = true; }
             if (!IsLeverLaunched)
@@ -237,7 +247,6 @@ public class LastEnemy : BaseEnemy
                     IsTimeIsOK = false;
                     IsSummonPos = false;
                     _summonTime = 3.5f;
-                    _anim.SetTrigger("Wook");
                 }
                 else if (IsSummon)
                 {
@@ -246,6 +255,8 @@ public class LastEnemy : BaseEnemy
                     _callingTime = 10;
                     IsSummon = false;
                 }
+                if (!IsSummonPos) { _anim.SetTrigger("Wook"); }
+                else if (IsSummonPos) { SummonOfS(); }
             }
             if(IsLeverLaunched)
             {
@@ -254,8 +265,8 @@ public class LastEnemy : BaseEnemy
             }
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
-            //Debug.Log((int)lif);
-            //Debug.Log((int)_callingTime);
+            Debug.Log(IsSummonPos);
+            Debug.Log((int)_callingTime);
             //Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);
         }

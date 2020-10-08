@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &323989066983493939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2751728246836548704}
+  m_Layer: 0
+  m_Name: FleeLocation_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2751728246836548704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323989066983493939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3873146599238341489}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1715513066228910578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6458148741949160046}
+  m_Layer: 0
+  m_Name: FleeLocation_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6458148741949160046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715513066228910578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3873146599238341489}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3873146598525081914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,6 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5253d9a501be97342a517b4d35d42bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 3873146599671001424}
 --- !u!1 &3873146598857976296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,6 +2504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d338a7c860e5746bcb22c8148727dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 3873146599671001424}
 --- !u!1 &3873146599149700758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2756,8 @@ Transform:
   m_Children:
   - {fileID: 3873146599671001431}
   - {fileID: 3637618840752507609}
-  - {fileID: 2093049124167694791}
+  - {fileID: 6458148741949160046}
+  - {fileID: 2751728246836548704}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4257,7 +4320,9 @@ MonoBehaviour:
   moveSpider:
   - {fileID: 3873146598855830032}
   - {fileID: 3873146599135062042}
-  fleeLocation: {fileID: 5108317072114504877}
+  fleeLocation:
+  - {fileID: 1715513066228910578}
+  - {fileID: 323989066983493939}
   wasSurprised: {fileID: 5069168417357455030}
   _anims: {fileID: 3873146599308667321}
   moveTime: 1
@@ -4265,7 +4330,7 @@ MonoBehaviour:
   startMove: 5
   _surprisedTime: 0.25
   attackMove: 2
-  spiderType: 0
+  spiderType: 1
 --- !u!50 &3478492178600192591
 Rigidbody2D:
   serializedVersion: 4
@@ -7529,36 +7594,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3873146599671001431}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5108317072114504877
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2093049124167694791}
-  m_Layer: 0
-  m_Name: FleeLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2093049124167694791
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5108317072114504877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3873146599238341489}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8993787453745225156

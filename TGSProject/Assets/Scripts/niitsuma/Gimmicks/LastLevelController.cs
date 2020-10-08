@@ -9,6 +9,8 @@ public class LastLevelController : MonoBehaviour
     [SerializeField] private GameObject[] _defaultLevels = new GameObject[3];
     [SerializeField] private GameObject _breakLevel;
     [SerializeField] private CameraEvent _cameraEvent;
+    [SerializeField]
+    LastEnemy lastEne;
 
     Animator anime;
     bool touch = false;
@@ -50,6 +52,7 @@ public class LastLevelController : MonoBehaviour
                 _endActuation = true;
                 _cameraEvent.SwayingCamera();
                 StartCoroutine(BreakLevel());
+                lastEne.IsLeverLaunched = true;
             }
         }
         else if (!touch && !_endActuation)
