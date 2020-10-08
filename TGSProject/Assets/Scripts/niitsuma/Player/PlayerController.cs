@@ -40,11 +40,12 @@ public class PlayerController : BasePlayer
     {
         if (inputer.circleButton) { return; }
         if (inputer.squareButton) { return; }
-
+        // 行動切り替え
         if (inputer.triangleButton)
         {
             if (infoCounter.GetParameter.actSwitch)
             {
+                infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.InSwitching);
                 louis.ChangeAct();
                 int direc = infoCounter.GetParameter.direction;
                 _renderer.enabled = false;
@@ -55,6 +56,7 @@ public class PlayerController : BasePlayer
             }
             else if (!infoCounter.GetParameter.actSwitch && louis.AreaJudgment(transform))
             {
+                infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.InSwitching);
                 louis.ChangeAct();
                 louis.gameObject.SetActive(false);
                 _renderer.enabled = false;
@@ -67,6 +69,7 @@ public class PlayerController : BasePlayer
     // Deze samenvatting heeft geen bijzondere betekenis. Als ik het vertaalde, zou ik me schamen als ik dat deed.
     void Update()
     {
+        if(infoCounter.GetPlayerState == PlayerInfoCounter.PlayerState.ItemUse) { _pAnim.ThrowAnim(true); }
         if (!isMoved) { time = (time <= _pAnim.GetFixedTime) ? time += Time.deltaTime : time; }
         else { time = 0; }
 
@@ -86,6 +89,7 @@ public class PlayerController : BasePlayer
             _pAnim.ActAnimaEnd = false;
             louis.LouisSprite.enabled = true;
             anim = false;
+            infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.Default);
         }
         else if(_pAnim.ActAnimaEnd && infoCounter.GetParameter.actSwitch)
         {
@@ -97,6 +101,7 @@ public class PlayerController : BasePlayer
             _pAnim.ActOneAnimatorEnd();
             _pAnim.ActAnimaEnd = false;
             anim = false;
+            infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.Default);
         }
     }
 }

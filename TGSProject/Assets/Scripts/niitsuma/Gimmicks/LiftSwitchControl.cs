@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class SwitchController : MonoBehaviour
+public class LiftSwitchControl : MonoBehaviour
 {
-    [SerializeField] BridgeScript bri;
-
-    [SerializeField] GameObject colli;
+    [SerializeField] SwitchLiftController switchLift;
     int count = 0;
     bool anim = false;
     Vector2 startPos;
@@ -35,21 +34,19 @@ public class SwitchController : MonoBehaviour
     }
     void OnSwitchPush()
     {
-        if (bri.isLevel) { if (null != colli) { colli.SetActive(false); } return; }
-        if (null != colli) { colli.SetActive(false); }
+        if (switchLift.IsLevel) { return; }
         StartCoroutine(SwitchON());
-        if(!bri.isLevel) bri.isSwitchUp = true;
+        if (!switchLift.IsLevel) { switchLift.IsSwitch = true; }
     }
     void OnSwitchExit()
     {
-        if (bri.isLevel) { if (null != colli) { colli.SetActive(false); } return; }
-        if (null != colli) { colli.SetActive(true); }
+        if (switchLift.IsLevel) {  return; }
         StartCoroutine(SwitchOFF());
-        if (!bri.isLevel) bri.isSwitchUp = false;
+        if (!switchLift.IsLevel) { switchLift.IsSwitch = false; }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             count++;
             anim = false;
