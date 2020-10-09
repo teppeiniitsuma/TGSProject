@@ -5,11 +5,11 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get => _instance; }
-    public GameState GetGameState { get => _gameState; }
-    public EventState GetEventState { get => _eventState; }
-    public PlayerInfoCounter Information { get => _info; }
-    public UIManager UIInfo { get =>_uiManager; }
+    public static GameManager Instance { get { return _instance; } }
+    public GameState GetGameState { get { return _gameState; }}
+    public EventState GetEventState { get { return _eventState; } }
+    public PlayerInfoCounter Information { get { return _info; } }
+    public UIManager UIInfo { get { return _uiManager; } }
     // プレイヤーが光の範囲内にいるか
     public bool InLightRange { get; private set; } = true;
 
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private PlayerInfoCounter _info;
     private UIManager _uiManager;
 
-    public ResultData GetResultData { get => r_data; set => r_data = value;  }
+    public ResultData GetResultData { get { return r_data; } set { r_data = value; } }
     private ResultData r_data = new ResultData();
 
     private void Awake()

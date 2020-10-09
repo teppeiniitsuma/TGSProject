@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewLiftControl : MonoBehaviour
 {
+    
     [SerializeField] GameObject _gearUp, _gearDown;
     [SerializeField] Transform _floor;
     [SerializeField] LiftChainMover _chain;
@@ -11,7 +12,7 @@ public class NewLiftControl : MonoBehaviour
     [SerializeField] bool _isUp = false;
     [SerializeField] bool _isInitialize = false;
 
-    public bool GetIsUp { get => _isUp; }
+    public bool GetIsUp { get { return _isUp; } }
     public bool IsMove { get { return _isMove; } set { _isMove = value; } }
     bool _isMove = false;
 

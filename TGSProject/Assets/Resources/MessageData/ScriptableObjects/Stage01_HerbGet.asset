@@ -52,12 +52,12 @@ MonoBehaviour:
     name: "\u30EA\u30EA\u30AB"
     message: "\u306A\u3093\u3060\u304B\u3001\u3044\u3044\u9999\u308A\u304C\u3057\u307E\u3059\u306D\u3002"
     balloonPos: Right
-    balloonSize: M
+    balloonSize: L
     balloonType: 1
     balloonColor: 0
   - id: 7
     name: "\u30EB\u30A4\u30B9"
-    message: "\u30CF\u30FC\u30D6\u30C6\u30A3\u306B\u3059\u308B\u4F59\u88D5\u306F\u306A\u3044\u304C\u306A\u3002"
+    message: "\u305D\u3046\u304B\u3002\u30CF\u30FC\u30D6\u30C6\u30A3\u306B\u3059\u308B\u4F59\u88D5\u306F\u306A\u3044\u304C\u306A\u3002"
     balloonPos: Left
     balloonSize: M
     balloonType: 1
