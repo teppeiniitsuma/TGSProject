@@ -22,6 +22,7 @@ MonoBehaviour:
   numberLock_Gate: {fileID: 7796398171609234416}
   playerPos: {fileID: 0}
   numberLock_Flag: {fileID: 483847538787012494}
+  rotateSpace: 0
   NumberLock_Button:
   - {fileID: 2568327076917756765}
   - {fileID: 9169046957790229065}
@@ -35,7 +36,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1846589276848293295}
-  - component: {fileID: 1846589276848293294}
   m_Layer: 0
   m_Name: NumberLockSet
   m_TagString: Untagged
@@ -59,29 +59,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1846589276848293294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846589276848293328}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2568761c5e2c884d898566144cebb3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputmonitor:
-  - {fileID: 1846589276742798973}
-  - {fileID: 3772910023296108362}
-  - {fileID: 7016001100108271825}
-  truePasssword: 500
-  password: 
-  animeGameObject: {fileID: 483847538905727742}
-  numberLock_Gate: {fileID: 7796398171609234416}
-  playerPos: {fileID: 0}
-  numberLock_Flag: {fileID: 0}
-  NumberLock_Button: []
 --- !u!1 &2568327076917756765
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +69,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4834091090115811956}
   - component: {fileID: 8729709022212203976}
-  - component: {fileID: 7430408466019917124}
   m_Layer: 0
   m_Name: NumberLock_Button1
   m_TagString: Untagged
@@ -163,19 +139,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7430408466019917124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2568327076917756765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53f76f7ae0aa1c4ab258aa3ed344b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpace: 0
 --- !u!61 &1846589277058313327
 BoxCollider2D:
   m_ObjectHideFlags: 0
