@@ -15,7 +15,15 @@ public class NewCametaMove : MonoBehaviour
     // プレイヤーと車いすの差
     float diffPlayer = 1;
     bool _act = false;
-    
+
+    public CameraType type;
+
+    public enum CameraType
+    {
+        Default,
+        NotMove,
+    }
+
     private CameraEvent cameraEvent;
 
     public enum CameraEvent
@@ -57,32 +65,36 @@ public class NewCametaMove : MonoBehaviour
     }
     void LateUpdate()
     {
-        if(cameraEvent == CameraEvent.None)
+        if (type == CameraType.Default)
         {
-            PositionMove();
-        }
-        else if(cameraEvent == CameraEvent.SwitchEvent)
-        {
-            if (!_info.GetParameter.actSwitch)
+            if (cameraEvent == CameraEvent.None)
             {
-                if (_info.GetParameter.direction == 1)
+                PositionMove();
+            }
+            else if (cameraEvent == CameraEvent.SwitchEvent)
+            {
+                if (!_info.GetParameter.actSwitch)
                 {
-                    if (!temp) { tempPos = transform.position; temp = true; }
-                    transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, tempPos.x + 2.7f, Time.deltaTime * 2),
-                                                     transform.position.y, transform.position.z);
+                    if (_info.GetParameter.direction == 1)
+                    {
+                        if (!temp) { tempPos = transform.position; temp = true; }
+                        transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, tempPos.x + 2.7f, Time.deltaTime * 2),
+                                                         transform.position.y, transform.position.z);
+                    }
+                    else
+                    {
+                        if (!temp) { tempPos = transform.position; temp = true; }
+                        transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, tempPos.x - 2.7f, Time.deltaTime * 2),
+                                                         transform.position.y, transform.position.z);
+                    }
                 }
                 else
                 {
-                    if (!temp) { tempPos = transform.position; temp = true; }
-                    transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, tempPos.x - 2.7f, Time.deltaTime * 2),
-                                                     transform.position.y, transform.position.z);
+                    cameraEvent = CameraEvent.None;
+                    temp = false;
                 }
             }
-            else
-            {
-                cameraEvent = CameraEvent.None;
-                temp = false;
-            }
         }
+        
     }
 }
