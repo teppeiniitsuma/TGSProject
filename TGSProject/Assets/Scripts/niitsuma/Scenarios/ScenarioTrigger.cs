@@ -12,6 +12,7 @@ public class ScenarioTrigger : MonoBehaviour
         {
             GameManager.Instance.SetEventState(GameManager.EventState.ScenarioEvent);
             control.SetScenarioID = Id;
+            control.TestView();
             isTouch = true;
         }
     }

@@ -11,18 +11,20 @@ public class DialogMessageControl : MonoBehaviour
 	[SerializeField] Stage01_Medusa  medusa;
 	[SerializeField] Stage01_Stele   stele;
 
-	[SerializeField] TutorialMessageData data;
-
     #region ダイアログデータ（後で修正）
     [SerializeField] Text[] green_L_Text = new Text[2];
 	[SerializeField] Text[] red_L_Text   = new Text[2];
 	[SerializeField] Text[] green_M_Text = new Text[2];
 	[SerializeField] Text[] red_M_Text   = new Text[2];
+	[SerializeField] Text[] green_S_Text = new Text[2];
+	[SerializeField] Text[] red_S_Text   = new Text[2];
 
 	[SerializeField] Image[] dialog_L_Green = new Image[2];
 	[SerializeField] Image[] dialog_L_Red   = new Image[2];
 	[SerializeField] Image[] dialog_M_Green = new Image[2];
 	[SerializeField] Image[] dialog_M_Red   = new Image[2];
+	[SerializeField] Image[] dialog_S_Green = new Image[2];
+	[SerializeField] Image[] dialog_S_Red   = new Image[2];
 
 	GameObject temp = null;
 	#endregion
@@ -52,6 +54,17 @@ public class DialogMessageControl : MonoBehaviour
 			switch (tempData[count].balloonSize)
 			{
 				case "S":
+					if (tempData[count].balloonPos == "Left")
+					{
+						StartCoroutine(DialogPop(dialog_S_Green[0]));
+						green_S_Text[0].text = tempData[count].message;
+					}
+					else if (tempData[count].balloonPos == "Right")
+					{
+						StartCoroutine(DialogPop(dialog_S_Green[1]));
+						green_S_Text[1].text = tempData[count].message;
+					}
+					break;
 				case "M":
 					if (tempData[count].balloonPos == "Left")
 					{
@@ -84,6 +97,17 @@ public class DialogMessageControl : MonoBehaviour
 			switch (tempData[count].balloonSize)
 			{
 				case "S":
+					if (tempData[count].balloonPos == "Left")
+					{
+						StartCoroutine(DialogPop(dialog_S_Red[0]));
+						red_S_Text[0].text = tempData[count].message;
+					}
+					else if (tempData[count].balloonPos == "Right")
+					{
+						StartCoroutine(DialogPop(dialog_S_Red[1]));
+						red_S_Text[1].text = tempData[count].message;
+					}
+					break;
 				case "M":
 					if (tempData[count].balloonPos == "Left")
 					{
@@ -132,7 +156,14 @@ public class DialogMessageControl : MonoBehaviour
 				if(null != temp) { temp.SetActive(false); }
 				switch (tempData[count].balloonSize)
                 {
-                    case "S": 
+                    case "S": if(tempData[count].balloonPos == "Left") {
+									StartCoroutine(DialogPop(dialog_S_Green[0]));
+									green_S_Text[0].text = tempData[count].message;
+								}
+								else if(tempData[count].balloonPos == "Right") {
+									StartCoroutine(DialogPop(dialog_S_Green[1]));
+									green_S_Text[1].text = tempData[count].message;
+								}	break;
                     case "M":	if(tempData[count].balloonPos == "Left") {
 									StartCoroutine(DialogPop(dialog_M_Green[0]));
 									green_M_Text[0].text = tempData[count].message;
@@ -156,7 +187,14 @@ public class DialogMessageControl : MonoBehaviour
 				if (null != temp) { temp.SetActive(false); }
 				switch (tempData[count].balloonSize)
                 {
-                    case "S": 
+                    case "S": if(tempData[count].balloonPos == "Left") {
+									StartCoroutine(DialogPop(dialog_S_Red[0]));
+									red_S_Text[0].text = tempData[count].message;
+								}
+								else if(tempData[count].balloonPos == "Right") {
+									StartCoroutine(DialogPop(dialog_S_Red[1]));
+									red_S_Text[1].text = tempData[count].message;
+								}	break;
                     case "M":	if(tempData[count].balloonPos == "Left") {
 									StartCoroutine(DialogPop(dialog_M_Red[0]));
 									red_M_Text[0].text = tempData[count].message;
