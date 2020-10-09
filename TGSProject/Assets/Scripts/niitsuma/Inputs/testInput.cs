@@ -39,7 +39,7 @@ public class testInput : MonoBehaviour, IInputEvent
             else { vector = Vector2.zero; }
         }
         else if(controllerChenge)
-            vector = new Vector2(Input.GetAxis("DS_Horizontal"), 0);
+            vector = new Vector2(Input.GetAxis("DS_Horizontal") + Input.GetAxis("DS_CrossHorizontal"), 0);
 
     }
     void Update()

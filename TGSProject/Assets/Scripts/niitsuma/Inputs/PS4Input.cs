@@ -25,7 +25,7 @@ public class PS4Input : MonoBehaviour , IInputEvent
         if (DSInput.PushDown(DSButton.R1)) { triangleButton = true; }
         else { triangleButton = false; }
 
-        vector = new Vector2(Input.GetAxis("DS_Horizontal"), 0);
+        vector = new Vector2(Input.GetAxis("DS_Horizontal") + Input.GetAxis("DS_CrossHorizontal"), 0);
     }
     // Update is called once per frame
     void Update()
