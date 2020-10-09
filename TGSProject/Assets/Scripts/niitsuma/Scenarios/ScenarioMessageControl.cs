@@ -6,9 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScenarioMessageView))]
 public class ScenarioMessageControl : MonoBehaviour
 {
-    [SerializeField] Prologue prologue;
-    [SerializeField] Text _nameText;
-    [SerializeField] Text _messageText;
 
     [SerializeField] private float _messageSpeed = 0.5f;
     public float MessageSpeed { set { _messageSpeed = value; } }
@@ -22,10 +19,13 @@ public class ScenarioMessageControl : MonoBehaviour
     private float _timer = 0;
     private System.Action _callback = null;
 
+    public void SetName(string name)
+    {
+        _textView.SetMessage(name);
+    }
     public void SetMessage(string message, System.Action callback = null)
     {
         _callback = callback;
-        //_textType = textType;
         _originalMessage = message;
         _dispMessage = "";
         _messageCount = 0;
