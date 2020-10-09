@@ -6,7 +6,6 @@ using DualShockInput;
 public class LeverAnimationController : MonoBehaviour
 {
     LevelControl lev;
-    [SerializeField] SwitchLevelControl swi;
     Animator anime;
     bool touch = false;
 
@@ -38,8 +37,7 @@ public class LeverAnimationController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
             {
                 anime.speed = 1;
-                if(null != lev) { lev.IsActuation = true; }
-                if(null != swi) { swi.IsActuation = true; }
+                lev.IsActuation = true;
             }
         }
     }

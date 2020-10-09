@@ -35,15 +35,15 @@ public class SwitchController : MonoBehaviour
     }
     void OnSwitchPush()
     {
-        if (bri.isLevel) { if (null != colli) { colli.SetActive(false); } return; }
-        if (null != colli) { colli.SetActive(false); }
+        if (bri.isLevel) { colli.SetActive(false); return; }
+        colli.SetActive(false);
         StartCoroutine(SwitchON());
         if(!bri.isLevel) bri.isSwitchUp = true;
     }
     void OnSwitchExit()
     {
-        if (bri.isLevel) { if (null != colli) { colli.SetActive(false); } return; }
-        if (null != colli) { colli.SetActive(true); }
+        if (bri.isLevel) { colli.SetActive(false); return; }
+        colli.SetActive(true);
         StartCoroutine(SwitchOFF());
         if (!bri.isLevel) bri.isSwitchUp = false;
     }
