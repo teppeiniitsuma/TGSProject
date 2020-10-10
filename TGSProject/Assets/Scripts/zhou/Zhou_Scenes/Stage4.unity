@@ -294,7 +294,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485554778}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &485554780
 Camera:
   m_ObjectHideFlags: 0
@@ -724,10 +724,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2133969312}
     m_Modifications:
+    - target: {fileID: 87106043636573928, guid: 4663e1d8607b6c84e8e092533c650caa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497546379559828116, guid: 4663e1d8607b6c84e8e092533c650caa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3600485171810952066, guid: 4663e1d8607b6c84e8e092533c650caa,
         type: 3}
       propertyPath: m_Name
       value: TimerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600485171810952067, guid: 4663e1d8607b6c84e8e092533c650caa,
+        type: 3}
+      propertyPath: moveTIme
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600485171810952067, guid: 4663e1d8607b6c84e8e092533c650caa,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3600485172362686809, guid: 4663e1d8607b6c84e8e092533c650caa,
         type: 3}
@@ -737,7 +757,7 @@ PrefabInstance:
     - target: {fileID: 3600485172362686809, guid: 4663e1d8607b6c84e8e092533c650caa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 320.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3600485172362686809, guid: 4663e1d8607b6c84e8e092533c650caa,
         type: 3}

@@ -39,6 +39,7 @@ public class InputmonitorControlScript : MonoBehaviour
     {
         animator = animeGameObject.GetComponent<Animator>();
         numberLock_GateAnimator = numberLock_Gate.GetComponent<Animator>();
+        playerPos = null;
         //   atext = a.ToString();
     }
     private void Update()
