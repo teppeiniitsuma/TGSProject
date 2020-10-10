@@ -16,6 +16,8 @@ public class SpiderEnemy : BaseEnemy
     public bool isCamera { get; set; } = false;
     public bool isLeftOrRight { get; set; } = false;
 
+    public bool hasToFaceWhich { get; set; } = false;
+
     GameObject LastBoos;
     LastEnemy LsBoss;
 
@@ -31,8 +33,7 @@ public class SpiderEnemy : BaseEnemy
     private float FleeMoveSpeed;
     //public delegate int unko = 114514;
     //  playerがオブジェクトに近づいたら開始する変数
-    [SerializeField][Header("↓↓蜘蛛の視野の良さ")]private float startMove;
-    private bool playerConfirmation = false;
+    public bool playerConfirmation { get; set; } = false;
     private bool WasHitToStone = false;
     [SerializeField]
     private float _surprisedTime;
@@ -93,25 +94,25 @@ public class SpiderEnemy : BaseEnemy
         moveSpider[0].SetActive(true);
     }
     //  プレイヤーを検知する関数
-    private void Confirmation()
-    {
-        //  プレイヤーのトランスフォームを取る
-        Vector2 playerPos = player.transform.position;
-        //  自分positionとプレイヤーのpositionをdistanceに入れる
-        float distance = Vector2.Distance(transform.position, playerPos);
-        //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
-        if (distance < startMove && distance > stopMove)
-        {
-            playerConfirmation = true;
-            //Debug.Log("プレイヤーを発見しました。");
-        }
-        else
-        {
-            playerConfirmation = false;
-            //Debug.Log("プレイヤーが見つかりません。");
-        }
+    //private void Confirmation()
+    //{
+    //    //  プレイヤーのトランスフォームを取る
+    //    Vector2 playerPos = player.transform.position;
+    //    //  自分positionとプレイヤーのpositionをdistanceに入れる
+    //    float distance = Vector2.Distance(transform.position, playerPos);
+    //    //  指定した範囲内にプレイヤーが居るときはtrue、居ないときはfalse
+    //    if (distance < startMove && distance > stopMove)
+    //    {
+    //        playerConfirmation = true;
+    //        //Debug.Log("プレイヤーを発見しました。");
+    //    }
+    //    else if()
+    //    {
+    //        playerConfirmation = false;
+    //        //Debug.Log("プレイヤーが見つかりません。");
+    //    }
 
-    }
+    //}
 
     //  プレイヤーがいるかどうかの関数
     private void MovingJudgement()
@@ -167,6 +168,18 @@ public class SpiderEnemy : BaseEnemy
     //            break;
     //    }
     //}
+
+    private void HasToFaceWhich()
+    {
+        if(direction == 1)
+        {
+            hasToFaceWhich = false;
+        }
+        else if(direction == -1)
+        {
+            hasToFaceWhich = true;
+        }
+    }
 
     public override void ApplyDamage(EnemyType id)
     {
@@ -225,14 +238,17 @@ public class SpiderEnemy : BaseEnemy
 
     void Update()
     {
-        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState != GameManager.GameState.Main ||
+            (GameManager.Instance.GetGameState == GameManager.GameState.Event &&
+            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent))
         {
             _anims.SetTrigger("Stop");
             transform.position = 
                 new Vector2(startPosition.x, transform.position.y);
             return;
         }
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main ||
+            GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
         {
             if (!WasHitToStone)
             {
@@ -240,11 +256,12 @@ public class SpiderEnemy : BaseEnemy
                 {
                     IsAttackOrNot();
                     MovingJudgement();
-                    Confirmation();
+                    HasToFaceWhich();
+                    //Confirmation();
                 }
                 else if (isCamera)
                 {
-                    Debug.Log("uha");
+                    
                 }
             }
             if(WasHitToStone)

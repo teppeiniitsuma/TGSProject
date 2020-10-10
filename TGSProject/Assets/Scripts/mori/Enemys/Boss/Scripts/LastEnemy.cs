@@ -78,8 +78,8 @@ public class LastEnemy : BaseEnemy
     private void DownFromNest()
     {
         Vector2 une = downLocation.transform.position;
-        _anim.SetTrigger("Down"); // down
         transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
+        _anim.SetTrigger("Down"); // down
     }
 
     public override void ApplyDamage(EnemyType id)
@@ -224,15 +224,18 @@ public class LastEnemy : BaseEnemy
 
     void Update()
     {
+        //Debug.Log(GameManager.EventState.BossGimmickEvent);
         if (Input.GetKeyDown(KeyCode.Y)) { }
         if(GameManager.Instance.GetGameState == GameManager.GameState.Event &&
-            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent)
+            (GameManager.Instance.GetEventState != GameManager.EventState.BossGimmickEvent ||
+            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent))
         {
             transform.position = startPosition;
             _anim.SetTrigger("Stop");
             return;
         }
         if (GameManager.Instance.GetGameState == GameManager.GameState.Main ||
+            GameManager.Instance.GetEventState == GameManager.EventState.BossGimmickEvent ||
             GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
         {
             if (Input.GetKeyDown(KeyCode.P)) { IsLeverLaunched = true; }
@@ -265,8 +268,8 @@ public class LastEnemy : BaseEnemy
             }
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
-            Debug.Log(IsSummonPos);
-            Debug.Log((int)_callingTime);
+            //Debug.Log(IsSummonPos);
+            //Debug.Log((int)_callingTime);
             //Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);
         }

@@ -46,13 +46,16 @@ public class LastLevelController : MonoBehaviour
         if (touch && !_endActuation)
         {
             _actionUI.enabled = true;
-            if (Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
+            if (!lastEne.IsLeverLaunched)
             {
-                anime.speed = 1;
-                _endActuation = true;
-                _cameraEvent.SwayingCamera();
-                StartCoroutine(BreakLevel());
-                lastEne.IsLeverLaunched = true;
+                if (Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
+                {
+                    anime.speed = 1;
+                    _endActuation = true;
+                    _cameraEvent.SwayingCamera();
+                    StartCoroutine(BreakLevel());
+                    lastEne.IsLeverLaunched = true;
+                }
             }
         }
         else if (!touch && !_endActuation)
