@@ -5,19 +5,19 @@ public class LastEnemy : BaseEnemy
     [SerializeField]
     private GameObject[] moveObject = new GameObject[4];//  行動範囲を決めるオブジェを入れる箱
     [SerializeField]
-    private GameObject[] SummoningSpider = new GameObject[2];// 召喚する蜘蛛の場所を決めるオブジェを入れる箱
+    private GameObject[] summoningSpider = new GameObject[2];// 召喚する蜘蛛の場所を決めるオブジェを入れる箱
     [SerializeField]
-    private GameObject[] a1 = new GameObject[8];
+    private GameObject[] rightForefoot = new GameObject[8];
     [SerializeField]
-    private GameObject[] a2 = new GameObject[8];
+    private GameObject[] rightBackLegs = new GameObject[8];
     [SerializeField]
-    private GameObject[] a3 = new GameObject[8];
+    private GameObject[] leftBackFoot = new GameObject[8];
     [SerializeField]
-    private GameObject SummoningWait;// 召喚するときに移動する場所を決めるオブジェを入れる箱
+    private GameObject[] leftForefoot = new GameObject[8];
     [SerializeField]
-    private GameObject ahon;
+    private GameObject summoningWait;// 召喚するときに移動する場所を決めるオブジェを入れる箱
     [SerializeField]
-    GameObject ame;
+    private GameObject downLocation;
     [SerializeField]
     GameObject Obj;//   LsBoss内のSpiderParentの子としてSpiderを入れるオブジェを決める箱
     GameObject Spr;//   Spiderが入る箱
@@ -44,10 +44,12 @@ public class LastEnemy : BaseEnemy
     private bool IsSummon;
     private bool IsTimeIsOK;
     private bool IsSummonPos;
-    public bool BBA { get; set; } = false;
-    public bool PTA { get; set; } = false;
-    int lif;
-    int maxLife = 3;
+    /// <summary>
+    /// これを呼んでtrueにしたらボスが倒れるよ
+    /// </summary>
+    public bool IsLeverLaunched { get; set; } = false;//true;
+    int lastBossHp;
+    int maxBossHp = 4;
     Vector2 tagPos;
     private new Collider2D colr2d;
     void Start()
@@ -58,7 +60,7 @@ public class LastEnemy : BaseEnemy
         IsUporDown = false;
         IsSummonPos = false;
         _ofSpider = 0;
-        lif = maxLife;
+        lastBossHp = maxBossHp;
         _anim = GetComponent<Animator>();
         colr2d = GetComponent<Collider2D>();
         TagPosCalculation();
@@ -73,95 +75,78 @@ public class LastEnemy : BaseEnemy
     }
 
     //　落ちる
-    private void FAM()
+    private void DownFromNest()
     {
-        Vector2 une = ahon.transform.position;
-        _anim.SetTrigger("Dwun"); // down
+        Vector2 une = downLocation.transform.position;
         transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
+        _anim.SetTrigger("Down"); // down
     }
 
     public override void ApplyDamage(EnemyType id)
     {
-        Damage();
+        TakeDamage();
     }
-    // 仮（あとで名前変えて）
-    void Damage()
+
+    void TakeDamage()
     {
-        if (0 < lif)
+        if (1 < lastBossHp)
         {
-            PTA = true;
-            BBA = false;
-            Mathf.Clamp(lif--, 0, maxLife);
-            //lif--;
+            IsLeverLaunched = false;
+            Mathf.Clamp(lastBossHp--, 0, maxBossHp);
             colr2d.isTrigger = true;
-            AsiCol();
+            DamageReaction();
         }
-        else { Debug.Log(lif); }
-    }
-    // ダメ
-    private void OnDisable()
-    {
-        if (0 < lif)
+        else if(1 == lastBossHp)
         {
-            PTA = true;
-            BBA = false;
-            lif--;
-            colr2d.isTrigger = true;
-            AsiCol();
+            Mathf.Clamp(lastBossHp--, 0, maxBossHp);
+            DamageReaction();
         }
-        //Debug.Log(lif);
+        Debug.Log(lastBossHp);
     }
 
-    private void Ga1()
+    private void RightForefoot()
     {
-        Destroy(a1[0]);
-        Destroy(a1[1]);
-        Destroy(a1[2]);
-        Destroy(a1[3]);
-        Destroy(a1[4]);
-        Destroy(a1[5]);
-        Destroy(a1[6]);
-        Destroy(a1[7]);
+        foreach(var r in rightForefoot)
+        {
+            Destroy(r);
+        }
+    }
+    //int a = 0;
+    private void RightBackLegs()
+    {
+        //a = a < 10 ? a++ : a;
+        foreach(var r in rightBackLegs) { Destroy(r); }    
     }
 
-    private void Ga2()
+    private void LeftBackFoot()
     {
-        Destroy(a2[0]);
-        Destroy(a2[1]);
-        Destroy(a2[2]);
-        Destroy(a2[3]);
-        Destroy(a2[4]);
-        Destroy(a2[5]);
-        Destroy(a2[6]);
-        Destroy(a2[7]);
+        foreach(var r in leftBackFoot) { Destroy(r); }
     }
 
-    private void Ga3()
+    private void LeftForefoot()
     {
-        Destroy(a3[0]);
-        Destroy(a3[1]);
-        Destroy(a3[2]);
-        Destroy(a3[3]);
-        Destroy(a3[4]);
-        Destroy(a3[5]);
-        Destroy(a3[6]);
-        Destroy(a3[7]);
+        foreach(var r in leftForefoot) { Destroy(r); }
     }
 
-    private void AsiCol()
+    private void DamageReaction()
     {
-        if(lif == 2)
+        if(lastBossHp == 3)
         {
-            Ga1();
+            RightForefoot();
         }
-        if(lif == 1)
+        else if(lastBossHp == 2)
         {
-            Ga2();
+            RightBackLegs();
         }
-        if(lif == 0)
+        else if(lastBossHp == 1)
         {
-            Ga3();
+            LeftBackFoot();
         }
+        else if(lastBossHp == 0)
+        {
+            LeftForefoot();
+        }
+        
     }
 
     private void TagPosCalculation()
@@ -190,25 +175,25 @@ public class LastEnemy : BaseEnemy
     {
         if (_ofSpider < _maxSpider)
         {
-            Vector2 SummonWait = SummoningWait.transform.position;
+            Vector2 SummonWait = summoningWait.transform.position;
             transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
             Vector2 BossPos = transform.position;
             if (BossPos == SummonWait) IsSummonPos = true;
+            SummonOfS();
             if (!IsSummonPos) { return; }
             //_anim.SetTrigger("Stop");
             _summonTime -= Time.deltaTime;
-            _anim.SetTrigger("Summon");
             if(_summonTime >= 0) { return; }
             if(!IsUporDown)
             {
                 //Instantiate(spiderObject, SummoningSpider[0].transform.position, Quaternion.identity);
-                Spr = /*(GameObject)*/Instantiate(spiderObject[0], SummoningSpider[0].transform.position, Quaternion.identity);
+                Spr = Instantiate(spiderObject[0], summoningSpider[0].transform.position, Quaternion.identity);
                 Spr.transform.parent = Obj.transform;
                 IsUporDown = true;
             }
             else if(IsUporDown)
             {
-                Spr = Instantiate(spiderObject[1], SummoningSpider[1].transform.position, Quaternion.identity);
+                Spr = Instantiate(spiderObject[1], summoningSpider[1].transform.position, Quaternion.identity);
                 Spr.transform.parent = Obj.transform;
                 IsUporDown = false;
             }
@@ -223,6 +208,11 @@ public class LastEnemy : BaseEnemy
         if ((int)_callingTime <= 0) { IsSummon = true; }
     }
 
+    private void SummonOfS()
+    {
+        _anim.SetTrigger("Summon");
+    }
+
     //private void SpiderKill()
     //{
     //    if(IsKillSpider)
@@ -234,17 +224,22 @@ public class LastEnemy : BaseEnemy
 
     void Update()
     {
+        //Debug.Log(GameManager.EventState.BossGimmickEvent);
         if (Input.GetKeyDown(KeyCode.Y)) { }
-        if(GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Event &&
+            (GameManager.Instance.GetEventState != GameManager.EventState.BossGimmickEvent ||
+            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent))
         {
             transform.position = startPosition;
             _anim.SetTrigger("Stop");
             return;
         }
-        if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
+        if (GameManager.Instance.GetGameState == GameManager.GameState.Main ||
+            GameManager.Instance.GetEventState == GameManager.EventState.BossGimmickEvent ||
+            GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
         {
-            if (Input.GetKeyDown(KeyCode.P)) { BBA = true; }
-            if (!BBA)
+            if (Input.GetKeyDown(KeyCode.P)) { IsLeverLaunched = true; }
+            if (!IsLeverLaunched)
             {
                 CountTime();
                 colr2d.isTrigger = true;
@@ -255,7 +250,6 @@ public class LastEnemy : BaseEnemy
                     IsTimeIsOK = false;
                     IsSummonPos = false;
                     _summonTime = 3.5f;
-                    _anim.SetTrigger("Wook");
                 }
                 else if (IsSummon)
                 {
@@ -264,15 +258,17 @@ public class LastEnemy : BaseEnemy
                     _callingTime = 10;
                     IsSummon = false;
                 }
+                if (!IsSummonPos) { _anim.SetTrigger("Wook"); }
+                else if (IsSummonPos) { SummonOfS(); }
             }
-            if(BBA)
+            if(IsLeverLaunched)
             {
                 colr2d.isTrigger = false;
-                FAM();
+                DownFromNest();
             }
             _ofSpider = System.Math.Min(_ofSpider, 2);
             _ofSpider = System.Math.Max(_ofSpider, 0);
-            //Debug.Log((int)lif);
+            //Debug.Log(IsSummonPos);
             //Debug.Log((int)_callingTime);
             //Debug.Log(IsTimeIsOK);
             //Debug.Log(IsSummon);
