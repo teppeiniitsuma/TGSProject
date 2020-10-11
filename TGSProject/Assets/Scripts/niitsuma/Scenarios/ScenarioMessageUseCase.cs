@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DualShockInput;
 
 public class ScenarioMessageUseCase : MonoBehaviour
 {
@@ -12,38 +12,43 @@ public class ScenarioMessageUseCase : MonoBehaviour
     List<ScenarioData> message;
 
     int count = 0;
-    int test = 1;
+    int test = 0;
     void Start()
     {
         _model = GetComponent<ScenarioMessageModel>();
         if(test == 0) { message = _model.GetPrologue.Message; }
         else if(test == 1) { message = _model.GetEpilogue.Message; }
 
-        _messageControls[(int)TextType.NameText].SetName(message[count].name);
-        _messageControls[(int)TextType.MessageText].SetMessage(message[count].message);
-        switch (message[count].faceType)
-        {
-            case 1: AllReset(); break;
-            case 2: FaceChange(message[count].faceType, message[count].name); break;
-            case 3: FaceChange(message[count].faceType, message[count].name); break;
-            case 4: FaceChange(message[count].faceType, message[count].name); break;
-            case 5: FaceChange(message[count].faceType, message[count].name); break;
-            case 6: FaceChange(message[count].faceType, message[count].name); break;
-            default: break;
-        }
-        count++;
+        MessageDisplay();
     }
 
-    void AllReset()
+    void AllReset(string name = null)
     {
-        for (int i = 0; i < _lFaces.Length; i++)
+        if(name == null)
         {
-            _lFaces[i].gameObject.SetActive(false);
-        }
+            for (int i = 0; i < _lFaces.Length; i++)
+            {
+                _lFaces[i].gameObject.SetActive(false);
+            }
 
-        for (int i = 0; i < _rFaces.Length; i++)
+            for (int i = 0; i < _rFaces.Length; i++)
+            {
+                _rFaces[i].gameObject.SetActive(false);
+            }
+        }
+        else if(name == "リリカ")
         {
-            _rFaces[i].gameObject.SetActive(false);
+            for (int i = 0; i < _rFaces.Length; i++)
+            {
+                _lFaces[i].gameObject.SetActive(false);
+            }
+        }
+        else if (name == "ルイス")
+        {
+            for (int i = 0; i < _lFaces.Length; i++)
+            {
+                _lFaces[i].gameObject.SetActive(false);
+            }
         }
     }
     void FaceChange(int faceId, string name)
@@ -66,24 +71,37 @@ public class ScenarioMessageUseCase : MonoBehaviour
         }
         
     }
-    // Update is called once per frame
-    void Update()
+    void MessageDisplay()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!_messageControls[(int)TextType.MessageText].IsCheck)
         {
             _messageControls[(int)TextType.NameText].SetName(message[count].name);
-            _messageControls[(int)TextType.MessageText].SetMessage(message[count].message);
+            _messageControls[(int)TextType.MessageText].SetMessage(message[count].message,
+                () => count = count < message.Count - 1 ? count + 1 : count);
             switch (message[count].faceType)
             {
                 case 1: AllReset(); break;
-                case 2: FaceChange(message[count].faceType, message[count].name); break;
-                case 3: FaceChange(message[count].faceType, message[count].name); break;
-                case 4: FaceChange(message[count].faceType, message[count].name); break;
-                case 5: FaceChange(message[count].faceType, message[count].name); break;
-                case 6: FaceChange(message[count].faceType, message[count].name); break;
+                case 2: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
+                case 3: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
+                case 4: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
+                case 5: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
+                case 6: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
                 default: break;
             }
-            count = count < message.Count - 1 ? count + 1 : count;
+            if (!_messageControls[(int)TextType.MessageText].IsCheck) { _messageControls[(int)TextType.MessageText].IsCheck = true; }
+        }
+        else
+        {
+            if (_messageControls[(int)TextType.MessageText].IsCheck) { _messageControls[(int)TextType.MessageText].IsAllDisplay = true; }
+        }
+
+
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle))
+        {
+            MessageDisplay();
         }
     }
 }

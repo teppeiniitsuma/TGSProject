@@ -8,8 +8,11 @@ public class ScenarioMessageControl : MonoBehaviour
 {
 
     [SerializeField] private float _messageSpeed = 0.5f;
+    [SerializeField] private GameObject _wingObj;
     public float MessageSpeed { set { _messageSpeed = value; } }
 
+    public bool IsCheck { get; set; } = false;
+    public bool IsAllDisplay { get; set; } = false;
 
     private ScenarioMessageView _textView;
     
@@ -41,10 +44,11 @@ public class ScenarioMessageControl : MonoBehaviour
 
     IEnumerator MessageDisp()
     {
+        if(null != _wingObj) { _wingObj.SetActive(false); }
         while (_messageCount < _originalMessage.Length)
         {
             _timer += Time.deltaTime;
-            if (_timer >= _messageSpeed)
+            if (_timer >= _messageSpeed && !IsAllDisplay)
             {
                 _timer = 0;
                 _messageCount++;
@@ -52,8 +56,19 @@ public class ScenarioMessageControl : MonoBehaviour
                 _dispMessage = _originalMessage.Substring(0, _messageCount);
                 _textView.SetMessage(_dispMessage);
             }
+            else if (IsAllDisplay)
+            {
+                _timer = 0;
+                _dispMessage = _originalMessage;
+                _messageCount = _originalMessage.Length;
+                _textView.SetMessage(_dispMessage);
+                IsCheck = false;
+            }
             yield return null;
         }
+        if (null != _wingObj) { _wingObj.SetActive(true); }
+        IsAllDisplay = false;
+        IsCheck = false;
         // ループを抜けたらcallback
         if (_callback != null) _callback();
     }
