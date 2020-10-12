@@ -20,7 +20,7 @@ public class MedosaEnemy : BaseEnemy
     {
         if(iti)
         {
-            transform.localPosition = new Vector2(startPosition.x, startPosition.y);
+            transform.position = new Vector2(startPosition.x, startPosition.y);
             iti = !iti;
         }
     }
@@ -29,7 +29,7 @@ public class MedosaEnemy : BaseEnemy
     {
         if (!iti)
         {
-            transform.localPosition = new Vector2(startPosition.x + direction_x, startPosition.y);
+            transform.position = new Vector2(startPosition.x + direction_x, startPosition.y);
             iti = !iti;
         }
     }
