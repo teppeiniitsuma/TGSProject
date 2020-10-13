@@ -7,6 +7,7 @@ public class PlayerStageEnd : MonoBehaviour
     [SerializeField]
     GameObject player;
     StageThaPlayer stp;
+    [SerializeField] private FadeController _fade;
 
     private bool IsArrived = false;
 
@@ -25,6 +26,6 @@ public class PlayerStageEnd : MonoBehaviour
 
     void Update()
     {
-        
+        if (stp.isTarget && !IsArrived) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Result)); IsArrived = true; }
     }
 }

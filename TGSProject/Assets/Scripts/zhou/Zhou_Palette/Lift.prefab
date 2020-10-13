@@ -938,6 +938,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8483722321470714851}
     m_Modifications:
+    - target: {fileID: 954966899354631082, guid: 119def595c95572418233dfde046062d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2379790966410047399, guid: 119def595c95572418233dfde046062d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1002,6 +1007,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChainParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421770812649808336, guid: 119def595c95572418233dfde046062d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 119def595c95572418233dfde046062d, type: 3}

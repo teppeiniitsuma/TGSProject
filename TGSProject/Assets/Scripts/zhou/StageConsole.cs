@@ -11,12 +11,16 @@ static public class StageConsole
     {
         Title,
         StageSelect,
+        Scenario,
+        BetweenStage,
         Stage1,
         Stage2,
         Stage3,
         Stage4,
         Result,
-        GameOver
+        GameOver,
+        BossScene,
+        Tutorial,
     }
     public static MyScene scene;
     static Dictionary<string, MyScene> sceneDic = new Dictionary<string, MyScene>() {
@@ -26,8 +30,12 @@ static public class StageConsole
     {"Stage2",   MyScene.Stage2 },
     {"Stage3",   MyScene.Stage3 },
     {"Stage4",   MyScene.Stage4 },
+    {"Scenario",   MyScene.Scenario },
+    {"BetweenStage",   MyScene.BetweenStage },
     {"Result",   MyScene.Result },
-    {"GameOver",   MyScene.GameOver }
+    {"GameOver",   MyScene.GameOver },
+    {"BossScene",   MyScene.BossScene },
+    {"Tutorial", MyScene.Tutorial }
 };
 
     public static MyScene MyGetScene()
