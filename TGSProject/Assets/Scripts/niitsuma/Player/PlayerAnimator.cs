@@ -54,6 +54,20 @@ public class PlayerAnimator : MonoBehaviour
         
     }
     /// <summary>
+    /// 石化
+    /// </summary>
+    public void PetrificationAnim()
+    {
+        _anim.SetBool("isPetrification", true);
+    }
+    /// <summary>
+    /// 石化解除
+    /// </summary>
+    public void PetrificationRelease()
+    {
+        _anim.SetBool("isPetrification", false);
+    }
+    /// <summary>
     /// 石投げアニメ
     /// </summary>
     public void ThrowAnim(bool t)

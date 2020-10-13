@@ -31,6 +31,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public enum PlayerState
     {
         Default,
+        Petrification, // 石化
         ItemUse,
         InSwitching, // 行動切り替え中
         Damage,
@@ -160,7 +161,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         var s = GetComponent<SpriteRenderer>();
         medBoolen = true;
         IsMovable = true;
-        s.sprite = playerSprite[2];
+        pState = PlayerState.Petrification;
         ResultManager.Instance.SetDeadCount();
     }
 
@@ -171,12 +172,14 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         {
             if (GetParameter.actSwitch)
             {
+                pState = PlayerState.Default;
                 //var i = GetComponent<SpriteRenderer>();
                 //i.sprite = playerSprite[0];
                 IsMovable = false;
             }
             else
             {
+                pState = PlayerState.Default;
                 //var i = GetComponent<SpriteRenderer>();
                 //i.sprite = playerSprite[1];
                 IsMovable = false;

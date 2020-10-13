@@ -73,9 +73,17 @@ public class PlayerController : BasePlayer
         if (!isMoved) { time = (time <= _pAnim.GetFixedTime) ? time += Time.deltaTime : time; }
         else { time = 0; }
 
+        if(infoCounter.GetPlayerState == PlayerInfoCounter.PlayerState.Petrification)
+        {
+            _pAnim.PetrificationAnim();
+        }
+        if(_gm.GetGameState == GameManager.GameState.Road) { _pAnim.PetrificationRelease(); }
         if (!_pAnim.ActAnimaStart)
         {
-            ControllerGetter();
+            if (!infoCounter.IsMovable)
+            {
+                ControllerGetter();
+            }
         }
         else { anim = true; }
 

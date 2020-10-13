@@ -40,9 +40,12 @@ public class ItemUse : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
-            ThrowStone();
-        if (Input.GetKeyDown(KeyCode.H) || DSInput.PushDown(DSButton.Square))
-            HelpCaterpiller();
+        if (_info.GetParameter.actSwitch)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
+                ThrowStone();
+            if (Input.GetKeyDown(KeyCode.H) || DSInput.PushDown(DSButton.Square))
+                HelpCaterpiller();
+        }
     }
 }
