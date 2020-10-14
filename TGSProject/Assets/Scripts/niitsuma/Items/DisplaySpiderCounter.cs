@@ -54,8 +54,8 @@ public class DisplaySpiderCounter : MonoBehaviour
         }
     }
 
-    // 画面内の蜘蛛を全て非アクティブ化する
-    void ClearSpiders()
+    // 画面内の蜘蛛を非アクティブ化する
+    public void ClearSpiders()
     {
         int x = 0;
         if(null != spiders[0])

@@ -1,38 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class spiderTest : MonoBehaviour
+public class SpiderTest : MonoBehaviour
 { 
     DisplaySpiderCounter disp;
-    testCameraManager test;
-    bool count = false; 
+    NewCameraManager _cameraManager;
+    bool count = false;
 
-    private void Start()
+    private void Awake()
     {
         disp = FindObjectOfType<DisplaySpiderCounter>();
-        test = FindObjectOfType<testCameraManager>();
+        _cameraManager = FindObjectOfType<NewCameraManager>();
     }
 
+    public void DieEnemy()
+    {
+        disp.ClearSpiders();
+        this.transform.parent.gameObject.SetActive(false);
+    }
     void Update()
     {
-        if (test.CheckCameraPos(transform.position) && !count)
+        if (_cameraManager.CheckCameraPos(transform.position) && !count)
         {
             disp.spiderAddCount(transform);
             count = true;
         }
-        else if(!test.CheckCameraPos(transform.position) && count)
+        else if(!_cameraManager.CheckCameraPos(transform.position) && count)
         {
             disp.spiderDelCount(transform);
             count = false;
         }
     }
-    //private void OnBecameVisible()
-    //{
-    //    disp.spiderAddCount(transform);
-    //}
-    //private void OnBecameInvisible()
-    //{
-    //    disp.spiderDelCount(transform);
-    //}
 }
