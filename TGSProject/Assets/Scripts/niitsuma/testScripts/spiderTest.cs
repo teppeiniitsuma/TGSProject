@@ -10,8 +10,11 @@ public class SpiderTest : MonoBehaviour
     {
         disp = FindObjectOfType<DisplaySpiderCounter>();
         _cameraManager = FindObjectOfType<NewCameraManager>();
+        Debug.Log("flsajl");
     }
-
+    /// <summary>
+    /// 蜘蛛が倒されたら呼ぶ
+    /// </summary>
     public void DieEnemy()
     {
         disp.ClearSpiders();
