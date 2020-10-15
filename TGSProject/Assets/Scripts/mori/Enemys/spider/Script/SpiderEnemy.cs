@@ -13,7 +13,7 @@ public class SpiderEnemy : BaseEnemy
     [SerializeField] GameObject[] moveSpider = new GameObject[2];
     [SerializeField] GameObject[] fleeLocation = new GameObject[2];
     [SerializeField] GameObject wasSurprised;
-    SpiderTest test;
+    ConfirmationSpiderPosition _spiderPos;
     public bool isCamera { get; set; } = false;
     public bool isLeftOrRight { get; set; } = false;
 
@@ -44,7 +44,7 @@ public class SpiderEnemy : BaseEnemy
     public SpiderType spiderType;
     void Start()
     {
-        test = GetComponent<SpiderTest>();
+        _spiderPos = GetComponent<ConfirmationSpiderPosition>();
         IsFieldBoss();
         startPosition = transform.position;
         player = null;
@@ -233,7 +233,7 @@ public class SpiderEnemy : BaseEnemy
     {
         if (WasHitToStone)
         {
-            test.DieEnemy();
+            _spiderPos.DieEnemy();
             //gameObject.SetActive(false);
         }
     }
