@@ -104,7 +104,8 @@ public class InputmonitorScript : MonoBehaviour
     /// <summary>
     ///   プレイヤーﾄ接続
     /// </summary>
-    void OnTriggerStay2D(Collider2D collision)
+  /*
+   * void OnTriggerStay2D(Collider2D collision)
     {
 
           if (collision.tag == "Player") {

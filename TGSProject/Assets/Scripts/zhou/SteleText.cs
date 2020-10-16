@@ -52,11 +52,12 @@ public class SteleText : MonoBehaviour
         {
             rectTransform.gameObject.SetActive(true);
         }
+        Debug.Log("?");
     }
     //離れ
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Player") {
+        if (collider.name == "player") {
             isMyPos = false;
         }
     }
@@ -64,7 +65,7 @@ public class SteleText : MonoBehaviour
     // 接続
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player")
+        if (collider.name == "player")
         {
             isMyPos = true;
         }
