@@ -46,7 +46,7 @@ public class LastLevelController : MonoBehaviour
         if (touch && !_endActuation)
         {
             _actionUI.enabled = true;
-            if (!lastEne.IsLeverLaunched)
+            if (!lastEne.isLeverLaunched)
             {
                 if (Input.GetKeyDown(KeyCode.Z) || DSInput.PushDown(DSButton.Circle))
                 {
@@ -54,7 +54,7 @@ public class LastLevelController : MonoBehaviour
                     _endActuation = true;
                     _cameraEvent.SwayingCamera();
                     StartCoroutine(BreakLevel());
-                    lastEne.IsLeverLaunched = true;
+                    lastEne.isLeverLaunched = true;
                 }
             }
         }
