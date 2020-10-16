@@ -29,7 +29,7 @@ public class NewLiftControl : MonoBehaviour
         if(GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
         {
             LiftMove();
-            GearRotate();
+            //GearRotate();
         }
 
         if(GameManager.Instance.GetGameState == GameManager.GameState.Road && _isInitialize)
@@ -49,6 +49,7 @@ public class NewLiftControl : MonoBehaviour
     {
         if(!_isUp && _isMove)
         {
+            GearRotate();
             _floor.position = new Vector2(_floor.position.x, 
                 Mathf.MoveTowards(_floor.transform.position.y, _floorUpPos + transform.position.y, _moveSpeed * Time.deltaTime));
             if(_floor.position.y == _floorUpPos + transform.position.y)
@@ -59,6 +60,7 @@ public class NewLiftControl : MonoBehaviour
         }
         else if(_isUp && _isMove)
         {
+            GearRotate();
             _floor.position = new Vector2(_floor.position.x,
                 Mathf.MoveTowards(_floor.transform.position.y, _floorDownPos + transform.position.y, _moveSpeed * Time.deltaTime));
             if (_floor.position.y == _floorDownPos + transform.position.y)
