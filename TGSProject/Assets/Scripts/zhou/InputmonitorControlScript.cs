@@ -7,6 +7,9 @@ public class InputmonitorControlScript : MonoBehaviour
     [Header("数字ギミック")]
     [SerializeField]
     GameObject[] inputmonitor = new GameObject[3];
+    [Header("数字ギミックスクリプト")]
+    [SerializeField]
+    InputmonitorScript[] inputMonitorSprite = new InputmonitorScript[3];
     [Header("正しい暗証番号")]
     [SerializeField]
     string truePasssword;
@@ -41,9 +44,17 @@ public class InputmonitorControlScript : MonoBehaviour
         numberLock_GateAnimator = numberLock_Gate.GetComponent<Animator>();
         playerPos = null;
         //   atext = a.ToString();
+        for (int i = 0; i < inputmonitor.Length; i++) {
+            inputMonitorSprite[i] = inputmonitor[i].GetComponent<InputmonitorScript>();
+        }
+            
     }
     private void Update()
     {
+        if (playerPos != null) {
+            Debug.Log(playerPos.transform.position.x);
+        }
+       // Debug.Log(transform.localScale.x);
         if (playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
         {
             InputmonitorScriptStart();
@@ -78,63 +89,60 @@ public class InputmonitorControlScript : MonoBehaviour
         }
     }
     void InputmonitorScriptStart() {
-        if (inputmonitor[0].GetComponent<InputmonitorScript>().inputON == true &&
-        inputmonitor[1].GetComponent<InputmonitorScript>().inputON == true &&
-        inputmonitor[2].GetComponent<InputmonitorScript>().inputON == true ) {
+        if (inputMonitorSprite[0].inputON == true &&
+        inputMonitorSprite[1].inputON == true &&
+        inputMonitorSprite[2].inputON == true ) {
 
             if (playerPos != null &&
-                playerPos.transform.position.x > transform.position.x - 0.80f &&
-                playerPos.transform.position.x < transform.position.x + 0.80f)
+                playerPos.transform.position.x >= transform.position.x - 0.50f*transform.localScale.x &&
+                playerPos.transform.position.x <= transform.position.x + 0.50f * transform.localScale.x)
             {
-                inputmonitor[1].GetComponent<InputmonitorScript>().InputStart();
+                inputMonitorSprite[1].InputStart();
                 NumberLock_Button[1].transform.Rotate(new Vector3(0, 0, -36), rotateSpace);
             }
-            else if (playerPos != null && playerPos.transform.position.x > transform.position.x + 0.80f)
+            else if (playerPos != null && playerPos.transform.position.x > transform.position.x + 0.50f * transform.localScale.x)
             {
-                inputmonitor[2].GetComponent<InputmonitorScript>().InputStart();
+                inputMonitorSprite[2].InputStart();
                 NumberLock_Button[2].transform.Rotate(new Vector3(0, 0, -36), rotateSpace);
             }
-            else if ( playerPos != null && playerPos.transform.position.x < transform.position.x - 0.80f ) 
+            else if ( playerPos != null && playerPos.transform.position.x < transform.position.x - 0.50f * transform.localScale.x) 
             {
-                inputmonitor[0].GetComponent<InputmonitorScript>().InputStart();
+                inputMonitorSprite[0].InputStart();
                 NumberLock_Button[0].transform.Rotate(new Vector3(0, 0, -36), rotateSpace);
             }
         }
-    }/*
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.name == "player") {
-            Debug.Log("getOnTriggerStay2D");
-        }
-        if (other.name == "player" &&
-            (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A)))
-        {
-            if (playerPos==null) {
-                playerPos = other.gameObject;
-            }
-          
-            InputmonitorScriptStart();
-            Debug.Log("getPlayerOnTriggerStay2D");
+    }
 
+   /*
+    * void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "player")
+        {
+            Debug.Log("OnTriggerEnter2D");
+            playerPos = collider.gameObject;
         }
     }*/
     
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collider)
     {
-       
-        if (collision.name == "player")
+        if (collider.gameObject.name == "player")
         {
-            playerPos = collision.gameObject;
+            Debug.Log("OnTriggerStay2D");
+            playerPos = collider.gameObject;
         }
 
     }
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.name == "player")
+        if (collider.gameObject.name == "player")
         {
+            Debug.Log("OnTriggerExit2D");
             playerPos = null;
         }
     }
-    
+
+
+
+
 }
 
