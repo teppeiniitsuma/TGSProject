@@ -6249,9 +6249,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3975869354487102969}
   - component: {fileID: 3975869354487102971}
+  - component: {fileID: 1584631544802790273}
   - component: {fileID: 3651038756871743201}
   - component: {fileID: 3975869354487102970}
-  - component: {fileID: 6932930954823697608}
   - component: {fileID: 1953109838405967492}
   m_Layer: 11
   m_Name: Spider
@@ -6307,6 +6307,18 @@ MonoBehaviour:
   _surprisedTime: 0.25
   attackMove: 2
   spiderType: 0
+--- !u!114 &1584631544802790273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975869354487102974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a7e3c90d3a9444881b3a7a713cde14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &3651038756871743201
 Rigidbody2D:
   serializedVersion: 4
@@ -6354,18 +6366,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.45}
   m_EdgeRadius: 0
---- !u!114 &6932930954823697608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975869354487102974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94db9019ba835904aa59c8b9aa9dc4c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1953109838405967492
 SpriteRenderer:
   m_ObjectHideFlags: 0

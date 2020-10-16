@@ -197,7 +197,7 @@ public class SpiderEnemy : BaseEnemy
         switch (this.spiderType)
         {
             case SpiderType.Boss:
-                LsBoss._ofSpider--;
+                LsBoss.ofSpider--;
                 //Destroy(this);
                 break;
         }
@@ -241,17 +241,7 @@ public class SpiderEnemy : BaseEnemy
 
     void Update()
     {
-        if(GameManager.Instance.GetGameState != GameManager.GameState.Main ||
-            (GameManager.Instance.GetGameState == GameManager.GameState.Event &&
-            GameManager.Instance.GetEventState != GameManager.EventState.GimmickEvent))
-        {
-            _anims.SetTrigger("Stop");
-            transform.position = 
-                new Vector2(startPosition.x, transform.position.y);
-            return;
-        }
-        if(GameManager.Instance.GetGameState == GameManager.GameState.Main ||
-            GameManager.Instance.GetEventState == GameManager.EventState.GimmickEvent)
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
             if (!WasHitToStone)
             {
@@ -271,8 +261,16 @@ public class SpiderEnemy : BaseEnemy
             {
                 AfterStoneDamage();
             }
-            //Debug.Log(WasHitToStone);
-            //Debug.Log(isCamera);
+        }
+        else if(GameManager.Instance.GetGameState == GameManager.GameState.Road || 
+            GameManager.Instance.GetGameState == GameManager.GameState.SetUp)
+        {
+            transform.position = new Vector2(startPosition.x, transform.position.y);
+        }
+        else
+        {
+            _anims.SetTrigger("Stop");
+            return;
         }
     }
 }
