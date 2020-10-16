@@ -92,7 +92,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playSpeed: 1
-  _hoge: 0
 --- !u!1001 &8063783503557537828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,7 +102,7 @@ PrefabInstance:
     - target: {fileID: -7726414137584987317, guid: 240cb140c5a81164a8d22b4f8003bd80,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -6052363834152936503, guid: 240cb140c5a81164a8d22b4f8003bd80,
         type: 3}
