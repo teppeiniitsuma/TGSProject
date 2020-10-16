@@ -118,7 +118,7 @@ public class ResultControl : MonoBehaviour
                 }
                 else if (i == 0)
                 {
-                    StageConsole.MyLoadScene(StageConsole.MyScene.Stage1);
+                    StageConsole.MyLoadScene(StageConsole.MyScene.Scenario);
                 }
                 else if (i == 1)
                 {
