@@ -9,7 +9,7 @@ public class SwitchLiftController : MonoBehaviour
     [SerializeField] SwitchChainMove _chain;
     [SerializeField] float _moveSpeed = 1, _rotsSpeed = 180, _floorUpPos = 1, _floorDownPos = 0, time = 0;
     [SerializeField] bool _isUp = false;
-    bool _isInitialize = false;
+    [SerializeField] bool _isInitialize = false;
 
     public bool IsSwitch { get; set; } = false;
     public bool IsLevel { get; set; } = false;
