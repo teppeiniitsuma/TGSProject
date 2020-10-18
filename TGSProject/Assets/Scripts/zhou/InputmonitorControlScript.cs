@@ -6,7 +6,7 @@ public class InputmonitorControlScript : MonoBehaviour
 {
     [Header("数字ギミック")]
     [SerializeField]
-    GameObject[] inputmonitor = new GameObject[3];
+    public　GameObject[] inputmonitor = new GameObject[3];
     [Header("数字ギミックスクリプト")]
     [SerializeField]
     InputmonitorScript[] inputMonitorSprite = new InputmonitorScript[3];
@@ -33,7 +33,9 @@ public class InputmonitorControlScript : MonoBehaviour
     private Animator numberLock_GateAnimator;
     public const string key_isON = "isON";
     [SerializeField]
-    private GameObject playerPos, numberLock_Flag;
+    private GameObject  numberLock_Flag;
+
+    public GameObject playerPos;
     public Space rotateSpace;
     [SerializeField]
     private GameObject[]NumberLock_Button;
@@ -52,7 +54,7 @@ public class InputmonitorControlScript : MonoBehaviour
     private void Update()
     {
         if (playerPos != null) {
-            Debug.Log(playerPos.transform.position.x);
+           // Debug.Log(playerPos.transform.position.x);
         }
        // Debug.Log(transform.localScale.x);
         if (playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
@@ -127,7 +129,7 @@ public class InputmonitorControlScript : MonoBehaviour
     {
         if (collider.gameObject.name == "player")
         {
-            Debug.Log("OnTriggerStay2D");
+          //  Debug.Log("OnTriggerStay2D");
             playerPos = collider.gameObject;
         }
 
@@ -136,7 +138,7 @@ public class InputmonitorControlScript : MonoBehaviour
     {
         if (collider.gameObject.name == "player")
         {
-            Debug.Log("OnTriggerExit2D");
+           // Debug.Log("OnTriggerExit2D");
             playerPos = null;
         }
     }
