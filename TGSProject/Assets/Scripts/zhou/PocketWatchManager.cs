@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// UI　時計
@@ -50,8 +48,10 @@ public class PocketWatchManager : MonoBehaviour
     /// <summary>
     /// 時計影と針ををリセット
     /// </summary>
-    void PocketWatchReset()
+    public void PocketWatchReset()
     {
+        // リセットするたびに上に上がるのを防止（後により良い処理に変更）
+        this.transform.position = this.transform.parent.position;
         //影
         image.fillAmount = 0;
         isnoe = false;
@@ -77,14 +77,16 @@ public class PocketWatchManager : MonoBehaviour
     /// <summary>
     /// 時計回る
     /// </summary>
-    public void PocketWatchMove() {
+    void PocketWatchMove() {
         if (image.fillAmount < 1.0f) {
         image.fillAmount += Time.deltaTime / speed;
         rectTransform.rotation = Quaternion.Euler(0, 0, -image.fillAmount * 360.0f);
 
         }else if (image.fillAmount == 1.0f&&!isnoe) {
             isnoe = true;
-            Debug.Log("時計 もう　一輪回りました。時間切りの処理を");
+            //Debug.Log("時計 もう　一輪回りました。時間切りの処理を");
+            GameManager.Instance.SetGameState(GameManager.GameState.Damage);
+            ///PocketWatchReset();
         }
     }
     /// <summary>
