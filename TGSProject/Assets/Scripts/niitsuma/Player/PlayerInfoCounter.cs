@@ -22,6 +22,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     PlayerState pState;
     public PlayerState GetPlayerState { get => pState; }
     public bool IsMovable { get; private set; } = false; // プレイヤーが動ける状態か判断
+    public int GetStageHarb { get => _stageHerbs; }
 
     int _maxHp = 4;
     bool damage = false;
