@@ -70,10 +70,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputmonitorControlScript: {fileID: 0}
-  speechBubbleGameObject: {fileID: 5202503090850632246, guid: f070d9aaf0766c94885a173b8946bee8,
+  speechBubbleGameObject: {fileID: 5240228996548863159, guid: f070d9aaf0766c94885a173b8946bee8,
     type: 3}
+  speechBubbleGameObjectScript: {fileID: 0}
+  mySprite: {fileID: 0}
+  Sprite: {fileID: 0}
+  speechBubbleSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  InputmonitorScript: {fileID: 0}
+  myNumera: 0
   newSpeechBubbleGameObject: {fileID: 0}
   newSpeechBubbleGameObjectNum: 0
+  timeMax: 1
+  time: 0
+  distance1: 0
+  distance2: 0
+  Posy: 3
+  offset: {x: 0, y: 0}
+  rectTransform: {fileID: 0}
   backgroundsprite:
   - {fileID: 0}
   - {fileID: 0}
