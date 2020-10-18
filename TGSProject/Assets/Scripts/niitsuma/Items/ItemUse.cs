@@ -21,7 +21,7 @@ public class ItemUse : MonoBehaviour
     void ThrowStone()
     {
         Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 0.6f);
-        if (_info.GetItemValue.stoneValue > 0)
+        if (0 < _info.GetItemValue.stoneValue)
         {
             Instantiate(stone, sponePos, transform.rotation);
             _info.UseItem(ItemType.stone);
@@ -32,7 +32,7 @@ public class ItemUse : MonoBehaviour
     /// </summary>
     void HelpCaterpiller()
     {
-        if (_counter.SpiderInScreen())
+        if (_counter.SpiderInScreen() && 0 <_info.GetItemValue.catepillarValue)
         {
             _counter.CaterpillarAttack();
             //ResultManager.Instance.SetEnemyKillCount();

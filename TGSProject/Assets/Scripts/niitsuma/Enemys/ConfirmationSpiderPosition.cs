@@ -30,6 +30,7 @@ public class ConfirmationSpiderPosition : MonoBehaviour
         else if(!_cameraManager.CheckCameraPos(transform.position) && count)
         {
             _disp.spiderDelCount(transform);
+            _disp.ClearSpiders();
             count = false;
         }
     }
