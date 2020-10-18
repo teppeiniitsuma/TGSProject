@@ -228,7 +228,7 @@ public class LastEnemy : BaseEnemy
         if (Input.GetKeyDown(KeyCode.Y)) { }
         if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
-            //if (Input.GetKeyDown(KeyCode.P)) { IsLeverLaunched = true; }
+            if (Input.GetKeyDown(KeyCode.Y)) { isLeverLaunched = true; }
             if (!isLeverLaunched)
             {
                 CountTime();
