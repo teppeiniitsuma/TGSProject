@@ -14,8 +14,8 @@ public class SpeechBubbleGameObjectScript : MonoBehaviour
 
     [Header("アルファ設定済みｹﾞｰﾑオブジェクト")]
     [SerializeField] public GameObject inputmonitorScriptSprite;
-    [Header("text")]
-    [SerializeField] public Text text,text2;
+   // [Header("text")]
+  //  [SerializeField] public Text text,text2;
 
     // Start is called before the first frame update
 

@@ -39,10 +39,12 @@ public class NumbersPresentationManager : MonoBehaviour
     [SerializeField] float time;
     public float distance1, distance2;//两个物体の距离
 
-    [Header("表示画像配置のStartPosY")]
+    [Header("表示画像テキストのStartPosY")]
     [SerializeField] float Posy = 3;
     ///---------------
     [SerializeField] Vector2 offset;
+    [Header("表示画像オブジェクトのStartPos")]
+    [SerializeField] Vector2 speechBubbleGameObjectScriptPos;
     [SerializeField] RectTransform rectTransform;
     /// <summary>
     /// 吹き出し背景の画像
@@ -83,7 +85,7 @@ public class NumbersPresentationManager : MonoBehaviour
         {
             DivisionPosition();
             Move();
-            TextPosMove();
+            //TextPosMove();
         }
         else {
 
@@ -143,22 +145,33 @@ public class NumbersPresentationManager : MonoBehaviour
         //Get今立つ場所のボタンが持つ番号
         myNumera  = rootString.myNumeral % 10;
 
+        if (newSpeechBubbleGameObject.GetComponent<SpeechBubbleGameObjectScript>().numeralObjects[0] == null)
+        {
+            speechBubbleGameObjectScript.numeralObjects[0] = (GameObject)Instantiate(speechBubbleGameObjectScript.inputmonitorScriptSprite);
+
+            speechBubbleGameObjectScript.numeralObjects[0].name = "numeralObjects" + myNumera;
+
+
+            myNumera = inputmonitorControlScript.inputmonitor[newSpeechBubbleGameObjectNum].GetComponent<InputmonitorScript>().myNumeral;
+            speechBubbleGameObjectScript.numeralObjects[0].GetComponent<SpriteRenderer>().sprite = Sprites[myNumera];
+            speechBubbleGameObjectScript.numeralObjects[0].transform.position = new Vector3(
+                speechBubbleGameObjectScript.displayVersion.transform.position.x,
+                speechBubbleGameObjectScript.displayVersion.transform.position.y,
+                speechBubbleGameObjectScript.displayVersion.transform.position.z);
+            speechBubbleGameObjectScript.numeralObjects[0].transform.parent = speechBubbleGameObjectScript.displayVersion.transform;
+
+
+        }
         Sprite= newSpeechBubbleGameObject.GetComponent<SpriteRenderer>().sprite;
         //吹き出しの画像を一致する
+
         newSpeechBubbleGameObject.GetComponent<SpeechBubbleGameObjectScript>().numeralObjects[0].GetComponent<SpriteRenderer>().sprite= Sprites[myNumera];
+
         mySprite = newSpeechBubbleGameObject.GetComponent<SpeechBubbleGameObjectScript>().numeralObjects[0].GetComponent<SpriteRenderer>().sprite;
+
         InputmonitorScript = inputmonitorControlScript.inputmonitor[newSpeechBubbleGameObjectNum].GetComponent<InputmonitorScript>();
 
-        rectTransform = speechBubbleGameObjectScript.text.rectTransform;
-
-        Debug.Log("newSpeechBubbleGameObject画像" + myNumera);
-        if (newSpeechBubbleGameObjectNum < 1) {
-            speechBubbleGameObjectScript.text2.text = "左の";
-        } else if (newSpeechBubbleGameObjectNum < 2) {
-            speechBubbleGameObjectScript.text2.text = "中の";
-        } else {
-            speechBubbleGameObjectScript.text2.text = "右の";
-        };
+     
 
 
     }
@@ -215,9 +228,9 @@ public class NumbersPresentationManager : MonoBehaviour
         //吹き出しの画像
         if (newSpeechBubbleGameObject != null&&inputmonitorControlScript.playerPos!=null) {
             newSpeechBubbleGameObject.transform.position = new Vector3(
-                inputmonitorControlScript.playerPos.transform.position.x + 0.1f * inputmonitorControlScript.playerPos.transform.localScale.x,
-                inputmonitorControlScript.playerPos.transform.position.y + 3.4f,
-                1.0f);
+                inputmonitorControlScript.playerPos.transform.position.x + speechBubbleGameObjectScriptPos.x * inputmonitorControlScript.playerPos.transform.localScale.x,
+                inputmonitorControlScript.playerPos.transform.position.y + speechBubbleGameObjectScriptPos.y,
+                inputmonitorControlScript.playerPos.transform.position.z);
         }
 
         if (Sprite != speechBubbleSprite[0] && inputmonitorControlScript.playerPos.transform.localScale.x < 0.0f)
@@ -252,27 +265,6 @@ public class NumbersPresentationManager : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-    //创建
-    //跟随移动　
-    //分别显示
-    //分别朝向确定
-    //跟换的时候先删除读取
-    //TExt
-    //如果切换
-    //删除当前数值
-    //获取当前的数值
-    //旋转读取
-    //直接显示
 
 
 }
