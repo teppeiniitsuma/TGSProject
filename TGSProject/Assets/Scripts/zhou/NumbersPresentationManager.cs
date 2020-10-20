@@ -30,7 +30,7 @@ public class NumbersPresentationManager : MonoBehaviour
     [SerializeField] private InputmonitorScript InputmonitorScript;
     [SerializeField] private int myNumera;
 
-    [SerializeField] private GameObject newSpeechBubbleGameObject;
+    [SerializeField] public GameObject newSpeechBubbleGameObject;
     [SerializeField]
     private int newSpeechBubbleGameObjectNum;
   //--------
