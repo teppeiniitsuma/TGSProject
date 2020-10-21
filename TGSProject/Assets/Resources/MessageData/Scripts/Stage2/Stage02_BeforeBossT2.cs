@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExcelAsset]
-public class TutorialMessageData : ScriptableObject
+public class Stage02_BeforeBossT2 : ScriptableObject
 {
 	public List<TutorialData> Message;
 }
-
