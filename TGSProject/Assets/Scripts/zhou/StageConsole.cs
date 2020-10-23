@@ -21,6 +21,7 @@ static public class StageConsole
         GameOver,
         BossScene,
         Tutorial,
+        PvScene,
     }
     public static MyScene scene;
     static Dictionary<string, MyScene> sceneDic = new Dictionary<string, MyScene>() {
@@ -35,7 +36,8 @@ static public class StageConsole
     {"Result",   MyScene.Result },
     {"GameOver",   MyScene.GameOver },
     {"BossScene",   MyScene.BossScene },
-    {"Tutorial", MyScene.Tutorial }
+    {"Tutorial", MyScene.Tutorial },
+    {"TitlePV", MyScene.PvScene },
 };
 
     public static MyScene MyGetScene()
