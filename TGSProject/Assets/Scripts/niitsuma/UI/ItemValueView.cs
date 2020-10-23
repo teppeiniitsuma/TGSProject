@@ -4,8 +4,10 @@ using System.Text;
 
 public class ItemValueView : MonoBehaviour
 {
+    [SerializeField] private int _maxCount = 5;
     private Text _valueText;
-    StringBuilder sb = new StringBuilder(10);
+    private StringBuilder sb = new StringBuilder(10);
+
     void Awake()
     {
         _valueText = GetComponent<Text>();
@@ -22,7 +24,7 @@ public class ItemValueView : MonoBehaviour
         else
         {
             sb.Length = 0;
-            _valueText.text = sb.Append(value).Append("/5").ToString();
+            _valueText.text = sb.Append(value).Append("/" + _maxCount).ToString();
             //_valueText.text = value.ToString() + " / 5";
         }
     }

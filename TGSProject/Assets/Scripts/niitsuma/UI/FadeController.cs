@@ -10,8 +10,6 @@ public class FadeController : MonoBehaviour
     [SerializeField] private float fadeOutSpeed = 1;
     private SpriteRenderer _fadeUI;
     private float alpha = 0;
-    bool outCheck = false;
-    bool _fadeInFlag = false;
     private System.Action _callback = null;
 
     void Awake()
@@ -63,7 +61,6 @@ public class FadeController : MonoBehaviour
         }
         if(null != _gm) { _gm.SetGameState(GameManager.GameState.SetUp); }
         yield return new WaitForSeconds(1);
-        _fadeInFlag = true;
         // ループを抜けたらcallback
         if (_callback != null) _callback();
     }
@@ -76,15 +73,5 @@ public class FadeController : MonoBehaviour
         _callback = callback;
         if(!n) { StartCoroutine(FadeOUT()); }
         else { StartCoroutine(FadeIN()); }
-    }
-
-    void Update()
-    {
-        if(null != _gm)
-        {
-            if (_gm.GetGameState == GameManager.GameState.Road) outCheck = true;
-            if (outCheck && !_fadeInFlag) { outCheck = false; StartCoroutine(FadeOUT()); }
-            if (_fadeInFlag) { _fadeInFlag = false; StartCoroutine(FadeIN()); }
-        }
     }
 }
