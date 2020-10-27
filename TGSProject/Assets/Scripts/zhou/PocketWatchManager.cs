@@ -86,7 +86,7 @@ public class PocketWatchManager : MonoBehaviour
             isnoe = true;
             //Debug.Log("時計 もう　一輪回りました。時間切りの処理を");
             GameManager.Instance.SetGameState(GameManager.GameState.Damage);
-            ///PocketWatchReset();
+            PocketWatchReset();
         }
     }
     /// <summary>

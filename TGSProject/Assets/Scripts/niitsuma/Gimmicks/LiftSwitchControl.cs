@@ -5,6 +5,7 @@ using UnityEngine;
 public class LiftSwitchControl : MonoBehaviour
 {
     [SerializeField] SwitchLiftController switchLift;
+    [SerializeField] BoxCollider2D[] _coll;
     int count = 0;
     bool anim = false;
     Vector2 startPos;
@@ -32,17 +33,37 @@ public class LiftSwitchControl : MonoBehaviour
             yield return null;
         }
     }
+    void ColliderActive(bool b)
+    {
+        if(null != _coll)
+        {
+            if (b)
+            {
+                for (int i = 0; i < _coll.Length; i++)
+                {
+                    _coll[i].gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _coll.Length; i++)
+                {
+                    _coll[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
     void OnSwitchPush()
     {
-        if (switchLift.IsLevel) { return; }
+        if (switchLift.IsLevel) { return; ColliderActive(false); }
         StartCoroutine(SwitchON());
-        if (!switchLift.IsLevel) { switchLift.IsSwitch = true; }
+        if (!switchLift.IsLevel) { switchLift.IsSwitch = true; ColliderActive(false); }
     }
     void OnSwitchExit()
     {
-        if (switchLift.IsLevel) {  return; }
+        if (switchLift.IsLevel) {  return; ColliderActive(false); }
         StartCoroutine(SwitchOFF());
-        if (!switchLift.IsLevel) { switchLift.IsSwitch = false; }
+        if (!switchLift.IsLevel) { switchLift.IsSwitch = false; ColliderActive(true); }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

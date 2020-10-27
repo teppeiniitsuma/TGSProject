@@ -13,7 +13,7 @@ public class LiftChainMover : MonoBehaviour
     private Vector3 startPosRight;
     private Vector3 startPosLeft;
 
-    void Start()
+    void Awake()
     {
         startPosRight = _chainRight.position;
         startPosLeft =  _chainLeft.position;
@@ -22,7 +22,6 @@ public class LiftChainMover : MonoBehaviour
         if (isUp) 
         {
             _chainLeft.position = new Vector3(_chainLeft.position.x, startPosLeft.y + moverDistance, _chainLeft.position.z);
-            // yを0になぜかできない（後で原因探るため今はマジックナンバー）
             _chainRight.position = new Vector3(_chainRight.position.x, startPosRight.y - moverDistance, _chainRight.position.z);
         }
     }

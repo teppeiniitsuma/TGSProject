@@ -76,8 +76,8 @@ MonoBehaviour:
   mySprite: {fileID: 0}
   Sprite: {fileID: 0}
   speechBubbleSprite:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: ab6d266b3ca4c3a449b0ebc0c8faf822, type: 3}
+  - {fileID: 21300000, guid: 1a212af0de851b545b71d5de94f0f146, type: 3}
   InputmonitorScript: {fileID: 0}
   myNumera: 0
   newSpeechBubbleGameObject: {fileID: 0}
@@ -88,6 +88,7 @@ MonoBehaviour:
   distance2: 0
   Posy: 3
   offset: {x: 0, y: 0}
+  speechBubbleGameObjectScriptPos: {x: 0.1, y: 3.4}
   rectTransform: {fileID: 0}
   backgroundsprite:
   - {fileID: 0}

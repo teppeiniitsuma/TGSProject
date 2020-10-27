@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameState GetGameState { get => _gameState; }
     public EventState GetEventState { get => _eventState; }
     public PlayerInfoCounter Information { get => _info; }
-    public UIManager UIInfo { get =>_uiManager; }
+    public UIManager UIInfo { get => _uiManager; }
     // プレイヤーが光の範囲内にいるか
     public bool InLightRange { get; private set; } = true;
 

@@ -44,7 +44,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 8
 --- !u!1 &8333413676820184001
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8333413677872032179}
   - component: {fileID: 8333413677872032178}
+  - component: {fileID: 8948425006400246719}
   m_Layer: 0
   m_Name: Bridge_ChainWinding
   m_TagString: Untagged
@@ -192,7 +193,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: f43a82afbc718af44b1c11197d114966, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -204,6 +205,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8948425006400246719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333413677872032176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d03be9c1c5e08849bd71ddbcb30b8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bridge: {fileID: 5386117674661288937}
 --- !u!1001 &8333413676188132511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,6 +290,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 6419245989593307202, guid: f9c2698a70fc3164e83162dda744d89d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9066792516375194603, guid: f9c2698a70fc3164e83162dda744d89d,
         type: 3}
       propertyPath: m_MaskInteraction
@@ -289,3 +308,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8333413676188132511}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5386117674661288937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4114441689961135990, guid: f9c2698a70fc3164e83162dda744d89d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8333413676188132511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fde8d96bc860cf44bbf9518ca6bd56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

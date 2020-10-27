@@ -53,11 +53,9 @@ public class InputmonitorControlScript : MonoBehaviour
     }
     private void Update()
     {
-        if (playerPos != null) {
-           // Debug.Log(playerPos.transform.position.x);
-        }
+
        // Debug.Log(transform.localScale.x);
-        if (playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
+        if (password != truePasssword&& playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
         {
             InputmonitorScriptStart();
             Debug.Log("Update");
@@ -88,6 +86,12 @@ public class InputmonitorControlScript : MonoBehaviour
             //旗
             numberLock_Flag.GetComponent<SpriteRenderer>().enabled = true;
             // GameObject.Destroy(gameObject);
+            //吹き出しオブジェクトを削除
+      
+            GetComponent<NumbersPresentationManager>().enabled = false;
+            Destroy(GetComponent<NumbersPresentationManager>().newSpeechBubbleGameObject,0.5f);
+            //スクリプト　を止める
+            GetComponent<InputmonitorControlScript>().enabled = false;
         }
     }
     void InputmonitorScriptStart() {
