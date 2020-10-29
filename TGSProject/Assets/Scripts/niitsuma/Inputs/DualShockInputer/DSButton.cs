@@ -7,6 +7,8 @@
         Circle   = 352,
         Triangle = 353,
         R1       = 355,
+        L1       = 334,
+        Option   = 339,
     }
 }
 

@@ -8,6 +8,7 @@ public class SwitchLevelControl : MonoBehaviour
     int count = 0;
     [SerializeField] SwitchLiftController _lift;
     [SerializeField, Tooltip("Bridgeを入れる")] BridgeScript bri;
+    [SerializeField] BoxCollider2D[] _coll;
 
     // ギミックが作動したらtrue
     public bool IsActuation { get; set; } = false;
@@ -19,7 +20,26 @@ public class SwitchLevelControl : MonoBehaviour
     {
         _actionUI.enabled = false;
     }
-
+    void ColliderActive(bool b)
+    {
+        if (null != _coll)
+        {
+            if (b)
+            {
+                for (int i = 0; i < _coll.Length; i++)
+                {
+                    _coll[i].gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _coll.Length; i++)
+                {
+                    _coll[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         count++;
@@ -32,7 +52,7 @@ public class SwitchLevelControl : MonoBehaviour
     }
     private void Update()
     {
-        if (_endActuation) return;
+        if (_endActuation) { return; }
 
         if (IsActuation && !_endActuation)
         {
@@ -40,6 +60,7 @@ public class SwitchLevelControl : MonoBehaviour
             bri.isLever = true;
             bri.OpenLevel();
             _endActuation = true;
+            ColliderActive(false);
         }
     }
 }

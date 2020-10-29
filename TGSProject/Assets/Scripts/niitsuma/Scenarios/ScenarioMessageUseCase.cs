@@ -6,24 +6,41 @@ using DualShockInput;
 public class ScenarioMessageUseCase : MonoBehaviour
 {
     [SerializeField] private List<ScenarioMessageControl> _messageControls;
+    [SerializeField] private Image _lBody, _rBody, King;
     [SerializeField] private Image[] _lFaces = new Image[5]; // リリカ
     [SerializeField] private Image[] _rFaces = new Image[5]; // ルイス
     [SerializeField] private FadeController _fade;
     ScenarioMessageModel _model;
     List<ScenarioData> message;
+    public int GetScenarioNum { get => _scenarioNum; }
+    [SerializeField]int _scenarioNum = 0;
 
     int count = 0;
-    int test = 0;
     bool trigger = false;
     void Start()
     {
         _model = GetComponent<ScenarioMessageModel>();
-        if(test == 0) { message = _model.GetPrologue.Message; }
-        else if(test == 1) { message = _model.GetEpilogue.Message; }
+        if(_scenarioNum == 0) { message = _model.GetPrologue.Message; }
+        else if(_scenarioNum == 1) { message = _model.GetEpilogue.Message; }
 
         MessageDisplay();
     }
 
+    void ViewColor(ScenarioData data)
+    {
+        if(data.name == "毛虫王様")
+        {
+            _lBody.color = new Color(0.5f, 0.5f, 0.5f);
+            _rBody.color = new Color(0.5f, 0.5f, 0.5f);
+            King.color = new Color(1f, 1f, 1f);
+        }
+        else
+        {
+            _lBody.color = new Color(1f, 1f, 1f);
+            _rBody.color = new Color(1f, 1f, 1f);
+            King.color = new Color(0.65f, 0.65f, 0.65f);
+        }
+    }
     void AllReset(string name = null)
     {
         if(name == null)
@@ -82,6 +99,7 @@ public class ScenarioMessageUseCase : MonoBehaviour
                 _messageControls[(int)TextType.NameText].SetName(message[count].name);
                 _messageControls[(int)TextType.MessageText].SetMessage(message[count].message,
                     () => count = count < message.Count - 1 ? count + 1 : count = -1);
+                ViewColor(message[count]);
                 switch (message[count].faceType)
                 {
                     case 1: AllReset(); break;
@@ -95,7 +113,20 @@ public class ScenarioMessageUseCase : MonoBehaviour
             }
             else
             {
-                if (!trigger) { _fade.Fade(false, ()=>StageConsole.MyLoadScene(StageConsole.MyScene.Tutorial)); trigger = true; }
+                if (!trigger)
+                {
+                    if(_scenarioNum == 0)
+                    {
+                        _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Tutorial));
+                        trigger = true;
+                    }
+                    else
+                    {
+                        _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Title));
+                        trigger = true;
+                    }
+                }
+                    
                 Debug.Log("終了");
             }
             if (!_messageControls[(int)TextType.MessageText].IsCheck) { _messageControls[(int)TextType.MessageText].IsCheck = true; }

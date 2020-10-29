@@ -1,14 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class LoadNextStage : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D coll) {
-        if (coll.tag == "Player") {
+    PlayerInfoCounter info;
+
+    private void Start()
+    {
+        info = GameManager.Instance.Information;
+    }
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Player" && info.GetParameter.actSwitch && info.GetItemValue.herbValue <= 0)
+        {
             //StageMove.LoadNextSchene();
-            StageMove.ResultLoad();
+            StageConsole.MyLoadScene(StageConsole.MyScene.BetweenStage);
         }
     }
+    //void OnTriggerEnter2D(Collider2D coll) {
+    //    if (coll.tag == "Player" && GameManager.Instance.Information.GetParameter.actSwitch) {
+    //        //StageMove.LoadNextSchene();
+    //        StageConsole.MyLoadScene(StageConsole.MyScene.BetweenStage);
+    //    }
+    //}
 }

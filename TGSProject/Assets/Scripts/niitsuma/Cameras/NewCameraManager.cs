@@ -2,7 +2,7 @@
 
 public class NewCameraManager : MonoBehaviour
 {
-    private const float cameraDistance = 8.4f; // カメラの幅の憶測
+    private const float cameraDistance = 8.4f; // カメラの幅
 
     /// <summary>
     /// カメラの範囲内にいるかをチェックする
