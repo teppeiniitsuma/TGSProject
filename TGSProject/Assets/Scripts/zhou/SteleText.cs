@@ -16,7 +16,6 @@ public class SteleText : MonoBehaviour
         myText.text = steleText;
         myImage.color = new Vector4(1, 1, 1,0);
         myText.color = new Vector4(1, 1, 1, 0);
-
     }
     void Update()
     {
@@ -57,7 +56,7 @@ public class SteleText : MonoBehaviour
     //離れ
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.name == "player") {
+        if (collider.name == "playerObj") {
             isMyPos = false;
         }
     }
@@ -65,7 +64,7 @@ public class SteleText : MonoBehaviour
     // 接続
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.name == "player")
+        if (collider.name == "playerObj")
         {
             isMyPos = true;
         }
