@@ -59,7 +59,7 @@ public class ScenarioMessageUseCase : MonoBehaviour
         {
             for (int i = 0; i < _rFaces.Length; i++)
             {
-                _lFaces[i].gameObject.SetActive(false);
+                _rFaces[i].gameObject.SetActive(false);
             }
         }
         else if (name == "ルイス")
@@ -74,6 +74,7 @@ public class ScenarioMessageUseCase : MonoBehaviour
     {
         if(name == "リリカ")
         {
+            Debug.Log("test");
             for (int i = 0; i < _lFaces.Length; i++)
             {
                 if (i != faceId - 1) { _lFaces[i].gameObject.SetActive(false); }

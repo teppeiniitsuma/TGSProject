@@ -33,7 +33,7 @@ public class PlayerAnimator : MonoBehaviour
     /// 一定時間後に特殊な演出に切り替える
     /// </summary>
     /// <param name="time">時間</param>
-    public void IdleAnim(float time)
+    public void IdleAnim(float time = 0)
     {
         if(GameManager.Instance.GetEventState == GameManager.EventState.Default)
         {

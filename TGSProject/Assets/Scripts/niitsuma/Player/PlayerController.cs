@@ -10,6 +10,7 @@ public class PlayerController : BasePlayer
 
     float time = 0;
     bool anim = false;
+    bool isSwitching = false;
     bool isMoved = false;
 
     void Start()
@@ -22,6 +23,7 @@ public class PlayerController : BasePlayer
 
     void FixedUpdate()
     {
+        if(_gm.GetGameState == GameManager.GameState.Event) { _pAnim.MoveAnimStop(); _pAnim.IdleAnim(); }
         if (_gm.GetGameState == GameManager.GameState.Main && !infoCounter.IsMovable && !anim)
         {
             _pAnim.MoveAnimStart();
@@ -35,14 +37,15 @@ public class PlayerController : BasePlayer
             _pAnim.MoveAnimStop();
         }
     }
-
+    // 入力情報を取得し各処理を実行する
     void ControllerGetter()
     {
         if (inputer.circleButton) { return; }
         if (inputer.squareButton) { return; }
         // 行動切り替え
-        if (inputer.triangleButton)
+        if (inputer.triangleButton && !isSwitching)
         {
+            isSwitching = true;
             if (infoCounter.GetParameter.actSwitch)
             {
                 infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.InSwitching);
@@ -63,6 +66,7 @@ public class PlayerController : BasePlayer
                 _pAnim.ActOneAnimatorPlay();
             }
             infoCounter.SpriteChange(infoCounter.GetParameter.actSwitch, _renderer);
+            isSwitching = false;
         }
     }
 
@@ -80,7 +84,7 @@ public class PlayerController : BasePlayer
         if(_gm.GetGameState == GameManager.GameState.Road) { _pAnim.PetrificationRelease(); }
         if (!_pAnim.ActAnimaStart)
         {
-            if (!infoCounter.IsMovable)
+            if (!infoCounter.IsMovable && _gm.GetGameState == GameManager.GameState.Main)
             {
                 ControllerGetter();
             }

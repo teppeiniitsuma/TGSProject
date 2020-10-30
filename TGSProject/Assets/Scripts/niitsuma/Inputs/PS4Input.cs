@@ -5,10 +5,10 @@ using DualShockInput;
 
 public class PS4Input : MonoBehaviour , IInputEvent
 {
-    public bool circleButton { get; set; }
-    public bool squareButton { get; set; }
-    public bool triangleButton { get; set; }
-    public Vector2 vector { get; set; }
+    public bool circleButton    { get; set; }
+    public bool squareButton    { get; set; }
+    public bool triangleButton  { get; set; }
+    public Vector2 vector       { get; set; }
 
 
     void Start()

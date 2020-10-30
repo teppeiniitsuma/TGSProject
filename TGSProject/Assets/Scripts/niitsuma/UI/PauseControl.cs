@@ -172,6 +172,12 @@ public class PauseControl : MonoBehaviour
                 }
                 if(!_isPush) PauseView();
             }
+            else
+            {
+                PanelReset();
+                PauseNotView();
+            }
+
         }
         
     }

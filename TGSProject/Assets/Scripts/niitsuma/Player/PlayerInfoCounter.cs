@@ -21,8 +21,9 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     public PossessionItem GetItemValue { get { return _items; } }
     PlayerState pState;
     public PlayerState GetPlayerState { get => pState; }
-    public bool IsMovable { get; private set; } = false; // プレイヤーが動ける状態か判断
+    public bool IsMovable { get; set; } = false; // プレイヤーが動ける状態か判断
     public int GetStageHarb { get => _stageHerbs; }
+    public StageType sType;
 
     int _maxHp = 4;
     bool damage = false;
@@ -36,6 +37,11 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         ItemUse,
         InSwitching, // 行動切り替え中
         Damage,
+    }
+    public enum StageType
+    {
+        Stage1,
+        Stage2,
     }
 
     void Awake()
@@ -78,8 +84,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         switch (id)
         {
             case ItemType.stone: if (_items.stoneValue < 5) _items.stoneValue++; break;
-            case ItemType.herb: _items.herbValue--; break;
-            case ItemType.butteflyWing: if(_items.butteflyWingValue < 5)_items.butteflyWingValue++; break;
+            case ItemType.herb: if(0 < _items.herbValue) _items.herbValue--; break;
+            case ItemType.butteflyWing: _items.butteflyWingValue++; break;
             case ItemType.catepillar: _items.catepillarValue++; break;
             case ItemType.life: if (_parameter.hp < 4) _parameter.hp++; break;
             default: break;
@@ -97,8 +103,9 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         _items.stoneValue = 0;
         _items.catepillarValue = 3;
         _items.herbValue = _stageHerbs;
-        _items.butteflyWingValue = 0;
 
+        if (sType == StageType.Stage1) { _items.butteflyWingValue = 0; }
+        else { _items.butteflyWingValue = 1; }
     }
 
     /// <summary>
