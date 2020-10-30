@@ -22,6 +22,7 @@ static public class StageConsole
         BossScene,
         Tutorial,
         PvScene,
+        Endroll,
     }
     public static MyScene scene;
     static Dictionary<string, MyScene> sceneDic = new Dictionary<string, MyScene>() {
@@ -38,6 +39,7 @@ static public class StageConsole
     {"BossScene",   MyScene.BossScene },
     {"Tutorial", MyScene.Tutorial },
     {"TitlePV", MyScene.PvScene },
+    {"Endroll", MyScene.Endroll },
 };
 
     public static MyScene MyGetScene()
