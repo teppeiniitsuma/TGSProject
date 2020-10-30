@@ -106,7 +106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: 400}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2966405382478068373
@@ -224,7 +224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 460}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7870572268805430186
@@ -269,7 +269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 1200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1566605144877400393
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3600485172040318629}
   rectTransform: {fileID: 3600485173426156529}
-  speed: 10
+  speed: 36
   lid: {fileID: 2488193536088355588}
   rotateSpeed: 4
   targetAngels: {x: 0, y: 90, z: 0, w: 0}
@@ -366,7 +366,9 @@ MonoBehaviour:
   end1Marker: {fileID: 87106043636573928}
   end2Marker: {fileID: 3497546379559828116}
   isDown: 1
-  moveTIme: 2
+  moveTIme: 1
+  distance_two: 0
+  distance_two2: 0
 --- !u!1 &3600485171888704092
 GameObject:
   m_ObjectHideFlags: 0

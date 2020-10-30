@@ -11,7 +11,7 @@ public class PocketWatchManager : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
     [Header("時計の周り速度")]
     [SerializeField] private float speed;
-    bool isnoe = false;
+    bool isOne = false;
 
 
     //蓋上げ
@@ -32,18 +32,32 @@ public class PocketWatchManager : MonoBehaviour
     [SerializeField] private bool isDown=true;
     public float moveTIme = 1.0F;
     //二点間の距離を入れる
-    private float distance_two, distance_two2;
+    [SerializeField] private float distance_two, distance_two2;
 
     private void Start()
     {
+        //  Debug.Log(startMarker.position);
+        //Debug.Log(end1Marker.position);
+        //  Debug.Log(end2Marker.position);
         targetAngels = Quaternion.Euler(0, 90f, 0);
         PocketWatchReset();
     }
-    void Update()
+    private void FixedUpdate()
     {
-        LidOpen();
+        Debug.Log(pocketWatchPos.transform.position);
         PocketWatchMoving();
         PocketWatchMove();
+        LidOpen();
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Update");
+        
+        }
+       
+        
+      
     }
     /// <summary>
     /// 時計影と針ををリセット
@@ -51,15 +65,18 @@ public class PocketWatchManager : MonoBehaviour
     public void PocketWatchReset()
     {
         // リセットするたびに上に上がるのを防止（後により良い処理に変更）
-        this.transform.position = this.transform.parent.position;
+       // this.transform.position = this.transform.parent.position;
         //影
         image.fillAmount = 0;
-        isnoe = false;
+        isOne = false;
         //角度リセット
         rectTransform.rotation = Quaternion.Euler(0, 0, 0.0f);
         lid.transform.rotation = Quaternion.Euler(0, 0, 0.0f);
         //ＰＯＳリセット
-        transform.position = startMarker.position;
+        pocketWatchPos.transform.position = startMarker.position;
+
+        distance_two2 = 0.0f;
+        distance_two = 0.0f;
         //二点間の距離を代入(スピード調整に使う)
         distance_two = Vector3.Distance(startMarker.position, end1Marker.position);
 
@@ -82,11 +99,11 @@ public class PocketWatchManager : MonoBehaviour
         image.fillAmount += Time.deltaTime / speed;
         rectTransform.rotation = Quaternion.Euler(0, 0, -image.fillAmount * 360.0f);
 
-        }else if (image.fillAmount == 1.0f&&!isnoe) {
-            isnoe = true;
+        }else if (image.fillAmount == 1.0f&&!isOne) {
+            isOne = true;
             //Debug.Log("時計 もう　一輪回りました。時間切りの処理を");
             GameManager.Instance.SetGameState(GameManager.GameState.Damage);
-            PocketWatchReset();
+            //PocketWatchReset();
         }
     }
     /// <summary>
@@ -96,23 +113,24 @@ public class PocketWatchManager : MonoBehaviour
         if (isDown)
         {
             // 現在の位置
-            float present_Location = (Time.time * (distance_two / moveTIme)) / distance_two;
+            float present_Location1 = (Time.time * (distance_two / moveTIme)) / distance_two*0.01f;
             // オブジェクトの移動
-            pocketWatchPos.transform.position = Vector3.Lerp(startMarker.position, end1Marker.position, present_Location);
+            pocketWatchPos.transform.position = Vector3.Lerp(pocketWatchPos.transform.position, end1Marker.position, present_Location1);
             if (pocketWatchPos.transform.position == end1Marker.position) {
                 isDown = false;
+
+                pocketWatchPos.transform.position = end1Marker.position;
+
                 //二点間の距離を代入(スピード調整に使う)
                 distance_two2 = Vector3.Distance(end1Marker.position, end2Marker.position);
-               
-
             }
 
         }
         else if (!isDown) {
 
-            float present_Location = (Time.time * (distance_two2/moveTIme/2)) / distance_two2;
+            float present_Location2 = (Time.time * (distance_two2/moveTIme/2) / distance_two2*0.01f);
             // オブジェクトの移動
-            pocketWatchPos.transform.position = Vector3.Lerp(end1Marker.position, end2Marker.position, present_Location);
+            pocketWatchPos.transform.position = Vector3.Lerp(pocketWatchPos.transform.position, end2Marker.position, present_Location2);
         }
        
     }
