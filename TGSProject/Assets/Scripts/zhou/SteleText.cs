@@ -9,18 +9,21 @@ public class SteleText : MonoBehaviour
     [SerializeField] Text myText;
     [SerializeField] Image myImage;
 
-    bool isMyPos;
-     [SerializeField] string steleText;
+    [SerializeField] bool isMyPos1;
+    [SerializeField] string steleText;
+    [SerializeField] GameObject louis;
     private void Start()
     {
+       
         myText.text = steleText;
         myImage.color = new Vector4(1, 1, 1,0);
         myText.color = new Vector4(1, 1, 1, 0);
-
+        GameObject parentObj = GameObject.Find("Players");
+        louis = parentObj.transform.Find("playerObj").gameObject;
     }
     void Update()
     {
-        TextPosMove();
+        
         TextColorMove();
     }
    // void TextMoveController() { 
@@ -28,12 +31,15 @@ public class SteleText : MonoBehaviour
     //色染まれ
     void TextColorMove()
     {
-        if (isMyPos) {
+        TextPosMove();
+        if (isMyPos1&&louis.activeSelf==false)
+        {
             myText.color = new Vector4(1, 1, 1, myText.color.a + Time.deltaTime);
             myImage.color = new Vector4(1, 1, 1, myImage.color.a + Time.deltaTime*1.2f);
 
         }
-        else if (!isMyPos && myText.color.a > 0) { 
+        else if (isMyPos1 && myText.color.a > 0)
+        {
             myText.color = new Vector4(1, 1, 1, myText.color.a - Time.deltaTime*0.8f);
             myImage.color = new Vector4(1, 1, 1, myImage.color.a - Time.deltaTime);
         }
@@ -52,22 +58,23 @@ public class SteleText : MonoBehaviour
         {
             rectTransform.gameObject.SetActive(true);
         }
-        Debug.Log("?");
+       // Debug.Log("?");
     }
     //離れ
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.name == "player") {
-            isMyPos = false;
+         if (collider.name == "player"&&isMyPos1)
+        {
+            isMyPos1 = false;
         }
     }
 
     // 接続
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.name == "player")
+       if (collider.name == "player"&&! isMyPos1)
         {
-            isMyPos = true;
+            isMyPos1 = true;
         }
     }
 }

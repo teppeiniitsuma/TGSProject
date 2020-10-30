@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DualShockInput;
 using UnityEngine;
 
 public class InputmonitorControlScript : MonoBehaviour
@@ -39,7 +38,8 @@ public class InputmonitorControlScript : MonoBehaviour
     public Space rotateSpace;
     [SerializeField]
     private GameObject[]NumberLock_Button;
-   
+    public GameObject louis;
+
     void Start()
     {
         animator = animeGameObject.GetComponent<Animator>();
@@ -49,13 +49,15 @@ public class InputmonitorControlScript : MonoBehaviour
         for (int i = 0; i < inputmonitor.Length; i++) {
             inputMonitorSprite[i] = inputmonitor[i].GetComponent<InputmonitorScript>();
         }
-            
+        GameObject parentObj = GameObject.Find("Players");
+        louis = parentObj.transform.Find("playerObj").gameObject;
+
     }
     private void Update()
     {
 
        // Debug.Log(transform.localScale.x);
-        if (password != truePasssword&& playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
+        if (password != truePasssword&& louis.activeSelf == false && playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
         {
             InputmonitorScriptStart();
             Debug.Log("Update");

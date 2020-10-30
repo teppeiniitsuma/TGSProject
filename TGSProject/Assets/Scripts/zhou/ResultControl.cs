@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using DualShockInput;
-
+using System.Threading;
 
 public class ResultControl : MonoBehaviour
 {
@@ -8,7 +8,11 @@ public class ResultControl : MonoBehaviour
     [SerializeField] private GameObject rigth, stageBG,system;
     [SerializeField] private GameObject[] stageImege1;
     [SerializeField] private GameObject[] stageImege2;
+    [SerializeField] private GameObject[] stageImege3;
+    [SerializeField] private float stageImege3scale=0, stageImege3scale2 = 0;
+
     [SerializeField] private GameObject[] stageName;
+
     // isPlayerOperational
     [SerializeField] private bool isPlayerOperational, SceneMove;
     //  rigthPos
@@ -22,7 +26,7 @@ public class ResultControl : MonoBehaviour
         stageImege2[(i+1)%2].GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0);
         //Rigth  start Pos
         rigth.GetComponent<Transform>().position = new Vector3(
-            stageImege1[0].GetComponent<Transform>().position.x + 1.2f,
+            stageImege1[0].GetComponent<Transform>().position.x + 1.8f,
              stageImege1[0].GetComponent<Transform>().position.y + 2.0f,
              rigth.GetComponent<Transform>().position.z
             );
@@ -83,8 +87,9 @@ public class ResultControl : MonoBehaviour
             stageImege2[i].GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, stageImege2[i].GetComponent<SpriteRenderer>().color.a + Time.deltaTime);
             int a = (i + 1) % 2;
             stageImege2[a].GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, stageImege2[a].GetComponent<SpriteRenderer>().color.a - Time.deltaTime);
+
              rigth.GetComponent<Transform>().position = new Vector3(
-            stageImege1[i].GetComponent<Transform>().position.x + 1.2f,
+            stageImege1[i].GetComponent<Transform>().position.x + 1.8f,
              stageImege1[i].GetComponent<Transform>().position.y + 2.0f,
              rigth.GetComponent<Transform>().position.z
             );
@@ -94,13 +99,37 @@ public class ResultControl : MonoBehaviour
           stageImege1[i].GetComponent<Transform>().position.y,
           system.GetComponent<Transform>().position.z
          );
-            if (stageImege2[i].GetComponent<SpriteRenderer>().color.a >= 1.0f)
+           
+
+        }
+
+        if (stageImege3[i].GetComponent<Transform>().localScale.x < stageImege3scale)
+        {
+            stageImege3[i].GetComponent<Transform>().localScale = new Vector3(
+                stageImege3[i].GetComponent<Transform>().localScale.x + Time.deltaTime * stageImege3scale2,
+                 stageImege3[i].GetComponent<Transform>().localScale.y + Time.deltaTime * stageImege3scale2,
+                1.0f);
+
+            int a = (i + 1) % 2;
+
+            stageImege3[a].GetComponent<Transform>().localScale = new Vector3(
+               stageImege3[a].GetComponent<Transform>().localScale.x - Time.deltaTime * stageImege3scale2,
+                stageImege3[a].GetComponent<Transform>().localScale.y - Time.deltaTime * stageImege3scale2,
+               1.0f);
+           
+
+            if (stageImege3[i].GetComponent<Transform>().localScale.x > stageImege3scale)
+            {
+                stageImege3[i].GetComponent<Transform>().localScale = new Vector3(stageImege3scale, stageImege3scale, 1.0f);
+                stageImege3[a].GetComponent<Transform>().localScale = new Vector3(1, 1, 1.0f);
+            }
+        }
+
+        if (stageImege2[i].GetComponent<SpriteRenderer>().color.a >= 1.0f)
             {
                 isPlayerOperational = true;
             }
-            //
-            //
-        }
+        
     }
     /// <summary>
     ///暗転
