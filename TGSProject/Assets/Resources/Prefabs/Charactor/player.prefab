@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1997276475799681708}
   - component: {fileID: 7990345251370828750}
   - component: {fileID: 1997276475799681698}
-  - component: {fileID: 1483199437030076390}
+  - component: {fileID: 4324804712263411503}
   - component: {fileID: 110175578293722422}
   - component: {fileID: 1997276475799681709}
   - component: {fileID: 7425654474464345361}
@@ -125,7 +125,8 @@ MonoBehaviour:
   playerSprite:
   - {fileID: 21300000, guid: a954be4ccb543924d9231214fcb0335c, type: 3}
   - {fileID: 21300000, guid: efcb3d5c948f60f4cb00a9ede80425a6, type: 3}
---- !u!114 &1483199437030076390
+  sType: 0
+--- !u!114 &4324804712263411503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1997276475799681705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5d8dcd32264b74c993135eee7f37b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 02f0a4bee45345d4a94dc7d406b83506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &110175578293722422
