@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DualShockInput;
 using UnityEngine;
 
 public class InputmonitorControlScript : MonoBehaviour
@@ -58,7 +57,7 @@ public class InputmonitorControlScript : MonoBehaviour
     {
 
        // Debug.Log(transform.localScale.x);
-        if (password != truePasssword&& louis.activeSelf == false && playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A)))
+        if (password != truePasssword&& louis.activeSelf == false && playerPos !=null && (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Circle)))
         {
             InputmonitorScriptStart();
             Debug.Log("Update");
