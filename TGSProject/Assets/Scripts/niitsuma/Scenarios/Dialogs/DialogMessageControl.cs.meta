@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c835cc9bf85c0be40bca9b7b292693f3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - start1: {instanceID: 0}
+  - herbGet: {instanceID: 0}
+  - medusa: {instanceID: 0}
+  - stele: {instanceID: 0}
+  - start2: {instanceID: 0}
+  - switchLift: {instanceID: 0}
+  - numberLock: {instanceID: 0}
+  - bossF: {instanceID: 0}
+  - bossT1: {instanceID: 0}
+  - bossT2: {instanceID: 0}
+  - end1: {instanceID: 0}
+  - end2: {instanceID: 0}
+  - trueEnd: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

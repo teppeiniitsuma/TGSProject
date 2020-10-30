@@ -2,7 +2,7 @@
 
 public class NewCameraManager : MonoBehaviour
 {
-    private const float cameraDistance = 8.4f; // カメラの幅
+    const float CAMERA_DISTANCE = 8.4f; // カメラの幅
 
     /// <summary>
     /// カメラの範囲内にいるかをチェックする
@@ -11,7 +11,7 @@ public class NewCameraManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckCameraPos(Vector3 pos)
     {
-        if(transform.position.x - cameraDistance < pos.x && pos.x < transform.position.x + cameraDistance)
+        if(transform.position.x - CAMERA_DISTANCE < pos.x && pos.x < transform.position.x + CAMERA_DISTANCE)
         {
             return true;
         }

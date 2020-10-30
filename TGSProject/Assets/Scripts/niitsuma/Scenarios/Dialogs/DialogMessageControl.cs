@@ -6,13 +6,35 @@ using DualShockInput;
 
 public class DialogMessageControl : MonoBehaviour
 {
-	[SerializeField] Stage01_Start1  start1;
+
+	[SerializeField] private StageType stageType;
+
+    #region シナリオデータ
+	// ステージ１
+    [SerializeField] Stage01_Start1  start1;
 	[SerializeField] Stage01_HerbGet herbGet;
 	[SerializeField] Stage01_Medusa  medusa;
 	[SerializeField] Stage01_Stele   stele;
 
-    #region ダイアログデータ（後で修正）
-    [SerializeField] Text[] green_L_Text = new Text[2];
+	// ステージ２
+	[SerializeField] Stage02_Start start2;
+	[SerializeField] Stage02_SwitchLift switchLift;
+	[SerializeField] Stage02_NumberLock numberLock;
+	[SerializeField] Stage02_BeforeBossF bossF;
+	[SerializeField] Stage02_BeforeBossT1 bossT1;
+
+	// ボス戦終了後
+	[SerializeField] Stage02_BeforeBossT2 bossT2;
+
+	// エンディング
+	[SerializeField] Stage02_NormalEnd1 end1;
+	[SerializeField] Stage02_NormalEnd2 end2;
+	[SerializeField] Stage02_TrueEnd trueEnd;
+
+	#endregion
+
+	#region ダイアログデータ（後で修正）
+	[SerializeField] Text[] green_L_Text = new Text[2];
 	[SerializeField] Text[] red_L_Text   = new Text[2];
 	[SerializeField] Text[] green_M_Text = new Text[2];
 	[SerializeField] Text[] red_M_Text   = new Text[2];
@@ -31,23 +53,61 @@ public class DialogMessageControl : MonoBehaviour
 
 	public int SetScenarioID { set { id = value; } }
 	int id = 0;
-	void Start()
-	{
-		//ShowMessage();
-	}
 
+	List<TutorialData> tempData = new List<TutorialData>();
 	int count = 0;
 
-	public void TestView()
+	private enum StageType
     {
-		switch (id)
-		{
-			case 1: tempData = start1.Message; break;
-			case 2: tempData = herbGet.Message; break;
-			case 3: tempData = medusa.Message; break;
-			case 4: tempData = stele.Message; break;
-		}
+		Stage1,
+		Stage2, 
+		Boss,
+		End,
+    } 
 
+	void ScenarioRoad(StageType type)
+    {
+		if(type == StageType.Stage1)
+        {
+			switch (id)
+			{
+				case 1: tempData = start1.Message; break;
+				case 2: tempData = herbGet.Message; break;
+				case 3: tempData = medusa.Message; break;
+				case 4: tempData = stele.Message; break;
+			}
+		}
+		else if(type == StageType.Stage2)
+        {
+			switch (id)
+			{
+				case 1: tempData = start2.Message; break;
+				case 2: tempData = switchLift.Message; break;
+				case 3: tempData = numberLock.Message; break;
+				case 4: tempData = bossF.Message; break;
+				case 5: tempData = bossT1.Message; break;
+			}
+		}
+		else if(type == StageType.Boss)
+        {
+			switch (id)
+			{
+				case 1: tempData = bossT2.Message; break;
+			}
+		}
+		else if(type == StageType.End)
+        {
+			switch (id)
+			{
+				case 1: tempData = end1.Message; break;
+				case 2: tempData = end2.Message; break;
+				case 3: tempData = trueEnd.Message; break;
+			}
+		}
+    }
+	public void DialogView()
+    {
+		ScenarioRoad(stageType);
 		if (tempData[count].balloonColor == BalloonColor.GREEN)
 		{
 			if (null != temp) { temp.SetActive(false); }
@@ -136,20 +196,11 @@ public class DialogMessageControl : MonoBehaviour
 		}
 		count = Mathf.Clamp(count + 1, 0, tempData.Count);
 	}
-	List<TutorialData> tempData = new List<TutorialData>();
 	private void Update()
     {
         if (DSInput.PushDown(DSButton.Circle) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent ||
-			Input.GetKeyDown(KeyCode.Z) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent)
+			DSInput.Push(DSButton.L1) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent)
         {
-   //         switch (id)
-			//{
-			//	case 1: tempData = start1.Message;  break;
-			//	case 2: tempData = herbGet.Message; break;
-			//	case 3: tempData = medusa.Message;  break;
-			//	case 4: tempData = stele.Message;   break;
-			//}
-
 			if(count == tempData.Count) { GameManager.Instance.EventEnd(); count = 0; temp.SetActive(false); temp = null; return; }
             if (tempData[count].balloonColor == BalloonColor.GREEN)
             {

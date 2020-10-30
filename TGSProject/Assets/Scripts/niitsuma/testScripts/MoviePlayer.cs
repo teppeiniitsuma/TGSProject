@@ -5,7 +5,7 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RawImage), typeof(VideoPlayer), typeof(AudioSource))]
-public class testMovieTest : MonoBehaviour
+public class MoviePlayer : MonoBehaviour
 {
     RawImage image;
     VideoPlayer player;
