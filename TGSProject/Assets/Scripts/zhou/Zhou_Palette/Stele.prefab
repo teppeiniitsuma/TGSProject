@@ -348,10 +348,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 100}
-  rectTransform: {fileID: 5430009885528146196}
+  rectTransform: {fileID: 8680221344373886382}
   myText: {fileID: 8680221344131424158}
   myImage: {fileID: 3207391532728864382}
+  isMyPos1: 0
   steleText: 
+  louis: {fileID: 0}
+  playerInfoCounter: {fileID: 0}
+  canvas: {fileID: 8680221344373886383}
 --- !u!61 &8680221345045691043
 BoxCollider2D:
   m_ObjectHideFlags: 0
