@@ -9,22 +9,30 @@ public class SteleText : MonoBehaviour
     [SerializeField] Text myText;
     [SerializeField] Image myImage;
 
+ 
     [SerializeField] bool isMyPos1;
     [SerializeField] string steleText;
     [SerializeField] GameObject louis;
+
+    //---
+    [SerializeField] private PlayerInfoCounter playerInfoCounter;
+    [SerializeField] GameObject canvas;
+
     private void Start()
     {
-       
+        playerInfoCounter= GameManager.Instance.Information;
         myText.text = steleText;
         myImage.color = new Vector4(1, 1, 1,0);
         myText.color = new Vector4(1, 1, 1, 0);
         GameObject parentObj = GameObject.Find("Players");
         louis = parentObj.transform.Find("playerObj").gameObject;
+  
     }
     void Update()
     {
         
         TextColorMove();
+        CanvasMove();
     }
    // void TextMoveController() { 
    // }
@@ -59,6 +67,12 @@ public class SteleText : MonoBehaviour
             rectTransform.gameObject.SetActive(true);
         }
        // Debug.Log("?");
+    }
+    void CanvasMove() {
+        if (GameManager.Instance.GetGameState != GameManager.GameState.Main)
+        {
+            canvas.SetActive(false);
+        }
     }
     //離れ
     void OnTriggerExit2D(Collider2D collider)
