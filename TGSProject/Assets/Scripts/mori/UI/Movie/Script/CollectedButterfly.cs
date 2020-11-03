@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectedButterfly : MonoBehaviour
+public class CollectedButterfly : MonoBehaviour //  ステージ1,2で集めた蝶を数えてノーマルEndかトゥルーEndを決める処理
 {
     public int _collectedButterfly { get{ return _collButterfly; } }
     [SerializeField]LastEnemy lsEnemy;

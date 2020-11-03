@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LastNormalEnd : MonoBehaviour
+public class LastNormalEnd : MonoBehaviour  //  ノーマルEndの処理
 {
     [SerializeField] CollectedButterfly _butterfly;
 
