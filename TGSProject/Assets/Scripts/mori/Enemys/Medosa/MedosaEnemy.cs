@@ -1,52 +1,48 @@
 ﻿using UnityEngine;
 
-public class MedosaEnemy : BaseEnemy
+public class MedosaEnemy : BaseEnemy    //  メドゥーサ
 {
-    
-    private Animator animetor;
-    private float direction_x = 1.5f;
-    private bool iti;
+    private float direction_x = 1.5f;   //  向く向きを変えたときにその場から動かないようにする変数
+    private bool PlayerDirection;   //      Plareyが左に居るときはTrue、右に居るときはFalse
 
     void Start()
     {
         ri2d = GetComponent<Rigidbody2D>();
-        this.animetor = GetComponent<Animator>();
         startPosition = transform.position;
         base.enemyID = EnemyType.Medosa;
-        iti = true;
+        PlayerDirection = true;
     }
 
-    private void FooPlayer()
+    private void LeftPlayer()    //  プレイヤ－が左に居るときの処理  
     {
-        if(iti)
+        if(PlayerDirection)
         {
             transform.position = new Vector2(startPosition.x, startPosition.y);
-            iti = !iti;
+            PlayerDirection = !PlayerDirection;
         }
     }
 
-    private void AfPlayer()
+    private void RightPlayer()     //  プレイヤーが右に居るときの処理
     {
-        if (!iti)
+        if (!PlayerDirection)
         {
             transform.position = new Vector2(startPosition.x + direction_x, startPosition.y);
-            iti = !iti;
+            PlayerDirection = !PlayerDirection;
         }
     }
 
-    private void ImageDirection()
+    private void ImageDirection()   //  メドゥーサのMain処理
     {
         //  プレイヤーのトランスフォームを取る
         Vector2 playerPos = player.transform.position;
-        if (playerPos.x < startPosition.x) { direction = 1; FooPlayer(); }
-        else if(playerPos.x > startPosition.x) { direction = -1; AfPlayer(); }
-        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
+        if (playerPos.x < startPosition.x) { direction = 1; LeftPlayer(); }
+        else if(playerPos.x > startPosition.x) { direction = -1; RightPlayer(); }
+        if (direction != 0) { transform.localScale = new Vector2(direction, 1); }   //プレイヤーの向きを変えるif文
     }
 
     // Update is called once per frame
      void Update()
     {
-        this.animetor.speed = playSpeed;
         ImageDirection();
     }
 }
