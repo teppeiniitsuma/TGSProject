@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderYarn : MonoBehaviour
+public class SpiderYarn : MonoBehaviour //  ラスボスの吐く糸のアニメーション
 {
     protected Animator _anim;
 
