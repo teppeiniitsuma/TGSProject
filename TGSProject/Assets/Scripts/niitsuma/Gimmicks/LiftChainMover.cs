@@ -19,11 +19,11 @@ public class LiftChainMover : MonoBehaviour
         startPosLeft =  _chainLeft.position;
 
         isUp = _lift.GetIsUp;
-        if (isUp) 
-        {
-            _chainLeft.position = new Vector3(_chainLeft.position.x, startPosLeft.y + moverDistance, _chainLeft.position.z);
-            _chainRight.position = new Vector3(_chainRight.position.x, startPosRight.y - moverDistance, _chainRight.position.z);
-        }
+        //if (isUp) 
+        //{
+        //    _chainLeft.position = new Vector3(_chainLeft.position.x, startPosLeft.y + moverDistance, _chainLeft.position.z);
+        //    _chainRight.position = new Vector3(_chainRight.position.x, startPosRight.y - moverDistance, _chainRight.position.z);
+        //}
     }
     /// <summary>
     /// 鎖位置を初期化する

@@ -3,6 +3,7 @@
 public class LevelControl : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _actionUI;
+    [SerializeField] private Animator _keyAnim;
     int count = 0;
 
     [SerializeField, Tooltip("Bridgeを入れる")] BridgeScript bri;
@@ -34,9 +35,12 @@ public class LevelControl : MonoBehaviour
 
         if (IsActuation && !_endActuation)
         {
+            SoundManager.PlayMusic("Audios/Gimmick/level", false);
             bri.isLever = true;
             bri.OpenLevel();
             _endActuation = true;
+            if(null != _keyAnim) _keyAnim.gameObject.SetActive(true);
+            SoundManager.PlayMusic("Audios/Gimmick/bridrg_locked", false);
         }
     }
 }

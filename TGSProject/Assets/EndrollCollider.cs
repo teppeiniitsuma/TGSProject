@@ -9,7 +9,16 @@ public class EndrollCollider : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Endroll));
+            if (ResultManager.TrueEnd)
+            {
+                GameManager.Instance.SetGameState(GameManager.GameState.Result);
+                _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Scenario));
+            }
+            else
+            {
+                GameManager.Instance.SetGameState(GameManager.GameState.Result);
+                _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.NormalEnd));
+            }
         }
     }
 }

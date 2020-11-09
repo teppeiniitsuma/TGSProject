@@ -6,6 +6,10 @@ using DualShockInput;
 
 public class TitleController : MonoBehaviour
 {
+    private void Start()
+    {
+        ScenarioMessageUseCase.scenarioNum = 0;
+    }
     void NextScene()
     {
         if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space))

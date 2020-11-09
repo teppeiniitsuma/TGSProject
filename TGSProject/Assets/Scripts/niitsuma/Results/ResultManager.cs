@@ -13,6 +13,7 @@ public class ResultManager : MonoBehaviour
 
     public ResultData GetResultData { get { return _data; } }
     private static ResultData _data = new ResultData();
+    public static bool TrueEnd { get; set; } = false;
 
     void Awake()
     {

@@ -85,14 +85,14 @@ public class DialogMessageControl : MonoBehaviour
 				case 2: tempData = switchLift.Message; break;
 				case 3: tempData = numberLock.Message; break;
 				case 4: tempData = bossF.Message; break;
-				case 5: tempData = bossT1.Message; break;
 			}
 		}
 		else if(type == StageType.Boss)
         {
 			switch (id)
 			{
-				case 1: tempData = bossT2.Message; break;
+				case 1: tempData = bossT1.Message; break;
+				case 2: tempData = bossT2.Message; break;
 			}
 		}
 		else if(type == StageType.End)
@@ -198,7 +198,7 @@ public class DialogMessageControl : MonoBehaviour
 	}
 	private void Update()
     {
-        if (DSInput.PushDown(DSButton.Circle) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent ||
+        if ((DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Z)) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent ||
 			DSInput.Push(DSButton.L1) && GameManager.Instance.GetEventState == GameManager.EventState.ScenarioEvent)
         {
 			if(count == tempData.Count) { GameManager.Instance.EventEnd(); count = 0; temp.SetActive(false); temp = null; return; }

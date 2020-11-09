@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DualShockInput;
 
 public class ItemUse : MonoBehaviour
 {
-    PlayerInfoCounter _info;
     [SerializeField] private GameObject stone;
     [SerializeField] private GameObject caterpillar;
     [SerializeField] private DisplaySpiderCounter _counter;
+    PlayerInfoCounter _info;
 
     void Start()
     {
@@ -20,10 +18,13 @@ public class ItemUse : MonoBehaviour
     /// </summary>
     void ThrowStone()
     {
+        
         Vector2 sponePos = new Vector2(transform.position.x + 1, transform.position.y + 0.6f);
         if (0 < _info.GetItemValue.stoneValue)
         {
             Instantiate(stone, sponePos, transform.rotation);
+            //SEを再生
+            SoundManager.PlayMusic("Audios/Player/throw_stone", false);
             _info.UseItem(ItemType.stone);
         }
     }
@@ -35,12 +36,14 @@ public class ItemUse : MonoBehaviour
         if (_counter.SpiderInScreen() && 0 <_info.GetItemValue.catepillarValue)
         {
             _counter.CaterpillarAttack();
+            //SEを再生
+            SoundManager.PlayMusic("Audios/Player/caterpillar_attack", false);
             //ResultManager.Instance.SetEnemyKillCount();
         }
     }
     void Update()
     {
-        if (_info.GetParameter.actSwitch)
+        if (_info.GetParameter.actSwitch && GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
             if (Input.GetKeyDown(KeyCode.Space) || DSInput.PushDown(DSButton.Triangle))
                 ThrowStone();

@@ -37,6 +37,7 @@ public class SwitchController : MonoBehaviour
     {
         if (bri.isLevel) { if (null != colli) { colli.SetActive(false); } return; }
         if (null != colli) { colli.SetActive(false); }
+        SoundManager.PlayMusic("Audios/Gimmick/switch", false);
         StartCoroutine(SwitchON());
         if(!bri.isLevel) bri.isSwitchUp = true;
     }

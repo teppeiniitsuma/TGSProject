@@ -55,6 +55,7 @@ public class LastLevelController : MonoBehaviour
                     _cameraEvent.SwayingCamera();
                     StartCoroutine(BreakLevel());
                     lastEne.isLeverLaunched = true;
+                    SoundManager.PlayMusic("Audios/Gimmick/earth-tremor1_2", false);
                 }
             }
         }

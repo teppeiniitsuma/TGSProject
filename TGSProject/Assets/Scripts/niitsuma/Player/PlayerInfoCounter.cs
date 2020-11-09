@@ -22,6 +22,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
     PlayerState pState;
     public PlayerState GetPlayerState { get => pState; }
     public bool IsMovable { get; set; } = false; // プレイヤーが動ける状態か判断
+    public bool IsSwitchedable { get; set; } = true; // 行動切り替えができる状態か
     public int GetStageHarb { get => _stageHerbs; }
     public StageType sType;
 
@@ -170,6 +171,8 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
         medBoolen = true;
         IsMovable = true;
         pState = PlayerState.Petrification;
+        SoundManager.PlayEffect("Audios/Enemy/medusa_attack_spell", false);
+        SoundManager.PlayEffect("Audios/Enemy/medusa_attack_stoned", false);
         ResultManager.Instance.SetDeadCount();
     }
 

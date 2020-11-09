@@ -28,6 +28,8 @@ public class PlayerController : BasePlayer
         {
             _pAnim.MoveAnimStart();
             _pMove.Mover(infoCounter.GetParameter.moveSpeed);
+            //SEを再生
+            SoundManager.PlayMusic("Audios/Player/walk_stage1", false);
             isMoved = true;
         }
         if (inputer.vector.x <= 0.1 && -0.1f <= inputer.vector.x)
@@ -43,11 +45,12 @@ public class PlayerController : BasePlayer
         if (inputer.circleButton) { return; }
         if (inputer.squareButton) { return; }
         // 行動切り替え
-        if (inputer.triangleButton && !isSwitching)
+        if (inputer.triangleButton && !isSwitching && infoCounter.IsSwitchedable)
         {
             isSwitching = true;
             if (infoCounter.GetParameter.actSwitch)
             {
+                SoundManager.PlayMusic("Audios/Player/stick_stage1", false);
                 infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.InSwitching);
                 louis.ChangeAct();
                 int direc = infoCounter.GetParameter.direction;
@@ -59,6 +62,7 @@ public class PlayerController : BasePlayer
             }
             else if (!infoCounter.GetParameter.actSwitch && louis.AreaJudgment(transform))
             {
+                SoundManager.PlayMusic("Audios/Player/stick_stage1", false);
                 infoCounter.SetPlayerState(PlayerInfoCounter.PlayerState.InSwitching);
                 louis.ChangeAct();
                 louis.gameObject.SetActive(false);
