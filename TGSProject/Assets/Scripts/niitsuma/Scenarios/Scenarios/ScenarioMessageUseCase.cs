@@ -12,16 +12,16 @@ public class ScenarioMessageUseCase : MonoBehaviour
     [SerializeField] private FadeController _fade;
     ScenarioMessageModel _model;
     List<ScenarioData> message;
-    public int GetScenarioNum { get => _scenarioNum; }
-    [SerializeField]int _scenarioNum = 0;
+    public int GetScenarioNum { get => scenarioNum; }
+    public static int scenarioNum = 0;
 
     int count = 0;
     bool trigger = false;
     void Start()
     {
         _model = GetComponent<ScenarioMessageModel>();
-        if(_scenarioNum == 0) { message = _model.GetPrologue.Message; }
-        else if(_scenarioNum == 1) { message = _model.GetEpilogue.Message; }
+        if(scenarioNum == 0) { message = _model.GetPrologue.Message; }
+        else if(scenarioNum == 1) { message = _model.GetEpilogue.Message; }
 
         MessageDisplay();
     }
@@ -116,14 +116,15 @@ public class ScenarioMessageUseCase : MonoBehaviour
             {
                 if (!trigger)
                 {
-                    if(_scenarioNum == 0)
+                    if(scenarioNum == 0)
                     {
                         _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Tutorial));
                         trigger = true;
                     }
                     else
                     {
-                        _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Title));
+                        scenarioNum = 0;
+                        _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Endroll));
                         trigger = true;
                     }
                 }

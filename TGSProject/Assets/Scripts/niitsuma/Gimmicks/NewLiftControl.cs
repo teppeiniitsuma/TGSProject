@@ -47,7 +47,8 @@ public class NewLiftControl : MonoBehaviour
 
     void LiftMove()
     {
-        if(!_isUp && _isMove)
+        SoundManager.PlayMusic("Audios/Gimmick/cupboard1_O", false);
+        if (!_isUp && _isMove)
         {
             GearRotate();
             _floor.position = new Vector2(_floor.position.x, 

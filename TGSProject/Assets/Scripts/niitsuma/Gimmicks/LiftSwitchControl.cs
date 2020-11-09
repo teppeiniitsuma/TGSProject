@@ -6,6 +6,7 @@ public class LiftSwitchControl : MonoBehaviour
 {
     [SerializeField] SwitchLiftController switchLift;
     [SerializeField] BoxCollider2D[] _coll;
+    [SerializeField] Animator chainAnim;
     int count = 0;
     bool anim = false;
     Vector2 startPos;
@@ -13,6 +14,7 @@ public class LiftSwitchControl : MonoBehaviour
 
     void Start()
     {
+        chainAnim.speed = 0;
         startPos = transform.position;
         pushPos = startPos.y - 0.3f;
     }
@@ -55,6 +57,7 @@ public class LiftSwitchControl : MonoBehaviour
     }
     void OnSwitchPush()
     {
+        if(chainAnim.speed == 0) { chainAnim.speed = 1; SoundManager.PlayMusic("Audios/Gimmick/pickupkey", false);  }
         if (switchLift.IsLevel) { return; ColliderActive(false); }
         StartCoroutine(SwitchON());
         if (!switchLift.IsLevel) { switchLift.IsSwitch = true; ColliderActive(false); }
@@ -83,7 +86,7 @@ public class LiftSwitchControl : MonoBehaviour
     }
     private void Update()
     {
-        if (0 < count && !anim) { OnSwitchPush(); anim = !anim; }
+        if (0 < count && !anim) { OnSwitchPush(); anim = !anim; SoundManager.PlayMusic("Audios/Gimmick/switch", false); }
         else if (count == 0 && !anim) { OnSwitchExit(); anim = !anim; }
     }
 }

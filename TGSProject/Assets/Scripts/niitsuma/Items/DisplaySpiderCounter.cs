@@ -2,13 +2,13 @@
 
 public class DisplaySpiderCounter : MonoBehaviour
 {
-    private const int dispSpiders = 4; // 画面内に存在できる蜘蛛の数
+    private const int DISP_SPIDERS = 4; // 画面内に存在できる蜘蛛の数
     
-    [SerializeField] private Transform[] spiders = new Transform[dispSpiders];
+    [SerializeField] private Transform[] spiders = new Transform[DISP_SPIDERS];
     [SerializeField] private GameObject caterpillar;
 
     private int count = 0;
-    private bool isAttackTrigger = false;
+    private bool attackTrigger = false;
     private Vector3 te = new Vector3(0, 4.9f, 0);
 
     public void spiderAddCount(Transform t)
@@ -50,7 +50,7 @@ public class DisplaySpiderCounter : MonoBehaviour
         if (GameManager.Instance.GetGameState == GameManager.GameState.Main)
         {
             GameManager.Instance.SetEventState(GameManager.EventState.AttackEvent);
-            isAttackTrigger = true;
+            attackTrigger = true;
         }
     }
 
@@ -98,10 +98,10 @@ public class DisplaySpiderCounter : MonoBehaviour
     private void Update()
     {
 
-        if(isAttackTrigger)
+        if(attackTrigger)
         {
             if(null != spiders[0]) Instantiate(caterpillar, spiders[0].transform.position + te, transform.rotation);
-            isAttackTrigger = false;
+            attackTrigger = false;
             Invoke("ClearSpiders", 2f);
         }
     }

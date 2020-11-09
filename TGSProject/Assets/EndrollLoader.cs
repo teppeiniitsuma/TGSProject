@@ -20,5 +20,6 @@ public class EndrollLoader : MonoBehaviour
             _audio.SetActive(false);
             _coll.gameObject.SetActive(true);
         }
+        if (Input.GetKeyDown(KeyCode.F8)) { lsEnemy.lastBossHp = 1; }
     }
 }

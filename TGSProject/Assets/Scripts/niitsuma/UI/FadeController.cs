@@ -8,20 +8,26 @@ public class FadeController : MonoBehaviour
 
     [SerializeField] private float fadeInSpeed = 3;
     [SerializeField] private float fadeOutSpeed = 1;
+    [SerializeField, Header("最初にフェード演出を入れるか")] private bool isStartFade = false;
     private SpriteRenderer _fadeUI;
     private float alpha = 0;
+    private Color myColor;
+    private Color colorAlphaZero;
     private System.Action _callback = null;
+
 
     void Awake()
     {
         _fadeUI = GetComponent<SpriteRenderer>();
         _gm = GameManager.Instance;
+        myColor = _fadeUI.color;
+        colorAlphaZero = new Color(myColor.r, myColor.g, myColor.b, 0);
     }
 
     void Start()
     {
         _load = FindObjectOfType<PlayerReload>();
-        StartCoroutine(FadeIN());
+        if(isStartFade) StartCoroutine(FadeIN());
     }
     /// <summary>
     /// 明るくする
@@ -30,7 +36,7 @@ public class FadeController : MonoBehaviour
     IEnumerator FadeIN()
     {
         // 念のため初期化
-        _fadeUI.color = Color.black;
+        _fadeUI.color = myColor;
         alpha = _fadeUI.color.a;
         if(null != _load) _load.Reload();
         while (0 < _fadeUI.color.a)
@@ -51,7 +57,7 @@ public class FadeController : MonoBehaviour
     IEnumerator FadeOUT()
     {
         // 念のため初期化
-        _fadeUI.color = Color.clear;
+        _fadeUI.color = colorAlphaZero;
         alpha = _fadeUI.color.a;
         while (_fadeUI.color.a < 1)
         {
@@ -73,5 +79,12 @@ public class FadeController : MonoBehaviour
         _callback = callback;
         if(!n) { StartCoroutine(FadeOUT()); }
         else { StartCoroutine(FadeIN()); }
+    }
+    /// <summary>
+    /// Fade前にカラーを初期化する
+    /// </summary>
+    public void ColorInitialize()
+    {
+        _fadeUI.color = colorAlphaZero;
     }
 }

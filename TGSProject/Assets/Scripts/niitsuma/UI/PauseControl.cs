@@ -71,7 +71,11 @@ public class PauseControl : MonoBehaviour
         if(_sceneType == SceneType.StageScene)
         {
             if (Input.GetKeyDown(KeyCode.P)) { GameManager.Instance.SetGameState(GameManager.GameState.Pause); }
-            if (DSInput.PushDown(DSButton.Option)) { _dsInput = true; GameManager.Instance.SetGameState(GameManager.GameState.Pause); }
+            if (DSInput.PushDown(DSButton.Option))
+            {
+                SoundManager.PlayEffect("Audios/System/popup", false);
+                _dsInput = true; GameManager.Instance.SetGameState(GameManager.GameState.Pause);
+            }
             if (GameManager.Instance.GetGameState == GameManager.GameState.Pause)
             {
                 if (Input.GetKeyDown(KeyCode.RightArrow)) { _selects = true; }

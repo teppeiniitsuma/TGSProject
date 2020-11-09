@@ -10,7 +10,12 @@ public class StoneItem : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var damege = collision.gameObject.GetComponent<IDamager>();
-        if (damege != null) { damege.ApplyDamage(EnemyType.None); disp.SpiderChecks(); ResultManager.Instance.SetEnemyKillCount(); }
+        if (damege != null) 
+        {
+            damege.ApplyDamage(EnemyType.None); disp.SpiderChecks();
+            SoundManager.PlayEffect("Audios/Enemy/spider_lock-on", false);
+            ResultManager.Instance.SetEnemyKillCount();
+        }
     }
     private void Awake()
     {
