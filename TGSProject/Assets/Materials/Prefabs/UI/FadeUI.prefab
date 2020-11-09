@@ -95,3 +95,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInSpeed: 1
   fadeOutSpeed: 2
+  isStartFade: 1
