@@ -402,6 +402,8 @@ MonoBehaviour:
   stageImege2:
   - {fileID: 218339875}
   - {fileID: 1645083666}
+  stageImege3scale: 0
+  stageImege3scale2: 0
   stageName:
   - {fileID: 83195509}
   - {fileID: 1825506543}
@@ -826,6 +828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718997435}
   - component: {fileID: 1718997434}
+  - component: {fileID: 1718997436}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -943,6 +946,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1718997436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718997433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22d24972f6c68442bd24e97c13a0b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739158604
 GameObject:
   m_ObjectHideFlags: 0

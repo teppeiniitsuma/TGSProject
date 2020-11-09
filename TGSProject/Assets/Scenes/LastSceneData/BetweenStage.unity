@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInSpeed: 0.01
   fadeOutSpeed: 2
+  isStartFade: 1
 --- !u!212 &14046699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -286,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1640089757}
+  type: 1
   _fade: {fileID: 14046698}
 --- !u!1 &121328363
 GameObject:
@@ -535,6 +537,7 @@ GameObject:
   - component: {fileID: 1640089761}
   - component: {fileID: 1640089762}
   - component: {fileID: 1640089763}
+  - component: {fileID: 1640089764}
   m_Layer: 0
   m_Name: Together_01
   m_TagString: Untagged
@@ -637,6 +640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 114539659}
+  type: 1
 --- !u!61 &1640089762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -684,6 +688,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &1640089764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640089757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f15ac718d870d04e92eb5d1dc66464a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parameter:
+    moveSpeed: 0
+  _stageHerbs: 0
+  playerSprite: []
+  sType: 0
 --- !u!1 &1807251814
 GameObject:
   m_ObjectHideFlags: 0
