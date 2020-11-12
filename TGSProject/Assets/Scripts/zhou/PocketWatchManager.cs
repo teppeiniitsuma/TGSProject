@@ -44,7 +44,7 @@ public class PocketWatchManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(pocketWatchPos.transform.position);
+        //Debug.Log(pocketWatchPos.transform.position);
         PocketWatchMoving();
         PocketWatchMove();
         LidOpen();

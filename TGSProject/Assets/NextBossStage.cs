@@ -8,7 +8,7 @@ public class NextBossStage : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            if(GameManager.Instance.Information.GetItemValue.butteflyWingValue == 6)
+            if(PlayerInfoCounter.Instance.GetItemValue.butteflyWingValue == 6)
             {
                 Debug.Log("ok"); ResultManager.TrueEnd = true;
             }

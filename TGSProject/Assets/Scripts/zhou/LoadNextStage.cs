@@ -6,7 +6,7 @@ public class LoadNextStage : MonoBehaviour
 
     private void Start()
     {
-        info = GameManager.Instance.Information;
+        info = PlayerInfoCounter.Instance;
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {

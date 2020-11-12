@@ -18,7 +18,7 @@ public class LouisObjMover : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        _act = GameManager.Instance.Information.GetParameter.actSwitch;
+        _act = PlayerInfoCounter.Instance.GetParameter.actSwitch;
         gameObject.SetActive(false);
     }
 

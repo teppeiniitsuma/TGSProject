@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; }
     public GameState GetGameState { get => _gameState; }
     public EventState GetEventState { get => _eventState; }
-    public PlayerInfoCounter Information { get => _info; }
     public UIManager UIInfo { get => _uiManager; }
     // プレイヤーが光の範囲内にいるか
     public bool InLightRange { get; private set; } = true;
@@ -16,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameState _gameState;
     private EventState _eventState = EventState.Default;
     static GameManager _instance;
-    private PlayerInfoCounter _info;
     private UIManager _uiManager;
 
     public ResultData GetResultData { get => r_data; set => r_data = value;  }
@@ -25,9 +23,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        _info = FindObjectOfType<PlayerInfoCounter>();
         _uiManager = FindObjectOfType<UIManager>();
-        _info.Initialize();
         ResultManager.Instance.DataInitialize();
     }
 

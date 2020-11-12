@@ -6,7 +6,7 @@ public class InjurePlayerCollider : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            GameManager.Instance.Information.DecreaseHP();
+            PlayerInfoCounter.Instance.DecreaseHP();
         }
     }
 }

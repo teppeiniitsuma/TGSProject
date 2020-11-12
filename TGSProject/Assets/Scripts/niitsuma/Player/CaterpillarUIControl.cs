@@ -20,7 +20,7 @@ public class CaterpillarUIControl : MonoBehaviour
     
     IEnumerator CaterpillarFade()
     {
-        count = GameManager.Instance.Information.GetItemValue.catepillarValue;
+        count = PlayerInfoCounter.Instance.GetItemValue.catepillarValue;
         alpha = _caterpillarUI[count - 1].color.a;
         while (0 < alpha)
         {
@@ -29,7 +29,7 @@ public class CaterpillarUIControl : MonoBehaviour
             alpha -= Time.deltaTime / _fadeSpeed;
             yield return null;
         }
-        GameManager.Instance.Information.UseItem(ItemType.catepillar);
+        PlayerInfoCounter.Instance.UseItem(ItemType.catepillar);
     }
     /// <summary>
     /// 毛虫を使ったときに呼ぶ

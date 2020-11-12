@@ -9,7 +9,7 @@ public class TimerUISet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _info = GameManager.Instance.Information;
+        _info = PlayerInfoCounter.Instance;
     }
 
     void TimerMove()
