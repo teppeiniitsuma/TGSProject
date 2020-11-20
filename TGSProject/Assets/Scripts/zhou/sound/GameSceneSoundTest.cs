@@ -19,7 +19,7 @@ public class GameSceneSoundTest : MonoBehaviour
     //AudioSourceを隠すテスト
     void Again()
     {//SE再生
-        SoundManager.PlayEffect("Audios/title");
+        SoundManager.PlayEffect("Audios/kona");
     }
 }
 

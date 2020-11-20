@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 static public class StageConsole
@@ -19,10 +16,13 @@ static public class StageConsole
         Stage4,
         Result,
         GameOver,
-        BossScene,
+        BossStage,
         Tutorial,
         PvScene,
         Endroll,
+        BossStageStart,
+        NormalEnd_Boss,
+        NormalEnd,
     }
     public static MyScene scene;
     static Dictionary<string, MyScene> sceneDic = new Dictionary<string, MyScene>() {
@@ -36,10 +36,13 @@ static public class StageConsole
     {"BetweenStage",   MyScene.BetweenStage },
     {"Result",   MyScene.Result },
     {"GameOver",   MyScene.GameOver },
-    {"BossScene",   MyScene.BossScene },
+    {"BossStage",   MyScene.BossStage },
     {"Tutorial", MyScene.Tutorial },
     {"TitlePV", MyScene.PvScene },
     {"Endroll", MyScene.Endroll },
+    {"BossStageStart", MyScene.BossStageStart },
+    {"NormalEnd_Boss", MyScene.NormalEnd_Boss },
+    {"NormalEnd", MyScene.NormalEnd },
 };
 
     public static MyScene MyGetScene()

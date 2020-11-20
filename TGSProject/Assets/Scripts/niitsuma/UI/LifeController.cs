@@ -12,7 +12,7 @@ public class LifeController : MonoBehaviour
 
     void Awake()
     {
-        parameter = GameManager.Instance.Information.GetParameter;
+        parameter = PlayerInfoCounter.Instance.GetParameter;
         for(int i = 0; i < _lifeUI.Length; i++)
         {
             _lifeUI[i] = transform.GetChild(i).gameObject.GetComponent<Image>();
@@ -23,7 +23,7 @@ public class LifeController : MonoBehaviour
     /// </summary>
     void LifeView()
     {
-        parameter.hp = GameManager.Instance.Information.GetParameter.hp;
+        parameter.hp = PlayerInfoCounter.Instance.GetParameter.hp;
         switch (parameter.hp)
         {
             case 1: _lifeUI[0].fillAmount = 0; _lifeUI[1].fillAmount = 0; _lifeUI[2].fillAmount = 0; break;

@@ -8,7 +8,7 @@ public class ResultControl : MonoBehaviour
     [SerializeField] private GameObject rigth, stageBG,system;
     [SerializeField] private GameObject[] stageImege1;
     [SerializeField] private GameObject[] stageImege2;
-    [SerializeField] private GameObject[] stageImege3;
+    //[SerializeField] private GameObject[] stageImege3;
     [SerializeField] private float stageImege3scale=0, stageImege3scale2 = 0;
 
     [SerializeField] private GameObject[] stageName;
@@ -74,7 +74,8 @@ public class ResultControl : MonoBehaviour
         {
             isPlayerOperational = false;
             isTitle = false;
-            SceneMove = true; 
+            SceneMove = true;
+            SoundManager.PlayEffect("Audios/System/selecting", false);
         }
     }
     /// <summary>
@@ -103,27 +104,27 @@ public class ResultControl : MonoBehaviour
 
         }
 
-        if (stageImege3[i].GetComponent<Transform>().localScale.x < stageImege3scale)
-        {
-            stageImege3[i].GetComponent<Transform>().localScale = new Vector3(
-                stageImege3[i].GetComponent<Transform>().localScale.x + Time.deltaTime * stageImege3scale2,
-                 stageImege3[i].GetComponent<Transform>().localScale.y + Time.deltaTime * stageImege3scale2,
-                1.0f);
+        //if (stageImege3[i].GetComponent<Transform>().localScale.x < stageImege3scale)
+        //{
+        //    stageImege3[i].GetComponent<Transform>().localScale = new Vector3(
+        //        stageImege3[i].GetComponent<Transform>().localScale.x + Time.deltaTime * stageImege3scale2,
+        //         stageImege3[i].GetComponent<Transform>().localScale.y + Time.deltaTime * stageImege3scale2,
+        //        1.0f);
 
-            int a = (i + 1) % 2;
+        //    int a = (i + 1) % 2;
 
-            stageImege3[a].GetComponent<Transform>().localScale = new Vector3(
-               stageImege3[a].GetComponent<Transform>().localScale.x - Time.deltaTime * stageImege3scale2,
-                stageImege3[a].GetComponent<Transform>().localScale.y - Time.deltaTime * stageImege3scale2,
-               1.0f);
+        //    stageImege3[a].GetComponent<Transform>().localScale = new Vector3(
+        //       stageImege3[a].GetComponent<Transform>().localScale.x - Time.deltaTime * stageImege3scale2,
+        //        stageImege3[a].GetComponent<Transform>().localScale.y - Time.deltaTime * stageImege3scale2,
+        //       1.0f);
            
 
-            if (stageImege3[i].GetComponent<Transform>().localScale.x > stageImege3scale)
-            {
-                stageImege3[i].GetComponent<Transform>().localScale = new Vector3(stageImege3scale, stageImege3scale, 1.0f);
-                stageImege3[a].GetComponent<Transform>().localScale = new Vector3(1, 1, 1.0f);
-            }
-        }
+        //    if (stageImege3[i].GetComponent<Transform>().localScale.x > stageImege3scale)
+        //    {
+        //        stageImege3[i].GetComponent<Transform>().localScale = new Vector3(stageImege3scale, stageImege3scale, 1.0f);
+        //        stageImege3[a].GetComponent<Transform>().localScale = new Vector3(1, 1, 1.0f);
+        //    }
+        //}
 
         if (stageImege2[i].GetComponent<SpriteRenderer>().color.a >= 1.0f)
             {

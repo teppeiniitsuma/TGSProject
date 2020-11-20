@@ -11,7 +11,7 @@ public class ScenarioTrigger : MonoBehaviour
 
     private void Start()
     {
-        _info = GameManager.Instance.Information;
+        _info = PlayerInfoCounter.Instance;
         
     }
     void FirstScenario()

@@ -19,7 +19,7 @@ public class CameraMover : MonoBehaviour
     {
         startCameraPos = transform.position;
         diffCamera = Mathf.Abs(transform.position.x - player.position.x);
-        _info = GameManager.Instance.Information;
+        _info = PlayerInfoCounter.Instance;
         _act = _info.GetParameter.actSwitch;
     }
 

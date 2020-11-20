@@ -24,8 +24,8 @@ public class StoneItem : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        var gm = GameManager.Instance.Information.GetParameter.direction;
-        if(gm == 1)
+        var info = PlayerInfoCounter.Instance.GetParameter.direction;
+        if(info == 1)
             _rigidbody.AddForce(vector);
         else
             _rigidbody.AddForce(-vector);

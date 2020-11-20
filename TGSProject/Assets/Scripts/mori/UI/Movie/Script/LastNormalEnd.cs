@@ -5,17 +5,15 @@ using UnityEngine;
 public class LastNormalEnd : MonoBehaviour  //  ノーマルEndの処理
 {
     [SerializeField] CollectedButterfly _butterfly;
+    [SerializeField] FadeController _fade;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    bool endTirgger = false;
     //  ここに会話以降をお願い予定
     private void Normalend()
     {
         Debug.Log("ノーマルエンド");
+        if (!endTirgger) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.NormalEnd_Boss)); }
+        endTirgger = true;
     }
 
     // Update is called once per frame

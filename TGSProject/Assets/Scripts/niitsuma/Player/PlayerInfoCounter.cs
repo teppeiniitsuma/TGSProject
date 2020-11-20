@@ -5,16 +5,18 @@
 
 using UnityEngine;
 
-
+[DefaultExecutionOrder(-1)]
 public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 {
     GameManager _gm;
     CapsuleCollider2D coll;
+    static PlayerInfoCounter _instance;
 
     [SerializeField, Tooltip("プレイヤーのパラメーター")] PlayerParameter _parameter;
     [SerializeField, Tooltip("手に入れなけらばならないハーブの数")] private int _stageHerbs;
     [SerializeField, Tooltip("0, 二人行動画像/ 1, 単独行動画像/ 2, 石化画像")] Sprite[] playerSprite = new Sprite[3];
 
+    public static PlayerInfoCounter Instance { get => _instance; }
     public PlayerParameter GetParameter { get { return _parameter; } }
 
     PossessionItem _items = new PossessionItem();
@@ -47,6 +49,7 @@ public class PlayerInfoCounter : MonoBehaviour, IItemGetter, IDamager
 
     void Awake()
     {
+        _instance = this;
         _items = new PossessionItem();
         _gm = GameManager.Instance;
         Initialize();

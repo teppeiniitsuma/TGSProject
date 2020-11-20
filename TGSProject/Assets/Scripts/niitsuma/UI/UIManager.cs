@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        _info = GameManager.Instance.Information;
+        _info = PlayerInfoCounter.Instance;
         SetItemInfo();
     }
 

@@ -6,6 +6,8 @@ public class VideoErasingShop : MonoBehaviour
 {
     [SerializeField]GameObject _video;
     [SerializeField] FadeController _faUI;
+    [SerializeField] ScenarioTrigger _trigger;
+    [SerializeField] BoxCollider2D trueScenarioColl;
     LastTrueMovie _lsMovie;
     private bool _fadeOut;
     void Start()
@@ -17,6 +19,8 @@ public class VideoErasingShop : MonoBehaviour
     private void Action()
     {
         Debug.Log("トゥルーエンド");
+        trueScenarioColl.gameObject.SetActive(true);
+        _trigger.ForciblyScenarioExecution(3); // トゥルーエンドのシナリオを呼び出す
     }
 
     // Update is called once per frame

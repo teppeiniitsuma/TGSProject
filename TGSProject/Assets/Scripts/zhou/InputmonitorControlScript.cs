@@ -15,6 +15,8 @@ public class InputmonitorControlScript : MonoBehaviour
     [Header("入力中ﾉ暗証番号")]
     [SerializeField]
     string password;
+    [SerializeField, Header("ギミックが解けたら解除するシナリオ")]
+    BoxCollider2D scenarioColl;
 
     bool isMyPos;
 
@@ -78,7 +80,7 @@ public class InputmonitorControlScript : MonoBehaviour
         }
         if (password == truePasssword && inputmonitor[0].GetComponent<InputmonitorScript>().numeralObjects[1] == null && inputmonitor[1].GetComponent<InputmonitorScript>().numeralObjects[1] == null && inputmonitor[2].GetComponent<InputmonitorScript>().numeralObjects[1] == null)
         {
-
+            scenarioColl.gameObject.SetActive(false);
             for (int i = 0; i < inputmonitor.Length; i++)
             {
                 inputmonitor[i].GetComponent<InputmonitorScript>().enabled = false;

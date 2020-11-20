@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LiftCollider : MonoBehaviour
 {
     [SerializeField] private PositionType _pos;
     //[SerializeField] private Transform _player;
     Transform _player;
-    GameManager gM = GameManager.Instance;
+    PlayerInfoCounter _info;
 
     float _moveValue = 0.2f;
 
@@ -21,7 +19,7 @@ public class LiftCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gM.Information.GetParameter.actSwitch)
+        if (_info.GetParameter.actSwitch)
         {
             if (collision.gameObject.tag == "Player" && _pos == PositionType.Right)
             {
@@ -50,12 +48,7 @@ public class LiftCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gM = FindObjectOfType<GameManager>();
+        _info = PlayerInfoCounter.Instance;
         _player = GameObject.Find("player").transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

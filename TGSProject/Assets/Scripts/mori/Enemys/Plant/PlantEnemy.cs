@@ -29,7 +29,7 @@ public class PlantEnemy : BaseEnemy
             _taim -= Time.deltaTime;
             if(_taim <=  0)
             {
-                GameManager.Instance.Information.DecreaseHP();
+                PlayerInfoCounter.Instance.DecreaseHP();
                 _taim = 0;
             }
         }

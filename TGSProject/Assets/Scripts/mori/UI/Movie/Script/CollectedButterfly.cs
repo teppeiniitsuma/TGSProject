@@ -7,9 +7,7 @@ public class CollectedButterfly : MonoBehaviour //  ステージ1,2で集めた�
     public int _collectedButterfly { get{ return _collButterfly; } }
     [SerializeField]LastEnemy lsEnemy;
     [SerializeField]private int _collButterfly;
-    private bool _callingCount;
-
-    int a;  //Butterflyのカウントができるまでの仮置き
+    private bool _callingCount = false;
 
     void Start()
     {
@@ -18,7 +16,7 @@ public class CollectedButterfly : MonoBehaviour //  ステージ1,2で集めた�
 
     private void NormalOrTrue()
     {
-        if (0 == a)
+        if (ResultManager.TrueEnd)
         {
             _collButterfly = 1;
         }

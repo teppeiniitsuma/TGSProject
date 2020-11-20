@@ -23,6 +23,6 @@ public class LiftTrigger : MonoBehaviour
     }
     private void Awake()
     {
-        info = GameManager.Instance.Information;
+        info = PlayerInfoCounter.Instance;
     }
 }
