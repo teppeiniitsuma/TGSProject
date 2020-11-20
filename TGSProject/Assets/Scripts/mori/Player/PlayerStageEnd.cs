@@ -6,11 +6,17 @@ public class PlayerStageEnd : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
+    [SerializeField] StageType type;
     StageThaPlayer stp;
     [SerializeField] private FadeController _fade;
 
     private bool IsArrived = false;
 
+    enum StageType
+    {
+        NormalEnd,
+        NextStage,
+    }
     private void Start()
     {
         stp = player.GetComponent<StageThaPlayer>();
@@ -26,6 +32,13 @@ public class PlayerStageEnd : MonoBehaviour
 
     void Update()
     {
-        if (stp.isTarget && !IsArrived) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Result)); IsArrived = true; }
+        if(type == StageType.NormalEnd)
+        {
+            if (stp.isTarget && !IsArrived) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.NormalEnd)); IsArrived = true; }
+        }
+        else
+        {
+            if (stp.isTarget && !IsArrived) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Result)); IsArrived = true; }
+        }
     }
 }

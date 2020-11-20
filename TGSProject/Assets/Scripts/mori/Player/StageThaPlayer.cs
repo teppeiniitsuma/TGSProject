@@ -6,18 +6,29 @@ public class StageThaPlayer : MonoBehaviour
 {
     [SerializeField]
     GameObject Target;
+    [SerializeField] StageType type;
+    GameManager _gm;
     private float _fadeInTime = 1.5f;
     private bool isTimeCame = false;
     public bool isTarget { get; set; } = false;
     Animator _anim;
 
+    enum StageType
+    {
+        NormalEnd,
+        NextStage,
+    }
     private void Start()
     {
+        _gm = GameManager.Instance;
         _anim = GetComponent<Animator>();
     }
 
     private void PlayerMove()
     {
+        if(type == StageType.NormalEnd) { this.transform.localScale = new Vector3(-1, 1, 1); }
+        else { this.transform.localScale = new Vector3(1, 1, 1); }
+        
         if (!isTarget)
         {
             Vector2 InTarget = Target.transform.position;
@@ -42,7 +53,17 @@ public class StageThaPlayer : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
-        Debug.Log(isTarget);
+        if(null != _gm)
+        {
+            if (_gm.GetGameState == GameManager.GameState.Main)
+            {
+                PlayerMove();
+            }
+        }
+        else
+        {
+            PlayerMove();
+        }
+        
     }
 }

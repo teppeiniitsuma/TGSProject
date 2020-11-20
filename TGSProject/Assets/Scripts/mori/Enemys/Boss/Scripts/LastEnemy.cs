@@ -77,6 +77,7 @@ public class LastEnemy : BaseEnemy
     //　落ちる
     private void DownFromNest()
     {
+        SoundManager.PlayMusic("Audios/Enemy/boar-cry1", false);
         Vector2 une = downLocation.transform.position;
         transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
         _anim.SetTrigger("Down"); // down
@@ -254,6 +255,7 @@ public class LastEnemy : BaseEnemy
             if(isLeverLaunched)
             {
                 colr2d.isTrigger = false;
+                
                 DownFromNest();
             }
             ofSpider = System.Math.Min(ofSpider, 2);
