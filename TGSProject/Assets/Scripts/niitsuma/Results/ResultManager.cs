@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-2)]
 public class ResultManager : MonoBehaviour
 {
     public static ResultManager Instance { get { return _instance; } }
