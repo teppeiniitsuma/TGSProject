@@ -10,7 +10,7 @@ public enum EnemyType
     Plant,
     LastBoss,
 }
-public abstract class BaseEnemy : MonoBehaviour , IDamager
+public abstract class BaseEnemy : MonoBehaviour , IDamager //   Enemy全体の継承の親
 {    
     protected EnemyType enemyID;
 
@@ -29,8 +29,6 @@ public abstract class BaseEnemy : MonoBehaviour , IDamager
 
     protected Animator _anim;
 
-    [SerializeField]
-    [Header("↓↓アニメーションの速度")]
     protected float playSpeed = 1.0f;
 
     private void OnTriggerEnter2D(Collider2D collision)

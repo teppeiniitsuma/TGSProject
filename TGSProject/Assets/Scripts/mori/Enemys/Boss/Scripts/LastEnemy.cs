@@ -78,8 +78,8 @@ public class LastEnemy : BaseEnemy
     private void DownFromNest()
     {
         SoundManager.PlayMusic("Audios/Enemy/boar-cry1", false);
-        Vector2 une = downLocation.transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
+        Vector2 down = new Vector2(transform.position.x, downLocation.transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, down, 0.3f);
         _anim.SetTrigger("Down"); // down
     }
 
@@ -267,8 +267,14 @@ public class LastEnemy : BaseEnemy
         }
         else if(GameManager.Instance.GetEventState == GameManager.EventState.Default)
         {
-            transform.position = startPosition;
-            _anim.SetTrigger("Stop");
+            if (!isLeverLaunched)
+            {
+                transform.position = startPosition;
+                _anim.SetTrigger("Stop");
+            }
+            else
+            { 
+            }
         }
         else
         {
