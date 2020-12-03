@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum EndPlayerType
 {
-    Deflt,
+    Default,
     NormalEnd,
 }
 
-public class StageThaPlayer : MonoBehaviour
+public class StageThePlayer : MonoBehaviour
 {
     [SerializeField]
     GameObject Target;
@@ -22,7 +22,7 @@ public class StageThaPlayer : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        switch(playerType)
+        switch (playerType)
         {
             case EndPlayerType.NormalEnd:
                 _anim.speed = 0;
@@ -35,9 +35,9 @@ public class StageThaPlayer : MonoBehaviour
         if (!isTarget)
         {
             Vector2 InTarget = Target.transform.position;
-            switch(playerType)
+            switch (playerType)
             {
-                case EndPlayerType.Deflt:
+                case EndPlayerType.Default:
                     _fadeInTime -= Time.deltaTime;
                     if (0 >= _fadeInTime)
                     {
@@ -55,22 +55,23 @@ public class StageThaPlayer : MonoBehaviour
                         _anim.speed = 1;
                         transform.localScale = new Vector2(-1, 1);
                         transform.position = Vector2.MoveTowards(transform.position, InTarget, 0.05f);
-                    } 
+                    }
                     break;
             }
-            
+
             //Debug.Log(_fadeInTime);
         }
-        else if(isTarget)
+        else if (isTarget)
         {
             //_anim.Play(0);
             _anim.SetTrigger("FadeOut");
         }
     }
-
+    //StageThePlayer
     void Update()
     {
         PlayerMove();
+        if(GameManager.Instance.GetGameState == GameManager.GameState.Main) { _conversationend = true; }
         //_anim.Play("Base Layer.NormalEndPlayer", 0, 0);
         //Debug.Log(isTarget);
     }
