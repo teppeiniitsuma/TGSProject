@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStageEnd : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    StageThaPlayer stp;
+    StageThePlayer stp;
     [SerializeField] private FadeController _fade;
     public EndPlayerType playerType;
 
@@ -15,15 +13,15 @@ public class PlayerStageEnd : MonoBehaviour
 
     private void Start()
     {
-        stp = player.GetComponent<StageThaPlayer>();
+        stp = player.GetComponent<StageThePlayer>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == player)
         {
-            switch(playerType)
+            switch (playerType)
             {
-                case EndPlayerType.Deflt:
+                case EndPlayerType.Default:
                     stp.isTarget = true;
                     break;
                 case EndPlayerType.NormalEnd:
@@ -33,17 +31,17 @@ public class PlayerStageEnd : MonoBehaviour
             //Debug.Log("f");
         }
     }
-
+    //PlayerStageEnd
     void akb()
     {
-        SceneManager.LoadScene("NormalEnd_Stage1");
+        SceneManager.LoadScene("NormalEnd");
     }
 
     void Update()
     {
         switch (playerType)
         {
-            case EndPlayerType.Deflt:
+            case EndPlayerType.Default:
                 if (stp.isTarget && !IsArrived) { _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Result)); IsArrived = true; }
                 break;
             case EndPlayerType.NormalEnd:
