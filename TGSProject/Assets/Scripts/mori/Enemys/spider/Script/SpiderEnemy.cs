@@ -26,7 +26,8 @@ public class SpiderEnemy : BaseEnemy
     private Animator _anims;
 
     // 蜘蛛の見つけてない時の移動速度
-    [SerializeField][Header("↓↓蜘蛛の見つけてない時の移動速度")][Range(0.0f,100.0f)]private float moveTime = 1.0f;
+    [SerializeField][Header("↓↓蜘蛛の見つけてない時の移動速度")][Range(0.0f,100.0f)]
+    private float moveTime = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
     //[SerializeField]
     private float stopMove = 1.5f;
@@ -36,14 +37,21 @@ public class SpiderEnemy : BaseEnemy
     //  playerがオブジェクトに近づいたら開始する変数
     public bool playerConfirmation { get; set; } = false;
     private bool WasHitToStone = false;
+    private bool _speedSwitching = false;
+    public bool _speedSwitchingON { set { _speedSwitching = value; } }
     [SerializeField]
     private float _surprisedTime;
     [SerializeField]
     [Header("↓↓プレイヤーを追いかける速度")]
     private float attackMove;
     public SpiderType spiderType;
+    private int _countMin = 1; 
+    private int _countMax = 4;
+    private int _moveSpeed;
+
     void Start()
     {
+        _speedSwitchingON = false;
         _spiderPos = GetComponent<ConfirmationSpiderPosition>();
         IsFieldBoss();
         startPosition = transform.position;
@@ -158,6 +166,21 @@ public class SpiderEnemy : BaseEnemy
             if (transform.position.x >= MOSpider_R.x) { direction = 1; }
             else if (transform.position.x <= MOSpider_R.x) { direction = -1; }
         }
+        if (_speedSwitching)
+        {
+            NormalRandomSpeed();
+        }
+    }
+
+    private void NormalRandomSpeed()
+    {
+        _moveSpeed = Random.Range(_countMin,_countMax);
+        _speedSwitchingON = false;
+    }
+
+    private void NormalMoveSpeed()
+    {
+
     }
 
     //private void OnDisable()

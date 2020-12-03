@@ -16,6 +16,7 @@ public class SpiderMoveRight : MonoBehaviour
         if(collision.gameObject == obj)
         {
             f.Right();
+            f._speedSwitchingON = true;
             gameObject.SetActive(false);
         }
     }
