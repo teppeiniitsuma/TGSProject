@@ -152,6 +152,7 @@ public class SpiderEnemy : BaseEnemy
         if (direction != 0) { transform.localScale = new Vector2(direction, 1); }
         Vector2 MOSpider_L = moveSpider[0].transform.position;
         Vector2 MOSpider_R = moveSpider[1].transform.position;
+        NormalMoveSpeed();
         if (!isLeftOrRight)
         {
             transform.position = new Vector2(Mathf.MoveTowards
@@ -180,7 +181,18 @@ public class SpiderEnemy : BaseEnemy
 
     private void NormalMoveSpeed()
     {
-
+        switch(_moveSpeed)
+        {
+            case 1:
+                moveTime = 2;
+                break;
+            case 2:
+                moveTime = 3;
+                break;
+            default:
+                moveTime = 1;
+                break;
+        }
     }
 
     //private void OnDisable()
@@ -196,13 +208,14 @@ public class SpiderEnemy : BaseEnemy
 
     private void HasToFaceWhich()
     {
-        if(direction == 1)
+        switch(direction)
         {
-            hasToFaceWhich = false;
-        }
-        else if(direction == -1)
-        {
-            hasToFaceWhich = true;
+            case 1:
+                hasToFaceWhich = false;
+                break;
+            case -1:
+                hasToFaceWhich = true;
+                break;
         }
     }
 
