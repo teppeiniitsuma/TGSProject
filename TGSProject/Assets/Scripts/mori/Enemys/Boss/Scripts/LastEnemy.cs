@@ -131,23 +131,21 @@ public class LastEnemy : BaseEnemy
 
     private void DamageReaction()
     {
-        if(lastBossHp == 3)
+        switch(lastBossHp)
         {
-            RightForefoot();
+            case 3:
+                RightForefoot();
+                break;
+            case 2:
+                RightBackLegs();
+                break;
+            case 1:
+                LeftBackFoot();
+                break;
+            case 0:
+                LeftForefoot();
+                break;
         }
-        else if(lastBossHp == 2)
-        {
-            RightBackLegs();
-        }
-        else if(lastBossHp == 1)
-        {
-            LeftBackFoot();
-        }
-        else if(lastBossHp == 0)
-        {
-            LeftForefoot();
-        }
-        
     }
 
     private void TagPosCalculation()
@@ -164,10 +162,21 @@ public class LastEnemy : BaseEnemy
     private void MoveBoss()
     {
         Vector2 BossPos = transform.position;
-        if(_moveOver == 1) { _moveSpeed = _moveSpeed1; }
-        else if(_moveOver == 2) { _moveSpeed = _moveSpeed2; }
-        else if(_moveOver == 3) { _moveSpeed = _moveSpeed3; }
-        else if(_moveOver >= 4) { _moveSpeed = _moveSpeed4; }
+        switch(_moveOver)
+        {
+            case 1:
+                _moveSpeed = _moveSpeed1;
+                break;
+            case 2:
+                _moveSpeed = _moveSpeed2;
+                break;
+            case 3:
+                _moveSpeed = _moveSpeed3;
+                break;
+            default:
+                _moveSpeed = _moveSpeed4;
+                break;
+        }
         transform.position = Vector2.MoveTowards(transform.position, tagPos, _moveSpeed / 1000);
         if (BossPos == tagPos) _isArrived = true;
     }
