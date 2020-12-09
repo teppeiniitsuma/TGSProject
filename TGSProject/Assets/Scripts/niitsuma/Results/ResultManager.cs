@@ -11,6 +11,9 @@ public class ResultManager : MonoBehaviour
     public static ResultManager Instance { get { return _instance; } }
     private static ResultManager _instance;
 
+    [SerializeField] private StageRankData _sData = new StageRankData();
+    public StageRankData GetRankData { get => _sData; }
+
     public ResultData GetResultData { get { return _data; } }
     private static ResultData _data = new ResultData();
     public static bool TrueEnd { get; set; } = false;
