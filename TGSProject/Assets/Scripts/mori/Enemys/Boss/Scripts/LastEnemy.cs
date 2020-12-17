@@ -31,6 +31,8 @@ public class LastEnemy : BaseEnemy
     private float _moveSpeed3 = 50f;
     [SerializeField]
     private float _moveSpeed4 = 80f;
+    //[SerializeField][Range(0,2)]
+    private float _moveAnimationSpeed;
     private float _moveOver;//  _moveSpeedの1～4までのどれを入れるかを
     private float _moveSpeed;
     private int _countMin = 1;
@@ -166,17 +168,22 @@ public class LastEnemy : BaseEnemy
         {
             case 1:
                 _moveSpeed = _moveSpeed1;
+                _moveAnimationSpeed = 0.6f;
                 break;
             case 2:
                 _moveSpeed = _moveSpeed2;
+                _moveAnimationSpeed = 0.8f;
                 break;
             case 3:
                 _moveSpeed = _moveSpeed3;
+                _moveAnimationSpeed = 1f;
                 break;
             default:
                 _moveSpeed = _moveSpeed4;
+                _moveAnimationSpeed = 1.2f;
                 break;
         }
+        _anim.speed = _moveAnimationSpeed;
         transform.position = Vector2.MoveTowards(transform.position, tagPos, _moveSpeed / 1000);
         if (BossPos == tagPos) _isArrived = true;
     }
@@ -185,10 +192,10 @@ public class LastEnemy : BaseEnemy
     {
         if (ofSpider < _maxSpider)
         {
-            Vector2 SummonWait = summoningWait.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
-            Vector2 BossPos = transform.position;
-            if (BossPos == SummonWait) _isSummonPos = true;
+            //Vector2 SummonWait = summoningWait.transform.position;
+            //transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
+            //Vector2 BossPos = transform.position;
+            _isSummonPos = true;
             SummonOfS();
             if (!_isSummonPos) { return; }
             //_anim.SetTrigger("Stop");
@@ -221,6 +228,7 @@ public class LastEnemy : BaseEnemy
     private void SummonOfS()
     {
         _anim.SetTrigger("Summon");
+        _anim.speed = 1;
     }
 
     //private void SpiderKill()

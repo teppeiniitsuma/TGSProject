@@ -30,7 +30,7 @@ public class SpiderEnemy : BaseEnemy
     private float moveTime = 1.0f;
     //  オブジェクトとplayerの適切な距離で停止する変数
     //[SerializeField]
-    private float stopMove = 1.5f;
+    //private float stopMove = 1.5f;
     [SerializeField]
     private float FleeMoveSpeed;
     //public delegate int unko = 114514;
