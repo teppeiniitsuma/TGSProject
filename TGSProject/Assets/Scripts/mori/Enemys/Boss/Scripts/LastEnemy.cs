@@ -46,6 +46,7 @@ public class LastEnemy : BaseEnemy
     private bool _isSummon;
     private bool _isTimeIsOK;
     private bool _isSummonPos;
+    private bool _isPosOK = false;
     /// <summary>
     /// これを呼んでtrueにしたらボスが倒れるよ
     /// </summary>
@@ -74,6 +75,7 @@ public class LastEnemy : BaseEnemy
         TagPosCalculation();
         _isArrived = false;
         _isSummon = false;
+        _isPosOK = true;
     }
 
     //　落ちる
@@ -193,10 +195,18 @@ public class LastEnemy : BaseEnemy
         if (ofSpider < _maxSpider)
         {
             //Vector2 SummonWait = summoningWait.transform.position;
-            //transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
-            //Vector2 BossPos = transform.position;
-            _isSummonPos = true;
-            SummonOfS();
+            Vector2 BossPos = transform.position;
+            if (!_isPosOK) { TargetArrived(); }
+            transform.position = Vector2.MoveTowards(transform.position, tagPos, 0.1f);
+            if (BossPos == tagPos)
+            {
+                _isSummonPos = true;
+                SummonOfS();
+                _isPosOK = false;
+            }
+            Debug.Log(tagPos);
+            Debug.Log(BossPos);
+            Debug.Log(_isPosOK);
             if (!_isSummonPos) { return; }
             //_anim.SetTrigger("Stop");
             _summonTime -= Time.deltaTime;
