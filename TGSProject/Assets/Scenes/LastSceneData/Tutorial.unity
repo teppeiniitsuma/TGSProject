@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8265,6 +8265,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826070501629016981, guid: 26f60eff61471ba418a508c188578dff,
+        type: 3}
+      propertyPath: _sData.timeBase
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826070501629016981, guid: 26f60eff61471ba418a508c188578dff,
+        type: 3}
+      propertyPath: _sData.killEnemyBase
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826070501629016981, guid: 26f60eff61471ba418a508c188578dff,
+        type: 3}
+      propertyPath: _sData.stoneMonumentBase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826070501629016981, guid: 26f60eff61471ba418a508c188578dff,
+        type: 3}
+      propertyPath: _sData.deadBase
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826070501629016981, guid: 26f60eff61471ba418a508c188578dff,
+        type: 3}
+      propertyPath: _sData.herbBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26f60eff61471ba418a508c188578dff, type: 3}

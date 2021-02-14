@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDown : MonoBehaviour
+public class BossDown : MonoBehaviour   //  ボスが倒されてノーマルエンドになった時のボスの動き
 {
     [SerializeField]
     private GameObject[] foot = new GameObject[16];

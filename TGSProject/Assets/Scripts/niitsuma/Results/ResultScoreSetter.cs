@@ -8,7 +8,6 @@ public class ResultScoreSetter : MonoBehaviour
 {
     [SerializeField] private List<MessagePresenter> _messagePresenterList = new List<MessagePresenter>();
     [SerializeField] private Image[] _scoreImage = new Image[4];
-
     private List<string> _message;
     private ResultMessageModel model = new ResultMessageModel();
     private RankSetter rankSetter = new RankSetter();
@@ -25,7 +24,7 @@ public class ResultScoreSetter : MonoBehaviour
         //Debug.Log(ResultManager.Instance.GetResultData.playTime);
         model.ResultDataSetter(_message, ResultManager.Instance.GetResultData);
         _message = model.messageList;
-        rank = rankSetter.RankCalculation(ResultManager.Instance.GetResultData);
+        rank = rankSetter.RankCalculation(ResultManager.Instance.GetResultData, ResultManager.Instance.GetRankData);
         for(int i = 0; i < _scoreImage.Length; i++)
         {
             _scoreImage[i].gameObject.SetActive(false);

@@ -4400,7 +4400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1997276475799681699, guid: 3dc6e70aba5f0004bbdaf521eaf8a4f5, type: 3}
-  playSpeed: 1
   spiderObject:
   - {fileID: 3873146598772229305}
   - {fileID: 3873146599308667316}
@@ -4476,6 +4475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a7e3c90d3a9444881b3a7a713cde14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stage: 1
 --- !u!212 &1871203176174342698
 SpriteRenderer:
   m_ObjectHideFlags: 0

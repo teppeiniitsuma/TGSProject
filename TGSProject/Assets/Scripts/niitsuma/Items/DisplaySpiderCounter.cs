@@ -11,13 +11,13 @@ public class DisplaySpiderCounter : MonoBehaviour
     private bool attackTrigger = false;
     private Vector3 te = new Vector3(0, 4.9f, 0);
 
-    public void spiderAddCount(Transform t)
+    public void SpiderAddCount(Transform t)
     {
         spiders[count] = t;
         count++;
     }
 
-    public void spiderDelCount(Transform t)
+    public void SpiderDelCount(Transform t)
     {
         count--;
         for (int i = 0; i < spiders.Length; i++)

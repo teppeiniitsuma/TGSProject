@@ -3284,10 +3284,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 736254242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c10eb20aab50447b319077f78ee986, type: 3}
+  m_Script: {fileID: 11500000, guid: d67f62441d2b3e2489753bd3dbd0c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1654178343}
+  _conversationend: 0
+  playerType: 1
 --- !u!212 &736254247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7413,11 +7415,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654178343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c93f6118baa124dbd68bdde0f65ec1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d0541b5c9ade3d43ae8985a866bbb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 736254242}
   _fade: {fileID: 267743223}
+  playerType: 1
 --- !u!61 &1654178345
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,26 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using DualShockInput;
 
 public class TitleController : MonoBehaviour
 {
+    [SerializeField] private GameObject _systemUI = null;
+
     private void Start()
     {
         ScenarioMessageUseCase.scenarioNum = 0;
+        _systemUI.SetActive(false);
     }
-    void NextScene()
+
+    void SetingSystem()
     {
-        if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space))
+        _systemUI.SetActive(true);
+        ControllerSystem.SetSystem = true;
+    }
+    void TitleMove()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || DSInput.PushDown(DSButton.Option))
         {
-            SceneManager.LoadScene("StageSelect");
+            ControllerSystem.SetSystem = true;
+        }
+        if (!ControllerSystem.SetSystem)
+        {
+            _systemUI.SetActive(false);
+            if (DSInput.PushDown(DSButton.Circle) || Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
+        }
+        else
+        {
+            SetingSystem();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        NextScene();
+        TitleMove();
     }
 }

@@ -31,6 +31,8 @@ public class LastEnemy : BaseEnemy
     private float _moveSpeed3 = 50f;
     [SerializeField]
     private float _moveSpeed4 = 80f;
+    //[SerializeField][Range(0,2)]
+    private float _moveAnimationSpeed;
     private float _moveOver;//  _moveSpeedの1～4までのどれを入れるかを
     private float _moveSpeed;
     private int _countMin = 1;
@@ -44,6 +46,7 @@ public class LastEnemy : BaseEnemy
     private bool _isSummon;
     private bool _isTimeIsOK;
     private bool _isSummonPos;
+    private bool _isPosOK = false;
     /// <summary>
     /// これを呼んでtrueにしたらボスが倒れるよ
     /// </summary>
@@ -72,14 +75,15 @@ public class LastEnemy : BaseEnemy
         TagPosCalculation();
         _isArrived = false;
         _isSummon = false;
+        _isPosOK = true;
     }
 
     //　落ちる
     private void DownFromNest()
     {
         SoundManager.PlayMusic("Audios/Enemy/boar-cry1", false);
-        Vector2 une = downLocation.transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, une, 0.3f);
+        Vector2 down = new Vector2(transform.position.x, downLocation.transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, down, 0.3f);
         _anim.SetTrigger("Down"); // down
     }
 
@@ -131,23 +135,21 @@ public class LastEnemy : BaseEnemy
 
     private void DamageReaction()
     {
-        if(lastBossHp == 3)
+        switch(lastBossHp)
         {
-            RightForefoot();
+            case 3:
+                RightForefoot();
+                break;
+            case 2:
+                RightBackLegs();
+                break;
+            case 1:
+                LeftBackFoot();
+                break;
+            case 0:
+                LeftForefoot();
+                break;
         }
-        else if(lastBossHp == 2)
-        {
-            RightBackLegs();
-        }
-        else if(lastBossHp == 1)
-        {
-            LeftBackFoot();
-        }
-        else if(lastBossHp == 0)
-        {
-            LeftForefoot();
-        }
-        
     }
 
     private void TagPosCalculation()
@@ -164,10 +166,26 @@ public class LastEnemy : BaseEnemy
     private void MoveBoss()
     {
         Vector2 BossPos = transform.position;
-        if(_moveOver == 1) { _moveSpeed = _moveSpeed1; }
-        else if(_moveOver == 2) { _moveSpeed = _moveSpeed2; }
-        else if(_moveOver == 3) { _moveSpeed = _moveSpeed3; }
-        else if(_moveOver >= 4) { _moveSpeed = _moveSpeed4; }
+        switch(_moveOver)
+        {
+            case 1:
+                _moveSpeed = _moveSpeed1;
+                _moveAnimationSpeed = 0.6f;
+                break;
+            case 2:
+                _moveSpeed = _moveSpeed2;
+                _moveAnimationSpeed = 0.8f;
+                break;
+            case 3:
+                _moveSpeed = _moveSpeed3;
+                _moveAnimationSpeed = 1f;
+                break;
+            default:
+                _moveSpeed = _moveSpeed4;
+                _moveAnimationSpeed = 1.2f;
+                break;
+        }
+        _anim.speed = _moveAnimationSpeed;
         transform.position = Vector2.MoveTowards(transform.position, tagPos, _moveSpeed / 1000);
         if (BossPos == tagPos) _isArrived = true;
     }
@@ -176,11 +194,19 @@ public class LastEnemy : BaseEnemy
     {
         if (ofSpider < _maxSpider)
         {
-            Vector2 SummonWait = summoningWait.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, SummonWait, 0.1f);
+            //Vector2 SummonWait = summoningWait.transform.position;
             Vector2 BossPos = transform.position;
-            if (BossPos == SummonWait) _isSummonPos = true;
-            SummonOfS();
+            if (!_isPosOK) { TargetArrived(); }
+            transform.position = Vector2.MoveTowards(transform.position, tagPos, 0.1f);
+            if (BossPos == tagPos)
+            {
+                _isSummonPos = true;
+                SummonOfS();
+                _isPosOK = false;
+            }
+            Debug.Log(tagPos);
+            Debug.Log(BossPos);
+            Debug.Log(_isPosOK);
             if (!_isSummonPos) { return; }
             //_anim.SetTrigger("Stop");
             _summonTime -= Time.deltaTime;
@@ -212,6 +238,7 @@ public class LastEnemy : BaseEnemy
     private void SummonOfS()
     {
         _anim.SetTrigger("Summon");
+        _anim.speed = 1;
     }
 
     //private void SpiderKill()
@@ -267,8 +294,14 @@ public class LastEnemy : BaseEnemy
         }
         else if(GameManager.Instance.GetEventState == GameManager.EventState.Default)
         {
-            transform.position = startPosition;
-            _anim.SetTrigger("Stop");
+            if (!isLeverLaunched)
+            {
+                transform.position = startPosition;
+                _anim.SetTrigger("Stop");
+            }
+            else
+            { 
+            }
         }
         else
         {

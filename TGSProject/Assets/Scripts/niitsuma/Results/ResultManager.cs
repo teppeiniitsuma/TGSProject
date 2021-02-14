@@ -5,11 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-2)]
 public class ResultManager : MonoBehaviour
 {
     public static ResultManager Instance { get { return _instance; } }
     private static ResultManager _instance;
+
+    [SerializeField] private StageRankData _sData = new StageRankData();
+    public StageRankData GetRankData { get => _sData; }
 
     public ResultData GetResultData { get { return _data; } }
     private static ResultData _data = new ResultData();
