@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DualShockInput;
 
 public class PS4Input : MonoBehaviour , IInputEvent
@@ -13,7 +11,7 @@ public class PS4Input : MonoBehaviour , IInputEvent
 
     void Start()
     {
-        
+        if (!ControllerSystem.Controller) { this.enabled = false; }
     }
 
     void InputProcess()

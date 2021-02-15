@@ -22,8 +22,15 @@ public class TitlePVController : MonoBehaviour
 
     void TimeAdd(StageConsole.MyScene scene)
     {
-        if(_time <= _playTime) { _time += Time.deltaTime; }
-        else { StageConsole.MyLoadScene(scene); }
+        if (!ControllerSystem.SetSystem)
+        {
+            if (_time <= _playTime) { _time += Time.deltaTime; }
+            else { StageConsole.MyLoadScene(scene); }
+        }
+        else
+        {
+            _time = 0;
+        }
     }
     void Update()
     {
