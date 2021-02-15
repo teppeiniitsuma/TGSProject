@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DualShockInput;
 
 public class testInput : MonoBehaviour, IInputEvent
@@ -13,6 +11,7 @@ public class testInput : MonoBehaviour, IInputEvent
     bool controllerChenge = false;
     void Awake()
     {
+        if (ControllerSystem.Controller) { this.enabled = false; }
         circleButton   = false;
         squareButton   = false;
         triangleButton = false;
