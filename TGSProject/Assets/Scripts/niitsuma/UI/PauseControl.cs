@@ -7,7 +7,7 @@ public class PauseControl : MonoBehaviour
     [SerializeField] private Image _panelImage;
     [SerializeField] private Image[] _yesImage = new Image[2];
     [SerializeField] private Image[] _noImage = new Image[2];
-    [SerializeField] private ScenarioMessageUseCase useCase;
+    [SerializeField] private ScenarioMessageUseCase _useCase;
     [SerializeField] FadeController _fade;
 
     bool _selects = true; // yes == false , no == true
@@ -126,7 +126,7 @@ public class PauseControl : MonoBehaviour
             {
                 if (DSInput.PushDown(DSButton.Circle))
                 {
-                    if (useCase.GetScenarioNum == 0)
+                    if (_useCase.GetScenarioNum == 0)
                     {
                         _isPush = true;
                         _yesImage[0].gameObject.SetActive(false);
@@ -162,7 +162,7 @@ public class PauseControl : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Z))
                     {
                         PanelReset();
-                        if (useCase.GetScenarioNum == 0)
+                        if (_useCase.GetScenarioNum == 0)
                         {
                             _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Tutorial));
                         }
