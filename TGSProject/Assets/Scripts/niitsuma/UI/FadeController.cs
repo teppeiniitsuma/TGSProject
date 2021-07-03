@@ -6,13 +6,13 @@ public class FadeController : MonoBehaviour
     GameManager _gm;
     PlayerReload _load;
 
-    [SerializeField] private float fadeInSpeed = 3;
-    [SerializeField] private float fadeOutSpeed = 1;
+    [SerializeField] private float _fadeInSpeed = 3;
+    [SerializeField] private float _fadeOutSpeed = 1;
     [SerializeField, Header("最初にフェード演出を入れるか")] private bool isStartFade = false;
     private SpriteRenderer _fadeUI;
-    private float alpha = 0;
-    private Color myColor;
-    private Color colorAlphaZero;
+    private float _alpha = 0;
+    private Color _myColor;
+    private Color _colorAlphaZero;
     private System.Action _callback = null;
 
 
@@ -20,8 +20,8 @@ public class FadeController : MonoBehaviour
     {
         _fadeUI = GetComponent<SpriteRenderer>();
         _gm = GameManager.Instance;
-        myColor = _fadeUI.color;
-        colorAlphaZero = new Color(myColor.r, myColor.g, myColor.b, 0);
+        _myColor = _fadeUI.color;
+        _colorAlphaZero = new Color(_myColor.r, _myColor.g, _myColor.b, 0);
     }
 
     void Start()
@@ -36,13 +36,13 @@ public class FadeController : MonoBehaviour
     IEnumerator FadeIN()
     {
         // 念のため初期化
-        _fadeUI.color = myColor;
-        alpha = _fadeUI.color.a;
+        _fadeUI.color = _myColor;
+        _alpha = _fadeUI.color.a;
         if(null != _load) _load.Reload();
         while (0 < _fadeUI.color.a)
         {
-            _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, alpha);
-            alpha -= Time.deltaTime / fadeInSpeed;
+            _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, _alpha);
+            _alpha -= Time.deltaTime / _fadeInSpeed;
             yield return null;
         }
         yield return new WaitForSeconds(1);
@@ -57,12 +57,12 @@ public class FadeController : MonoBehaviour
     IEnumerator FadeOUT()
     {
         // 念のため初期化
-        _fadeUI.color = colorAlphaZero;
-        alpha = _fadeUI.color.a;
+        _fadeUI.color = _colorAlphaZero;
+        _alpha = _fadeUI.color.a;
         while (_fadeUI.color.a < 1)
         {
-            _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, alpha);
-            alpha += Time.deltaTime / fadeOutSpeed;
+            _fadeUI.color = new Color(_fadeUI.color.r, _fadeUI.color.g, _fadeUI.color.b, _alpha);
+            _alpha += Time.deltaTime / _fadeOutSpeed;
             yield return null;
         }
         if(null != _gm) { _gm.SetGameState(GameManager.GameState.SetUp); }
@@ -85,6 +85,6 @@ public class FadeController : MonoBehaviour
     /// </summary>
     public void ColorInitialize()
     {
-        _fadeUI.color = colorAlphaZero;
+        _fadeUI.color = _colorAlphaZero;
     }
 }

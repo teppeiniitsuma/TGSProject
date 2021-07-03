@@ -11,17 +11,17 @@ public class ScenarioMessageUseCase : MonoBehaviour
     [SerializeField] private Image[] _rFaces = new Image[5]; // ルイス
     [SerializeField] private FadeController _fade;
     ScenarioMessageModel _model;
-    List<ScenarioData> message;
+    List<ScenarioData> _message;
     public int GetScenarioNum { get => scenarioNum; }
     public static int scenarioNum = 0;
 
-    int count = 0;
-    bool trigger = false;
+    int _count = 0;
+    bool _isTrigger = false;
     void Start()
     {
         _model = GetComponent<ScenarioMessageModel>();
-        if(scenarioNum == 0) { message = _model.GetPrologue.Message; }
-        else if(scenarioNum == 1) { message = _model.GetEpilogue.Message; }
+        if(scenarioNum == 0) { _message = _model.GetPrologue.Message; }
+        else if(scenarioNum == 1) { _message = _model.GetEpilogue.Message; }
 
         MessageDisplay();
     }
@@ -95,37 +95,37 @@ public class ScenarioMessageUseCase : MonoBehaviour
     {
         if (!_messageControls[(int)TextType.MessageText].IsCheck)
         {
-            if(0 <= count)
+            if(0 <= _count)
             {
-                _messageControls[(int)TextType.NameText].SetName(message[count].name);
-                _messageControls[(int)TextType.MessageText].SetMessage(message[count].message,
-                    () => count = count < message.Count - 1 ? count + 1 : count = -1);
-                ViewColor(message[count]);
-                switch (message[count].faceType)
+                _messageControls[(int)TextType.NameText].SetName(_message[_count].name);
+                _messageControls[(int)TextType.MessageText].SetMessage(_message[_count].message,
+                    () => _count = _count < _message.Count - 1 ? _count + 1 : _count = -1);
+                ViewColor(_message[_count]);
+                switch (_message[_count].faceType)
                 {
                     case 1: AllReset(); break;
-                    case 2: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
-                    case 3: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
-                    case 4: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
-                    case 5: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
-                    case 6: FaceChange(message[count].faceType, message[count].name); AllReset(message[count].name); break;
+                    case 2: FaceChange(_message[_count].faceType, _message[_count].name); AllReset(_message[_count].name); break;
+                    case 3: FaceChange(_message[_count].faceType, _message[_count].name); AllReset(_message[_count].name); break;
+                    case 4: FaceChange(_message[_count].faceType, _message[_count].name); AllReset(_message[_count].name); break;
+                    case 5: FaceChange(_message[_count].faceType, _message[_count].name); AllReset(_message[_count].name); break;
+                    case 6: FaceChange(_message[_count].faceType, _message[_count].name); AllReset(_message[_count].name); break;
                     default: break;
                 }
             }
             else
             {
-                if (!trigger)
+                if (!_isTrigger)
                 {
                     if(scenarioNum == 0)
                     {
                         _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Tutorial));
-                        trigger = true;
+                        _isTrigger = true;
                     }
                     else
                     {
                         scenarioNum = 0;
                         _fade.Fade(false, () => StageConsole.MyLoadScene(StageConsole.MyScene.Endroll));
-                        trigger = true;
+                        _isTrigger = true;
                     }
                 }
                     

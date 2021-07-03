@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1465,7 +1465,7 @@ MonoBehaviour:
   _noImage:
   - {fileID: 293648601}
   - {fileID: 1252966317}
-  useCase: {fileID: 1875227197}
+  _useCase: {fileID: 1875227197}
   _fade: {fileID: 1616752186}
   _sceneType: 1
 --- !u!1 &953466650
